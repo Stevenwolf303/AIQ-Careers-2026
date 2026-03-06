@@ -761,7 +761,7 @@
         });
         statsObserver.unobserve(entry.target);
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.55, rootMargin: '0px 0px -120px 0px' });
     const statsCard = document.querySelector('.stat-number')?.closest('[style*="background: #0a0a0a"]');
     if (statsCard) statsObserver.observe(statsCard);
 
