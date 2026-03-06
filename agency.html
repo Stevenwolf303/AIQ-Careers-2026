@@ -1398,11 +1398,34 @@
       padding: 0 var(--padding-x);
       position: relative;
       z-index: 2;
+      overflow: hidden;
     }
 
     .footer .container {
       display: flex;
       flex-direction: column;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-watermark {
+      position: absolute;
+      left: 50%;
+      bottom: -12%;
+      transform: translateX(-50%);
+      font-family: var(--font-heading);
+      font-size: clamp(140px, 18vw, 340px);
+      font-weight: 800;
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+      color: rgba(255,255,255,0.03);
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      z-index: 0;
+    }
+    [data-theme="light"] .footer-watermark {
+      color: rgba(0,0,0,0.035);
     }
 
     .footer-main {
@@ -1490,7 +1513,7 @@
       display: flex;
       gap: 32px;
       align-items: center;
-      padding: 40px 0;
+      padding: 40px 0 56px;
       border-top: 1px solid var(--color-border);
       font-size: 14px;
       font-weight: 400;
@@ -2179,6 +2202,7 @@
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
+    <div class="footer-watermark" aria-hidden="true">Baseline</div>
     <div class="container">
       <div class="footer-main">
         <div class="footer-brand">
