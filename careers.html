@@ -135,11 +135,11 @@
       padding: 1.5px;
       background: conic-gradient(
         from var(--stats-border-angle),
-        transparent 0%, transparent 70%,
-        rgba(165, 110, 245, 0.55) 80%,
-        rgba(255, 255, 255, 0.38) 85%,
-        rgba(165, 110, 245, 0.55) 90%,
-        transparent 100%
+        rgba(165, 110, 245, 0.65),
+        rgba(220, 185, 255, 0.8) 25%,
+        rgba(255, 255, 255, 0.55) 40%,
+        rgba(165, 110, 245, 0.7) 65%,
+        rgba(165, 110, 245, 0.65) 100%
       );
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
@@ -151,20 +151,35 @@
       transition: opacity 0.4s ease;
     }
     .stats-card--outlined.is-revealed::before {
-      opacity: 0.55;
+      opacity: 0.85;
       animation: statsBorderSweep 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     /* Feature card */
     .card {
       background: rgba(255, 255, 255, 0.9);
-      border: 1px solid #b8afff;
+      border: none;
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
       padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 0;
+      position: relative;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(151, 142, 255, 1), rgba(243, 206, 241, 1));
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      pointer-events: none;
     }
     .card-icon {
       background: rgba(151, 142, 255, 0.12);
