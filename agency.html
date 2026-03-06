@@ -492,14 +492,31 @@
       width: 100%;
     }
 
-    .logo-grid {
+    .logo-carousel {
+      position: relative;
+      max-width: 800px;
+      width: 100%;
+      height: 36px;
+    }
+
+    .logo-group {
+      position: absolute;
+      inset: 0;
       display: flex;
       flex-wrap: wrap;
       gap: 16px 48px;
       align-items: center;
       justify-content: center;
-      max-width: 800px;
-      width: 100%;
+      opacity: 0;
+      transform: translateY(6px);
+      transition:
+        opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .logo-group.is-active {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .logo-item {
@@ -508,11 +525,16 @@
       align-items: center;
       justify-content: center;
       opacity: 0.5;
-      transition: opacity 0.2s ease;
     }
 
     .logo-item:hover {
       opacity: 0.8;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo-group {
+        transition: none;
+      }
     }
 
     .logo-item span {
@@ -1724,11 +1746,19 @@
   <section class="logo-cloud">
     <div class="container">
       <h2>Trusted by growing businesses</h2>
-      <div class="logo-grid">
-        <div class="logo-item"><span style="font-weight:700; letter-spacing:-0.5px;">Bloom Botanicals</span></div>
-        <div class="logo-item"><span style="font-weight:600;">Kinetic Fitness</span></div>
-        <div class="logo-item"><span style="font-weight:700; font-style:italic;">Volta Coffee</span></div>
-        <div class="logo-item"><span style="font-weight:600; letter-spacing:0.3px;">Clearpath</span></div>
+      <div class="logo-carousel">
+        <div class="logo-group is-active">
+          <div class="logo-item"><span style="font-weight:700; letter-spacing:-0.5px;">Bloom Botanicals</span></div>
+          <div class="logo-item"><span style="font-weight:600;">Kinetic Fitness</span></div>
+          <div class="logo-item"><span style="font-weight:700; font-style:italic;">Volta Coffee</span></div>
+          <div class="logo-item"><span style="font-weight:600; letter-spacing:0.3px;">Clearpath</span></div>
+        </div>
+        <div class="logo-group">
+          <div class="logo-item"><span style="font-weight:700; font-style:italic;">Volta Coffee</span></div>
+          <div class="logo-item"><span style="font-weight:600; letter-spacing:0.3px;">Clearpath</span></div>
+          <div class="logo-item"><span style="font-weight:700; letter-spacing:-0.5px;">Bloom Botanicals</span></div>
+          <div class="logo-item"><span style="font-weight:600;">Kinetic Fitness</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -2129,6 +2159,27 @@
       });
     },{threshold:0.25});
     document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
+  })();
+  </script>
+  <script>
+  (function(){
+    var groups=document.querySelectorAll('.logo-group');
+    if(groups.length<2)return;
+    var current=0,timer;
+    var carousel=document.querySelector('.logo-carousel');
+    function next(){
+      groups[current].classList.remove('is-active');
+      current=(current+1)%groups.length;
+      groups[current].classList.add('is-active');
+    }
+    function start(){timer=setInterval(next,2800);}
+    function stop(){clearInterval(timer);}
+    start();
+    if(carousel){
+      carousel.addEventListener('mouseenter',stop);
+      carousel.addEventListener('mouseleave',start);
+    }
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches){stop();}
   })();
   </script>
 </body>
