@@ -569,6 +569,25 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--color-fg-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-wave {
+      display: inline-block;
+      font-size: 16px;
+      animation: wave 2.4s ease-in-out infinite;
+      transform-origin: 70% 70%;
+    }
+
+    @keyframes wave {
+      0%, 60%, 100% { transform: rotate(0deg); }
+      10% { transform: rotate(14deg); }
+      20% { transform: rotate(-8deg); }
+      30% { transform: rotate(14deg); }
+      40% { transform: rotate(-4deg); }
+      50% { transform: rotate(10deg); }
     }
 
     .hero-body p {
@@ -1962,7 +1981,7 @@
       </div>
 
       <div class="hero-editorial">
-        <span class="hero-eyebrow reveal">Hello</span>
+        <span class="hero-eyebrow reveal">Hello <span class="hero-wave" aria-hidden="true">👋</span></span>
         <div class="hero-body reveal">
           <p>Baseline is a creative studio designing modern brands, websites, and digital systems for ambitious companies.</p>
           <p>Brand identity, web design, development, and creative systems built with taste, speed, and precision.</p>
