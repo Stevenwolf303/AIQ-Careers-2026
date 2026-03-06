@@ -233,16 +233,20 @@
       will-change: transform;
     }
 
-    /* ── Hero content ── */
-    @keyframes heroFadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: none; }
-    }
-    .hero-anim {
+    /* ── Hero blur-to-sharp reveal ── */
+    .hero-reveal {
       opacity: 0;
-      animation-name: heroFadeUp;
-      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-      animation-fill-mode: forwards;
+      filter: blur(18px);
+      transform: translateY(24px);
+      transition:
+        opacity   800ms cubic-bezier(0.22, 1, 0.36, 1),
+        filter    800ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hero-reveal.is-visible {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0);
     }
 
 
@@ -285,13 +289,13 @@
       <div class="hero-shimmer"></div>
     </div>
     <div class="relative z-10 flex flex-col items-center text-center px-6 pt-32 pb-24" style="max-width: 960px; min-width: 900px; margin: 0 auto;">
-      <h1 class="hero-anim font-display font-semibold text-[#191a1d] leading-[1.2] mb-4" style="font-size: 64px; letter-spacing: -0.02em; animation-duration: 700ms; animation-delay: 100ms;">
+      <h1 class="hero-reveal font-display font-semibold text-[#191a1d] leading-[1.2] mb-4" style="font-size: 64px; letter-spacing: -0.02em; transition-duration: 800ms; transition-delay: 80ms;">
         Help us build the<br>data engine behind multifamily
       </h1>
-      <p class="hero-anim mb-6" style="color: #40434C; font-family: Inter, sans-serif; font-size: 20px; font-style: normal; font-weight: 500; line-height: 30px; letter-spacing: -0.54px; text-align: center; max-width: 100%; animation-duration: 800ms; animation-delay: 180ms;">
+      <p class="hero-reveal mb-6" style="color: #40434C; font-family: Inter, sans-serif; font-size: 20px; font-style: normal; font-weight: 500; line-height: 30px; letter-spacing: -0.54px; text-align: center; max-width: 100%; transition-duration: 850ms; transition-delay: 160ms;">
         ApartmentIQ powers smarter decisions for 1,500+ property management companies. We're looking for driven people who want to shape how the multifamily industry uses data.
       </p>
-      <a href="#jobs" class="btn-primary hero-anim" style="animation-duration: 850ms; animation-delay: 240ms;">
+      <a href="#jobs" class="btn-primary hero-reveal" style="transition-duration: 900ms; transition-delay: 240ms;">
         View open roles
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path d="M2.5 7H11.5M11.5 7L8 3.5M11.5 7L8 10.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -622,6 +626,13 @@
   </footer>
 
   <script>
+    // ── Hero blur-to-sharp reveal ────────────────────────────────────────────
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.hero-reveal').forEach(el => el.classList.add('is-visible'));
+      });
+    });
+
     // ── Staggered child reveals ([data-stagger] containers) ─────────────────
     const STAGGER_MS = 70;
     const staggerObserver = new IntersectionObserver((entries) => {
