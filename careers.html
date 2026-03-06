@@ -130,9 +130,9 @@
     .stats-card--outlined::before {
       content: '';
       position: absolute;
-      inset: -1.5px;
-      border-radius: 17.5px;
-      padding: 1.5px;
+      inset: -3px;
+      border-radius: 19px;
+      padding: 3px;
       background: conic-gradient(
         from var(--stats-border-angle),
         rgba(165, 110, 245, 0.65),
@@ -264,6 +264,22 @@
       transform: none;
     }
 
+    /* ── Stat column sequential reveal ── */
+    .stat-col {
+      opacity: 0;
+      filter: blur(6px);
+      transform: translateY(8px);
+      transition:
+        opacity   850ms cubic-bezier(0.22, 1, 0.36, 1),
+        filter    850ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 850ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .stat-col.is-in {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0);
+    }
+
     /* ── Hero background ── */
     @keyframes heroBgReveal {
       from { opacity: 0; transform: scale(1.02); }
@@ -378,17 +394,17 @@
           </p>
         </div>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
-          <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center;">
+          <div class="stat-col" style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center;">
             <span class="gradient-metric font-display font-bold stat-number" data-target="40" data-suffix="M+" style="font-size: 40px; line-height: 1; letter-spacing: -0.8px;">40M+</span>
             <div class="stat-divider" style="width: 100%;"></div>
             <p style="color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.5; letter-spacing: -0.2px;">Units tracked daily</p>
           </div>
-          <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center;">
+          <div class="stat-col" style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center;">
             <span class="gradient-metric font-display font-bold stat-number" data-target="1500" data-suffix="+" style="font-size: 40px; line-height: 1; letter-spacing: -0.8px;">1500+</span>
             <div class="stat-divider" style="width: 100%;"></div>
             <p style="color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.5; letter-spacing: -0.2px;">PMC customers</p>
           </div>
-          <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center;">
+          <div class="stat-col" style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center;">
             <span class="gradient-metric font-display font-bold stat-number" data-target="70" data-suffix="%" style="font-size: 40px; line-height: 1; letter-spacing: -0.8px;">70%</span>
             <div class="stat-divider" style="width: 100%;"></div>
             <p style="color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.5; letter-spacing: -0.2px;">NMHC Top 50</p>
@@ -721,20 +737,27 @@
     });
 
     // ── Stat count-up ────────────────────────────────────────────────────────
-    function countUp(el, target, suffix, duration = 1400) {
-      const start = performance.now();
+    function countUp(el, target, suffix, duration = 900) {
+      const startVal = Math.round(target * 0.88);
+      const range = target - startVal;
       const ease = t => 1 - Math.pow(1 - t, 3);
+      el.textContent = startVal + suffix;
+      const t0 = performance.now();
       (function tick(now) {
-        const p = Math.min((now - start) / duration, 1);
-        el.textContent = Math.round(ease(p) * target) + suffix;
+        const p = Math.min((now - t0) / duration, 1);
+        el.textContent = Math.round(startVal + ease(p) * range) + suffix;
         if (p < 1) requestAnimationFrame(tick);
-      })(start);
+      })(t0);
     }
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         entry.target.querySelectorAll('.stat-number').forEach((el, i) => {
-          setTimeout(() => countUp(el, +el.dataset.target, el.dataset.suffix), i * 150);
+          const delay = i * 160;
+          setTimeout(() => {
+            el.closest('.stat-col')?.classList.add('is-in');
+            countUp(el, +el.dataset.target, el.dataset.suffix);
+          }, delay);
         });
         statsObserver.unobserve(entry.target);
       });
