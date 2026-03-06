@@ -451,11 +451,15 @@
       letter-spacing: -0.37px;
       color: var(--color-fg-muted);
       border-radius: 10px;
-      transition: color 0.15s ease;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .nav-menu a:hover {
-      color: var(--color-accent);
+      color: var(--color-fg-default);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+    }
+    [data-theme="light"] .nav-menu a:hover {
+      background: linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.01) 100%);
     }
 
     .nav-actions {
