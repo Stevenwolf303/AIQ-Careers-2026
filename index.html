@@ -295,7 +295,7 @@
       to { transform: translateX(110%); }
     }
 
-    /* --- Outline button glow trace --- */
+    /* --- Outline button border sweep --- */
     .btn-secondary {
       position: relative;
       background: transparent;
@@ -303,32 +303,32 @@
       border: 1px solid rgba(255,255,255,0.15);
       box-shadow: var(--shadow-xs);
       z-index: 0;
+      overflow: hidden;
     }
     .btn-secondary::before {
       content: '';
       position: absolute;
-      inset: -2px;
-      border-radius: calc(var(--radius-button) + 2px);
-      background: conic-gradient(
-        from 0deg,
-        transparent 0%,
-        transparent 30%,
-        rgba(255,255,255,0.4) 38%,
-        rgba(255,255,255,0.55) 42%,
-        rgba(255,255,255,0.4) 46%,
-        transparent 54%,
-        transparent 100%
+      inset: -1px;
+      border-radius: inherit;
+      background: linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(255,255,255,0.5) 45%,
+        rgba(255,255,255,0.65) 50%,
+        rgba(255,255,255,0.5) 55%,
+        transparent 80%
       );
       opacity: 0;
-      z-index: -2;
-      transition: opacity 300ms ease;
+      transform: translateX(-120%);
+      transition: opacity 250ms ease;
       pointer-events: none;
+      z-index: -2;
     }
     .btn-secondary::after {
       content: '';
       position: absolute;
-      inset: 0;
-      border-radius: inherit;
+      inset: 1px;
+      border-radius: calc(var(--radius-button) - 1px);
       background: var(--color-bg-main);
       z-index: -1;
       pointer-events: none;
@@ -336,36 +336,34 @@
     .btn-secondary:hover::before,
     .btn-secondary:focus-visible::before {
       opacity: 1;
-      animation: border-trace 1200ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: border-sweep 1200ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
     .btn-secondary:hover {
-      border-color: rgba(255,255,255,0.3);
-      box-shadow: var(--shadow-xs), 0 0 16px -4px var(--color-accent-glow);
+      border-color: rgba(255,255,255,0.25);
+      box-shadow: var(--shadow-xs), 0 0 14px -4px var(--color-accent-glow);
       opacity: 1;
     }
-    @keyframes border-trace {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    @keyframes border-sweep {
+      from { transform: translateX(-120%); }
+      to { transform: translateX(120%); }
     }
 
     [data-theme="light"] .btn-secondary::before {
-      background: conic-gradient(
-        from 0deg,
-        transparent 0%,
-        transparent 30%,
-        rgba(79,108,247,0.3) 38%,
-        rgba(79,108,247,0.45) 42%,
-        rgba(79,108,247,0.3) 46%,
-        transparent 54%,
-        transparent 100%
+      background: linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(79,108,247,0.35) 45%,
+        rgba(79,108,247,0.5) 50%,
+        rgba(79,108,247,0.35) 55%,
+        transparent 80%
       );
     }
     [data-theme="light"] .btn-secondary::after {
       background: var(--color-bg-main);
     }
     [data-theme="light"] .btn-secondary:hover {
-      border-color: rgba(79,108,247,0.3);
-      box-shadow: var(--shadow-xs), 0 0 16px -4px var(--color-accent-glow);
+      border-color: rgba(79,108,247,0.25);
+      box-shadow: var(--shadow-xs), 0 0 14px -4px var(--color-accent-glow);
     }
 
     .btn-sm {
