@@ -570,81 +570,118 @@
       .hamburger-btn.is-open .bar-2 { opacity: 0; transform: scaleX(0.3); }
       .hamburger-btn.is-open .bar-3 { transform: translateY(-7px) rotate(-45deg); }
 
-      /* Mobile menu panel */
+      /* Full-screen overlay */
       .mobile-menu {
-        display: block;
+        display: flex;
+        flex-direction: column;
         position: fixed;
-        top: 86px;
-        left: 16px;
-        right: 16px;
-        z-index: 49;
-        background: #fff;
-        border: 1px solid rgba(25,26,29,0.08);
-        border-radius: 16px;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
-        padding: 8px;
+        inset: 0;
+        z-index: 100;
+        background: rgba(250, 250, 252, 0.92);
+        backdrop-filter: blur(22px) saturate(140%);
+        -webkit-backdrop-filter: blur(22px) saturate(140%);
         opacity: 0;
-        transform: translateY(-8px);
         visibility: hidden;
         pointer-events: none;
+        transform: translateY(10px);
         transition:
-          opacity  260ms cubic-bezier(0.22, 1, 0.36, 1),
-          transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
-          visibility 260ms;
+          opacity  300ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 300ms;
       }
       .mobile-menu.is-open {
         opacity: 1;
-        transform: translateY(0);
         visibility: visible;
         pointer-events: auto;
+        transform: translateY(0);
       }
-      .mobile-nav-link {
-        display: block;
-        padding: 13px 16px;
-        font-size: 15px;
+
+      /* Top bar inside overlay (mirrors the site header) */
+      .mmenu-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        min-height: 80px;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(25, 26, 29, 0.06);
+      }
+      .mmenu-logo { display: flex; align-items: center; }
+      .mmenu-bar-actions { display: flex; align-items: center; gap: 8px; }
+      .mmenu-login {
+        padding: 8px 12px;
+        font-size: 13px;
         font-weight: 500;
         color: #40434c;
         text-decoration: none;
         letter-spacing: -0.3px;
-        border-radius: 10px;
-        transition: background 0.15s, color 0.15s;
+        transition: color 0.15s;
       }
-      .mobile-nav-link:hover { background: rgba(0,0,0,0.04); color: #191a1d; }
-      .mobile-nav-sep {
-        height: 1px;
-        background: #f0f0f2;
-        margin: 6px 8px;
-      }
-      .mobile-nav-login {
-        display: block;
-        padding: 13px 16px;
-        font-size: 15px;
-        font-weight: 500;
-        color: #191a1d;
-        text-decoration: none;
-        letter-spacing: -0.3px;
-        border-radius: 10px;
-        transition: background 0.15s;
-      }
-      .mobile-nav-login:hover { background: rgba(0,0,0,0.04); }
-      .mobile-nav-cta {
-        display: block;
-        margin-top: 4px;
-        padding: 14px 16px;
-        font-size: 15px;
-        font-weight: 600;
-        color: #fff;
+      .mmenu-login:hover { color: #191a1d; }
+      .mmenu-cta {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 14px;
         background: #191a1d;
-        text-decoration: none;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 500;
         letter-spacing: -0.3px;
-        border-radius: 10px;
-        text-align: center;
+        border-radius: 8px;
+        text-decoration: none;
         transition: opacity 0.15s;
       }
-      .mobile-nav-cta:hover { opacity: 0.85; }
+      .mmenu-cta:hover { opacity: 0.82; }
+      .mmenu-close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        margin-left: 4px;
+        border: none;
+        background: rgba(25, 26, 29, 0.06);
+        border-radius: 8px;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: background 0.15s;
+      }
+      .mmenu-close:hover { background: rgba(25, 26, 29, 0.11); }
 
-      /* Backdrop click-catcher */
-      .menu-backdrop { display: block; }
+      /* Nav content */
+      .mmenu-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 48px 28px 40px;
+        gap: 48px;
+        overflow-y: auto;
+      }
+      .mmenu-group { display: flex; flex-direction: column; }
+      .mmenu-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #a0a3ac;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .mmenu-link {
+        display: block;
+        font-family: 'Inter Tight', sans-serif;
+        font-size: clamp(28px, 8.5vw, 40px);
+        font-weight: 600;
+        color: #191a1d;
+        text-decoration: none;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        padding: 5px 0;
+        transition: opacity 0.18s;
+      }
+      .mmenu-link:hover { opacity: 0.38; }
+
+      /* Backdrop no longer needed — overlay is full-screen */
+      .menu-backdrop { display: none !important; }
 
       /* Footer: single-column */
       .footer-section-label {
@@ -718,15 +755,47 @@
     </div>
   </header>
 
-  <!-- ─── MOBILE MENU ─── -->
-  <div class="menu-backdrop" id="menu-backdrop"></div>
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <a href="#" class="mobile-nav-link">Market Surveys</a>
-    <a href="#" class="mobile-nav-link">Market Research</a>
-    <a href="#" class="mobile-nav-link">Revenue Management</a>
-    <div class="mobile-nav-sep"></div>
-    <a href="#" class="mobile-nav-login">Log in</a>
-    <a href="#" class="mobile-nav-cta">Request a demo</a>
+  <!-- ─── MOBILE MENU (full-screen overlay) ─── -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true">
+
+    <!-- Top bar: mirrors site header -->
+    <div class="mmenu-bar">
+      <a href="#" class="mmenu-logo">
+        <img src="IQ_logo.png" alt="ApartmentIQ" style="height: 26px; width: auto;" />
+      </a>
+      <div class="mmenu-bar-actions">
+        <a href="#" class="mmenu-login">Log in</a>
+        <a href="#" class="mmenu-cta">Request a demo</a>
+        <button class="mmenu-close" id="mmenu-close-btn" aria-label="Close menu">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1.5 1.5L12.5 12.5M12.5 1.5L1.5 12.5" stroke="#191a1d" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Nav groups -->
+    <div class="mmenu-content">
+      <div class="mmenu-group">
+        <p class="mmenu-label">Product</p>
+        <nav>
+          <a href="#" class="mmenu-link">Market Surveys</a>
+          <a href="#" class="mmenu-link">Market Research</a>
+          <a href="#" class="mmenu-link">Revenue Management</a>
+          <a href="#" class="mmenu-link">MavenAI</a>
+        </nav>
+      </div>
+      <div class="mmenu-group">
+        <p class="mmenu-label">Company</p>
+        <nav>
+          <a href="#" class="mmenu-link">Careers</a>
+          <a href="#" class="mmenu-link">Resources</a>
+          <a href="#" class="mmenu-link">Sign In</a>
+          <a href="#" class="mmenu-link">Request a Demo</a>
+        </nav>
+      </div>
+    </div>
+
   </div>
 
   <!-- ─── HERO ─── -->
@@ -1168,25 +1237,21 @@
       outlineObserver.observe(outlinedCard);
     }
 
-    // ── Hamburger menu ────────────────────────────────────────────────────────
+    // ── Hamburger menu (full-screen overlay) ──────────────────────────────────
     (function () {
       var btn      = document.getElementById('hamburger-btn');
       var menu     = document.getElementById('mobile-menu');
-      var backdrop = document.getElementById('menu-backdrop');
-      if (!btn || !menu || !backdrop) return;
+      var closeBtn = document.getElementById('mmenu-close-btn');
+      if (!btn || !menu) return;
 
       function openMenu() {
-        btn.classList.add('is-open');
         menu.classList.add('is-open');
-        backdrop.classList.add('is-open');
         btn.setAttribute('aria-expanded', 'true');
         menu.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
       }
       function closeMenu() {
-        btn.classList.remove('is-open');
         menu.classList.remove('is-open');
-        backdrop.classList.remove('is-open');
         btn.setAttribute('aria-expanded', 'false');
         menu.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
@@ -1196,7 +1261,7 @@
         e.stopPropagation();
         menu.classList.contains('is-open') ? closeMenu() : openMenu();
       });
-      backdrop.addEventListener('click', closeMenu);
+      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeMenu();
       });
