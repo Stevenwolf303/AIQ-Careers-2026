@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ApartmentIQ — Multifamily Market Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  /* ─── Reset & Base ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --purple: #7C3AED;
+    --purple-light: #8B5CF6;
+    --purple-pale: #F5F0FF;
+    --purple-mid: #EDE9FE;
+    --dark: #09090B;
+    --dark-2: #18181B;
+    --gray-1: #F9F9FB;
+    --gray-2: #F3F3F7;
+    --gray-3: #E8E8F0;
+    --gray-4: #C4C4D4;
+    --gray-5: #8B8BA7;
+    --gray-6: #52525B;
+    --text: #09090B;
+    --text-secondary: #52525B;
+    --text-tertiary: #8B8BA7;
+    --border: #E8E8F0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    --shadow: 0 4px 16px rgba(0,0,0,.07), 0 1px 4px rgba(0,0,0,.04);
+    --shadow-md: 0 8px 32px rgba(0,0,0,.09), 0 2px 8px rgba(0,0,0,.05);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,.1), 0 4px 16px rgba(0,0,0,.06);
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --max-w: 1140px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Utilities ─── */
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+  .section { padding: 96px 0; }
+  .section-sm { padding: 72px 0; }
+
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--purple-mid); color: var(--purple);
+    font-size: 12px; font-weight: 600; letter-spacing: .04em;
+    text-transform: uppercase; padding: 5px 12px;
+    border-radius: 100px;
+  }
+  .tag svg { width: 12px; height: 12px; }
+
+  h1 { font-size: clamp(40px, 5.5vw, 68px); font-weight: 800; line-height: 1.08; letter-spacing: -.03em; }
+  h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; line-height: 1.12; letter-spacing: -.025em; }
+  h3 { font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; line-height: 1.2; letter-spacing: -.02em; }
+  h4 { font-size: 17px; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; }
+
+  .lead { font-size: clamp(16px, 1.8vw, 19px); color: var(--text-secondary); line-height: 1.65; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 22px; border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 600; letter-spacing: -.01em;
+    text-decoration: none; cursor: pointer; border: none;
+    transition: all .18s ease;
+  }
+  .btn-primary {
+    background: var(--purple); color: #fff;
+    box-shadow: 0 1px 3px rgba(124,58,237,.3), 0 4px 12px rgba(124,58,237,.2);
+  }
+  .btn-primary:hover {
+    background: #6D28D9;
+    box-shadow: 0 2px 6px rgba(124,58,237,.35), 0 8px 20px rgba(124,58,237,.25);
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    background: #fff; color: var(--text);
+    border: 1.5px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+  .btn-secondary:hover { background: var(--gray-1); border-color: var(--gray-4); }
+  .btn-ghost { background: transparent; color: var(--text-secondary); }
+  .btn-ghost:hover { color: var(--text); }
+  .btn-lg { padding: 14px 28px; font-size: 15px; }
+
+  .arrow-icon { width: 16px; height: 16px; }
+
+  /* ─── Nav ─── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.88);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid rgba(232,232,240,.8);
+  }
+  .nav-inner {
+    max-width: var(--max-w); margin: 0 auto; padding: 0 28px;
+    height: 60px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-size: 17px; font-weight: 800; letter-spacing: -.03em; color: var(--dark);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--purple); }
+  .nav-links {
+    display: flex; align-items: center; gap: 4px;
+    list-style: none;
+  }
+  .nav-links a {
+    display: block; padding: 6px 12px; font-size: 14px; font-weight: 500;
+    color: var(--text-secondary); text-decoration: none;
+    border-radius: var(--radius-sm); transition: all .15s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--gray-1); }
+  .nav-right { display: flex; align-items: center; gap: 8px; }
+  .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+
+  /* ─── Hero ─── */
+  .hero { padding: 80px 0 64px; overflow: hidden; }
+  .hero-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 5px 14px 5px 8px; background: var(--purple-mid);
+    border-radius: 100px; margin-bottom: 24px;
+    font-size: 12.5px; font-weight: 500; color: var(--purple);
+    border: 1px solid rgba(124,58,237,.15);
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px; background: var(--purple-light);
+    border-radius: 50%; flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(139,92,246,.25);
+  }
+  .hero-headline { margin-bottom: 20px; }
+  .hero-headline em { font-style: normal; color: var(--purple); }
+  .hero-sub { max-width: 460px; margin-bottom: 32px; }
+  .hero-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .hero-social-proof {
+    margin-top: 40px; display: flex; align-items: center; gap: 14px;
+  }
+  .avatar-stack { display: flex; }
+  .avatar {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 2px solid #fff; overflow: hidden;
+    margin-left: -8px; background: var(--purple-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: var(--purple);
+  }
+  .avatar:first-child { margin-left: 0; }
+  .proof-text { font-size: 13px; color: var(--text-secondary); font-weight: 500; }
+  .proof-text strong { color: var(--text); }
+
+  /* ─── Hero UI Preview ─── */
+  .hero-visual { position: relative; }
+  .hero-card-stack {
+    position: relative;
+    border-radius: var(--radius-xl);
+    background: var(--gray-1);
+    border: 1.5px solid var(--border);
+    padding: 24px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+  .hero-card-stack::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(124,58,237,.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Product UI Components */
+  .ui-card {
+    background: #fff; border-radius: var(--radius);
+    border: 1px solid var(--border); overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .ui-card-header {
+    padding: 12px 16px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .ui-card-title { font-size: 12px; font-weight: 600; color: var(--text); }
+  .ui-card-sub { font-size: 11px; color: var(--text-tertiary); }
+  .ui-card-body { padding: 16px; }
+  .ui-badge {
+    font-size: 11px; font-weight: 600; padding: 2px 8px;
+    border-radius: 100px;
+  }
+  .ui-badge-green { background: #DCFCE7; color: #16A34A; }
+  .ui-badge-red { background: #FEE2E2; color: #DC2626; }
+  .ui-badge-amber { background: #FEF3C7; color: #D97706; }
+  .ui-badge-purple { background: var(--purple-mid); color: var(--purple); }
+
+  /* ─── Inline mini chart ─── */
+  .sparkline { display: block; }
+
+  /* ─── Stats Band ─── */
+  .stats-band { background: var(--dark); color: #fff; padding: 64px 0; }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; background: rgba(255,255,255,.08);
+    border-radius: var(--radius-lg);
+    overflow: hidden; margin-bottom: 48px;
+  }
+  .stat-item {
+    background: var(--dark-2); padding: 28px 24px;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: clamp(28px, 3.5vw, 42px); font-weight: 800;
+    letter-spacing: -.04em; line-height: 1;
+    background: linear-gradient(135deg, #fff 40%, #C4B5FD 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,.5); font-weight: 500; }
+  .testimonial-strip {
+    text-align: center; max-width: 560px; margin: 0 auto;
+  }
+  .testimonial-strip blockquote {
+    font-size: 18px; font-weight: 500; color: rgba(255,255,255,.85);
+    line-height: 1.55; margin-bottom: 16px;
+    font-style: italic;
+  }
+  .testimonial-author {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    font-size: 13px; color: rgba(255,255,255,.45); font-weight: 500;
+  }
+  .testimonial-author-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--purple); display: flex; align-items: center;
+    justify-content: center; font-size: 11px; font-weight: 700; color: #fff;
+  }
+
+  /* ─── Public Data Section ─── */
+  .pillars-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; margin-top: 40px;
+  }
+  .pillar-card {
+    padding: 28px; border-radius: var(--radius-lg);
+    border: 1.5px solid var(--border);
+    background: #fff; transition: all .2s;
+  }
+  .pillar-card:hover { border-color: rgba(124,58,237,.3); box-shadow: var(--shadow); }
+  .pillar-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--purple-pale); display: flex; align-items: center;
+    justify-content: center; margin-bottom: 16px;
+  }
+  .pillar-icon svg { width: 20px; height: 20px; color: var(--purple); }
+  .pillar-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .pillar-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* ─── Feature Sections ─── */
+  .feature-section { padding: 80px 0; }
+  .feature-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .feature-inner.reverse { direction: rtl; }
+  .feature-inner.reverse > * { direction: ltr; }
+  .feature-tag { margin-bottom: 16px; }
+  .feature-headline { margin-bottom: 14px; }
+  .feature-desc { color: var(--text-secondary); margin-bottom: 24px; line-height: 1.7; }
+  .feature-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .feature-bullets li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 14px; color: var(--text-secondary);
+  }
+  .bullet-dot {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--purple-pale); flex-shrink: 0; margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .bullet-dot::after {
+    content: ''; width: 6px; height: 6px;
+    background: var(--purple); border-radius: 50%;
+  }
+
+  .feature-visual {
+    border-radius: var(--radius-xl);
+    background: var(--gray-1);
+    border: 1.5px solid var(--border);
+    padding: 20px; overflow: hidden;
+    box-shadow: var(--shadow-md);
+    min-height: 320px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+
+  /* ─── Dashboard Grid ─── */
+  .dashboard-section { padding: 96px 0; background: var(--gray-1); }
+  .dashboard-section-head { text-align: center; margin-bottom: 48px; }
+  .dashboard-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .dashboard-grid .span-2 { grid-column: span 2; }
+
+  /* ─── Comparison Table ─── */
+  .compare-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+  .compare-table th {
+    text-align: left; padding: 12px 16px;
+    font-size: 12px; font-weight: 600; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--text-tertiary);
+    border-bottom: 2px solid var(--border);
+  }
+  .compare-table th:first-child { color: var(--text); font-size: 13px; letter-spacing: 0; text-transform: none; }
+  .compare-table td {
+    padding: 14px 16px; font-size: 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .compare-table td:first-child { font-weight: 600; color: var(--text); font-size: 14px; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: var(--gray-1); }
+  .check { color: var(--purple); }
+  .dash { color: var(--gray-4); }
+
+  /* ─── FAQ ─── */
+  .faq-list { margin-top: 40px; display: flex; flex-direction: column; gap: 0; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-item:first-child { border-top: 1px solid var(--border); }
+  .faq-button {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 0; background: none; border: none; cursor: pointer;
+    text-align: left; gap: 16px;
+  }
+  .faq-question { font-size: 16px; font-weight: 600; color: var(--text); }
+  .faq-icon {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 1.5px solid var(--border); display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+    transition: all .2s;
+  }
+  .faq-icon span {
+    font-size: 16px; line-height: 1; color: var(--text-secondary);
+    transition: transform .3s ease;
+    display: block;
+  }
+  .faq-answer {
+    overflow: hidden; max-height: 0;
+    transition: max-height .35s ease, padding .25s ease;
+  }
+  .faq-answer-inner { padding-bottom: 20px; color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
+  .faq-item.open .faq-answer { max-height: 300px; }
+  .faq-item.open .faq-icon { background: var(--purple-pale); border-color: rgba(124,58,237,.3); }
+  .faq-item.open .faq-icon span { transform: rotate(45deg); color: var(--purple); }
+
+  /* ─── Persona Cards ─── */
+  .persona-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px; margin-top: 40px;
+  }
+  .persona-card {
+    border-radius: var(--radius-lg); padding: 24px;
+    border: 1.5px solid var(--border); background: #fff;
+    transition: all .2s;
+  }
+  .persona-card:hover {
+    border-color: rgba(124,58,237,.35);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+  .persona-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 14px;
+  }
+  .persona-role { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .persona-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .persona-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .persona-tag {
+    font-size: 11px; font-weight: 500; padding: 3px 9px;
+    border-radius: 100px; background: var(--gray-2); color: var(--gray-6);
+  }
+
+  /* ─── Final CTA ─── */
+  .cta-section { padding: 96px 0; }
+  .cta-inner {
+    background: linear-gradient(135deg, #1A0A2E 0%, #0F0F13 100%);
+    border-radius: 24px; padding: 72px 64px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-inner::before {
+    content: ''; position: absolute;
+    top: -80px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(124,58,237,.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-headline {
+    font-size: clamp(28px, 4vw, 48px); font-weight: 800;
+    letter-spacing: -.03em; color: #fff; margin-bottom: 14px;
+    position: relative;
+  }
+  .cta-sub { color: rgba(255,255,255,.55); max-width: 440px; margin: 0 auto 36px; line-height: 1.65; }
+  .cta-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; position: relative; }
+  .btn-white {
+    background: #fff; color: var(--dark);
+    box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  }
+  .btn-white:hover { background: var(--gray-1); transform: translateY(-1px); }
+  .btn-outline-white { border: 1.5px solid rgba(255,255,255,.25); color: rgba(255,255,255,.75); }
+  .btn-outline-white:hover { background: rgba(255,255,255,.08); }
+
+  /* ─── Footer ─── */
+  footer { background: var(--gray-1); border-top: 1px solid var(--border); padding: 48px 0 32px; }
+  .footer-inner {
+    display: grid; grid-template-columns: 1.5fr repeat(3, 1fr);
+    gap: 40px; margin-bottom: 40px;
+  }
+  .footer-brand p { font-size: 13.5px; color: var(--text-tertiary); margin-top: 10px; max-width: 240px; line-height: 1.6; }
+  .footer-col h5 { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 14px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col ul li a {
+    font-size: 13.5px; color: var(--text-secondary); text-decoration: none;
+    transition: color .15s;
+  }
+  .footer-col ul li a:hover { color: var(--text); }
+  .footer-bottom {
+    border-top: 1px solid var(--border); padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: var(--text-tertiary);
+  }
+
+  /* ─── Divider ─── */
+  .divider { height: 1px; background: var(--border); }
+
+  /* ─── Section header layout ─── */
+  .section-header { max-width: 600px; margin-bottom: 56px; }
+  .section-header .tag { margin-bottom: 14px; }
+  .section-header p { margin-top: 12px; color: var(--text-secondary); font-size: 16px; line-height: 1.65; }
+  .section-header-center { text-align: center; max-width: 560px; margin: 0 auto 48px; }
+  .section-header-center p { margin-top: 12px; color: var(--text-secondary); font-size: 16px; line-height: 1.65; }
+
+  /* ─── Product Mock UI ─── */
+  .mock-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .mock-table th {
+    text-align: left; padding: 8px 10px;
+    font-size: 10.5px; font-weight: 600; letter-spacing: .03em;
+    text-transform: uppercase; color: var(--text-tertiary);
+    border-bottom: 1px solid var(--border); background: var(--gray-1);
+  }
+  .mock-table td {
+    padding: 9px 10px; font-size: 12px; color: var(--text);
+    border-bottom: 1px solid rgba(232,232,240,.6);
+  }
+  .mock-table tr:last-child td { border-bottom: none; }
+  .mock-table tr:hover td { background: var(--gray-1); }
+
+  .trend-up { color: #16A34A; font-weight: 600; }
+  .trend-down { color: #DC2626; font-weight: 600; }
+
+  .bar-chart { display: flex; align-items: flex-end; gap: 6px; height: 60px; }
+  .bar {
+    flex: 1; border-radius: 4px 4px 0 0;
+    background: var(--purple-mid); transition: background .2s;
+  }
+  .bar:hover { background: var(--purple-light); }
+  .bar.active { background: var(--purple); }
+
+  .metric-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-bottom: 10px;
+  }
+  .metric-box {
+    padding: 12px; background: var(--gray-1);
+    border-radius: var(--radius-sm); border: 1px solid var(--border);
+  }
+  .metric-box-label { font-size: 10.5px; color: var(--text-tertiary); margin-bottom: 4px; font-weight: 500; }
+  .metric-box-value { font-size: 17px; font-weight: 700; letter-spacing: -.02em; }
+  .metric-box-delta { font-size: 11px; font-weight: 600; margin-top: 2px; }
+
+  /* Donut */
+  .donut-ring { position: relative; width: 80px; height: 80px; flex-shrink: 0; }
+
+  /* Progress bar */
+  .progress-bar { height: 6px; background: var(--gray-2); border-radius: 100px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 100px; background: var(--purple); }
+
+  /* Comp row */
+  .comp-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-name { font-size: 12px; font-weight: 600; }
+  .comp-address { font-size: 11px; color: var(--text-tertiary); }
+  .comp-rent { font-size: 13px; font-weight: 700; }
+  .comp-delta { font-size: 11px; }
+  .comp-match {
+    font-size: 10px; font-weight: 700; padding: 2px 7px;
+    border-radius: 100px; background: var(--purple-pale); color: var(--purple);
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual { display: none; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+    .dashboard-grid .span-2 { grid-column: span 1; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .persona-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .section { padding: 64px 0; }
+    .feature-inner { grid-template-columns: 1fr; gap: 36px; }
+    .feature-inner.reverse { direction: ltr; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .persona-grid { grid-template-columns: 1fr 1fr; }
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .cta-inner { padding: 48px 28px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    nav .nav-links, .nav-right .btn { display: none; }
+    .nav-hamburger { display: flex; }
+    .compare-table { font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 10px 10px; }
+  }
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .persona-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 36px; }
+    .hero { padding: 48px 0 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Apartment<span>IQ</span></a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#data">Data</a></li>
+      <li><a href="#analytics">Analytics</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#" class="btn btn-ghost" style="font-size:14px; font-weight:500;">Sign in</a>
+      <a href="#" class="btn btn-primary">Request demo</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M2 5h16M2 10h16M2 15h16" stroke="#09090B" stroke-width="1.75" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Now with AI-powered comp matching
+        </div>
+        <h1 class="hero-headline">
+          Market surveys done in<br/>a click, <em>not days.</em>
+        </h1>
+        <p class="lead hero-sub">
+          ApartmentIQ gives multifamily teams instant access to structured market data — rents, concessions, occupancy, and comp intelligence — without the manual grind.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary btn-lg">
+            Get started free
+            <svg class="arrow-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#" class="btn btn-secondary btn-lg">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="7.5" r="6.5" stroke="#52525B" stroke-width="1.5"/><path d="M6 5.5l4 2-4 2V5.5z" fill="#52525B"/></svg>
+            Watch demo
+          </a>
+        </div>
+        <div class="hero-social-proof">
+          <div class="avatar-stack">
+            <div class="avatar">JM</div>
+            <div class="avatar" style="background:#EDE9FE">SR</div>
+            <div class="avatar" style="background:#FEF3C7; color:#D97706">AL</div>
+            <div class="avatar" style="background:#DCFCE7; color:#16A34A">PK</div>
+          </div>
+          <p class="proof-text"><strong>400+ teams</strong> trust ApartmentIQ for market intelligence</p>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <!-- Survey Complete Card -->
+          <div class="ui-card" style="margin-bottom:12px">
+            <div class="ui-card-header">
+              <div>
+                <div class="ui-card-title">Market Survey — Q1 2025</div>
+                <div class="ui-card-sub">Downtown Austin Submarket · 12 comps</div>
+              </div>
+              <span class="ui-badge ui-badge-green">Complete</span>
+            </div>
+            <div class="ui-card-body">
+              <div class="metric-row">
+                <div class="metric-box">
+                  <div class="metric-box-label">Avg Effective Rent</div>
+                  <div class="metric-box-value">$2,148</div>
+                  <div class="metric-box-delta trend-up">↑ 3.2% QoQ</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-box-label">Avg Occupancy</div>
+                  <div class="metric-box-value">94.1%</div>
+                  <div class="metric-box-delta trend-up">↑ 1.4 pts</div>
+                </div>
+              </div>
+              <!-- Bar chart -->
+              <div style="margin-top:4px">
+                <div style="font-size:10.5px; color:var(--text-tertiary); margin-bottom:6px; font-weight:500;">Effective Rent / Unit Type</div>
+                <div class="bar-chart">
+                  <div class="bar" style="height:38%"></div>
+                  <div class="bar" style="height:55%"></div>
+                  <div class="bar active" style="height:72%"></div>
+                  <div class="bar" style="height:65%"></div>
+                  <div class="bar" style="height:88%"></div>
+                  <div class="bar" style="height:80%"></div>
+                  <div class="bar" style="height:60%"></div>
+                  <div class="bar active" style="height:95%"></div>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-tertiary); margin-top:4px;">
+                  <span>Studio</span><span>1BD</span><span>2BD</span><span>3BD</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comp Table -->
+          <div class="ui-card">
+            <div class="ui-card-header">
+              <div class="ui-card-title">Top Matched Comps</div>
+              <span class="ui-badge ui-badge-purple">AI-matched</span>
+            </div>
+            <div class="ui-card-body" style="padding:12px 14px">
+              <div class="comp-row">
+                <div>
+                  <div class="comp-name">The Monarch</div>
+                  <div class="comp-address">512 Congress Ave</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="comp-rent">$2,295</div>
+                  <div class="comp-delta trend-up">↑ 2.8%</div>
+                </div>
+                <span class="comp-match">98% match</span>
+              </div>
+              <div class="comp-row">
+                <div>
+                  <div class="comp-name">Axis at 5th</div>
+                  <div class="comp-address">800 5th St</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="comp-rent">$2,180</div>
+                  <div class="comp-delta trend-down">↓ 0.4%</div>
+                </div>
+                <span class="comp-match">94% match</span>
+              </div>
+              <div class="comp-row">
+                <div>
+                  <div class="comp-name">Domain Heights</div>
+                  <div class="comp-address">3001 Palmer Ln</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="comp-rent">$2,040</div>
+                  <div class="comp-delta trend-up">↑ 1.2%</div>
+                </div>
+                <span class="comp-match">91% match</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LOGO BAND ─── -->
+<div style="background: var(--gray-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 22px 0;">
+  <div class="container" style="display:flex; align-items:center; gap:8px;">
+    <span style="font-size:12px; font-weight:600; color:var(--text-tertiary); white-space:nowrap; letter-spacing:.04em; text-transform:uppercase;">Trusted by teams at</span>
+    <div style="flex:1; display:flex; align-items:center; justify-content:space-around; flex-wrap:wrap; gap:24px; padding: 0 24px;">
+      <span style="font-size:15px; font-weight:700; color:var(--gray-5); letter-spacing:-.02em;">Greystar</span>
+      <span style="font-size:15px; font-weight:700; color:var(--gray-5); letter-spacing:-.02em;">Lincoln Property</span>
+      <span style="font-size:15px; font-weight:700; color:var(--gray-5); letter-spacing:-.02em;">Equity Residential</span>
+      <span style="font-size:15px; font-weight:700; color:var(--gray-5); letter-spacing:-.02em;">AvalonBay</span>
+      <span style="font-size:15px; font-weight:700; color:var(--gray-5); letter-spacing:-.02em;">Landmark</span>
+      <span style="font-size:15px; font-weight:700; color:var(--gray-5); letter-spacing:-.02em;">Cortland</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── STATS BAND ─── -->
+<section class="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">1,500+</div>
+        <div class="stat-label">Properties analyzed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">40M+</div>
+        <div class="stat-label">Data points collected</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">65%</div>
+        <div class="stat-label">Faster workflows</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">Survey accuracy rate</div>
+      </div>
+    </div>
+    <div class="testimonial-strip">
+      <blockquote>"ApartmentIQ cut our weekly survey process from 3 days to under an hour. Our analysts now spend time on decisions, not data entry."</blockquote>
+      <div class="testimonial-author">
+        <div class="testimonial-author-avatar">MR</div>
+        <span>Meredith Ross, VP Asset Management · Landmark Communities</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PUBLIC DATA SECTION ─── -->
+<section class="section" id="data">
+  <div class="container">
+    <div class="section-header-center">
+      <span class="tag">
+        <svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M6 3v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Public data at scale
+      </span>
+      <h2 style="margin-top:12px">Structured multifamily data,<br/>ready when you are</h2>
+      <p>We collect, normalize, and structure public and surveyed data from thousands of communities — so your team gets clean, actionable market intelligence without the spreadsheet chaos.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="16" height="14" rx="2"/>
+            <path d="M7 7h6M7 10h4M7 13h5"/>
+          </svg>
+        </div>
+        <div class="pillar-title">Verified rent data</div>
+        <div class="pillar-desc">Effective rents, asking rents, concessions, and unit mix pulled from structured public sources — updated regularly and cross-validated.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 14l4-5 4 3 4-6 4 4"/>
+            <path d="M18 2H2v16"/>
+          </svg>
+        </div>
+        <div class="pillar-title">Trend analytics</div>
+        <div class="pillar-desc">Historical trend lines for any property or submarket. Track rent growth, occupancy shifts, and concession activity over any time horizon.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="10" r="8"/>
+            <path d="M10 6v4l3 3"/>
+          </svg>
+        </div>
+        <div class="pillar-title">Real-time availability</div>
+        <div class="pillar-desc">Monitor live unit availability and concession changes as they happen, giving revenue teams early signals before competitors adjust.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURE: Comp Matching ─── -->
+<section class="feature-section" id="features" style="background: var(--gray-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div class="feature-inner">
+      <div class="feature-content">
+        <span class="tag feature-tag">Intelligent comps</span>
+        <h2 class="feature-headline">Find the right comps — automatically.</h2>
+        <p class="feature-desc">Stop manually pulling comps from a spreadsheet. ApartmentIQ's AI analyzes unit mix, location, vintage, amenity set, and class to surface the most relevant comparables for any property — instantly.</p>
+        <ul class="feature-bullets">
+          <li><span class="bullet-dot"></span>AI-matched comps based on 20+ property attributes</li>
+          <li><span class="bullet-dot"></span>Similarity scores with transparent match reasoning</li>
+          <li><span class="bullet-dot"></span>Customizable comp sets your team can save and reuse</li>
+          <li><span class="bullet-dot"></span>Distance, submarket, and vintage filters</li>
+          <li><span class="bullet-dot"></span>Automatic refresh when market conditions change</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="ui-card">
+          <div class="ui-card-header">
+            <div>
+              <div class="ui-card-title">Comp Set — Westside Phoenix</div>
+              <div class="ui-card-sub">Subject: The Pinnacle · 324 units · 2019</div>
+            </div>
+            <span class="ui-badge ui-badge-purple">12 comps</span>
+          </div>
+          <div style="padding:12px 14px">
+            <div class="comp-row">
+              <div>
+                <div class="comp-name">Avante at Camelback</div>
+                <div class="comp-address">4801 N 24th St · 2019 · 298 units</div>
+              </div>
+              <div style="text-align:right">
+                <div class="comp-rent">$1,895</div>
+                <div class="comp-delta trend-up">↑ 4.1%</div>
+              </div>
+              <span class="comp-match">97%</span>
+            </div>
+            <div class="comp-row">
+              <div>
+                <div class="comp-name">Overture Arcadia</div>
+                <div class="comp-address">3600 E Thomas Rd · 2021 · 256 units</div>
+              </div>
+              <div style="text-align:right">
+                <div class="comp-rent">$1,960</div>
+                <div class="comp-delta trend-up">↑ 2.3%</div>
+              </div>
+              <span class="comp-match">93%</span>
+            </div>
+            <div class="comp-row">
+              <div>
+                <div class="comp-name">Novel Uptown</div>
+                <div class="comp-address">2415 E Camelback · 2020 · 312 units</div>
+              </div>
+              <div style="text-align:right">
+                <div class="comp-rent">$1,830</div>
+                <div class="comp-delta trend-down">↓ 1.1%</div>
+              </div>
+              <span class="comp-match">89%</span>
+            </div>
+            <div class="comp-row">
+              <div>
+                <div class="comp-name">Skye at Arcadia</div>
+                <div class="comp-address">3131 N 24th Pl · 2018 · 280 units</div>
+              </div>
+              <div style="text-align:right">
+                <div class="comp-rent">$1,780</div>
+                <div class="comp-delta trend-up">↑ 0.9%</div>
+              </div>
+              <span class="comp-match">87%</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; margin-top:12px">
+          <div style="flex:1; background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px;">
+            <div style="font-size:11px; color:var(--text-tertiary); font-weight:500; margin-bottom:6px;">Submarket Avg Rent</div>
+            <div style="font-size:20px; font-weight:800; letter-spacing:-.02em;">$1,886</div>
+            <div style="font-size:11px; color:#16A34A; font-weight:600; margin-top:2px;">↑ 2.6% vs. prior quarter</div>
+          </div>
+          <div style="flex:1; background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px;">
+            <div style="font-size:11px; color:var(--text-tertiary); font-weight:500; margin-bottom:6px;">Avg Concessions</div>
+            <div style="font-size:20px; font-weight:800; letter-spacing:-.02em;">1.2 wks</div>
+            <div style="font-size:11px; color:#D97706; font-weight:600; margin-top:2px;">↑ from 0.8 wks prior qtr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURE: Deep Property Intelligence ─── -->
+<section class="feature-section">
+  <div class="container">
+    <div class="feature-inner reverse">
+      <div class="feature-content">
+        <span class="tag feature-tag">Property intelligence</span>
+        <h2 class="feature-headline">Deep property profiles, not just data points.</h2>
+        <p class="feature-desc">Every property in ApartmentIQ carries a rich profile — vintage, unit mix, amenity set, permit history, ownership, management, and more. Use it to understand context, not just comps.</p>
+        <ul class="feature-bullets">
+          <li><span class="bullet-dot"></span>Full unit mix breakdown with bedroom/bath detail</li>
+          <li><span class="bullet-dot"></span>Ownership and management history</li>
+          <li><span class="bullet-dot"></span>Permit data and renovation timeline</li>
+          <li><span class="bullet-dot"></span>Amenity scoring and class attribution</li>
+          <li><span class="bullet-dot"></span>Linked rent, occupancy, and concession history</li>
+          <li><span class="bullet-dot"></span>Nearby transit and walkability signals</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="ui-card">
+          <div class="ui-card-header">
+            <div class="ui-card-title">The Monarch — Property Profile</div>
+            <span class="ui-badge ui-badge-purple">Class A · 2021</span>
+          </div>
+          <div class="ui-card-body" style="padding:12px 14px">
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:12px;">
+              <div style="text-align:center; padding:10px; background:var(--gray-1); border-radius:8px; border:1px solid var(--border);">
+                <div style="font-size:18px; font-weight:800;">312</div>
+                <div style="font-size:10.5px; color:var(--text-tertiary);">Units</div>
+              </div>
+              <div style="text-align:center; padding:10px; background:var(--gray-1); border-radius:8px; border:1px solid var(--border);">
+                <div style="font-size:18px; font-weight:800;">94.2%</div>
+                <div style="font-size:10.5px; color:var(--text-tertiary);">Occupied</div>
+              </div>
+              <div style="text-align:center; padding:10px; background:var(--gray-1); border-radius:8px; border:1px solid var(--border);">
+                <div style="font-size:18px; font-weight:800;">$2,295</div>
+                <div style="font-size:10.5px; color:var(--text-tertiary);">Avg Rent</div>
+              </div>
+            </div>
+            <div style="margin-bottom:12px">
+              <div style="font-size:11px; font-weight:600; color:var(--text-tertiary); margin-bottom:8px; text-transform:uppercase; letter-spacing:.04em;">Unit Mix</div>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="font-size:11px; width:42px; color:var(--text-secondary);">Studio</span>
+                  <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:15%; background:#C4B5FD"></div></div>
+                  <span style="font-size:11px; font-weight:600; width:28px; text-align:right;">15%</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="font-size:11px; width:42px; color:var(--text-secondary);">1 BD</span>
+                  <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:42%"></div></div>
+                  <span style="font-size:11px; font-weight:600; width:28px; text-align:right;">42%</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="font-size:11px; width:42px; color:var(--text-secondary);">2 BD</span>
+                  <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:35%; background:#A78BFA"></div></div>
+                  <span style="font-size:11px; font-weight:600; width:28px; text-align:right;">35%</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="font-size:11px; width:42px; color:var(--text-secondary);">3 BD</span>
+                  <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:8%; background:#DDD6FE"></div></div>
+                  <span style="font-size:11px; font-weight:600; width:28px; text-align:right;">8%</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:5px;">
+              <span style="font-size:11px; padding:3px 9px; border-radius:100px; background:var(--purple-pale); color:var(--purple); font-weight:500;">Pool</span>
+              <span style="font-size:11px; padding:3px 9px; border-radius:100px; background:var(--purple-pale); color:var(--purple); font-weight:500;">Cowork Lounge</span>
+              <span style="font-size:11px; padding:3px 9px; border-radius:100px; background:var(--purple-pale); color:var(--purple); font-weight:500;">Fitness</span>
+              <span style="font-size:11px; padding:3px 9px; border-radius:100px; background:var(--purple-pale); color:var(--purple); font-weight:500;">Pet Park</span>
+              <span style="font-size:11px; padding:3px 9px; border-radius:100px; background:var(--purple-pale); color:var(--purple); font-weight:500;">EV Charging</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURE: Team Analysis ─── -->
+<section class="feature-section" style="background: var(--gray-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div class="feature-inner">
+      <div class="feature-content">
+        <span class="tag feature-tag">Team workflows</span>
+        <h2 class="feature-headline">Easy analysis across every team.</h2>
+        <p class="feature-desc">Whether you're an analyst building a model, an asset manager tracking performance, or an acquisitions team underwriting a deal — ApartmentIQ fits how your team already works.</p>
+        <ul class="feature-bullets">
+          <li><span class="bullet-dot"></span>Shared workspaces and team folders</li>
+          <li><span class="bullet-dot"></span>Survey assignment and tracking by property</li>
+          <li><span class="bullet-dot"></span>Collaborative annotations and notes</li>
+          <li><span class="bullet-dot"></span>Role-based access and permissions</li>
+          <li><span class="bullet-dot"></span>Audit trail for compliance and review</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="ui-card">
+          <div class="ui-card-header">
+            <div class="ui-card-title">Team Workspace — Q2 Surveys</div>
+            <span class="ui-badge ui-badge-amber">In Progress</span>
+          </div>
+          <div style="padding:0 14px">
+            <table class="mock-table">
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>Assigned To</th>
+                  <th>Due</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>The Monarch</strong></td>
+                  <td>J. Miller</td>
+                  <td>Apr 5</td>
+                  <td><span class="ui-badge ui-badge-green" style="font-size:10px">Done</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Domain Heights</strong></td>
+                  <td>S. Reid</td>
+                  <td>Apr 5</td>
+                  <td><span class="ui-badge ui-badge-green" style="font-size:10px">Done</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Avante at Camelback</strong></td>
+                  <td>A. Lopez</td>
+                  <td>Apr 7</td>
+                  <td><span class="ui-badge ui-badge-amber" style="font-size:10px">Review</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Axis at 5th</strong></td>
+                  <td>P. Kim</td>
+                  <td>Apr 8</td>
+                  <td><span class="ui-badge ui-badge-red" style="font-size:10px">Pending</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Skye at Arcadia</strong></td>
+                  <td>J. Miller</td>
+                  <td>Apr 9</td>
+                  <td><span class="ui-badge ui-badge-red" style="font-size:10px">Pending</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding:12px 14px; background:var(--gray-1); border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:12px; color:var(--text-tertiary);">8 of 12 surveys complete</span>
+            <div style="width:120px">
+              <div class="progress-bar"><div class="progress-fill" style="width:67%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURE: Share Insights ─── -->
+<section class="feature-section">
+  <div class="container">
+    <div class="feature-inner reverse">
+      <div class="feature-content">
+        <span class="tag feature-tag">Reporting</span>
+        <h2 class="feature-headline">Share insights your way.</h2>
+        <p class="feature-desc">Export polished market reports, share live dashboards with stakeholders, or push data directly to Excel — ApartmentIQ meets your audience wherever they are.</p>
+        <ul class="feature-bullets">
+          <li><span class="bullet-dot"></span>One-click PDF and Excel export</li>
+          <li><span class="bullet-dot"></span>Shareable read-only dashboard links</li>
+          <li><span class="bullet-dot"></span>Scheduled email digests for key metrics</li>
+          <li><span class="bullet-dot"></span>API access for custom integrations</li>
+          <li><span class="bullet-dot"></span>Branded report templates for investor decks</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div style="background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:16px; margin-bottom:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <div style="font-size:12px; font-weight:600;">Market Report Preview</div>
+            <span class="ui-badge ui-badge-purple">Shareable</span>
+          </div>
+          <div style="background:var(--gray-1); border-radius:8px; padding:14px; border:1px solid var(--border);">
+            <div style="font-size:11px; font-weight:700; color:var(--text); margin-bottom:4px;">Downtown Austin Q1 2025</div>
+            <div style="font-size:10.5px; color:var(--text-tertiary); margin-bottom:12px;">Market Survey · 12 properties</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; text-align:center;">
+              <div>
+                <div style="font-size:16px; font-weight:800;">$2,148</div>
+                <div style="font-size:9.5px; color:var(--text-tertiary);">Avg Rent</div>
+              </div>
+              <div>
+                <div style="font-size:16px; font-weight:800;">94.1%</div>
+                <div style="font-size:9.5px; color:var(--text-tertiary);">Occupancy</div>
+              </div>
+              <div>
+                <div style="font-size:16px; font-weight:800;">1.4 wks</div>
+                <div style="font-size:9.5px; color:var(--text-tertiary);">Concessions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <div style="flex:1; padding:12px; background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); text-align:center;">
+            <div style="font-size:22px; margin-bottom:4px;">📊</div>
+            <div style="font-size:12px; font-weight:600;">Excel Export</div>
+            <div style="font-size:11px; color:var(--text-tertiary);">Fully formatted</div>
+          </div>
+          <div style="flex:1; padding:12px; background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); text-align:center;">
+            <div style="font-size:22px; margin-bottom:4px;">📋</div>
+            <div style="font-size:12px; font-weight:600;">PDF Report</div>
+            <div style="font-size:11px; color:var(--text-tertiary);">Branded template</div>
+          </div>
+          <div style="flex:1; padding:12px; background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); text-align:center;">
+            <div style="font-size:22px; margin-bottom:4px;">🔗</div>
+            <div style="font-size:12px; font-weight:600;">Live Link</div>
+            <div style="font-size:11px; color:var(--text-tertiary);">Real-time data</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DASHBOARD SHOWCASE ─── -->
+<section class="dashboard-section" id="analytics">
+  <div class="container">
+    <div class="dashboard-section-head">
+      <span class="tag">Analytics platform</span>
+      <h2 style="margin-top:14px">Go beyond the survey.</h2>
+      <p class="lead" style="margin-top:12px; max-width:480px; margin-left:auto; margin-right:auto;">Real-time dashboards for rent trends, occupancy, concessions, exposure, and competitive positioning — everything you need in one place.</p>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Rent Trend Card (span 2) -->
+      <div class="ui-card span-2">
+        <div class="ui-card-header">
+          <div>
+            <div class="ui-card-title">Effective Rent Trend — Downtown Austin</div>
+            <div class="ui-card-sub">Last 8 quarters · 12 properties</div>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="ui-badge ui-badge-green">↑ 3.2%</span>
+            <span style="font-size:11px; color:var(--text-tertiary);">vs prior period</span>
+          </div>
+        </div>
+        <div class="ui-card-body">
+          <svg viewBox="0 0 480 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:90px;">
+            <defs>
+              <linearGradient id="rentGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0 80 C60 75 90 68 120 60 C150 52 180 55 210 48 C240 41 270 38 300 32 C330 26 360 22 390 18 C420 14 450 12 480 8" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <path d="M0 80 C60 75 90 68 120 60 C150 52 180 55 210 48 C240 41 270 38 300 32 C330 26 360 22 390 18 C420 14 450 12 480 8 L480 100 L0 100 Z" fill="url(#rentGrad)"/>
+            <path d="M0 85 C60 82 90 76 120 72 C150 68 180 72 210 70 C240 68 270 66 300 62 C330 58 360 55 390 52 C420 49 450 47 480 44" stroke="#E8E8F0" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
+            <!-- data points -->
+            <circle cx="120" cy="60" r="3" fill="#7C3AED"/>
+            <circle cx="210" cy="48" r="3" fill="#7C3AED"/>
+            <circle cx="300" cy="32" r="3" fill="#7C3AED"/>
+            <circle cx="480" cy="8" r="4" fill="#7C3AED" stroke="#fff" stroke-width="2"/>
+            <!-- labels -->
+            <text x="0" y="98" font-size="8" fill="#8B8BA7">Q1 23</text>
+            <text x="110" y="98" font-size="8" fill="#8B8BA7">Q3 23</text>
+            <text x="220" y="98" font-size="8" fill="#8B8BA7">Q1 24</text>
+            <text x="330" y="98" font-size="8" fill="#8B8BA7">Q3 24</text>
+            <text x="450" y="98" font-size="8" fill="#8B8BA7">Q1 25</text>
+          </svg>
+          <div style="display:flex; justify-content:space-between; margin-top:12px; gap:16px;">
+            <div>
+              <div style="font-size:10.5px; color:var(--text-tertiary);">Current Avg</div>
+              <div style="font-size:20px; font-weight:800;">$2,148</div>
+            </div>
+            <div>
+              <div style="font-size:10.5px; color:var(--text-tertiary);">Peak (2024)</div>
+              <div style="font-size:20px; font-weight:800; color:var(--purple);">$2,210</div>
+            </div>
+            <div>
+              <div style="font-size:10.5px; color:var(--text-tertiary);">YoY Growth</div>
+              <div style="font-size:20px; font-weight:800; color:#16A34A;">+4.8%</div>
+            </div>
+            <div>
+              <div style="font-size:10.5px; color:var(--text-tertiary);">Comps Tracked</div>
+              <div style="font-size:20px; font-weight:800;">12</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Occupancy Card -->
+      <div class="ui-card">
+        <div class="ui-card-header">
+          <div class="ui-card-title">Occupancy Rate</div>
+          <span class="ui-badge ui-badge-green">Strong</span>
+        </div>
+        <div class="ui-card-body">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="position:relative; width:80px; height:80px; flex-shrink:0;">
+              <svg viewBox="0 0 80 80" width="80" height="80">
+                <circle cx="40" cy="40" r="32" fill="none" stroke="#E8E8F0" stroke-width="8"/>
+                <circle cx="40" cy="40" r="32" fill="none" stroke="#7C3AED" stroke-width="8"
+                  stroke-dasharray="201 201"
+                  stroke-dashoffset="12"
+                  stroke-linecap="round"
+                  transform="rotate(-90 40 40)"/>
+                <text x="40" y="38" text-anchor="middle" font-size="13" font-weight="800" fill="#09090B">94.1</text>
+                <text x="40" y="50" text-anchor="middle" font-size="9" fill="#8B8BA7">percent</text>
+              </svg>
+            </div>
+            <div style="flex:1">
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div>
+                  <div style="font-size:10.5px; color:var(--text-tertiary);">This Quarter</div>
+                  <div style="font-size:16px; font-weight:700;">94.1%</div>
+                </div>
+                <div>
+                  <div style="font-size:10.5px; color:var(--text-tertiary);">Prior Quarter</div>
+                  <div style="font-size:16px; font-weight:700; color:var(--text-secondary);">92.7%</div>
+                </div>
+                <div style="font-size:11px; color:#16A34A; font-weight:600;">↑ +1.4 pts improvement</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Concessions Card -->
+      <div class="ui-card">
+        <div class="ui-card-header">
+          <div class="ui-card-title">Concession Tracker</div>
+          <span class="ui-badge ui-badge-amber">Watch</span>
+        </div>
+        <div class="ui-card-body">
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+              <span style="font-size:12px; font-weight:500;">Free Rent</span>
+              <span style="font-size:12px; font-weight:700;">67% of comps</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:67%"></div></div>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:4px;">
+              <span style="font-size:12px; font-weight:500;">Reduced Deposit</span>
+              <span style="font-size:12px; font-weight:700;">42% of comps</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:42%; background:#A78BFA"></div></div>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:4px;">
+              <span style="font-size:12px; font-weight:500;">Gift Cards</span>
+              <span style="font-size:12px; font-weight:700;">25% of comps</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:25%; background:#C4B5FD"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exposure Card -->
+      <div class="ui-card">
+        <div class="ui-card-header">
+          <div class="ui-card-title">Market Exposure</div>
+          <span class="ui-badge ui-badge-red">Elevated</span>
+        </div>
+        <div class="ui-card-body">
+          <div style="font-size:28px; font-weight:800; margin-bottom:4px;">8.4%</div>
+          <div style="font-size:12px; color:var(--text-tertiary); margin-bottom:14px;">Total market exposure rate</div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <div style="display:flex; justify-content:space-between; font-size:12px;">
+              <span style="color:var(--text-secondary);">Available now</span>
+              <span style="font-weight:600; color:#DC2626;">5.1%</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px;">
+              <span style="color:var(--text-secondary);">NTV (30 days)</span>
+              <span style="font-weight:600; color:#D97706;">3.3%</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; padding-top:6px; border-top:1px solid var(--border);">
+              <span style="color:var(--text-secondary);">Comp avg exposure</span>
+              <span style="font-weight:600;">7.2%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SECOND PROOF BAND ─── -->
+<section class="stats-band">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+      <div>
+        <span style="display:inline-block; background:rgba(124,58,237,.15); color:#C4B5FD; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:4px 12px; border-radius:100px; margin-bottom:16px;">Scale & speed</span>
+        <h2 style="color:#fff; font-size:clamp(24px,3vw,38px); margin-bottom:16px; letter-spacing:-.025em;">Built for the pace of<br/>multifamily markets.</h2>
+        <p style="color:rgba(255,255,255,.55); font-size:15px; line-height:1.7; margin-bottom:24px;">Markets move fast. ApartmentIQ keeps you ahead with structured data that's always current, always verified, and always ready — no refresh required.</p>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:22px; height:22px; border-radius:50%; background:rgba(124,58,237,.4); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#C4B5FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span style="color:rgba(255,255,255,.7); font-size:14px;">Data refreshed on rolling cadence, not quarterly dumps</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:22px; height:22px; border-radius:50%; background:rgba(124,58,237,.4); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#C4B5FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span style="color:rgba(255,255,255,.7); font-size:14px;">40M+ structured data points across 1,500+ properties</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:22px; height:22px; border-radius:50%; background:rgba(124,58,237,.4); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#C4B5FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span style="color:rgba(255,255,255,.7); font-size:14px;">Normalized, deduplicated, and ready for analysis</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <blockquote style="font-size:20px; font-weight:500; color:rgba(255,255,255,.85); font-style:italic; line-height:1.55; margin-bottom:20px; padding:24px; background:rgba(255,255,255,.05); border-radius:var(--radius-lg); border:1px solid rgba(255,255,255,.08);">
+          "We used to spend a week pulling together a market report. ApartmentIQ gets us there in minutes. It's not even close."
+        </blockquote>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:36px; height:36px; border-radius:50%; background:var(--purple); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#fff;">DK</div>
+          <div>
+            <div style="font-size:14px; font-weight:600; color:#fff;">David Kim</div>
+            <div style="font-size:12px; color:rgba(255,255,255,.45);">Director of Market Intelligence · Cortland</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COMPARISON TABLE ─── -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="section-header-center">
+      <span class="tag">Built for multifamily</span>
+      <h2 style="margin-top:14px">One platform, every use case.</h2>
+      <p>From site selection to asset management, ApartmentIQ supports every function in your organization with purpose-built capabilities.</p>
+    </div>
+    <div style="overflow-x:auto; border-radius:var(--radius-lg); border:1.5px solid var(--border); box-shadow:var(--shadow);">
+      <table class="compare-table" style="min-width:640px;">
+        <thead>
+          <tr style="background:var(--gray-1)">
+            <th style="padding:14px 20px; border-bottom:2px solid var(--border);">Capability</th>
+            <th style="text-align:center">Acquisitions</th>
+            <th style="text-align:center">Asset Mgmt</th>
+            <th style="text-align:center">Revenue Ops</th>
+            <th style="text-align:center">Analysts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding-left:20px">AI comp matching</td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td style="padding-left:20px">Market survey workflows</td>
+            <td style="text-align:center"><span class="dash">–</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td style="padding-left:20px">Rent & occupancy trends</td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td style="padding-left:20px">Concession & exposure monitoring</td>
+            <td style="text-align:center"><span class="dash">–</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="dash">–</span></td>
+          </tr>
+          <tr>
+            <td style="padding-left:20px">Property intelligence profiles</td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="dash">–</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td style="padding-left:20px">Team collaboration & assignments</td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td style="padding-left:20px">Excel / PDF export</td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td style="padding-left:20px">API & data integrations</td>
+            <td style="text-align:center"><span class="dash">–</span></td>
+            <td style="text-align:center"><span class="dash">–</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+            <td style="text-align:center"><span class="check">✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PERSONAS ─── -->
+<section class="section" style="background: var(--gray-1); border-top: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-header-center">
+      <span class="tag">Every seat at the table</span>
+      <h2 style="margin-top:14px">One platform, built for every role.</h2>
+      <p>ApartmentIQ adapts to how each team member works — whether you're underwriting deals, managing portfolios, or running market analysis.</p>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-icon" style="background:#EDE9FE;">🏗️</div>
+        <div class="persona-role">Acquisitions</div>
+        <div class="persona-desc">Evaluate new markets, underwrite comps, and build confidence in rent assumptions before ink hits paper.</div>
+        <div class="persona-tags">
+          <span class="persona-tag">Comp sets</span>
+          <span class="persona-tag">Market sizing</span>
+          <span class="persona-tag">Property profiles</span>
+        </div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon" style="background:#DCFCE7;">📈</div>
+        <div class="persona-role">Asset Management</div>
+        <div class="persona-desc">Track portfolio performance against the market, monitor concession drift, and drive informed NOI decisions.</div>
+        <div class="persona-tags">
+          <span class="persona-tag">Rent trends</span>
+          <span class="persona-tag">Occupancy</span>
+          <span class="persona-tag">Concessions</span>
+        </div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon" style="background:#FEF3C7;">🔬</div>
+        <div class="persona-role">Analysts</div>
+        <div class="persona-desc">Pull clean, structured data into your models without manual data entry. Spend time on analysis, not aggregation.</div>
+        <div class="persona-tags">
+          <span class="persona-tag">API access</span>
+          <span class="persona-tag">Excel export</span>
+          <span class="persona-tag">Data depth</span>
+        </div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon" style="background:#FEE2E2;">⚡</div>
+        <div class="persona-role">Revenue &amp; Operations</div>
+        <div class="persona-desc">Monitor exposure, concessions, and competitor pricing in real time. Make faster, smarter pricing calls.</div>
+        <div class="persona-tags">
+          <span class="persona-tag">Live pricing</span>
+          <span class="persona-tag">Exposure alerts</span>
+          <span class="persona-tag">Survey tools</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="section" id="faq">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 2fr; gap:80px; align-items:start;">
+      <div>
+        <span class="tag" style="margin-bottom:16px; display:inline-flex;">FAQ</span>
+        <h2>Common questions</h2>
+        <p style="color:var(--text-secondary); margin-top:12px; font-size:15px; line-height:1.7;">Can't find your answer? <a href="#" style="color:var(--purple); font-weight:500; text-decoration:none;">Contact our team</a></p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-button" onclick="toggleFaq(this)">
+            <span class="faq-question">What markets does ApartmentIQ cover?</span>
+            <span class="faq-icon"><span>+</span></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">ApartmentIQ currently covers all major US multifamily markets, including 50+ top metros with deep submarket granularity. We're adding new markets on a rolling basis. Contact us if you have a specific geography in mind — chances are we're already there or close to launch.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-button" onclick="toggleFaq(this)">
+            <span class="faq-question">How is ApartmentIQ data different from CoStar or Yardi?</span>
+            <span class="faq-icon"><span>+</span></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">ApartmentIQ is purpose-built for multifamily market surveys and comp analysis — not general commercial real estate. Our data is more granular (unit-level detail, concessions, exposure), our workflows are designed for property teams, and our AI comp matching is tailored to how multifamily operators actually evaluate competitors. We complement — rather than replace — broader CRE data platforms.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-button" onclick="toggleFaq(this)">
+            <span class="faq-question">How often is data updated?</span>
+            <span class="faq-icon"><span>+</span></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Core market data (rents, availability, concessions) is refreshed on a weekly to bi-weekly basis depending on the source and property type. Survey data submitted by your team updates in real time. We clearly label data freshness on every record so you always know how current your intel is.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-button" onclick="toggleFaq(this)">
+            <span class="faq-question">Can my whole team use ApartmentIQ on one plan?</span>
+            <span class="faq-icon"><span>+</span></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes. ApartmentIQ offers team-based plans with seat-level permissions. You can assign properties, share survey workspaces, and control who can view, edit, or export data. Enterprise plans include unlimited seats across your organization.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-button" onclick="toggleFaq(this)">
+            <span class="faq-question">Does ApartmentIQ integrate with existing property management systems?</span>
+            <span class="faq-icon"><span>+</span></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">We offer API access on professional and enterprise plans, enabling integration with tools like Excel, Power BI, Yardi, RealPage, and custom data pipelines. Our team can assist with setup and custom data exports for your tech stack.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-button" onclick="toggleFaq(this)">
+            <span class="faq-question">Is there a free trial available?</span>
+            <span class="faq-icon"><span>+</span></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes — we offer a free 14-day trial with access to a sample market and limited comps, no credit card required. We also offer live demo sessions with a member of our team who can walk you through the platform with your specific properties and markets.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ─── -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <h2 class="cta-headline">Ready to power smarter<br/>multifamily decisions?</h2>
+      <p class="cta-sub">Join 400+ teams using ApartmentIQ to analyze markets, run surveys, and outperform the competition.</p>
+      <div class="cta-actions">
+        <a href="#" class="btn btn-white btn-lg" style="font-weight:700;">
+          Get started free
+          <svg class="arrow-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="btn btn-outline-white btn-lg">Request a demo</a>
+      </div>
+      <p style="margin-top:20px; font-size:13px; color:rgba(255,255,255,.3); position:relative;">No credit card required · 14-day free trial · Cancel anytime</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">Apartment<span>IQ</span></a>
+        <p>Multifamily market intelligence that moves as fast as your market does.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Integrations</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">Roadmap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <ul>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Reference</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Webinars</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 ApartmentIQ, Inc. All rights reserved.</span>
+      <div style="display:flex; gap:20px;">
+        <a href="#" style="color:var(--text-tertiary); text-decoration:none; font-size:13px;">Privacy Policy</a>
+        <a href="#" style="color:var(--text-tertiary); text-decoration:none; font-size:13px;">Terms of Service</a>
+        <a href="#" style="color:var(--text-tertiary); text-decoration:none; font-size:13px;">Security</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    // open clicked if it was closed
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Subtle scroll-in for sections
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.pillar-card, .persona-card, .ui-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(12px)';
+    el.style.transition = 'opacity .45s ease, transform .45s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

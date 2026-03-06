@@ -1,0 +1,24 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "signin",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8766", "--directory", "/Users/stevenwolf/Claude"],
+      "port": 8766
+    },
+    {
+      "name": "property-app",
+      "runtimeExecutable": "/Users/stevenwolf/.bun/bin/bun",
+      "runtimeArgs": ["run", "dev", "--port", "5173", "--host"],
+      "cwd": "/Users/stevenwolf/Claude/property-app",
+      "port": 5173
+    }
+    ,{
+      "name": "market-survey",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8767", "--directory", "/Users/stevenwolf"],
+      "port": 8767
+    }
+  ]
+}

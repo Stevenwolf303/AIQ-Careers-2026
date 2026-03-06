@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In</title>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Backdrop */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Modal */
+    .modal {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      width: 400px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: #6c47ff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-mark svg {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+    }
+
+    .logo-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: -0.3px;
+    }
+
+    /* Heading */
+    .heading {
+      font-size: 24px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .subheading {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 28px;
+    }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #111;
+      background: #fafafa;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    input::placeholder {
+      color: #9ca3af;
+    }
+
+    input:focus {
+      border-color: #6c47ff;
+      box-shadow: 0 0 0 3px rgba(108, 71, 255, 0.12);
+      background: #fff;
+    }
+
+    /* Forgot */
+    .forgot-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -8px;
+      margin-bottom: 20px;
+    }
+
+    .forgot-row a {
+      font-size: 13px;
+      color: #6c47ff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .forgot-row a:hover {
+      text-decoration: underline;
+    }
+
+    /* Button */
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      background: #6c47ff;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      letter-spacing: -0.1px;
+    }
+
+    .btn-primary:hover {
+      background: #5835e8;
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: #e5e7eb;
+    }
+
+    .divider-text {
+      font-size: 12px;
+      color: #9ca3af;
+      font-weight: 500;
+    }
+
+    /* Sign up link */
+    .signup-row {
+      text-align: center;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .signup-row a {
+      color: #6c47ff;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .signup-row a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+
+      <div class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 2L3 7v11h5v-6h4v6h5V7L10 2z"/>
+          </svg>
+        </div>
+        <span class="logo-name">Acme</span>
+      </div>
+
+      <h1 class="heading" id="modal-title">Welcome back</h1>
+      <p class="subheading">Sign in to your account to continue.</p>
+
+      <form>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            autocomplete="current-password"
+          />
+        </div>
+
+        <div class="forgot-row">
+          <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn-primary">Sign in</button>
+      </form>
+
+      <div class="divider">
+        <span class="divider-line"></span>
+        <span class="divider-text">Don't have an account?</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <div class="signup-row">
+        <a href="#">Create a free account</a>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

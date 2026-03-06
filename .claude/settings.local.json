@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__mcp-registry__search_mcp_registry",
+      "Bash(claude mcp list)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\(''mcpServers'', {}\\), indent=2\\)\\)\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(lsof -i :8765)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\(''/Users/stevenwolf/.claude.json''\\)\\); print\\(json.dumps\\(d, indent=2\\)\\)\")",
+      "Bash(claude mcp add --scope project figma-remote-mcp --transport http https://mcp.figma.com/mcp)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\(''/Users/stevenwolf/.claude.json''\\)\\); print\\(json.dumps\\(d[''projects''].get\\(''/Users/stevenwolf/Claude'', {}\\), indent=2\\)\\)\")",
+      "Bash(claude mcp add figma-remote-mcp --transport http https://mcp.figma.com/mcp)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\(''/Users/stevenwolf/.claude/.credentials.json''\\)\\); print\\(list\\(d.keys\\(\\)\\)\\)\")",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\(''/Users/stevenwolf/.claude/.credentials.json''\\)\\); print\\(list\\(d.get\\(''mcpOAuth'', {}\\).keys\\(\\)\\)\\)\")",
+      "Bash(python3 -c \":*)",
+      "Bash(python3:*)",
+      "Bash(open \"http://localhost:8766/signin.html#figmacapture=be60a522-24ca-4da8-a54c-a826fb56a1eb&figmaendpoint=https%3A%2F%2Fmcp.figma.com%2Fmcp%2Fcapture%2Fbe60a522-24ca-4da8-a54c-a826fb56a1eb%2Fsubmit&figmadelay=1000\")",
+      "mcp__figma-remote-mcp__generate_figma_design",
+      "Bash(node -e \"require\\(''@playwright/test''\\)\")",
+      "Bash(npx playwright --version)",
+      "Bash(python -c \"import playwright\")",
+      "Bash(brew list)",
+      "Bash(command -v bun)",
+      "Bash(command -v deno)",
+      "Bash(pip3 install playwright)",
+      "Bash(/Users/stevenwolf/Library/Python/3.9/bin/playwright install chromium)",
+      "Bash(npm create vite@latest property-app -- --template react-ts)",
+      "Bash(/opt/homebrew/bin/brew --version)",
+      "Bash(curl -fsSL https://bun.sh/install)",
+      "Bash(bash)",
+      "Bash(export PATH=\"$HOME/.bun/bin:$PATH\")",
+      "Bash(bun add tailwindcss @tailwindcss/vite)",
+      "mcp__figma-remote-mcp__get_design_context",
+      "mcp__figma-remote-mcp__get_metadata",
+      "mcp__figma-remote-mcp__get_screenshot",
+      "Bash(open /Users/stevenwolf/Claude/careers.html)",
+      "Bash(git init)",
+      "Bash(git add .)",
+      "Bash(git commit -m \"Initial commit\")"
+    ]
+  }
+}
