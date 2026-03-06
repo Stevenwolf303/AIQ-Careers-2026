@@ -636,17 +636,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 34px;
-        height: 34px;
+        width: 40px;
+        height: 40px;
         margin-left: 4px;
         border: none;
-        background: rgba(25, 26, 29, 0.06);
+        background: transparent;
         border-radius: 8px;
         cursor: pointer;
         flex-shrink: 0;
-        transition: background 0.15s;
+        transition: opacity 0.15s;
       }
-      .mmenu-close:hover { background: rgba(25, 26, 29, 0.11); }
+      .mmenu-close:hover { opacity: 0.45; }
 
       /* Nav content */
       .mmenu-content {
@@ -659,26 +659,64 @@
       }
       .mmenu-group { display: flex; flex-direction: column; }
       .mmenu-label {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 600;
         color: #a0a3ac;
         letter-spacing: 0.09em;
         text-transform: uppercase;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
       }
       .mmenu-link {
         display: block;
         font-family: 'Inter Tight', sans-serif;
-        font-size: clamp(28px, 8.5vw, 40px);
+        font-size: 24px;
         font-weight: 600;
         color: #191a1d;
         text-decoration: none;
         letter-spacing: -0.03em;
-        line-height: 1.2;
-        padding: 5px 0;
+        line-height: 1.35;
+        padding: 7px 0;
         transition: opacity 0.18s;
       }
       .mmenu-link:hover { opacity: 0.38; }
+
+      /* Bottom auth actions */
+      .mmenu-footer {
+        flex-shrink: 0;
+        padding: 20px 28px 44px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        border-top: 1px solid rgba(25, 26, 29, 0.06);
+      }
+      .mmenu-footer-cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 20px;
+        background: #191a1d;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: -0.3px;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: opacity 0.15s;
+      }
+      .mmenu-footer-cta:hover { opacity: 0.82; }
+      .mmenu-footer-login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 11px 20px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #5a5d66;
+        letter-spacing: -0.3px;
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .mmenu-footer-login:hover { color: #191a1d; }
 
       /* Backdrop no longer needed — overlay is full-screen */
       .menu-backdrop { display: none !important; }
@@ -758,20 +796,16 @@
   <!-- ─── MOBILE MENU (full-screen overlay) ─── -->
   <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true">
 
-    <!-- Top bar: mirrors site header -->
+    <!-- Top bar: logo + close only -->
     <div class="mmenu-bar">
       <a href="#" class="mmenu-logo">
         <img src="IQ_logo.png" alt="ApartmentIQ" style="height: 26px; width: auto;" />
       </a>
-      <div class="mmenu-bar-actions">
-        <a href="#" class="mmenu-login">Log in</a>
-        <a href="#" class="mmenu-cta">Request a demo</a>
-        <button class="mmenu-close" id="mmenu-close-btn" aria-label="Close menu">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M1.5 1.5L12.5 12.5M12.5 1.5L1.5 12.5" stroke="#191a1d" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
+      <button class="mmenu-close" id="mmenu-close-btn" aria-label="Close menu">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M1.5 1.5L12.5 12.5M12.5 1.5L1.5 12.5" stroke="#191a1d" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
     </div>
 
     <!-- Nav groups -->
@@ -794,6 +828,12 @@
           <a href="#" class="mmenu-link">Request a Demo</a>
         </nav>
       </div>
+    </div>
+
+    <!-- Bottom auth actions -->
+    <div class="mmenu-footer">
+      <a href="#" class="mmenu-footer-cta">Request a demo</a>
+      <a href="#" class="mmenu-footer-login">Log in</a>
     </div>
 
   </div>
