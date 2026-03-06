@@ -385,7 +385,7 @@
       flex-direction: column;
       align-items: center;
       gap: 32px;
-      max-width: 800px;
+      max-width: 900px;
       width: 100%;
     }
 
@@ -478,7 +478,7 @@
     .logo-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px 24px;
+      gap: 16px 48px;
       align-items: center;
       justify-content: center;
       max-width: 800px;
@@ -1115,7 +1115,7 @@
 
     .case-study-image {
       width: 100%;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 4 / 5;
       border-radius: var(--radius-card);
       overflow: hidden;
       background: #131416;
@@ -1149,12 +1149,7 @@
       color: var(--color-fg-default);
     }
 
-    .case-study-tags {
-      display: flex;
-      gap: 12px;
-    }
-
-    .case-study-tags span {
+    .case-study-info p {
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
@@ -1665,7 +1660,7 @@
     <div class="container">
       <div class="hero-content">
         <div class="hero-text">
-          <h1>Design, Build, and Launch Your Brand Online</h1>
+          <h1>Design, Build, and<br>Launch Your Brand Online</h1>
           <p class="hero-lead">AI-assisted creative services that give small businesses agency-quality design at a fraction of the traditional cost and timeline.</p>
         </div>
         <div class="hero-ctas">
@@ -1686,23 +1681,10 @@
     <div class="container">
       <h2>Trusted by growing businesses</h2>
       <div class="logo-grid">
-        <div class="logo-item"><div class="logo-icon" style="border-radius:3px;"></div><span>WorkOS</span></div>
-        <div class="logo-item"><span style="font-weight:700; letter-spacing:-0.8px;">stripe</span></div>
-        <div class="logo-item"><span style="font-weight:700;">Walmart</span></div>
-        <div class="logo-item"><span style="font-weight:600; font-size:14px;">upwork</span></div>
-        <div class="logo-item"><span style="font-weight:700; letter-spacing:0.5px;">PayPal</span></div>
-        <div class="logo-item"><span style="font-weight:600;">Calendly</span></div>
-        <div class="logo-item"><span style="font-weight:600; font-style:italic;">descript</span></div>
-        <div class="logo-item"><span style="font-weight:700; font-size:15px;">airbnb</span></div>
-        <div class="logo-item"><div class="logo-icon" style="border-radius:50%;"></div><span>slack</span></div>
-        <div class="logo-item"><span style="font-weight:700;">Microsoft</span></div>
-        <div class="logo-item"><span style="font-weight:600;">loom</span></div>
-        <div class="logo-item"><span style="font-weight:700; font-size:15px;">Adobe</span></div>
-        <div class="logo-item"><span style="font-weight:600;">Notion</span></div>
-        <div class="logo-item"><span style="font-weight:700; letter-spacing:-0.5px;">Google</span></div>
-        <div class="logo-item"><span style="font-weight:600; font-size:13px; letter-spacing:0.5px;">twilio</span></div>
-        <div class="logo-item"><span style="font-weight:600;">HubSpot</span></div>
-        <div class="logo-item"><span style="font-weight:700; letter-spacing:-0.5px;">amazon</span></div>
+        <div class="logo-item"><span style="font-weight:700; letter-spacing:-0.5px;">Bloom Botanicals</span></div>
+        <div class="logo-item"><span style="font-weight:600;">Kinetic Fitness</span></div>
+        <div class="logo-item"><span style="font-weight:700; font-style:italic;">Volta Coffee</span></div>
+        <div class="logo-item"><span style="font-weight:600; letter-spacing:0.3px;">Clearpath</span></div>
       </div>
     </div>
   </section>
@@ -1921,62 +1903,43 @@
       </div>
       <div class="case-studies-grid">
 
-        <!-- Full-width card -->
-        <div class="case-study-card full-width">
-          <div class="case-study-image">
-            <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1200&h=750&fit=crop" alt="Bloom Botanicals rebrand" loading="lazy">
-          </div>
-          <div class="case-study-info">
-            <h3>A modern rebrand for a neighborhood florist</h3>
-            <div class="case-study-tags">
-              <span>Bloom Botanicals</span>
-              <span>Rebrand</span>
-              <span>Portland</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Two side-by-side cards -->
         <div class="case-study-card">
           <div class="case-study-image">
-            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=375&fit=crop" alt="Kinetic Fitness website" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=600&h=750&fit=crop" alt="Bloom Botanicals rebrand" loading="lazy">
           </div>
           <div class="case-study-info">
-            <h3>Launching a fitness studio into the digital age</h3>
-            <div class="case-study-tags">
-              <span>Kinetic Fitness</span>
-              <span>Web Design</span>
-              <span>Austin</span>
-            </div>
+            <h3>Bloom Botanicals</h3>
+            <p>A modern rebrand for a neighborhood florist ready to grow beyond the block.</p>
           </div>
         </div>
 
         <div class="case-study-card">
           <div class="case-study-image">
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=375&fit=crop" alt="Volta Coffee landing page" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=750&fit=crop" alt="Kinetic Fitness website" loading="lazy">
           </div>
           <div class="case-study-info">
-            <h3>Helping a specialty roaster sell direct online</h3>
-            <div class="case-study-tags">
-              <span>Volta Coffee</span>
-              <span>E-Commerce</span>
-              <span>Denver</span>
-            </div>
+            <h3>Kinetic Fitness</h3>
+            <p>Launching a fitness studio into the digital age with a conversion-focused website.</p>
           </div>
         </div>
 
-        <!-- Full-width card -->
-        <div class="case-study-card full-width">
+        <div class="case-study-card">
           <div class="case-study-image">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=750&fit=crop" alt="Clearpath Accounting brand" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=750&fit=crop" alt="Volta Coffee e-commerce" loading="lazy">
           </div>
           <div class="case-study-info">
-            <h3>From spreadsheet to standout brand for a growing firm</h3>
-            <div class="case-study-tags">
-              <span>Clearpath Accounting</span>
-              <span>Brand + Web</span>
-              <span>Chicago</span>
-            </div>
+            <h3>Volta Coffee</h3>
+            <p>Helping a specialty roaster sell direct online with a custom e-commerce experience.</p>
+          </div>
+        </div>
+
+        <div class="case-study-card">
+          <div class="case-study-image">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=750&fit=crop" alt="Clearpath Accounting brand" loading="lazy">
+          </div>
+          <div class="case-study-info">
+            <h3>Clearpath Accounting</h3>
+            <p>From spreadsheet to standout brand for a growing Chicago-based firm.</p>
           </div>
         </div>
 
