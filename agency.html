@@ -1636,8 +1636,8 @@
     /* ===== Reveal Animation ===== */
     .reveal {
       opacity: 0;
-      filter: blur(18px);
-      transform: translateY(24px);
+      filter: blur(14px);
+      transform: translateY(18px);
       transition:
         opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
         filter 800ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -1647,6 +1647,17 @@
       opacity: 1;
       filter: blur(0);
       transform: translateY(0);
+    }
+    .hero-text h1.reveal {
+      transition-delay: 0ms;
+    }
+    .hero-lead.reveal {
+      transition-duration: 850ms;
+      transition-delay: 90ms;
+    }
+    .hero-ctas.reveal {
+      transition-duration: 900ms;
+      transition-delay: 180ms;
     }
   </style>
 </head>
