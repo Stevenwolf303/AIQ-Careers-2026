@@ -440,15 +440,71 @@
     }
 
 
-    /* Responsive grid */
+    /* Stats grid layout */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+
+    /* Tablet: 1024px */
     @media (max-width: 1024px) {
       .grid-4 { grid-template-columns: repeat(2, 1fr); }
       .grid-2 { grid-template-columns: 1fr; }
-      .steps-row { grid-template-columns: 1fr; gap: 40px; }
+      .section-heading { font-size: 34px; }
     }
-    @media (max-width: 640px) {
+
+    /* Mobile: 768px */
+    @media (max-width: 768px) {
+      /* Section vertical padding */
+      section[style*="padding: 80px 0"] { padding: 56px 0 !important; }
+
+      /* Hero — uncap width, scale type */
+      .hero-content { max-width: 100% !important; }
+      .hero-content h1 { font-size: 44px !important; letter-spacing: -0.02em !important; }
+      .hero-content p  { font-size: 17px !important; line-height: 1.65 !important; }
+
+      /* Stats card */
+      .stats-card--outlined { padding: 32px 24px !important; }
+
+      /* Stats numbers — single column */
+      .stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+      }
+
+      /* Card grids */
       .grid-4 { grid-template-columns: 1fr; }
-      .section-heading { font-size: 28px; }
+      .grid-2 { grid-template-columns: 1fr; }
+
+      /* Interview timeline — stack vertically, hide horizontal connectors */
+      .steps-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 32px !important;
+      }
+      .step-track { display: none; }
+      .step-track--spacer { display: none; }
+      .step-content { padding: 0 8px !important; }
+
+      /* Section headings */
+      .section-heading { font-size: 30px; }
+    }
+
+    /* Small mobile: 480px */
+    @media (max-width: 480px) {
+      /* Hero */
+      .hero-content h1 { font-size: 36px !important; }
+      .hero-content p  { font-size: 16px !important; }
+
+      /* Stats card */
+      .stats-card--outlined { padding: 24px 20px !important; }
+
+      /* Section headings */
+      .section-heading { font-size: 26px; }
     }
   </style>
 </head>
@@ -478,7 +534,7 @@
       <img src="hero-bg.jpg" alt="" class="hero-bg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;" />
       <div class="hero-shimmer"></div>
     </div>
-    <div class="relative z-10 flex flex-col items-center text-center px-6 pt-32 pb-24" style="max-width: 960px; min-width: 900px; margin: 0 auto;">
+    <div class="relative z-10 flex flex-col items-center text-center px-6 pt-32 pb-24 hero-content" style="max-width: 960px; margin: 0 auto;">
       <h1 class="hero-reveal font-display font-semibold text-[#191a1d] leading-[1.2] mb-4" style="font-size: 64px; letter-spacing: -0.02em; transition-duration: 800ms; transition-delay: 80ms;">
         Help us build the<br>data engine behind multifamily
       </h1>
@@ -506,7 +562,7 @@
             ApartmentIQ started in Madison, Wisconsin and has grown into multifamily's leading market data platform — trusted by over 65% of the NMHC Top 50.
           </p>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
+        <div class="stats-grid">
           <div class="stat-col" style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center;">
             <span class="gradient-metric font-display font-bold stat-number" data-target="40" data-suffix="M+" style="font-size: 40px; line-height: 1; letter-spacing: -0.8px;">40M+</span>
             <div class="stat-divider" style="width: 100%;"></div>
