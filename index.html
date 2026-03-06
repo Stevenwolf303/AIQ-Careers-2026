@@ -61,11 +61,6 @@
       background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
       background-color: #ffffff;
     }
-    [data-theme="light"] .hero-mockup-inner {
-      background: #ffffff;
-      border: 1px solid #dfe0e5;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-    }
     [data-theme="light"] .services-overview-image .image-wrapper {
       background: linear-gradient(135deg, #f0f2ff 0%, #e0e7ff 50%, #d4dbff 100%);
     }
@@ -517,91 +512,108 @@
       color: var(--color-fg-default);
     }
 
-    /* ===== Hero ===== */
+    /* ===== Hero: Editorial ===== */
     .hero {
       background: var(--color-bg-main);
-      padding: var(--padding-y) var(--padding-x) 0;
+      padding: 0 var(--padding-x);
       overflow: hidden;
       position: relative;
+      min-height: calc(100vh - 72px);
+      display: flex;
+      align-items: stretch;
     }
 
     .hero .container {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 64px;
+      align-items: stretch;
+      width: 100%;
       position: relative;
       z-index: 1;
     }
 
-    .hero-content {
+    .hero-headline {
+      flex: 1;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 32px;
-      max-width: 900px;
-      width: 100%;
+      align-items: flex-end;
+      padding: 0 0 clamp(48px, 6vh, 80px) 0;
     }
 
-    .hero-text {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      text-align: center;
-      width: 100%;
-    }
-
-    .hero h1 {
+    .hero-headline h1 {
       font-family: var(--font-heading);
-      letter-spacing: -0.02em;
-      font-size: 72px;
-      font-weight: 600;
-      line-height: 90px;
-      letter-spacing: -1px;
+      font-size: clamp(64px, 11vw, 180px);
+      font-weight: 800;
+      line-height: 0.88;
+      letter-spacing: -0.04em;
       color: var(--color-fg-default);
+      text-transform: uppercase;
+      margin: 0;
     }
 
-    .hero-lead {
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 28px;
-      letter-spacing: -0.54px;
-      color: var(--color-fg-muted);
-      max-width: 592px;
-      width: 100%;
+    .hero-headline h1 span {
+      display: block;
     }
 
-    .hero-ctas {
+    .hero-editorial {
+      width: clamp(280px, 28vw, 400px);
       display: flex;
-      gap: 12px;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 0 clamp(48px, 6vh, 80px) 0;
+      gap: 32px;
+      flex-shrink: 0;
     }
 
-    .hero-mockup {
-      width: 100%;
-      position: relative;
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-fg-muted);
     }
 
-    .hero-mockup-inner {
-      width: 1136px;
-      max-width: 100%;
-      height: auto;
-      aspect-ratio: 1136 / 710;
-      background: var(--color-bg-surface);
-      border-radius: var(--radius-card);
+    .hero-body p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22px;
+      letter-spacing: -0.2px;
+      color: var(--color-fg-muted);
+    }
+
+    .hero-body p + p {
+      margin-top: 16px;
+    }
+
+    .hero-bg-shape {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-bg-letter {
+      font-family: var(--font-heading);
+      font-size: clamp(400px, 50vw, 700px);
+      font-weight: 900;
+      line-height: 1;
+      color: rgba(255,255,255,0.04);
+      user-select: none;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    [data-theme="light"] .hero-bg-letter {
+      color: rgba(0,0,0,0.035);
+    }
+
+    .hero-bg-circle {
+      width: clamp(300px, 35vw, 500px);
+      height: clamp(300px, 35vw, 500px);
+      border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.06);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      overflow: hidden;
-      margin: 0 auto;
+      top: 15%;
+      right: -5%;
     }
-
-    .hero-mockup-inner img,
-    .hero-mockup-inner .img-placeholder {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    [data-theme="light"] .hero-bg-circle {
+      border-color: rgba(0,0,0,0.06);
     }
 
     /* ===== Logo Cloud ===== */
@@ -1569,9 +1581,12 @@
         --padding-y: 48px;
       }
 
-      .hero h1 {
-        font-size: 56px;
-        line-height: 68px;
+      .hero-headline h1 {
+        font-size: clamp(56px, 9vw, 120px);
+      }
+
+      .hero-editorial {
+        width: clamp(220px, 30vw, 320px);
       }
 
       .services-overview-header .header-left h2,
@@ -1680,26 +1695,39 @@
 
       /* Hero mobile */
       .hero {
+        min-height: auto;
         padding-top: 40px;
-      }
-
-      .hero h1 {
-        font-size: 40px;
-        line-height: 50px;
-        letter-spacing: -0.5px;
-      }
-
-      .hero-lead {
-        font-size: 16px;
-        line-height: 24px;
+        padding-bottom: 48px;
       }
 
       .hero .container {
-        gap: 40px;
+        flex-direction: column;
+        gap: 48px;
       }
 
-      .hero-content {
-        gap: 24px;
+      .hero-headline {
+        padding-bottom: 0;
+      }
+
+      .hero-headline h1 {
+        font-size: clamp(48px, 14vw, 80px);
+      }
+
+      .hero-editorial {
+        width: 100%;
+        max-width: 400px;
+        padding-bottom: 0;
+      }
+
+      .hero-bg-letter {
+        font-size: clamp(200px, 50vw, 350px);
+      }
+
+      .hero-bg-circle {
+        width: 200px;
+        height: 200px;
+        top: 10%;
+        right: -10%;
       }
 
       /* Logo cloud mobile */
@@ -1855,16 +1883,15 @@
       filter: blur(0);
       transform: translateY(0);
     }
-    .hero-text h1.reveal {
-      transition-delay: 0ms;
+    .hero-headline h1 span.reveal {
+      transition-delay: calc(var(--i, 0) * 80ms);
     }
-    .hero-lead.reveal {
-      transition-duration: 850ms;
-      transition-delay: 90ms;
+    .hero-editorial .hero-eyebrow.reveal {
+      transition-delay: 450ms;
     }
-    .hero-ctas.reveal {
+    .hero-editorial .hero-body.reveal {
+      transition-delay: 530ms;
       transition-duration: 900ms;
-      transition-delay: 180ms;
     }
   </style>
 </head>
@@ -1908,26 +1935,26 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero">
-    <div class="line-art line-art-adaptive" style="top:-30%;right:-20%;width:1000px;height:1000px;">
-      <svg viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">
-        <circle cx="500" cy="500" r="420" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-        <circle cx="500" cy="500" r="280" stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
-      </svg>
-    </div>
+    <div class="hero-bg-shape hero-bg-letter" aria-hidden="true">B</div>
+    <div class="hero-bg-shape hero-bg-circle" aria-hidden="true"></div>
+
     <div class="container">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1 class="reveal">Design, Build, and<br>Launch Your Brand Online</h1>
-          <p class="hero-lead reveal">AI-assisted creative services that give small businesses agency-quality design at a fraction of the traditional cost and timeline.</p>
-        </div>
-        <div class="hero-ctas reveal">
-          <a href="#work" class="btn btn-secondary">See our work</a>
-          <a href="#start" class="btn btn-primary">Start a project</a>
-        </div>
+      <div class="hero-headline">
+        <h1>
+          <span class="reveal" style="--i:0">We</span>
+          <span class="reveal" style="--i:1">Build</span>
+          <span class="reveal" style="--i:2">Modern</span>
+          <span class="reveal" style="--i:3">Digital</span>
+          <span class="reveal" style="--i:4">Systems</span>
+          <span class="reveal" style="--i:5">For Brands</span>
+        </h1>
       </div>
-      <div class="hero-mockup">
-        <div class="hero-mockup-inner">
-          <div class="img-placeholder" aria-label="Website design showcase"></div>
+
+      <div class="hero-editorial">
+        <span class="hero-eyebrow reveal">Hello</span>
+        <div class="hero-body reveal">
+          <p>Baseline is a creative studio designing modern brands, websites, and digital systems for ambitious companies.</p>
+          <p>Brand identity, web design, development, and creative systems built with taste, speed, and precision.</p>
         </div>
       </div>
     </div>
