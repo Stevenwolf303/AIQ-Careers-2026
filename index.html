@@ -136,6 +136,20 @@
       background: linear-gradient(135deg, #f0f0f2 0%, #e8e9ed 40%, #f0f0f2 100%);
     }
 
+    /* ===== Editorial Line Art ===== */
+    .line-art {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      overflow: visible;
+    }
+    .line-art svg {
+      display: block;
+    }
+    [data-theme="light"] .line-art-adaptive svg * {
+      stroke: rgba(0,0,0,0.05);
+    }
+
     /* ===== Theme Transition ===== */
     html.theme-transition,
     html.theme-transition *,
@@ -508,6 +522,7 @@
       background: var(--color-bg-main);
       padding: var(--padding-y) var(--padding-x) 0;
       overflow: hidden;
+      position: relative;
     }
 
     .hero .container {
@@ -515,6 +530,8 @@
       flex-direction: column;
       align-items: center;
       gap: 64px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-content {
@@ -693,6 +710,8 @@
     /* ===== Feature: Services Overview (Feature 36) ===== */
     .services-overview {
       background: var(--color-bg-main);
+      position: relative;
+      overflow: hidden;
     }
 
     .services-overview-header {
@@ -1889,6 +1908,12 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero">
+    <div class="line-art line-art-adaptive" style="top:-30%;right:-20%;width:1000px;height:1000px;">
+      <svg viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">
+        <circle cx="500" cy="500" r="420" stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
+        <circle cx="500" cy="500" r="280" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+      </svg>
+    </div>
     <div class="container">
       <div class="hero-content">
         <div class="hero-text">
@@ -1931,6 +1956,11 @@
 
   <!-- ===== Feature: Services Overview ===== -->
   <section class="services-overview" id="services">
+    <div class="line-art line-art-adaptive" style="bottom:-10%;left:-10%;width:120%;height:120%;">
+      <svg viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
+        <line x1="0" y1="580" x2="1200" y2="80" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+      </svg>
+    </div>
     <div class="services-overview-header">
       <div class="container">
         <div class="header-left">
@@ -2189,6 +2219,11 @@
 
   <!-- ===== CTA Section ===== -->
   <section class="cta-section" id="start">
+    <div class="line-art" style="bottom:-60%;left:-25%;width:900px;height:900px;">
+      <svg viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg" width="900" height="900">
+        <circle cx="450" cy="450" r="380" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+      </svg>
+    </div>
     <div class="container">
       <div class="cta-content">
         <h2 class="reveal">Ready to upgrade your brand and digital presence?</h2>
