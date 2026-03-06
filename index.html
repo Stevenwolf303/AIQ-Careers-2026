@@ -123,6 +123,19 @@
       }
     }
 
+    /* ===== Image Placeholders ===== */
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a1b20 0%, #232429 40%, #1e1f24 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    [data-theme="light"] .img-placeholder {
+      background: linear-gradient(135deg, #f0f0f2 0%, #e8e9ed 40%, #f0f0f2 100%);
+    }
+
     /* ===== Theme Transition ===== */
     html.theme-transition,
     html.theme-transition *,
@@ -567,7 +580,8 @@
       margin: 0 auto;
     }
 
-    .hero-mockup-inner img {
+    .hero-mockup-inner img,
+    .hero-mockup-inner .img-placeholder {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -739,7 +753,8 @@
       position: relative;
     }
 
-    .services-overview-image .image-wrapper img {
+    .services-overview-image .image-wrapper img,
+    .services-overview-image .image-wrapper .img-placeholder {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -775,7 +790,7 @@
       font-weight: 600;
       line-height: 60px;
       letter-spacing: -0.37px;
-      color: var(--color-fg-inverse);
+      color: #ffffff;
       text-align: center;
       width: 100%;
     }
@@ -799,7 +814,7 @@
     .approach-feature-icon {
       width: 20px;
       height: 20px;
-      color: var(--color-fg-inverse);
+      color: #ffffff;
     }
 
     .approach-feature h3 {
@@ -807,7 +822,7 @@
       font-weight: 500;
       line-height: 24px;
       letter-spacing: -0.37px;
-      color: var(--color-fg-inverse);
+      color: #ffffff;
       text-align: center;
       width: 100%;
     }
@@ -817,7 +832,7 @@
       font-weight: 400;
       line-height: 20px;
       letter-spacing: -0.37px;
-      color: var(--color-fg-inverse);
+      color: rgba(255,255,255,0.7);
       text-align: center;
       width: 100%;
     }
@@ -945,9 +960,11 @@
       overflow: hidden;
     }
 
-    .services-detail-image-inner img {
+    .services-detail-image-inner img,
+    .services-detail-image-inner .img-placeholder {
       width: 100%;
       display: block;
+      min-height: 400px;
     }
 
     /* ===== Feature: AI Advantage (Feature 17) ===== */
@@ -1030,7 +1047,8 @@
       overflow: hidden;
     }
 
-    .ai-advantage-image img {
+    .ai-advantage-image img,
+    .ai-advantage-image .img-placeholder {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -1283,14 +1301,16 @@
       border: 1px solid rgba(255,255,255,0.04);
     }
 
-    .case-study-image img {
+    .case-study-image img,
+    .case-study-image .img-placeholder {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.3s ease;
     }
 
-    .case-study-card:hover .case-study-image img {
+    .case-study-card:hover .case-study-image img,
+    .case-study-card:hover .case-study-image .img-placeholder {
       transform: scale(1.03);
     }
 
@@ -1353,7 +1373,7 @@
       font-weight: 600;
       line-height: 60px;
       letter-spacing: -0.37px;
-      color: var(--color-fg-inverse);
+      color: #ffffff;
       text-align: center;
     }
 
@@ -1365,9 +1385,10 @@
       flex-shrink: 0;
     }
 
-    .cta-image img {
+    .cta-image img,
+    .cta-image .img-placeholder {
       width: 100%;
-      height: auto;
+      height: 100%;
       display: block;
     }
 
@@ -1858,7 +1879,7 @@
       </div>
       <div class="hero-mockup">
         <div class="hero-mockup-inner">
-          <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=1200&h=800&fit=crop" alt="Website design showcase" loading="lazy">
+          <div class="img-placeholder" aria-label="Website design showcase"></div>
         </div>
       </div>
     </div>
@@ -1900,7 +1921,7 @@
     <div class="services-overview-image">
       <div class="container">
         <div class="image-wrapper">
-          <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1200&h=700&fit=crop" alt="Creative services overview" loading="lazy">
+          <div class="img-placeholder" aria-label="Creative services overview"></div>
         </div>
       </div>
     </div>
@@ -2004,7 +2025,7 @@
           </div>
           <div class="services-detail-image">
             <div class="services-detail-image-inner">
-              <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&h=800&fit=crop" alt="Website design dashboard" loading="lazy">
+              <div class="img-placeholder" aria-label="Website design dashboard"></div>
             </div>
           </div>
         </div>
@@ -2043,7 +2064,7 @@
         <a href="#start" class="btn btn-secondary" style="align-self:flex-start;">Learn more</a>
       </div>
       <div class="ai-advantage-image">
-        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop" alt="Creative team at work" loading="lazy">
+        <div class="img-placeholder" aria-label="Creative team at work"></div>
       </div>
     </div>
   </section>
@@ -2101,7 +2122,7 @@
 
         <div class="case-study-card">
           <div class="case-study-image">
-            <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=600&h=750&fit=crop" alt="Bloom Botanicals rebrand" loading="lazy">
+            <div class="img-placeholder" aria-label="Bloom Botanicals rebrand"></div>
           </div>
           <div class="case-study-info">
             <h3>Bloom Botanicals</h3>
@@ -2111,7 +2132,7 @@
 
         <div class="case-study-card">
           <div class="case-study-image">
-            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=750&fit=crop" alt="Kinetic Fitness website" loading="lazy">
+            <div class="img-placeholder" aria-label="Kinetic Fitness website"></div>
           </div>
           <div class="case-study-info">
             <h3>Kinetic Fitness</h3>
@@ -2121,7 +2142,7 @@
 
         <div class="case-study-card">
           <div class="case-study-image">
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=750&fit=crop" alt="Volta Coffee e-commerce" loading="lazy">
+            <div class="img-placeholder" aria-label="Volta Coffee e-commerce"></div>
           </div>
           <div class="case-study-info">
             <h3>Volta Coffee</h3>
@@ -2131,7 +2152,7 @@
 
         <div class="case-study-card">
           <div class="case-study-image">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=750&fit=crop" alt="Clearpath Accounting brand" loading="lazy">
+            <div class="img-placeholder" aria-label="Clearpath Accounting brand"></div>
           </div>
           <div class="case-study-info">
             <h3>Clearpath Accounting</h3>
@@ -2151,7 +2172,7 @@
         <a href="#" class="btn btn-cta">Start your project today</a>
       </div>
       <div class="cta-image">
-        <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1200&h=800&fit=crop" alt="Website design preview" loading="lazy">
+        <div class="img-placeholder" aria-label="Website design preview"></div>
       </div>
     </div>
   </section>
@@ -2241,7 +2262,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-bottom-left">&copy; 2025 Baseline Studio</p>
+        <p class="footer-bottom-left"><span style="font-size:0.85em;vertical-align:0.05em;">©</span> 2026 Baseline Studio</p>
         <div class="footer-bottom-right">
           <a href="#">Cookies</a>
           <a href="#">Privacy</a>
