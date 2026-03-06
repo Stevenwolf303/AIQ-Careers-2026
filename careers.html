@@ -25,7 +25,8 @@
       background-clip: text;
     }
     .eyebrow-gradient {
-      background: linear-gradient(90deg, rgb(105, 77, 236) 40%, rgb(255, 142, 95) 69%);
+      background: linear-gradient(90deg, #6E59E8 0%, #8C6BE6 50%, #A97BCB 100%);
+      background-size: 200% 100%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -512,6 +513,185 @@
       /* Section headings */
       .section-heading { font-size: 26px; }
     }
+
+    /* ══════════════════════════════════════════════════
+       MOBILE NAV · HAMBURGER MENU · MOBILE FOOTER
+       All desktop behaviour is completely untouched.
+    ══════════════════════════════════════════════════ */
+
+    /* ── Base (off on desktop, activated via 768px block) ── */
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5.5px;
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .hamburger-btn:hover { background: rgba(0,0,0,0.05); }
+    .bar {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: #191a1d;
+      border-radius: 999px;
+      transform-origin: center;
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 200ms ease;
+    }
+    .mobile-menu   { display: none; }
+    .menu-backdrop { display: none; position: fixed; inset: 0; z-index: 48;
+                     background: transparent; pointer-events: none; }
+    .menu-backdrop.is-open { pointer-events: auto; }
+    .footer-section-label { display: none; }
+
+    /* ── Mobile ≤ 768px ── */
+    @media (max-width: 768px) {
+
+      /* Header: collapse to logo + hamburger only */
+      .nav-desktop  { display: none !important; }
+      .cta-desktop  { display: none !important; }
+      .hamburger-btn { display: flex; }
+      .navbar-pill {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        min-height: 56px;
+      }
+
+      /* Hamburger → X morph */
+      .hamburger-btn.is-open .bar-1 { transform: translateY(7px)  rotate(45deg); }
+      .hamburger-btn.is-open .bar-2 { opacity: 0; transform: scaleX(0.3); }
+      .hamburger-btn.is-open .bar-3 { transform: translateY(-7px) rotate(-45deg); }
+
+      /* Mobile menu panel */
+      .mobile-menu {
+        display: block;
+        position: fixed;
+        top: 86px;
+        left: 16px;
+        right: 16px;
+        z-index: 49;
+        background: #fff;
+        border: 1px solid rgba(25,26,29,0.08);
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+        padding: 8px;
+        opacity: 0;
+        transform: translateY(-8px);
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          opacity  260ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 260ms;
+      }
+      .mobile-menu.is-open {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        pointer-events: auto;
+      }
+      .mobile-nav-link {
+        display: block;
+        padding: 13px 16px;
+        font-size: 15px;
+        font-weight: 500;
+        color: #40434c;
+        text-decoration: none;
+        letter-spacing: -0.3px;
+        border-radius: 10px;
+        transition: background 0.15s, color 0.15s;
+      }
+      .mobile-nav-link:hover { background: rgba(0,0,0,0.04); color: #191a1d; }
+      .mobile-nav-sep {
+        height: 1px;
+        background: #f0f0f2;
+        margin: 6px 8px;
+      }
+      .mobile-nav-login {
+        display: block;
+        padding: 13px 16px;
+        font-size: 15px;
+        font-weight: 500;
+        color: #191a1d;
+        text-decoration: none;
+        letter-spacing: -0.3px;
+        border-radius: 10px;
+        transition: background 0.15s;
+      }
+      .mobile-nav-login:hover { background: rgba(0,0,0,0.04); }
+      .mobile-nav-cta {
+        display: block;
+        margin-top: 4px;
+        padding: 14px 16px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        background: #191a1d;
+        text-decoration: none;
+        letter-spacing: -0.3px;
+        border-radius: 10px;
+        text-align: center;
+        transition: opacity 0.15s;
+      }
+      .mobile-nav-cta:hover { opacity: 0.85; }
+
+      /* Backdrop click-catcher */
+      .menu-backdrop { display: block; }
+
+      /* Footer: single-column */
+      .footer-section-label {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        color: #9ca3af;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+      .footer-main {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0 !important;
+        padding-bottom: 0 !important;
+      }
+      .footer-left {
+        flex-direction: column !important;
+        gap: 0 !important;
+        width: 100%;
+      }
+      .footer-left > a:first-child { margin-bottom: 28px; }
+      .footer-product-links {
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        gap: 14px !important;
+      }
+      .footer-right {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 14px !important;
+        width: 100%;
+        margin-top: 28px;
+        padding-top: 28px;
+        border-top: 1px solid #f0f0f2;
+      }
+      .footer-bottom {
+        flex-direction: column-reverse !important;
+        align-items: flex-start !important;
+        gap: 20px !important;
+        margin-top: 28px;
+        padding: 24px 0 36px !important;
+      }
+      .footer-social { display: flex; align-items: center; }
+    }
   </style>
 </head>
 <body class="bg-white overflow-x-hidden">
@@ -522,17 +702,33 @@
       <a href="#" class="shrink-0">
         <img src="IQ_logo.png" alt="ApartmentIQ" style="height: 26px; width: auto;" />
       </a>
-      <nav class="flex flex-1 items-center justify-center gap-1">
+      <nav class="nav-desktop flex flex-1 items-center justify-center gap-1">
         <a href="#" class="px-3 py-1.5 text-[13px] font-medium text-[#40434c] rounded-[10px] hover:bg-white/50 transition-colors tracking-[-0.3px]">Market Surveys</a>
         <a href="#" class="px-3 py-1.5 text-[13px] font-medium text-[#40434c] rounded-[10px] hover:bg-white/50 transition-colors tracking-[-0.3px]">Market Research</a>
         <a href="#" class="px-3 py-1.5 text-[13px] font-medium text-[#40434c] rounded-[10px] hover:bg-white/50 transition-colors tracking-[-0.3px]">Revenue Management</a>
       </nav>
-      <div class="flex items-center gap-2 shrink-0">
+      <div class="cta-desktop flex items-center gap-2 shrink-0">
         <a href="#" class="px-3 py-1.5 text-[13px] font-medium text-[#191a1d] hover:opacity-60 transition-opacity tracking-[-0.3px]">Log in</a>
         <a href="#" class="bg-[#191a1d] text-white text-[13px] font-medium tracking-[-0.3px] px-3.5 py-2 rounded-lg hover:opacity-85 transition-opacity">Request a demo</a>
       </div>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </button>
     </div>
   </header>
+
+  <!-- ─── MOBILE MENU ─── -->
+  <div class="menu-backdrop" id="menu-backdrop"></div>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="#" class="mobile-nav-link">Market Surveys</a>
+    <a href="#" class="mobile-nav-link">Market Research</a>
+    <a href="#" class="mobile-nav-link">Revenue Management</a>
+    <div class="mobile-nav-sep"></div>
+    <a href="#" class="mobile-nav-login">Log in</a>
+    <a href="#" class="mobile-nav-cta">Request a demo</a>
+  </div>
 
   <!-- ─── HERO ─── -->
   <section class="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-white">
@@ -849,31 +1045,35 @@
   <!-- ─── FOOTER ─── -->
   <footer style="background: #fff; padding: 24px 0 0;">
     <div class="container">
-      <div style="display: flex; align-items: flex-end; justify-content: space-between; padding-bottom: 24px;">
-        <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div class="footer-main" style="display: flex; align-items: flex-end; justify-content: space-between; padding-bottom: 24px;">
+        <div class="footer-left" style="display: flex; flex-direction: column; gap: 20px;">
           <a href="#">
             <img src="IQ_logo.png" alt="ApartmentIQ" style="height: 26px; width: auto;" />
           </a>
-          <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+          <p class="footer-section-label">Product</p>
+          <div class="footer-product-links" style="display: flex; flex-wrap: wrap; gap: 20px;">
             <a href="#" style="font-size: 13px; font-weight: 500; color: #5a5d66; text-decoration: none; letter-spacing: -0.2px; transition: color 0.15s;" onmouseover="this.style.color='#191a1d'" onmouseout="this.style.color='#5a5d66'">Market Surveys</a>
             <a href="#" style="font-size: 13px; font-weight: 500; color: #5a5d66; text-decoration: none; letter-spacing: -0.2px;" onmouseover="this.style.color='#191a1d'" onmouseout="this.style.color='#5a5d66'">Market Research</a>
             <a href="#" style="font-size: 13px; font-weight: 500; color: #5a5d66; text-decoration: none; letter-spacing: -0.2px;" onmouseover="this.style.color='#191a1d'" onmouseout="this.style.color='#5a5d66'">Daylight</a>
             <a href="#" style="font-size: 13px; font-weight: 500; color: #5a5d66; text-decoration: none; letter-spacing: -0.2px;" onmouseover="this.style.color='#191a1d'" onmouseout="this.style.color='#5a5d66'">MavenAI</a>
           </div>
         </div>
-        <div style="display: flex; gap: 20px; align-items: center;">
+        <div class="footer-right" style="display: flex; gap: 20px; align-items: center;">
+          <p class="footer-section-label">Company</p>
           <a href="#" style="font-size: 13px; font-weight: 500; color: #5a5d66; text-decoration: none; letter-spacing: -0.2px;" onmouseover="this.style.color='#191a1d'" onmouseout="this.style.color='#5a5d66'">Careers</a>
           <a href="#" style="font-size: 13px; font-weight: 500; color: #5a5d66; text-decoration: none; letter-spacing: -0.2px;" onmouseover="this.style.color='#191a1d'" onmouseout="this.style.color='#5a5d66'">Resources</a>
           <a href="#" style="font-size: 13px; font-weight: 500; color: #5a5d66; text-decoration: none; letter-spacing: -0.2px;" onmouseover="this.style.color='#191a1d'" onmouseout="this.style.color='#5a5d66'">Sign In</a>
           <a href="#" style="font-size: 13px; font-weight: 500; color: #5a5d66; text-decoration: none; letter-spacing: -0.2px;" onmouseover="this.style.color='#191a1d'" onmouseout="this.style.color='#5a5d66'">Request Demo</a>
         </div>
       </div>
-      <div style="border-top: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; padding: 20px 0 28px;">
+      <div class="footer-bottom" style="border-top: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; padding: 20px 0 28px;">
         <p style="font-size: 13px; color: #6b7280; letter-spacing: -0.2px; line-height: 1.5;">
           Copyright © 2026 ApartmentIQ and Rentable. All rights reserved.
           <a href="#" style="text-decoration: underline; color: #6b7280;" onmouseover="this.style.color='#191a1d'" onmouseout="this.style.color='#6b7280'">Terms &amp; Conditions</a>
         </p>
-        <img src="https://www.figma.com/api/mcp/asset/96a21b74-4166-4741-a324-4affa4088517" alt="" style="width: 20px; height: 20px;" />
+        <div class="footer-social">
+          <img src="https://www.figma.com/api/mcp/asset/96a21b74-4166-4741-a324-4affa4088517" alt="LinkedIn" style="width: 20px; height: 20px;" />
+        </div>
       </div>
     </div>
   </footer>
@@ -968,6 +1168,40 @@
       }, { threshold: 0.15 });
       outlineObserver.observe(outlinedCard);
     }
+
+    // ── Hamburger menu ────────────────────────────────────────────────────────
+    (function () {
+      var btn      = document.getElementById('hamburger-btn');
+      var menu     = document.getElementById('mobile-menu');
+      var backdrop = document.getElementById('menu-backdrop');
+      if (!btn || !menu || !backdrop) return;
+
+      function openMenu() {
+        btn.classList.add('is-open');
+        menu.classList.add('is-open');
+        backdrop.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        menu.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        btn.classList.remove('is-open');
+        menu.classList.remove('is-open');
+        backdrop.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        menu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        menu.classList.contains('is-open') ? closeMenu() : openMenu();
+      });
+      backdrop.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
   </script>
 
 </body>
