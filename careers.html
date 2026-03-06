@@ -1246,7 +1246,7 @@
         statsObserver.unobserve(entry.target);
       });
     }, { threshold: 0.55, rootMargin: '0px 0px -120px 0px' });
-    const statsCard = document.querySelector('.stat-number')?.closest('[style*="background: #0a0a0a"]');
+    const statsCard = document.querySelector('.stats-card--outlined');
     if (statsCard) statsObserver.observe(statsCard);
 
     // ── Interview steps sequential reveal ────────────────────────────────────
