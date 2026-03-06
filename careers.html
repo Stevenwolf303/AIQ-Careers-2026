@@ -451,8 +451,8 @@
 
     /* Tablet: 1024px */
     @media (max-width: 1024px) {
-      .grid-4 { grid-template-columns: repeat(2, 1fr); }
-      .grid-2 { grid-template-columns: 1fr; }
+      .grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+      .grid-2 { grid-template-columns: 1fr !important; }
       .section-heading { font-size: 34px; }
     }
 
@@ -476,8 +476,8 @@
       }
 
       /* Card grids */
-      .grid-4 { grid-template-columns: 1fr; }
-      .grid-2 { grid-template-columns: 1fr; }
+      .grid-4 { grid-template-columns: 1fr !important; }
+      .grid-2 { grid-template-columns: 1fr !important; }
 
       /* Interview timeline — stack vertically, hide horizontal connectors */
       .steps-row {
