@@ -1,4 +1,3 @@
-import React from "react";
 type Status = true | false | "partial";
 type Row = {
   capability: string;
@@ -40,13 +39,6 @@ function StatusPill({ value }: { value: Status | string }) {
             clipRule="evenodd"
           />
         </svg>
-      </span>
-    );
-  }
-  if (value === "partial") {
-    return (
-      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-amber-50 ring-1 ring-amber-100">
-        <span className="text-lg font-bold leading-none text-amber-600">~</span>
       </span>
     );
   }
