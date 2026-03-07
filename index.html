@@ -71,47 +71,28 @@
     [data-theme="light"] .accent-sand { --section-accent: #C48A3F; --section-accent-subtle: #FFF1E3; --section-accent-gradient: linear-gradient(90deg, #C48A3F, #D4A565); }
 
     [data-theme="light"] body {
-      background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+      background:
+        radial-gradient(1200px 800px at 10% 0%, rgba(0,0,0,0.03), transparent 60%),
+        radial-gradient(900px 700px at 90% 30%, rgba(0,0,0,0.025), transparent 65%),
+        radial-gradient(1000px 600px at 20% 60%, rgba(0,0,0,0.02), transparent 55%),
+        radial-gradient(800px 500px at 85% 85%, rgba(0,0,0,0.015), transparent 50%),
+        linear-gradient(180deg, #f6f6f7 0%, #ffffff 100%);
       background-color: #ffffff;
+      background-attachment: fixed;
     }
-    [data-theme="light"] .hero {
-      background:
-        radial-gradient(1200px 600px at 10% 0%, rgba(0,0,0,0.015), transparent 60%),
-        linear-gradient(180deg, #f5f5f6 0%, #fbfbfc 100%);
-    }
-    [data-theme="light"] .logo-cloud {
-      background: linear-gradient(180deg, #f8f8f9 0%, #fcfcfd 100%);
-    }
-    [data-theme="light"] .services-overview {
-      background:
-        radial-gradient(1000px 500px at 80% 10%, rgba(0,0,0,0.012), transparent 55%),
-        linear-gradient(180deg, #f6f6f7 0%, #fafafa 100%);
-    }
-    [data-theme="light"] .approach-card-section {
-      background:
-        radial-gradient(1000px 500px at 50% 0%, rgba(0,0,0,0.015), transparent 55%),
-        linear-gradient(180deg, #f4f4f5 0%, #f9f9fa 100%);
-    }
-    [data-theme="light"] .services-detail {
-      background:
-        radial-gradient(900px 500px at 90% 20%, rgba(0,0,0,0.012), transparent 50%),
-        linear-gradient(180deg, #f7f7f8 0%, #fbfbfc 100%);
-    }
-    [data-theme="light"] .ai-advantage {
-      background:
-        radial-gradient(1100px 600px at 10% 10%, rgba(0,0,0,0.015), transparent 55%),
-        linear-gradient(180deg, #f5f5f6 0%, #fafafa 100%);
-    }
-    [data-theme="light"] .pricing-section {
-      background:
-        radial-gradient(1000px 500px at 50% 10%, rgba(0,0,0,0.012), transparent 50%),
-        linear-gradient(180deg, #f6f6f7 0%, #fbfbfc 100%);
-    }
+    [data-theme="light"] .hero,
+    [data-theme="light"] .logo-cloud,
+    [data-theme="light"] .services-overview,
+    [data-theme="light"] .approach-card-section,
+    [data-theme="light"] .services-detail,
+    [data-theme="light"] .ai-advantage,
+    [data-theme="light"] .pricing-section,
     [data-theme="light"] .case-studies {
-      background: linear-gradient(180deg, #f7f7f8 0%, #fafafa 100%);
+      background: transparent;
     }
     [data-theme="light"] .footer {
-      background: linear-gradient(180deg, #f4f4f5 0%, #f8f8f9 100%);
+      background: transparent;
+      border-top: 1px solid rgba(0,0,0,0.05);
     }
     [data-theme="light"] .services-overview-image .image-wrapper {
       background: linear-gradient(135deg, #f0f0f5 0%, #e8e6ff 50%, #dedcf5 100%);
@@ -1101,10 +1082,10 @@
       justify-content: center;
     }
 
-    .service-item-icon.icon-peach { background: rgba(255, 233, 226, 0.3); }
-    .service-item-icon.icon-sky { background: rgba(234, 242, 255, 0.3); }
-    .service-item-icon.icon-mint { background: rgba(230, 245, 238, 0.3); }
-    .service-item-icon.icon-lavender { background: rgba(232, 230, 255, 0.3); }
+    .service-item-icon.icon-peach { background: rgba(255, 233, 226, 0.42); }
+    .service-item-icon.icon-sky { background: rgba(234, 242, 255, 0.42); }
+    .service-item-icon.icon-mint { background: rgba(230, 245, 238, 0.42); }
+    .service-item-icon.icon-lavender { background: rgba(232, 230, 255, 0.42); }
 
     .service-item-icon svg {
       width: 20px;
