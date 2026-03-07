@@ -1334,9 +1334,12 @@
       font-size: 12px;
       font-weight: 600;
       line-height: 16px;
-      letter-spacing: 1px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--color-accent);
+      background: var(--color-accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .case-studies-header h2 {
@@ -1912,6 +1915,21 @@
       }
     }
 
+    /* ===== Section Eyebrow ===== */
+    .section-eyebrow {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 16px;
+      background: var(--color-accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
     /* ===== Reveal Animation ===== */
     .reveal {
       opacity: 0;
@@ -2033,6 +2051,7 @@
     <div class="services-overview-header">
       <div class="container">
         <div class="header-left">
+          <span class="section-eyebrow">Our Services</span>
           <h2>Full-cycle creative services, modernized</h2>
         </div>
         <div class="header-right">
@@ -2053,6 +2072,7 @@
   <section class="approach-card-section" id="about">
     <div class="container">
       <div class="approach-card">
+        <span class="section-eyebrow">Our Approach</span>
         <h2>Built for the way you work</h2>
         <div class="approach-features">
 
@@ -2090,6 +2110,7 @@
     <div class="container">
       <div class="services-detail-card">
         <div class="services-detail-header">
+          <span class="section-eyebrow">What We Do</span>
           <h2>Everything your brand needs</h2>
           <p>A complete suite of creative services designed for small businesses ready to upgrade their digital presence.</p>
         </div>
@@ -2160,6 +2181,7 @@
     <div class="container">
       <div class="ai-advantage-content">
         <div class="ai-advantage-text">
+          <span class="section-eyebrow">Why Us</span>
           <h2>The AI advantage, without the gimmick</h2>
           <p>We use AI to accelerate our creative process — not replace it. The result is premium design work delivered faster and more affordably than traditional agencies.</p>
         </div>
@@ -2194,6 +2216,7 @@
   <!-- ===== Pricing Section ===== -->
   <section class="pricing-section" id="pricing">
     <div class="container">
+      <span class="section-eyebrow">Pricing</span>
       <h2>Simple, transparent pricing</h2>
       <div class="pricing-card">
         <div class="pricing-details">
@@ -2295,6 +2318,7 @@
     </div>
     <div class="container">
       <div class="cta-content">
+        <span class="section-eyebrow reveal">Get Started</span>
         <h2 class="reveal">Ready to upgrade your brand and digital presence?</h2>
         <a href="#" class="btn btn-cta">Start your project today</a>
       </div>
