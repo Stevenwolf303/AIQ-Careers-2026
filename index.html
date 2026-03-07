@@ -2230,6 +2230,38 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    /* Section-specific eyebrow color overrides */
+    .case-studies .case-studies-label {
+      background: linear-gradient(90deg, #A8A6F0, #C4C3F5);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .ai-advantage .section-eyebrow {
+      background: linear-gradient(90deg, #6DD4A0, #95E2BC);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .cta-section .section-eyebrow {
+      background: linear-gradient(90deg, #7BB8F0, #A3D0F5);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    [data-theme="light"] .case-studies .case-studies-label {
+      background: linear-gradient(90deg, #6C6AE4, #8B89EE);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    [data-theme="light"] .ai-advantage .section-eyebrow {
+      background: linear-gradient(90deg, #3DA87A, #5DBF96);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    [data-theme="light"] .cta-section .section-eyebrow {
+      background: linear-gradient(90deg, #4A8FD6, #72AAE2);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
     /* Cancel parent flex gap between eyebrow and title so only 12px margin remains */
     .section-eyebrow + h2 {
       margin-top: calc(var(--_parent-gap, 0px) * -1);
