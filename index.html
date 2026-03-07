@@ -1559,6 +1559,18 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      transition: transform 220ms cubic-bezier(0.22,1,0.36,1), box-shadow 220ms ease;
+      border-radius: var(--radius-card);
+    }
+
+    a.case-study-card {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .case-study-card:hover {
+      transform: translateY(-4px);
     }
 
     .case-study-card.full-width {
@@ -2481,7 +2493,7 @@
   </section>
 
   <!-- ===== Feature: AI Advantage ===== -->
-  <section class="ai-advantage accent-sky">
+  <section class="ai-advantage accent-sand">
     <div class="container">
       <div class="ai-advantage-content">
         <div class="ai-advantage-text">
@@ -2517,7 +2529,7 @@
   </section>
 
   <!-- ===== Pricing Section ===== -->
-  <section class="pricing-section accent-sand" id="pricing">
+  <section class="pricing-section accent-sky" id="pricing">
     <div class="container">
       <span class="section-eyebrow">Pricing</span>
       <h2>Simple, transparent pricing</h2>
@@ -2560,7 +2572,7 @@
   </section>
 
   <!-- ===== Case Studies Section ===== -->
-  <section class="case-studies accent-peach" id="work-examples">
+  <section class="case-studies" id="work-examples">
     <div class="container">
       <div class="case-studies-header">
         <span class="case-studies-label">Explore Projects</span>
@@ -2613,27 +2625,27 @@
           </div>
         </div>
 
-        <div class="case-study-card">
+        <a href="/brightpath.html" class="case-study-card">
           <div class="case-study-image">
-            <div class="img-placeholder" aria-label="Clearpath Accounting brand"></div>
+            <div class="img-placeholder" aria-label="BrightPath Daycare brand and website"></div>
           </div>
           <div class="case-study-info">
-            <h3>Clearpath Accounting</h3>
-            <p>From spreadsheet to standout brand for a growing Chicago-based firm.</p>
+            <h3>BrightPath Daycare</h3>
+            <p>A modern brand identity and website for a growing daycare focused on clarity, warmth, and trust for parents.</p>
             <div class="case-study-chips">
-              <span class="chip chip-peach">Brand Design</span>
+              <span class="chip chip-peach">Brand Identity</span>
+              <span class="chip chip-sky">Website Design</span>
               <span class="chip chip-mint">Small Business</span>
-              <span class="chip chip-sand">Copy / Messaging</span>
             </div>
           </div>
-        </div>
+        </a>
 
       </div>
     </div>
   </section>
 
   <!-- ===== CTA Section ===== -->
-  <section class="cta-section accent-mint" id="start">
+  <section class="cta-section" id="start">
     <div class="line-art" style="bottom:-60%;left:-25%;width:900px;height:900px;">
       <svg viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg" width="900" height="900">
         <circle cx="450" cy="450" r="380" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
