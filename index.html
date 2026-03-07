@@ -553,6 +553,36 @@
       display: block;
     }
 
+    .hero-rotate-wrap {
+      position: relative;
+      display: block;
+      height: 1em;
+      overflow: hidden;
+    }
+
+    .hero-rotate-word {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      opacity: 0;
+      transform: translateY(12px);
+      transition:
+        opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .hero-rotate-word.active {
+      position: relative;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-rotate-word.out {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+
     .hero-editorial {
       width: clamp(280px, 28vw, 400px);
       display: flex;
@@ -2004,7 +2034,7 @@
       <div class="hero-headline">
         <h1>
           <span class="reveal" style="--i:0">We Help</span>
-          <span class="reveal" style="--i:1">Brands</span>
+          <span class="reveal hero-rotate-wrap" style="--i:1"><span class="hero-rotate-word active">Brands</span><span class="hero-rotate-word">Websites</span><span class="hero-rotate-word">Businesses</span><span class="hero-rotate-word">Companies</span></span>
           <span class="reveal" style="--i:2">Look</span>
           <span class="reveal" style="--i:3">Modern</span>
         </h1>
@@ -2467,6 +2497,22 @@
         heroReveals.forEach(function(el){ el.classList.add('visible'); });
       });
     });
+  })();
+  </script>
+  <script>
+  (function(){
+    var words = document.querySelectorAll('.hero-rotate-word');
+    if(!words.length) return;
+    var current = 0;
+    setInterval(function(){
+      var prev = current;
+      current = (current + 1) % words.length;
+      words[prev].classList.add('out');
+      words[prev].classList.remove('active');
+      words[current].classList.add('active');
+      words[current].classList.remove('out');
+      setTimeout(function(){ words[prev].classList.remove('out'); }, 700);
+    }, 2400);
   })();
   </script>
 </body>
