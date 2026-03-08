@@ -1879,7 +1879,7 @@
       white-space: nowrap;
       user-select: none;
       pointer-events: none;
-      z-index: 0;
+      z-index: -1;
     }
     [data-theme="light"] .footer-watermark {
       color: rgba(0,0,0,0.04);
@@ -3139,8 +3139,8 @@
       <div class="footer-lower">
         <p class="footer-copyright"><span style="font-size:0.85em;vertical-align:0.05em;">©</span> 2026 Baseline Studio</p>
       </div>
+      <div class="footer-watermark" aria-hidden="true">Baseline</div>
     </div>
-    <div class="footer-watermark" aria-hidden="true">Baseline</div>
   </footer>
 
   <script>
