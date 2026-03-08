@@ -230,7 +230,9 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 16px;
+    }
+    .cs-meta-item .cs-chips {
+      margin-top: 0;
     }
     .chip {
       font-family: var(--font-body);
@@ -661,11 +663,6 @@
       <div class="cs-hero-text">
         <h1>Brightpath Daycare</h1>
         <p class="cs-hero-subtitle">Repositioning a legacy daycare brand for modern families.</p>
-        <div class="cs-chips">
-          <span class="chip chip-peach">Brand Identity</span>
-          <span class="chip chip-sky">Website Design</span>
-          <span class="chip chip-mint">Small Business</span>
-        </div>
         <div class="cs-meta">
           <div class="cs-meta-item">
             <span class="cs-meta-label">Industry</span>
@@ -673,7 +670,11 @@
           </div>
           <div class="cs-meta-item">
             <span class="cs-meta-label">Services</span>
-            <span class="cs-meta-value">Brand Identity, Website Design, Development</span>
+            <div class="cs-chips">
+              <span class="chip chip-peach">Brand Identity</span>
+              <span class="chip chip-sky">Website Design</span>
+              <span class="chip chip-lavender">Development</span>
+            </div>
           </div>
           <div class="cs-meta-item">
             <span class="cs-meta-label">Year</span>
