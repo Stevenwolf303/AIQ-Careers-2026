@@ -843,6 +843,31 @@
       margin-bottom: 0;
     }
 
+    .hero-text-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 32px;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 550;
+      letter-spacing: -0.2px;
+      color: var(--color-fg-default);
+      text-decoration: none;
+      transition: opacity 260ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hero-text-cta__arrow {
+      display: inline-block;
+      font-size: 18px;
+      transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hero-text-cta:hover {
+      opacity: 0.7;
+    }
+    .hero-text-cta:hover .hero-text-cta__arrow {
+      transform: translateX(3px);
+    }
+
     .hero-bg-shape {
       position: absolute;
       pointer-events: none;
@@ -2419,6 +2444,10 @@
       transition-delay: 530ms;
       transition-duration: 900ms;
     }
+    .hero-editorial .hero-text-cta.reveal {
+      transition-delay: 620ms;
+      transition-duration: 900ms;
+    }
   </style>
 </head>
 <body>
@@ -2486,6 +2515,10 @@
           <p>Baseline is a creative studio designing modern brands, websites, and digital systems for ambitious companies.</p>
           <p>Brand identity, web design, development, and creative systems built with taste, speed, and precision.</p>
         </div>
+        <a href="#start" class="hero-text-cta reveal">
+          <span class="hero-text-cta__label">Start your project</span>
+          <span class="hero-text-cta__arrow" aria-hidden="true">&rarr;</span>
+        </a>
       </div>
     </div>
   </section>
