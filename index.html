@@ -58,17 +58,17 @@
     }
 
     /* ===== Section Accent Palette ===== */
-    .accent-lavender { --section-accent: #A8A6F0; --section-accent-subtle: rgba(108,106,228,0.15); --section-accent-gradient: linear-gradient(90deg, #A8A6F0, #C4C3F5); }
-    .accent-mint { --section-accent: #6DD4A0; --section-accent-subtle: rgba(61,168,122,0.15); --section-accent-gradient: linear-gradient(90deg, #6DD4A0, #95E2BC); }
-    .accent-peach { --section-accent: #E8926D; --section-accent-subtle: rgba(212,113,78,0.15); --section-accent-gradient: linear-gradient(90deg, #E8926D, #F0B196); }
-    .accent-sky { --section-accent: #7BB8F0; --section-accent-subtle: rgba(74,143,214,0.15); --section-accent-gradient: linear-gradient(90deg, #7BB8F0, #A3D0F5); }
-    .accent-sand { --section-accent: #D9B06A; --section-accent-subtle: rgba(196,138,63,0.15); --section-accent-gradient: linear-gradient(90deg, #D9B06A, #E5C890); }
+    .accent-lavender { --section-accent: #A8A6F0; --section-accent-subtle: rgba(108,106,228,0.08); --section-accent-gradient: linear-gradient(90deg, #A8A6F0, #C4C3F5); }
+    .accent-mint { --section-accent: #6DD4A0; --section-accent-subtle: rgba(61,168,122,0.08); --section-accent-gradient: linear-gradient(90deg, #6DD4A0, #95E2BC); }
+    .accent-peach { --section-accent: #E8926D; --section-accent-subtle: rgba(212,113,78,0.08); --section-accent-gradient: linear-gradient(90deg, #E8926D, #F0B196); }
+    .accent-sky { --section-accent: #7BB8F0; --section-accent-subtle: rgba(74,143,214,0.08); --section-accent-gradient: linear-gradient(90deg, #7BB8F0, #A3D0F5); }
+    .accent-sand { --section-accent: #D9B06A; --section-accent-subtle: rgba(196,138,63,0.08); --section-accent-gradient: linear-gradient(90deg, #D9B06A, #E5C890); }
 
-    [data-theme="light"] .accent-lavender { --section-accent: #6C6AE4; --section-accent-subtle: #E8E6FF; --section-accent-gradient: linear-gradient(90deg, #6C6AE4, #8B89EE); }
-    [data-theme="light"] .accent-mint { --section-accent: #3DA87A; --section-accent-subtle: #E6F5EE; --section-accent-gradient: linear-gradient(90deg, #3DA87A, #5DBF96); }
-    [data-theme="light"] .accent-peach { --section-accent: #D4714E; --section-accent-subtle: #FFE9E2; --section-accent-gradient: linear-gradient(90deg, #D4714E, #E09474); }
-    [data-theme="light"] .accent-sky { --section-accent: #4A8FD6; --section-accent-subtle: #EAF2FF; --section-accent-gradient: linear-gradient(90deg, #4A8FD6, #72AAE2); }
-    [data-theme="light"] .accent-sand { --section-accent: #C48A3F; --section-accent-subtle: #FFF1E3; --section-accent-gradient: linear-gradient(90deg, #C48A3F, #D4A565); }
+    [data-theme="light"] .accent-lavender { --section-accent: #6C6AE4; --section-accent-subtle: #F2F1FF; --section-accent-gradient: linear-gradient(90deg, #6C6AE4, #8B89EE); }
+    [data-theme="light"] .accent-mint { --section-accent: #3DA87A; --section-accent-subtle: #EFF8F4; --section-accent-gradient: linear-gradient(90deg, #3DA87A, #5DBF96); }
+    [data-theme="light"] .accent-peach { --section-accent: #D4714E; --section-accent-subtle: #FFF3EE; --section-accent-gradient: linear-gradient(90deg, #D4714E, #E09474); }
+    [data-theme="light"] .accent-sky { --section-accent: #4A8FD6; --section-accent-subtle: #F1F6FF; --section-accent-gradient: linear-gradient(90deg, #4A8FD6, #72AAE2); }
+    [data-theme="light"] .accent-sand { --section-accent: #C48A3F; --section-accent-subtle: #FFF7EF; --section-accent-gradient: linear-gradient(90deg, #C48A3F, #D4A565); }
 
     [data-theme="light"] body {
       background:
@@ -1542,12 +1542,12 @@
       text-transform: uppercase;
       padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(108,106,228,0.15);
+      background: rgba(108,106,228,0.08);
       color: #A8A6F0;
     }
     [data-theme="light"] .case-studies-label {
-      background: #E8E6FF;
-      color: #1A1A1A;
+      background: #F2F1FF;
+      color: #6C6AE4;
     }
 
     .case-studies-header h2 {
@@ -1750,12 +1750,12 @@
       color: rgba(0,0,0,0.025);
     }
 
-    /* 3-column horizontal grid */
+    /* Two-part horizontal footer */
     .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 64px;
+      display: flex;
+      justify-content: space-between;
       align-items: start;
+      gap: 64px;
       padding: var(--padding-y) 0 48px;
     }
 
@@ -1763,6 +1763,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      max-width: 380px;
     }
 
     .footer-description {
@@ -1771,12 +1772,6 @@
       line-height: 22px;
       letter-spacing: -0.2px;
       color: var(--color-fg-muted);
-    }
-
-    .footer-theme {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
     }
 
     .footer-col-label {
@@ -1792,12 +1787,12 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
+      padding-top: 4px;
     }
 
     .footer-nav-links {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      gap: 28px;
     }
 
     .footer-nav-links a {
@@ -1807,6 +1802,7 @@
       letter-spacing: -0.2px;
       color: var(--color-fg-muted);
       transition: color 0.15s ease;
+      white-space: nowrap;
     }
 
     .footer-nav-links a:hover {
@@ -2169,11 +2165,8 @@
 
       /* Footer mobile */
       .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px 32px;
-      }
-      .footer-brand {
-        grid-column: 1 / -1;
+        flex-direction: column;
+        gap: 40px;
       }
 
     }
@@ -2196,14 +2189,12 @@
     }
     /* Sections without accent class get explicit pill colors */
     .cta-section .section-eyebrow {
-      background: rgba(74,143,214,0.15);
+      background: rgba(74,143,214,0.08);
       color: #7BB8F0;
     }
-    [data-theme="light"] .section-eyebrow {
-      color: #1A1A1A;
-    }
     [data-theme="light"] .cta-section .section-eyebrow {
-      background: #EAF2FF;
+      background: #F1F6FF;
+      color: #4A8FD6;
     }
 
     /* Cancel parent flex gap between eyebrow and title so only 12px margin remains */
@@ -2656,9 +2647,6 @@
             <span class="logo-text">Baseline</span>
           </a>
           <p class="footer-description">AI-powered creative studio helping small businesses build premium brands and modern websites.</p>
-        </div>
-        <div class="footer-theme">
-          <p class="footer-col-label">Theme</p>
           <div class="theme-toggle">
             <button class="theme-toggle-track" id="theme-toggle" aria-label="Toggle dark and light mode" role="switch" aria-checked="false">
               <span class="theme-toggle-thumb">
