@@ -146,8 +146,8 @@
       border: none;
       box-shadow: 0 16px 48px rgba(0,0,0,0.06);
     }
-    [data-theme="light"] .services-detail-image-inner {
-      box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+    [data-theme="light"] .service-item:hover {
+      background: rgba(0,0,0,0.02);
     }
     [data-theme="light"] .pricing-card {
       background: #ffffff;
@@ -1276,31 +1276,48 @@
     }
 
     .services-detail-body {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-
-    .services-detail-list {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      padding: 0 48px 48px;
-      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      padding: 0 48px 56px;
     }
 
     .service-item {
       display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      min-width: 200px;
+      flex-direction: column;
+      gap: 16px;
+      padding: 32px 28px;
+      position: relative;
+      transition: background 280ms cubic-bezier(0.22, 1, 0.36, 1);
+      border-radius: 0;
+    }
+
+    .service-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: var(--color-border);
+    }
+
+    .service-item:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .service-item:first-child {
+      border-radius: 12px 0 0 12px;
+    }
+
+    .service-item:last-child {
+      border-radius: 0 12px 12px 0;
     }
 
     .service-item-icon {
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
       background: var(--section-accent-subtle, rgba(85,85,85,0.1));
       border-radius: var(--radius-full);
       display: flex;
@@ -1314,8 +1331,8 @@
     .service-item-icon.icon-lavender { background: #EBEAFD; border: 1px solid #DDDCF2; }
 
     .service-item-icon svg {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       color: rgba(0,0,0,0.75);
     }
 
@@ -1328,40 +1345,19 @@
 
     .service-item-content h3 {
       font-size: 16px;
-      font-weight: 500;
+      font-weight: 600;
       line-height: 24px;
-      letter-spacing: -0.37px;
+      letter-spacing: -0.02em;
       color: var(--color-fg-default);
     }
 
     .service-item-content p {
       font-size: 14px;
       font-weight: 400;
-      line-height: 20px;
-      letter-spacing: -0.37px;
+      line-height: 21px;
+      letter-spacing: -0.01em;
       color: var(--color-fg-muted);
-    }
-
-    .services-detail-image {
-      flex: 1;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-start;
-    }
-
-    .services-detail-image-inner {
-      width: 100%;
-      background: var(--color-bg-surface);
-      border-radius: var(--radius-card) 0 0 0;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
-      overflow: hidden;
-    }
-
-    .services-detail-image-inner img,
-    .services-detail-image-inner .img-placeholder {
-      width: 100%;
-      display: block;
-      min-height: 400px;
+      max-width: 260px;
     }
 
     /* ===== Feature: AI Advantage (Feature 17) ===== */
@@ -2129,23 +2125,23 @@
       }
 
       .services-detail-body {
-        flex-direction: column;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 32px 40px;
       }
 
-      .services-detail-image {
-        width: 100%;
-        min-height: 300px;
+      .service-item:nth-child(2)::after {
+        display: none;
       }
 
-      .services-detail-image-inner {
-        position: relative;
-        bottom: auto;
-        width: 100%;
+      .service-item:nth-child(1),
+      .service-item:nth-child(2) {
+        border-bottom: 1px solid var(--color-border);
       }
 
-      .services-detail-list {
-        padding: 0 32px 32px;
-      }
+      .service-item:first-child { border-radius: 12px 0 0 0; }
+      .service-item:nth-child(2) { border-radius: 0 12px 0 0; }
+      .service-item:nth-child(3) { border-radius: 0 0 0 12px; }
+      .service-item:last-child { border-radius: 0 0 12px 0; }
 
       .ai-advantage .container {
         flex-direction: column;
@@ -2386,23 +2382,22 @@
       }
 
       .services-detail-body {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        padding: 0 24px 32px;
       }
 
-      .services-detail-list {
-        padding: 0 24px 24px;
+      .service-item:not(:last-child)::after {
+        display: none;
       }
 
-      .services-detail-image {
-        min-height: 200px;
-        width: 100%;
+      .service-item:not(:last-child) {
+        border-bottom: 1px solid var(--color-border);
       }
 
-      .services-detail-image-inner {
-        position: relative;
-        bottom: auto;
-        width: 100%;
-      }
+      .service-item:first-child { border-radius: 12px 12px 0 0; }
+      .service-item:last-child { border-radius: 0 0 12px 12px; }
+      .service-item:nth-child(2),
+      .service-item:nth-child(3) { border-radius: 0; }
 
       /* AI advantage mobile */
       .ai-advantage .container {
@@ -2697,7 +2692,6 @@
           <p>A complete suite of creative services designed for small businesses ready to upgrade their digital presence.</p>
         </div>
         <div class="services-detail-body">
-          <div class="services-detail-list">
 
             <div class="service-item">
               <div class="service-item-icon icon-peach">
@@ -2747,12 +2741,6 @@
               </div>
             </div>
 
-          </div>
-          <div class="services-detail-image">
-            <div class="services-detail-image-inner">
-              <div class="img-placeholder" aria-label="Website design dashboard"></div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
