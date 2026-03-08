@@ -1855,8 +1855,7 @@
       padding: 0 var(--padding-x);
       position: relative;
       z-index: 2;
-      overflow-x: clip;
-      overflow-y: visible;
+      overflow: visible;
     }
 
     .footer .container {
@@ -1948,6 +1947,8 @@
     }
 
     .footer-divider {
+      position: relative;
+      z-index: 1;
       border: none;
       border-top: 1px solid var(--color-border);
       margin: 0;
