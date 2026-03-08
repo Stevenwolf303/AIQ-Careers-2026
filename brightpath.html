@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brightpath Daycare — Baseline Studio Case Study</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Cpath d='M5 10.5C5 8.01 7.01 6 9.5 6H16v11H5V10.5z' fill='white'/%3E%3Cpath d='M16 6h6.5C24.99 6 27 8.01 27 10.5V17H16V6z' fill='white' opacity='0.7'/%3E%3Cpath d='M5 17h11v11H9.5C7.01 28 5 25.99 5 23.5V17z' fill='white' opacity='0.7'/%3E%3Cpath d='M16 17h11v6.5c0 2.49-2.01 4.5-4.5 4.5H16V17z' fill='white' opacity='0.4'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <script>
+    (function(){var s=localStorage.getItem('theme');if(s==='dark')return;document.documentElement.setAttribute('data-theme','light');})();
+  </script>
   <style>
-    /* ===== Design Tokens ===== */
+    /* ===== Design Tokens (matches homepage) ===== */
     :root {
-      --color-accent: #4F6CF7;
-      --color-accent-dark: #3949DB;
-      --color-accent-subtle: rgba(79,108,247,0.15);
-      --color-accent-hover: #5A78FF;
-      --color-accent-gradient: linear-gradient(90deg, #4F6CF7 0%, #6366F1 100%);
-      --color-accent-glow: rgba(79,108,247,0.25);
+      --color-accent: #555555;
+      --color-accent-dark: #333333;
+      --color-accent-subtle: rgba(85,85,85,0.1);
+      --color-accent-hover: #666666;
+      --color-accent-gradient: linear-gradient(90deg, #555555 0%, #777777 100%);
+      --color-accent-glow: rgba(85,85,85,0.15);
       --color-fg-default: #f0f0f2;
       --color-fg-muted: #8a8f98;
       --color-fg-inverse: #0b0b0c;
@@ -23,8 +27,8 @@
       --color-bg-surface: #131416;
       --color-border: rgba(255,255,255,0.06);
 
-      --font-heading: "Google Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-body: "Google Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-heading: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Google Sans", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-body: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Google Sans", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
       --radius-button: 8px;
       --radius-card: 16px;
@@ -38,9 +42,9 @@
     }
 
     [data-theme="light"] {
-      --color-accent: #4F6CF7;
-      --color-accent-dark: #3949DB;
-      --color-accent-subtle: #EEF2FF;
+      --color-accent: #555555;
+      --color-accent-dark: #333333;
+      --color-accent-subtle: #F0F0F2;
       --color-fg-default: #191a1d;
       --color-fg-muted: #40434c;
       --color-fg-inverse: #ffffff;
@@ -50,9 +54,18 @@
     }
 
     [data-theme="light"] body {
-      background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+      background:
+        radial-gradient(1200px 800px at 10% 0%, rgba(0,0,0,0.03), transparent 60%),
+        radial-gradient(900px 700px at 90% 30%, rgba(0,0,0,0.025), transparent 65%),
+        radial-gradient(1000px 600px at 20% 60%, rgba(0,0,0,0.02), transparent 55%),
+        radial-gradient(800px 500px at 85% 85%, rgba(0,0,0,0.015), transparent 50%),
+        linear-gradient(180deg, #f6f6f7 0%, #ffffff 100%);
       background-color: #ffffff;
+      background-attachment: fixed;
     }
+
+    [data-theme="light"] .logo-mark { background: #000000; }
+    [data-theme="light"] .logo-mark svg path { fill: #ffffff; }
 
     /* ===== Reset ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -61,29 +74,30 @@
       font-family: var(--font-body);
       color: var(--color-fg-default);
       background:
-        radial-gradient(1200px 700px at 8% -10%, rgba(79,108,247,0.03), transparent 60%),
+        radial-gradient(1200px 700px at 8% -10%, rgba(120,120,140,0.03), transparent 60%),
         radial-gradient(900px 600px at 92% 0%, rgba(120,120,140,0.045), transparent 58%),
         linear-gradient(180deg, #0b0b0c 0%, #101114 100%);
       background-color: #0b0b0c;
       background-attachment: fixed;
       line-height: 1.5;
     }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
     img { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
     .container { max-width: var(--max-width); margin: 0 auto; width: 100%; }
 
-    /* ===== Buttons ===== */
+    /* ===== Buttons (matches homepage) ===== */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 16px;
-      border-radius: var(--radius-button);
+      padding: 15px 28px;
+      border-radius: 14px;
       font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 15px;
+      font-weight: 600;
       line-height: 20px;
-      letter-spacing: -0.37px;
+      letter-spacing: -0.01em;
       white-space: nowrap;
       cursor: pointer;
       border: none;
@@ -91,8 +105,32 @@
     }
     .btn:hover { opacity: 0.9; }
     .btn:active { transform: scale(0.98); }
-    .btn-primary { position: relative; overflow: hidden; z-index: 0; background: var(--color-accent-gradient); color: #ffffff; }
-    .btn-primary:hover { opacity: 1; }
+    .btn:focus-visible { outline: 2px solid var(--color-fg-muted); outline-offset: 2px; }
+
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      z-index: 0;
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      background: #ffffff;
+      color: #111111;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18), inset 0 -1px 0 rgba(0,0,0,0.08);
+      transition: background 0.26s cubic-bezier(0.22, 1, 0.36, 1), transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .btn-primary:hover {
+      opacity: 1;
+      background: #f4f4f5;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.22), inset 0 -1px 0 rgba(0,0,0,0.08);
+    }
+    .btn-primary:active {
+      background: #eeeeef;
+      transform: translateY(0) scale(0.98);
+    }
     .btn-primary::after {
       content: '';
       position: absolute;
@@ -105,13 +143,24 @@
     }
     .btn-primary:hover::after { animation: btn-shimmer 1400ms cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     @keyframes btn-shimmer { to { transform: translateX(110%); } }
-    .btn-sm { padding: 6px 12px; }
-    .btn-lg { padding: 14px 28px; font-size: 16px; }
 
-    [data-theme="light"] .logo-mark { background: #000000; }
-    [data-theme="light"] .logo-mark svg path { fill: #ffffff; }
+    [data-theme="light"] .btn-primary {
+      background: linear-gradient(180deg, #1c1c1f 0%, #080809 100%);
+      color: #ffffff;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -12px 24px rgba(255,255,255,0.015), 0 8px 20px rgba(0,0,0,0.14);
+    }
+    [data-theme="light"] .btn-primary:hover {
+      background: linear-gradient(180deg, #28282b 0%, #111113 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -12px 24px rgba(255,255,255,0.02), 0 12px 28px rgba(0,0,0,0.18);
+    }
 
-    /* ===== Navbar ===== */
+    .btn-sm {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+    .btn-lg { padding: 16px 32px; font-size: 15px; }
+
+    /* ===== Navbar (matches homepage) ===== */
     .navbar {
       position: sticky;
       top: 0;
@@ -150,6 +199,54 @@
     .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
     .mobile-toggle svg { width: 24px; height: 24px; color: var(--color-fg-default); }
     .mobile-toggle .icon-close { display: none; }
+
+    /* ===== Pastel Eyebrow System ===== */
+    .cs-eyebrow {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 12px;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cs-eyebrow.eyebrow-peach { background: linear-gradient(90deg, #E8926D, #F0B196); -webkit-background-clip: text; background-clip: text; }
+    .cs-eyebrow.eyebrow-mint { background: linear-gradient(90deg, #6DD4A0, #95E2BC); -webkit-background-clip: text; background-clip: text; }
+    .cs-eyebrow.eyebrow-lavender { background: linear-gradient(90deg, #A8A6F0, #C4C3F5); -webkit-background-clip: text; background-clip: text; }
+    .cs-eyebrow.eyebrow-sky { background: linear-gradient(90deg, #7BB8F0, #A3D0F5); -webkit-background-clip: text; background-clip: text; }
+    .cs-eyebrow.eyebrow-sand { background: linear-gradient(90deg, #D9B06A, #E5C890); -webkit-background-clip: text; background-clip: text; }
+
+    [data-theme="light"] .cs-eyebrow.eyebrow-peach { background: linear-gradient(90deg, #D4714E, #E09474); -webkit-background-clip: text; background-clip: text; }
+    [data-theme="light"] .cs-eyebrow.eyebrow-mint { background: linear-gradient(90deg, #3DA87A, #5DBF96); -webkit-background-clip: text; background-clip: text; }
+    [data-theme="light"] .cs-eyebrow.eyebrow-lavender { background: linear-gradient(90deg, #6C6AE4, #8B89EE); -webkit-background-clip: text; background-clip: text; }
+    [data-theme="light"] .cs-eyebrow.eyebrow-sky { background: linear-gradient(90deg, #4A8FD6, #72AAE2); -webkit-background-clip: text; background-clip: text; }
+    [data-theme="light"] .cs-eyebrow.eyebrow-sand { background: linear-gradient(90deg, #C48A3F, #D4A565); -webkit-background-clip: text; background-clip: text; }
+
+    /* ===== Chip System (matches homepage) ===== */
+    .cs-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .chip {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: #111111;
+      white-space: nowrap;
+    }
+    .chip-sky { background: #E6EFFE; }
+    .chip-peach { background: #FBEAE4; }
+    .chip-mint { background: #E2F3EB; }
+    .chip-lavender { background: #EBEAFD; }
+    .chip-sand { background: #FFF1E3; }
 
     /* ===== Case Study Hero ===== */
     .cs-hero {
@@ -214,19 +311,20 @@
     .cs-hero-image {
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: var(--color-accent-subtle);
+      background: var(--color-bg-surface);
       border-radius: var(--radius-card);
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1px solid var(--color-border);
     }
 
     .cs-hero-image .img-placeholder {
       width: 100%;
       height: 100%;
       background:
-        linear-gradient(135deg, rgba(79,108,247,0.08) 0%, rgba(79,108,247,0.02) 100%);
+        linear-gradient(135deg, rgba(120,120,140,0.06) 0%, rgba(120,120,140,0.02) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -241,15 +339,6 @@
 
     .cs-section .container {
       max-width: 800px;
-    }
-
-    .cs-section-label {
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-accent);
-      margin-bottom: 20px;
     }
 
     .cs-section h2 {
@@ -293,7 +382,7 @@
       font-style: italic;
     }
 
-    /* Approach — clean list */
+    /* Approach — checklist icons */
     .cs-approach-list {
       list-style: none;
       display: flex;
@@ -311,14 +400,12 @@
       color: var(--color-fg-default);
     }
 
-    .cs-approach-list li::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      min-width: 6px;
-      background: var(--color-accent);
-      border-radius: 50%;
-      margin-top: 9px;
+    .cs-approach-icon {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      color: var(--color-fg-default);
+      margin-top: 0px;
     }
 
     /* ===== The Work — Full-width image gallery ===== */
@@ -332,24 +419,16 @@
       gap: 24px;
     }
 
-    .cs-work-label {
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-accent);
-      margin-bottom: 8px;
-    }
-
     .cs-work-image {
       width: 100%;
       aspect-ratio: 16 / 10;
-      background: var(--color-accent-subtle);
+      background: var(--color-bg-surface);
       border-radius: var(--radius-card);
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1px solid var(--color-border);
     }
 
     .cs-work-image.tall {
@@ -361,7 +440,7 @@
       width: 100%;
       height: 100%;
       background:
-        linear-gradient(135deg, rgba(79,108,247,0.06) 0%, rgba(79,108,247,0.02) 100%);
+        linear-gradient(135deg, rgba(120,120,140,0.06) 0%, rgba(120,120,140,0.02) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -427,14 +506,6 @@
       gap: 24px;
     }
 
-    .cs-next-label {
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-fg-muted);
-    }
-
     .cs-next h2 {
       font-family: var(--font-heading);
       font-size: clamp(28px, 4vw, 48px);
@@ -446,7 +517,8 @@
 
     /* ===== Footer ===== */
     .footer {
-      background: var(--color-bg-main);
+      background: transparent;
+      border-top: 1px solid var(--color-border);
       padding: 0 var(--padding-x);
       position: relative;
       z-index: 2;
@@ -465,7 +537,7 @@
     .footer-description { font-size: 14px; font-weight: 400; line-height: 20px; letter-spacing: -0.37px; color: var(--color-fg-default); max-width: 384px; }
     .footer-socials { display: flex; gap: 20px; }
     .footer-socials a { display: block; width: 20px; height: 20px; color: var(--color-fg-default); transition: color 0.15s ease; }
-    .footer-socials a:hover { color: var(--color-accent); }
+    .footer-socials a:hover { color: var(--color-fg-default); opacity: 0.7; }
     .footer-links-wrap { flex: 1; display: flex; flex-wrap: wrap; gap: 48px 32px; }
     .footer-col { flex: 1; min-width: 100px; display: flex; flex-direction: column; gap: 16px; }
     .footer-col-title { font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: -0.37px; color: var(--color-fg-default); }
@@ -481,6 +553,11 @@
     .footer-bottom-right { display: flex; gap: 24px; align-items: center; justify-content: flex-end; flex: 1; }
     .footer-bottom-right a { color: var(--color-fg-muted); transition: color 0.15s ease; }
     .footer-bottom-right a:hover { color: var(--color-fg-default); }
+
+    [data-theme="light"] .footer {
+      background: transparent;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
 
     /* ===== Responsive ===== */
     @media (max-width: 767px) {
@@ -572,7 +649,7 @@
           <li><a href="index.html#pricing">Pricing</a></li>
         </ul>
         <div class="nav-actions">
-          <a href="index.html#start" class="btn btn-primary btn-sm">Start a project</a>
+          <a href="index.html#start" class="btn btn-primary btn-sm">Let's connect</a>
         </div>
       </div>
     </div>
@@ -584,6 +661,11 @@
       <div class="cs-hero-text">
         <h1>Brightpath Daycare</h1>
         <p class="cs-hero-subtitle">Repositioning a legacy daycare brand for modern families.</p>
+        <div class="cs-chips">
+          <span class="chip chip-peach">Brand Identity</span>
+          <span class="chip chip-sky">Website Design</span>
+          <span class="chip chip-mint">Small Business</span>
+        </div>
         <div class="cs-meta">
           <div class="cs-meta-item">
             <span class="cs-meta-label">Industry</span>
@@ -608,7 +690,7 @@
   <!-- ===== The Situation ===== -->
   <section class="cs-section">
     <div class="container">
-      <span class="cs-section-label">The Situation</span>
+      <span class="cs-eyebrow eyebrow-peach">The Situation</span>
       <p>Brightpath had been serving families in their community for over 15 years, but their brand hadn't kept up. The website felt dated, the messaging was unclear, and the overall presence didn't reflect the warmth and quality parents experienced in person. In a market where trust is everything, first impressions were costing them enrollments.</p>
     </div>
   </section>
@@ -616,7 +698,7 @@
   <!-- ===== The Objective ===== -->
   <section class="cs-objective">
     <div class="container">
-      <span class="cs-section-label">The Objective</span>
+      <span class="cs-eyebrow eyebrow-lavender">The Objective</span>
       <blockquote>How do we make a daycare feel instantly trustworthy, warm, and modern online?</blockquote>
     </div>
   </section>
@@ -624,14 +706,29 @@
   <!-- ===== The Approach ===== -->
   <section class="cs-section">
     <div class="container">
-      <span class="cs-section-label">The Approach</span>
+      <span class="cs-eyebrow eyebrow-mint">The Approach</span>
       <p>We worked closely with the Brightpath team to understand what made their care special, then built a brand and website that communicated it clearly.</p>
       <ul class="cs-approach-list">
-        <li>Redesigned the visual identity with a warmer, more approachable palette and modern typography</li>
-        <li>Simplified the messaging to lead with trust, safety, and community</li>
-        <li>Restructured the site around what parents actually need: enrollment, programs, and contact</li>
-        <li>Designed a responsive site that feels welcoming on any device</li>
-        <li>Built clear conversion paths from first visit to enrollment inquiry</li>
+        <li>
+          <svg class="cs-approach-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          Redesigned the visual identity with a warmer, more approachable palette and modern typography
+        </li>
+        <li>
+          <svg class="cs-approach-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          Simplified the messaging to lead with trust, safety, and community
+        </li>
+        <li>
+          <svg class="cs-approach-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          Restructured the site around what parents actually need: enrollment, programs, and contact
+        </li>
+        <li>
+          <svg class="cs-approach-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          Designed a responsive site that feels welcoming on any device
+        </li>
+        <li>
+          <svg class="cs-approach-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          Built clear conversion paths from first visit to enrollment inquiry
+        </li>
       </ul>
     </div>
   </section>
@@ -639,7 +736,7 @@
   <!-- ===== The Work ===== -->
   <section class="cs-work">
     <div class="container">
-      <span class="cs-work-label">The Work</span>
+      <span class="cs-eyebrow eyebrow-sky">The Work</span>
 
       <div class="cs-work-image">
         <div class="img-placeholder">Homepage — full width desktop view</div>
@@ -672,7 +769,7 @@
   <!-- ===== The Result ===== -->
   <section class="cs-section">
     <div class="container">
-      <span class="cs-section-label">The Result</span>
+      <span class="cs-eyebrow eyebrow-sand">The Result</span>
       <p>The new brand and website gave Brightpath a digital presence that matched the quality of their care. Parents could now find the information they needed quickly, and the overall experience felt trustworthy from the first click.</p>
       <div class="cs-results-grid">
         <div class="cs-result-item">
@@ -694,9 +791,9 @@
   <!-- ===== Next Project CTA ===== -->
   <section class="cs-next">
     <div class="container">
-      <span class="cs-next-label">Ready to modernize your brand?</span>
-      <h2>Start your project</h2>
-      <a href="index.html#start" class="btn btn-primary btn-lg">Get in touch</a>
+      <span class="cs-eyebrow eyebrow-peach">Ready to modernize your brand?</span>
+      <h2>Let's connect</h2>
+      <a href="index.html#start" class="btn btn-primary">Get in touch</a>
     </div>
   </section>
 
