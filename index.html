@@ -151,12 +151,25 @@
     }
     [data-theme="light"] .pricing-card {
       background: #ffffff;
-      border: none;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     }
-    [data-theme="light"] .pricing-action {
-      background: #EEF3FF;
-      box-shadow: inset 1px 0 0 rgba(0,0,0,0.04);
+    [data-theme="light"] .pricing-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    [data-theme="light"] .pricing-card.featured {
+      background: #ffffff;
+      border-color: rgba(0,0,0,0.12);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    }
+    [data-theme="light"] .pricing-card-badge {
+      background: rgba(0,0,0,0.04);
+      border-color: rgba(0,0,0,0.08);
+      color: var(--color-fg-default);
+    }
+    [data-theme="light"] .pricing-card.featured .btn-primary {
+      background: linear-gradient(180deg, #1A1A1A 0%, #000000 100%);
+      color: #ffffff;
     }
     [data-theme="light"] .case-study-image {
       background: #f5f5f5;
@@ -201,8 +214,8 @@
       background: #40434c;
     }
     @media (max-width: 767px) {
-      [data-theme="light"] .pricing-action {
-        border-left: none;
+      [data-theme="light"] .pricing-grid {
+        gap: 16px;
       }
     }
 
@@ -1480,104 +1493,69 @@
       text-align: center;
     }
 
-    .pricing-card {
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
       width: 100%;
-      max-width: 800px;
-      background: linear-gradient(180deg, #131416 0%, #111214 100%);
-      border: none;
-      border-radius: var(--radius-card);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.025), 0 16px 48px rgba(0,0,0,0.25);
-      display: flex;
-      overflow: hidden;
     }
 
-    .pricing-details {
-      flex: 1;
-      padding: 40px;
+    .pricing-card {
+      background: linear-gradient(180deg, #131416 0%, #111214 100%);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: var(--radius-card);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.20);
       display: flex;
       flex-direction: column;
+      padding: 32px 28px;
       gap: 24px;
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .pricing-details h3 {
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.30);
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(255,255,255,0.08);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.04);
+      background: linear-gradient(180deg, #161719 0%, #111214 100%);
+    }
+
+    .pricing-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-fg-default);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-full);
+      padding: 5px 12px;
+      width: fit-content;
+    }
+
+    .pricing-card-header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pricing-card-header h3 {
       font-family: var(--font-heading);
       letter-spacing: -0.02em;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 600;
-      line-height: 32px;
+      line-height: 28px;
       color: var(--color-fg-default);
     }
 
-    .pricing-details > p {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
-      letter-spacing: -0.37px;
-      color: var(--color-fg-muted);
-      max-width: 360px;
-    }
-
-    .pricing-includes-label {
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 16px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--color-fg-muted);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .pricing-includes-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--color-border);
-    }
-
-    .pricing-includes {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      list-style: none;
-    }
-
-    .pricing-includes li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
-      letter-spacing: -0.37px;
-      color: var(--color-fg-default);
-    }
-
-    .pricing-includes li svg {
-      width: 20px;
-      height: 20px;
-      min-width: 20px;
-      color: var(--color-fg-default);
-    }
-
-    .pricing-action {
-      flex: 0 0 auto;
-      width: 280px;
-      background:
-        radial-gradient(circle at 50% 40%, rgba(140,170,255,0.18), rgba(140,170,255,0.06) 70%),
-        linear-gradient(180deg, rgba(140,170,255,0.12) 0%, rgba(140,170,255,0.06) 100%);
-      box-shadow: inset 1px 0 0 rgba(255,255,255,0.04);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      padding: 40px 32px;
-    }
-
-    .pricing-action-label {
-      font-size: 14px;
+    .pricing-card-header p {
+      font-size: 13px;
       font-weight: 400;
       line-height: 20px;
       color: var(--color-fg-muted);
@@ -1585,37 +1563,79 @@
 
     .pricing-amount {
       font-family: var(--font-heading);
-      letter-spacing: -0.02em;
-      font-size: 56px;
+      font-size: 40px;
       font-weight: 600;
       line-height: 1;
       letter-spacing: -1px;
       color: var(--color-fg-default);
     }
 
-    .pricing-action .btn {
-      width: 100%;
-      padding: 16px 32px;
-      font-size: 15px;
-      border-radius: 14px;
+    .pricing-divider {
+      height: 1px;
+      background: var(--color-border);
     }
 
-    .pricing-action-secondary {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
+    .pricing-includes-label {
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 16px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--color-fg-muted);
-      transition: color 0.15s ease;
+      margin-bottom: -8px;
     }
 
-    .pricing-action-secondary:hover {
+    .pricing-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      list-style: none;
+      flex: 1;
+    }
+
+    .pricing-includes li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 19px;
       color: var(--color-fg-default);
+    }
+
+    .pricing-includes li svg {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      margin-top: 1px;
+      color: var(--color-fg-muted);
+    }
+
+    .pricing-card .btn {
+      width: 100%;
+      padding: 14px 24px;
+      font-size: 14px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .pricing-card.featured .btn-primary {
+      background: linear-gradient(180deg, #f0f0f2 0%, #e0e0e4 100%);
+      color: #0b0b0c;
+    }
+    .pricing-card.featured .btn-primary:hover {
+      background: linear-gradient(180deg, #ffffff 0%, #eeeeee 100%);
     }
 
     @media (max-width: 1023px) {
       .pricing-section h2 {
         font-size: 40px;
         line-height: 50px;
+      }
+
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
       }
     }
 
@@ -1625,13 +1645,15 @@
         line-height: 40px;
       }
 
-      .pricing-card {
-        flex-direction: column;
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 420px;
+        margin: 0 auto;
       }
 
-      .pricing-action {
-        width: 100%;
-        padding: 32px 40px;
+      .pricing-card {
+        padding: 28px 24px;
       }
     }
 
@@ -2795,39 +2817,85 @@
     <div class="container">
       <span class="section-eyebrow">Pricing</span>
       <h2>Simple, transparent pricing</h2>
-      <div class="pricing-card">
-        <div class="pricing-details">
-          <h3>Single Landing Page</h3>
-          <p>A fully custom, conversion-optimized landing page designed and developed for your business. No templates. No shortcuts. Just premium work, delivered fast.</p>
+      <div class="pricing-grid">
+
+        <!-- Landing Page -->
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Landing Page</h3>
+            <p>A fully custom, conversion-optimized landing page designed and developed for your business. No templates. Premium work delivered fast.</p>
+          </div>
+          <span class="pricing-amount">$999</span>
+          <div class="pricing-divider"></div>
           <span class="pricing-includes-label">What's included</span>
           <ul class="pricing-includes">
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.6 -0.6 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.301 4.2749999999999995A1.3964999999999999 1.3964999999999999 0 0 1 6.6499999999999995 3.3249999999999997h14.25a1.4629999999999999 1.4629999999999999 0 0 1 1.4249999999999998 1.5105v11.229A1.4629999999999999 1.4629999999999999 0 0 1 20.9 17.575H8.075" /><path stroke-linecap="round" stroke-linejoin="round" d="m9.5 19.474999999999998 8.549999999999999 0" /><path stroke-linecap="round" stroke-linejoin="round" d="m13.774999999999999 17.575 0 1.9" /><path stroke-linecap="round" stroke-linejoin="round" d="m12.825 14.725 9.5 0" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.3249999999999997 9.025v-1.9a0.95 0.95 0 0 1 0.95 -0.95h5.699999999999999a0.95 0.95 0 0 1 0.95 0.95v7.6a0.95 0.95 0 0 1 -0.95 0.95h-1.9" /><path stroke-linecap="round" stroke-linejoin="round" d="m8.075 13.774999999999999 2.8499999999999996 0" /><path stroke-linecap="round" stroke-linejoin="round" d="M1.4249999999999998 10.924999999999999h3.8s0.95 0 0.95 0.95v6.6499999999999995s0 0.95 -0.95 0.95h-3.8s-0.95 0 -0.95 -0.95v-6.6499999999999995s0 -0.95 0.95 -0.95" /><path stroke-linecap="round" stroke-linejoin="round" d="m0.475 17.575 5.699999999999999 0" /></svg>
-              Custom responsive design
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.6 -0.6 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12.799919999999998 4.999356c1.9286899999999998 -0.3877235 3.48156 -1.9594414999999998 3.8699199999999996 -3.9380254999999997 0.38826499999999997 1.9785840000000001 1.9407549999999998 3.550302 3.869445 3.9380254999999997m0 0.002261c-1.9286899999999998 0.3877235 -3.48156 1.959451 -3.869825 3.9380349999999997 -0.38836 -1.9785840000000001 -1.94085 -3.5503115 -3.8695399999999998 -3.9380349999999997" /><path stroke-linecap="round" stroke-linejoin="round" d="M11.716445 2.6792945H4.530226999999999c-1.285958 0 -2.269341 0.9833829999999999 -2.269341 2.269341l0 14.5212345c0 1.286015 0.9833829999999999 2.26936 2.269341 2.26936h7.186218c1.286015 0 2.26936 -0.9833449999999999 2.26936 -2.26936V9.307406499999999" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.2608859999999997 18.46933H13.985805" /></svg>
-              Mobile-optimized development
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.6 -0.6 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M1.7960985 16.5452c-0.5246755 0 -0.95000475 -0.42531499999999994 -0.95 -0.95l0 -8.390419c0 -0.524666 0.42532924999999994 -0.9499905 0.94999525 -0.9499905l8.884286 -0.0000095c0.524685 0 0.95 0.425334 0.95 0.95l0 8.390419c0 0.524685 -0.42531499999999994 0.95 -0.95 0.95l-8.8842765 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="m7.206643 1.107719 14.743582 0" /><path stroke-linecap="round" stroke-linejoin="round" d="M15.266784999999999 6.254781h6.687145" /><path stroke-linecap="round" stroke-linejoin="round" d="M15.266784999999999 11.4019h6.687145" /><path stroke-linecap="round" stroke-linejoin="round" d="M15.266784999999999 16.5452h6.687145" /><path stroke-linecap="round" stroke-linejoin="round" d="M7.206643 21.6923H21.950225" /></svg>
-              Brand-aligned copywriting
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.6 -0.6 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.425 1.9037144999999998h-18.05c-1.0493415 0 -1.9 0.8506584999999999 -1.9 1.9V19.003705c0 1.04937 0.8506584999999999 1.9 1.9 1.9h18.05c1.04937 0 1.9 -0.8506299999999999 1.9 -1.9V3.8037145c0 -1.0493415 -0.8506299999999999 -1.9 -1.9 -1.9Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M0.475 6.6537144999999995h21.849999999999998" /><path stroke-linecap="round" stroke-linejoin="round" d="M10.45 16.153705000000002c2.098645 0 3.8 -1.701355 3.8 -3.8 0 -2.098645 -1.701355 -3.7999905 -3.8 -3.7999905 -2.098683 0 -3.8 1.7013455 -3.8 3.7999905s1.7013169999999997 3.8 3.8 3.8Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13.1366 15.0404 16.15 18.0538" /><path d="M3.8 4.5162145c-0.1311665 0 -0.2375 -0.1063335 -0.2375 -0.2375s0.1063335 -0.2375 0.2375 -0.2375" /><path d="M3.8 4.5162145c0.1311665 0 0.2375 -0.1063335 0.2375 -0.2375s-0.1063335 -0.2375 -0.2375 -0.2375" /><path d="M6.6499999999999995 4.5162145c-0.1311665 0 -0.2375 -0.1063335 -0.2375 -0.2375s0.1063335 -0.2375 0.2375 -0.2375" /><path d="M6.6499999999999995 4.5162145c0.1311665 0 0.2375 -0.1063335 0.2375 -0.2375s-0.1063335 -0.2375 -0.2375 -0.2375" /><path d="M9.5 4.5162145c-0.1311665 0 -0.2375 -0.1063335 -0.2375 -0.2375s0.1063335 -0.2375 0.2375 -0.2375" /><path d="M9.5 4.5162145c0.131195 0 0.2375 -0.1063335 0.2375 -0.2375s-0.106305 -0.2375 -0.2375 -0.2375" /></svg>
-              SEO-ready, fast-loading code
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.6 -0.6 24 24" stroke-width="1.2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m0.475 8.54715 2.8499999999999996 4.2749999999999995 3.3249999999999997 -3.8" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.35445 12.762299999999998a9.3442 9.3442 0 1 1 0.8018 2.4282" /></svg>
-              2 rounds of revisions
-            </li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Custom responsive design</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Mobile-optimized development</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Brand-aligned copywriting</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>SEO-ready fast-loading code</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>2 rounds of revisions</li>
           </ul>
-        </div>
-        <div class="pricing-action">
-          <span class="pricing-action-label">One-time payment</span>
-          <span class="pricing-amount">$999</span>
           <a href="#start" class="btn btn-primary">Start your project</a>
         </div>
+
+        <!-- Business Website -->
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Business Website</h3>
+            <p>A complete small business website designed to establish credibility and drive leads.</p>
+          </div>
+          <span class="pricing-amount">$2,200</span>
+          <div class="pricing-divider"></div>
+          <span class="pricing-includes-label">What's included</span>
+          <ul class="pricing-includes">
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>4–6 custom pages</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Mobile-optimized design</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>SEO-friendly structure</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Contact forms & analytics setup</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>2 rounds of revisions</li>
+          </ul>
+          <a href="#start" class="btn btn-primary">Start your project</a>
+        </div>
+
+        <!-- Premium Website (Featured) -->
+        <div class="pricing-card featured">
+          <span class="pricing-card-badge">Most Popular</span>
+          <div class="pricing-card-header">
+            <h3>Premium Website</h3>
+            <p>A fully custom marketing website with deeper design polish and more advanced layout work.</p>
+          </div>
+          <span class="pricing-amount">$4,000</span>
+          <div class="pricing-divider"></div>
+          <span class="pricing-includes-label">What's included</span>
+          <ul class="pricing-includes">
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>8–12 custom pages</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Advanced layouts & interactions</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Brand system refinement</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Performance optimization</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>3 rounds of revisions</li>
+          </ul>
+          <a href="#start" class="btn btn-primary">Start your project</a>
+        </div>
+
+        <!-- Brand + Website -->
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Brand + Website</h3>
+            <p>A full brand identity and website launch package for businesses starting from scratch.</p>
+          </div>
+          <span class="pricing-amount">$5,000</span>
+          <div class="pricing-divider"></div>
+          <span class="pricing-includes-label">What's included</span>
+          <ul class="pricing-includes">
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Logo design</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Color palette & typography system</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Brand guidelines</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Custom marketing website</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Launch support</li>
+          </ul>
+          <a href="#start" class="btn btn-primary">Start your project</a>
+        </div>
+
       </div>
     </div>
   </section>
