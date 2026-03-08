@@ -159,13 +159,13 @@
     }
     [data-theme="light"] .pricing-card.featured {
       background: #ffffff;
-      border-color: rgba(0,0,0,0.20);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.04);
+      border: 2px solid #111111;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
     }
     [data-theme="light"] .pricing-card-badge {
-      background: #ffffff;
-      border-color: rgba(0,0,0,0.12);
-      color: var(--color-fg-default);
+      background: #111111;
+      border-color: #111111;
+      color: #ffffff;
     }
     [data-theme="light"] .pricing-card.featured .btn-primary {
       background: linear-gradient(180deg, #1A1A1A 0%, #000000 100%);
@@ -1485,8 +1485,11 @@
       width: 78px;
       height: 78px;
       border-radius: 20px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+      backdrop-filter: blur(12px) saturate(140%);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.04);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1501,10 +1504,10 @@
     }
 
     .workflow-tool:hover .workflow-tool-icon {
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.12);
       transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.06);
     }
 
     .workflow-tool:hover .workflow-tool-icon svg {
@@ -1672,13 +1675,14 @@
 
     /* Light mode overrides */
     [data-theme="light"] .workflow-tool-icon {
-      background: rgba(0,0,0,0.03);
-      border-color: rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.72);
+      border-color: rgba(0,0,0,0.06);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.8);
     }
     [data-theme="light"] .workflow-tool:hover .workflow-tool-icon {
-      background: rgba(0,0,0,0.05);
-      border-color: rgba(0,0,0,0.12);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.85);
+      border-color: rgba(0,0,0,0.08);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
     }
     [data-theme="light"] .workflow-hub-icon {
       background: linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.02) 100%);
@@ -1751,9 +1755,12 @@
 
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
       width: 100%;
+      max-width: 1080px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .pricing-card {
@@ -1775,15 +1782,16 @@
     }
 
     .pricing-card.featured {
-      border-color: rgba(255,255,255,0.18);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.30), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.06);
+      border: 2px solid rgba(255,255,255,0.85);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.06);
       background: linear-gradient(180deg, #18191c 0%, #111214 100%);
     }
 
     .pricing-card-badge {
       position: absolute;
       top: -12px;
-      left: 28px;
+      left: 50%;
+      transform: translateX(-50%);
       display: inline-flex;
       align-items: center;
       gap: 5px;
@@ -1795,8 +1803,8 @@
       background: #161719;
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: var(--radius-full);
-      padding: 5px 12px;
-      width: fit-content;
+      padding: 5px 14px;
+      white-space: nowrap;
       z-index: 1;
     }
 
@@ -3116,7 +3124,7 @@
           </div>
           <span class="pricing-amount">$999</span>
           <div class="pricing-divider"></div>
-          <span class="pricing-includes-label includes-purple">What's included</span>
+          <span class="pricing-includes-label">What's included</span>
           <ul class="pricing-includes">
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Custom responsive design</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Mobile-optimized development</li>
@@ -3127,15 +3135,16 @@
           <a href="#start" class="btn btn-secondary" data-package="Landing Page">Start your project</a>
         </div>
 
-        <!-- Business Website -->
-        <div class="pricing-card">
+        <!-- Baseline Website (Featured) -->
+        <div class="pricing-card featured">
+          <span class="pricing-card-badge">Most Popular</span>
           <div class="pricing-card-header">
-            <h3>Business Website</h3>
-            <p>A complete small business website designed to establish credibility and drive leads.</p>
+            <h3>Baseline Website</h3>
+            <p>A complete small business website designed to establish credibility, generate leads, and create a strong modern online presence.</p>
           </div>
           <span class="pricing-amount">$2,200</span>
           <div class="pricing-divider"></div>
-          <span class="pricing-includes-label includes-blue">What's included</span>
+          <span class="pricing-includes-label">What's included</span>
           <ul class="pricing-includes">
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>4–6 custom pages</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Mobile-optimized design</li>
@@ -3143,46 +3152,26 @@
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Contact forms & analytics setup</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>2 rounds of revisions</li>
           </ul>
-          <a href="#start" class="btn btn-secondary" data-package="Baseline Website">Start your project</a>
+          <a href="#start" class="btn btn-primary" data-package="Baseline Website">Start your project</a>
         </div>
 
-        <!-- Premium Website (Featured) -->
-        <div class="pricing-card featured">
-          <span class="pricing-card-badge">Most Popular</span>
+        <!-- Premium Custom Website -->
+        <div class="pricing-card">
           <div class="pricing-card-header">
-            <h3>Premium Website</h3>
-            <p>A fully custom marketing website with deeper design polish and more advanced layout work.</p>
+            <h3>Premium Custom Website</h3>
+            <p>A tailored website engagement for businesses with more complex goals, content, or feature needs — scoped and quoted to fit.</p>
           </div>
-          <span class="pricing-amount">$4,000</span>
+          <span class="pricing-amount">$4,000+</span>
           <div class="pricing-divider"></div>
-          <span class="pricing-includes-label includes-orange">What's included</span>
+          <span class="pricing-includes-label">What's included</span>
           <ul class="pricing-includes">
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>8–12 custom pages</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Custom scope & planning</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Advanced layouts & interactions</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Brand system refinement</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Performance optimization</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>3 rounds of revisions</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Tailored quote based on needs</li>
           </ul>
-          <a href="#start" class="btn btn-primary" data-package="Premium Custom Website">Start your project</a>
-        </div>
-
-        <!-- Brand + Website -->
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <h3>Brand + Website</h3>
-            <p>A full brand identity and website launch package for businesses starting from scratch.</p>
-          </div>
-          <span class="pricing-amount">$5,000</span>
-          <div class="pricing-divider"></div>
-          <span class="pricing-includes-label includes-rose">What's included</span>
-          <ul class="pricing-includes">
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Logo design</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Color palette & typography system</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Brand guidelines</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Custom marketing website</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Launch support</li>
-          </ul>
-          <a href="#start" class="btn btn-secondary" data-package="Brand + Website">Start your project</a>
+          <a href="#start" class="btn btn-secondary" data-package="Premium Custom Website">Start your project</a>
         </div>
 
       </div>
@@ -3456,7 +3445,6 @@
               <option value="Landing Page">Landing Page</option>
               <option value="Baseline Website">Baseline Website</option>
               <option value="Premium Custom Website">Premium Custom Website</option>
-              <option value="Brand + Website">Brand + Website</option>
             </select>
           </div>
           <div class="modal-field">
