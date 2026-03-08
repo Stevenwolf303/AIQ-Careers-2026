@@ -7,19 +7,50 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Cpath d='M5 10.5C5 8.01 7.01 6 9.5 6H16v11H5V10.5z' fill='white'/%3E%3Cpath d='M16 6h6.5C24.99 6 27 8.01 27 10.5V17H16V6z' fill='white' opacity='0.7'/%3E%3Cpath d='M5 17h11v11H9.5C7.01 28 5 25.99 5 23.5V17z' fill='white' opacity='0.7'/%3E%3Cpath d='M16 17h11v6.5c0 2.49-2.01 4.5-4.5 4.5H16V17z' fill='white' opacity='0.4'/%3E%3C/svg%3E">
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   <script>
     (function(){var s=localStorage.getItem('theme');if(s==='dark')return;document.documentElement.setAttribute('data-theme','light');})();
   </script>
   <style>
+    /* ===== View Transitions ===== */
+    @view-transition { navigation: auto; }
+
+    ::view-transition-old(root) {
+      animation: vt-fade-out 300ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    ::view-transition-new(root) {
+      animation: vt-fade-in 350ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    ::view-transition-old(cs-hero) {
+      animation: vt-scale-out 400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    ::view-transition-new(cs-hero) {
+      animation: vt-scale-in 450ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes vt-fade-out {
+      to { opacity: 0; filter: blur(4px); }
+    }
+    @keyframes vt-fade-in {
+      from { opacity: 0; filter: blur(4px); transform: translateY(6px); }
+      to { opacity: 1; filter: blur(0); transform: translateY(0); }
+    }
+    @keyframes vt-scale-out {
+      to { opacity: 0; transform: scale(1.04); }
+    }
+    @keyframes vt-scale-in {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
     /* ===== Design Tokens ===== */
     :root {
-      --color-accent: #4F6CF7;
-      --color-accent-dark: #3949DB;
-      --color-accent-subtle: rgba(79,108,247,0.15);
-      --color-accent-hover: #5A78FF;
-      --color-accent-gradient: linear-gradient(90deg, #4F6CF7 0%, #6366F1 100%);
-      --color-accent-glow: rgba(79,108,247,0.25);
+      --color-accent: #555555;
+      --color-accent-dark: #333333;
+      --color-accent-subtle: rgba(85,85,85,0.1);
+      --color-accent-hover: #666666;
+      --color-accent-gradient: linear-gradient(90deg, #555555 0%, #777777 100%);
+      --color-accent-glow: rgba(85,85,85,0.15);
       --color-fg-default: #f0f0f2;
       --color-fg-muted: #8a8f98;
       --color-fg-inverse: #0b0b0c;
@@ -28,8 +59,8 @@
       --color-border: rgba(255,255,255,0.06);
       --color-white-alpha30: rgba(255,255,255,0.12);
 
-      --font-heading: "Google Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-body: "Google Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-heading: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Google Sans", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-body: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Google Sans", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
       --radius-button: 8px;
       --radius-card: 16px;
@@ -45,9 +76,9 @@
 
     /* ===== Light Theme ===== */
     [data-theme="light"] {
-      --color-accent: #4F6CF7;
-      --color-accent-dark: #3949DB;
-      --color-accent-subtle: #EEF2FF;
+      --color-accent: #555555;
+      --color-accent-dark: #333333;
+      --color-accent-subtle: #F0F0F2;
       --color-fg-default: #191a1d;
       --color-fg-muted: #40434c;
       --color-fg-inverse: #ffffff;
@@ -57,49 +88,128 @@
       --color-white-alpha30: rgba(255,255,255,0.3);
     }
 
+    /* ===== Section Accent Palette ===== */
+    .accent-lavender { --section-accent: #A8A6F0; --section-accent-subtle: rgba(108,106,228,0.08); --section-accent-gradient: linear-gradient(90deg, #A8A6F0, #C4C3F5); }
+    .accent-mint { --section-accent: #6DD4A0; --section-accent-subtle: rgba(61,168,122,0.08); --section-accent-gradient: linear-gradient(90deg, #6DD4A0, #95E2BC); }
+    .accent-peach { --section-accent: #E8926D; --section-accent-subtle: rgba(212,113,78,0.08); --section-accent-gradient: linear-gradient(90deg, #E8926D, #F0B196); }
+    .accent-sky { --section-accent: #7BB8F0; --section-accent-subtle: rgba(74,143,214,0.08); --section-accent-gradient: linear-gradient(90deg, #7BB8F0, #A3D0F5); }
+    .accent-sand { --section-accent: #D9B06A; --section-accent-subtle: rgba(196,138,63,0.08); --section-accent-gradient: linear-gradient(90deg, #D9B06A, #E5C890); }
+    .accent-rose { --section-accent: #E88BA8; --section-accent-subtle: rgba(232,139,168,0.08); --section-accent-gradient: linear-gradient(90deg, #E88BA8, #F0A8BE); }
+
+    [data-theme="light"] .accent-lavender { --section-accent: #6C6AE4; --section-accent-subtle: #F2F1FF; --section-accent-gradient: linear-gradient(90deg, #6C6AE4, #8B89EE); }
+    [data-theme="light"] .accent-mint { --section-accent: #3DA87A; --section-accent-subtle: #EFF8F4; --section-accent-gradient: linear-gradient(90deg, #3DA87A, #5DBF96); }
+    [data-theme="light"] .accent-peach { --section-accent: #D4714E; --section-accent-subtle: #FFF3EE; --section-accent-gradient: linear-gradient(90deg, #D4714E, #E09474); }
+    [data-theme="light"] .accent-sky { --section-accent: #4A8FD6; --section-accent-subtle: #F1F6FF; --section-accent-gradient: linear-gradient(90deg, #4A8FD6, #72AAE2); }
+    [data-theme="light"] .accent-sand { --section-accent: #C48A3F; --section-accent-subtle: #FFF7EF; --section-accent-gradient: linear-gradient(90deg, #C48A3F, #D4A565); }
+    [data-theme="light"] .accent-rose { --section-accent: #D87091; --section-accent-subtle: #FFF2F5; --section-accent-gradient: linear-gradient(90deg, #D87091, #E48BA5); }
+
     [data-theme="light"] body {
-      background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+      background:
+        radial-gradient(1200px 800px at 10% 0%, rgba(0,0,0,0.03), transparent 60%),
+        radial-gradient(900px 700px at 90% 30%, rgba(0,0,0,0.025), transparent 65%),
+        radial-gradient(1000px 600px at 20% 60%, rgba(0,0,0,0.02), transparent 55%),
+        radial-gradient(800px 500px at 85% 85%, rgba(0,0,0,0.015), transparent 50%),
+        linear-gradient(180deg, #f6f6f7 0%, #ffffff 100%);
       background-color: #ffffff;
+      background-attachment: fixed;
+    }
+    [data-theme="light"] .hero,
+    [data-theme="light"] .logo-cloud,
+    [data-theme="light"] .services-overview,
+    [data-theme="light"] .approach-card-section,
+    [data-theme="light"] .services-detail,
+    [data-theme="light"] .ai-workflow,
+    [data-theme="light"] .pricing-section,
+    [data-theme="light"] .case-studies {
+      background: transparent;
+    }
+    [data-theme="light"] .footer {
+      background: transparent;
+      border-top: 1px solid rgba(0,0,0,0.05);
     }
     [data-theme="light"] .services-overview-image .image-wrapper {
-      background: linear-gradient(135deg, #f0f2ff 0%, #e0e7ff 50%, #d4dbff 100%);
+      background: linear-gradient(135deg, #f0f0f5 0%, #e8e6ff 50%, #dedcf5 100%);
     }
     [data-theme="light"] .approach-card {
-      background: linear-gradient(180deg, #1a1a1e 0%, #141416 100%);
-      border: 1px solid rgba(255,255,255,0.06);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      background:
+        radial-gradient(700px 450px at 15% 0%, rgba(255,255,255,0.05), transparent 55%),
+        radial-gradient(600px 400px at 85% 100%, rgba(140,140,160,0.035), transparent 55%),
+        linear-gradient(180deg, #1a1a1e 0%, #141416 100%);
+      border: none;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.03),
+        inset 0 -60px 120px rgba(255,255,255,0.01),
+        0 8px 24px rgba(0,0,0,0.08);
     }
     [data-theme="light"] .services-detail-card {
       background: #ffffff;
-      border: 1px solid #dfe0e5;
+      border: none;
       box-shadow: 0 16px 48px rgba(0,0,0,0.06);
     }
-    [data-theme="light"] .services-detail-image-inner {
-      box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+    [data-theme="light"] .service-item:hover {
+      background: rgba(0,0,0,0.02);
     }
     [data-theme="light"] .pricing-card {
       background: #ffffff;
-      border: 1px solid #dfe0e5;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     }
-    [data-theme="light"] .pricing-action {
-      background: #f8f8fa;
-      border-left: 1px solid #dfe0e5;
+    [data-theme="light"] .pricing-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    [data-theme="light"] .pricing-card.featured {
+      background: #ffffff;
+      border: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    }
+    [data-theme="light"] .pricing-card-badge {
+      background: #111111;
+      border-color: #111111;
+      color: #ffffff;
+    }
+    [data-theme="light"] .pricing-card.featured .btn-primary {
+      background: linear-gradient(180deg, #1A1A1A 0%, #000000 100%);
+      color: #ffffff;
+    }
+    [data-theme="light"] .pricing-card .btn-secondary {
+      border-color: rgba(0,0,0,0.12);
+      color: var(--color-fg-default);
+    }
+    [data-theme="light"] .pricing-card .btn-secondary:hover {
+      border-color: rgba(0,0,0,0.20);
+      background: rgba(0,0,0,0.03);
     }
     [data-theme="light"] .case-study-image {
       background: #f5f5f5;
       border: 1px solid #dfe0e5;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    [data-theme="light"] .case-study-card:hover .case-study-image {
+      border-color: rgba(0,0,0,0.1);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
     }
     [data-theme="light"] .cta-section {
-      background: linear-gradient(180deg, #1a1a1e 0%, #111114 100%);
+      background:
+        radial-gradient(1200px 700px at 0% 0%, rgba(255,255,255,0.06), transparent 55%),
+        radial-gradient(1000px 700px at 100% 30%, rgba(140,140,160,0.05), transparent 60%),
+        linear-gradient(180deg, #1a1a1e 0%, #111114 100%);
       border-top: none;
+    }
+    [data-theme="light"] .btn-primary {
+      background: linear-gradient(180deg, #1c1c1f 0%, #080809 100%);
+      color: #ffffff;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -12px 24px rgba(255,255,255,0.015), 0 8px 20px rgba(0,0,0,0.14);
+    }
+    [data-theme="light"] .btn-primary:hover {
+      background: linear-gradient(180deg, #28282b 0%, #111113 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -12px 24px rgba(255,255,255,0.02), 0 12px 28px rgba(0,0,0,0.18);
     }
     [data-theme="light"] .btn-secondary {
       background: #ffffff;
       border: 1px solid #dfe0e5;
     }
     [data-theme="light"] .btn-cta {
-      background: var(--color-accent-gradient);
+      background: linear-gradient(180deg, #1c1c1f 0%, #080809 100%);
       color: #ffffff;
     }
     [data-theme="light"] .logo-mark {
@@ -112,9 +222,8 @@
       background: #40434c;
     }
     @media (max-width: 767px) {
-      [data-theme="light"] .pricing-action {
-        border-left: none;
-        border-top: 1px solid #dfe0e5;
+      [data-theme="light"] .pricing-grid {
+        gap: 16px;
       }
     }
 
@@ -142,7 +251,7 @@
       display: block;
     }
     [data-theme="light"] .line-art-adaptive svg * {
-      stroke: rgba(0,0,0,0.08);
+      stroke: rgba(0,0,0,0.035);
     }
 
     /* ===== Theme Transition ===== */
@@ -156,7 +265,7 @@
     }
 
     /* ===== Theme Toggle ===== */
-    .theme-toggle { margin-top: 12px; }
+    .theme-toggle { margin-top: 4px; display: flex; align-items: center; gap: 10px; }
     .theme-toggle-track {
       position: relative;
       width: 48px;
@@ -198,7 +307,11 @@
       color: var(--color-bg-main);
     }
     .theme-toggle-moon { display: block; }
-    .theme-toggle-sun { display: none; }
+    .theme-toggle-sun {
+      display: none;
+      color: #F4C95D !important;
+      filter: drop-shadow(0 0 3px rgba(244,201,93,0.3));
+    }
     [data-theme="light"] .theme-toggle-moon { display: none; }
     [data-theme="light"] .theme-toggle-sun { display: block; }
 
@@ -220,7 +333,7 @@
       font-family: var(--font-body);
       color: var(--color-fg-default);
       background:
-        radial-gradient(1200px 700px at 8% -10%, rgba(79,108,247,0.03), transparent 60%),
+        radial-gradient(1200px 700px at 8% -10%, rgba(120,120,140,0.03), transparent 60%),
         radial-gradient(900px 600px at 92% 0%, rgba(120,120,140,0.045), transparent 58%),
         radial-gradient(1000px 700px at 50% 100%, rgba(90,90,110,0.03), transparent 65%),
         linear-gradient(180deg, #0b0b0c 0%, #101114 100%);
@@ -228,6 +341,9 @@
       background-attachment: fixed;
       line-height: 1.5;
     }
+
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
+    button, input, textarea, select { font-family: var(--font-body); }
 
     img {
       display: block;
@@ -254,13 +370,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 16px;
-      border-radius: var(--radius-button);
+      padding: 15px 28px;
+      border-radius: 14px;
       font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 15px;
+      font-weight: 600;
       line-height: 20px;
-      letter-spacing: -0.37px;
+      letter-spacing: -0.01em;
       white-space: nowrap;
       cursor: pointer;
       border: none;
@@ -269,8 +385,8 @@
 
     .btn:hover { opacity: 0.9; }
     .btn:active { transform: scale(0.98); }
-    .btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
-    a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+    .btn:focus-visible { outline: 2px solid var(--color-fg-muted); outline-offset: 2px; }
+    a:focus-visible { outline: 2px solid var(--color-fg-muted); outline-offset: 2px; }
 
     /* --- Filled button shimmer --- */
     .btn-primary,
@@ -280,8 +396,28 @@
       z-index: 0;
     }
     .btn-primary {
-      background: var(--color-accent-gradient);
-      color: #ffffff;
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      background: #ffffff;
+      color: #111111;
+      box-shadow:
+        0 8px 20px rgba(0,0,0,0.18),
+        inset 0 -1px 0 rgba(0,0,0,0.08);
+      transition: background 0.26s cubic-bezier(0.22, 1, 0.36, 1), transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .btn-primary:hover {
+      background: #f4f4f5;
+      transform: translateY(-1px);
+      box-shadow:
+        0 12px 28px rgba(0,0,0,0.22),
+        inset 0 -1px 0 rgba(0,0,0,0.08);
+    }
+    .btn-primary:active {
+      background: #eeeeef;
+      transform: translateY(0) scale(0.98);
     }
     .btn-primary:hover,
     .btn-cta:hover {
@@ -350,7 +486,7 @@
       content: '';
       position: absolute;
       inset: 1px;
-      border-radius: calc(var(--radius-button) - 1px);
+      border-radius: 13px;
       background: var(--color-bg-main);
       z-index: -1;
       pointer-events: none;
@@ -362,7 +498,7 @@
     }
     .btn-secondary:hover {
       border-color: rgba(255,255,255,0.25);
-      box-shadow: var(--shadow-xs), 0 0 14px -4px var(--color-accent-glow);
+      box-shadow: var(--shadow-xs), 0 0 14px -4px rgba(255,255,255,0.12);
       opacity: 1;
     }
     @keyframes border-sweep {
@@ -374,9 +510,9 @@
       background: linear-gradient(
         120deg,
         transparent 20%,
-        rgba(79,108,247,0.35) 45%,
-        rgba(79,108,247,0.5) 50%,
-        rgba(79,108,247,0.35) 55%,
+        rgba(0,0,0,0.08) 45%,
+        rgba(0,0,0,0.12) 50%,
+        rgba(0,0,0,0.08) 55%,
         transparent 80%
       );
     }
@@ -384,22 +520,72 @@
       background: var(--color-bg-main);
     }
     [data-theme="light"] .btn-secondary:hover {
-      border-color: rgba(79,108,247,0.25);
-      box-shadow: var(--shadow-xs), 0 0 14px -4px var(--color-accent-glow);
+      border-color: rgba(0,0,0,0.12);
+      box-shadow: var(--shadow-xs), 0 0 14px -4px rgba(0,0,0,0.08);
     }
 
     .btn-sm {
-      padding: 6px 12px;
+      padding: 10px 20px;
+      font-size: 14px;
     }
 
     .btn-cta {
-      background: var(--color-accent-gradient);
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      background: linear-gradient(180deg, #1c1c1f 0%, #080809 100%);
       color: #ffffff;
       border: none;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        inset 0 -12px 24px rgba(255,255,255,0.015),
+        0 8px 20px rgba(0,0,0,0.14);
+      transition: background 0.26s cubic-bezier(0.22, 1, 0.36, 1), transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .btn-cta:hover {
+      background: linear-gradient(180deg, #28282b 0%, #111113 100%);
+      transform: translateY(-1px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        inset 0 -12px 24px rgba(255,255,255,0.02),
+        0 12px 28px rgba(0,0,0,0.18);
+    }
+    .btn-cta:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* --- Inverted CTA in dark sections --- */
+    .cta-section .btn-cta {
+      background: #ffffff;
+      color: #111111;
+      box-shadow:
+        0 8px 20px rgba(0,0,0,0.18),
+        inset 0 -1px 0 rgba(0,0,0,0.08);
+    }
+    .cta-section .btn-cta:hover {
+      background: #f4f4f5;
+      transform: translateY(-1px);
+      box-shadow:
+        0 12px 28px rgba(0,0,0,0.22),
+        inset 0 -1px 0 rgba(0,0,0,0.08);
+    }
+    .cta-section .btn-cta:active {
+      background: #eeeeef;
+      transform: translateY(0) scale(0.98);
     }
 
     @media (prefers-reduced-motion: reduce) {
       .btn-primary::after, .btn-cta::after, .btn-secondary::before { animation: none !important; }
+      ::view-transition-old(root),
+      ::view-transition-new(root),
+      ::view-transition-old(cs-hero),
+      ::view-transition-new(cs-hero) { animation-duration: 0.01ms !important; }
+      .case-study-card,
+      .case-study-image,
+      .case-study-image > *,
+      .case-study-info { transition-duration: 0.01ms !important; }
     }
 
     /* ===== Navbar ===== */
@@ -485,11 +671,37 @@
     }
 
     .nav-menu a:hover {
-      background: linear-gradient(90deg, var(--color-fg-default), var(--color-fg-muted));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--color-fg-default);
     }
+
+    /* Text-flip animation (desktop) */
+    .nav-text-flip {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      height: 20px;
+      vertical-align: top;
+    }
+    .nav-text-flip span {
+      display: block;
+      transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .nav-text-flip span:nth-child(2) {
+      position: absolute;
+      top: 100%;
+      left: 0;
+    }
+    .nav-menu a:hover .nav-text-flip span:first-child,
+    .nav-menu a:active .nav-text-flip span:first-child {
+      transform: translateY(-100%);
+    }
+    .nav-menu a:hover .nav-text-flip span:nth-child(2),
+    .nav-menu a:active .nav-text-flip span:nth-child(2) {
+      transform: translateY(-100%);
+    }
+
+    /* Close icon hidden by default */
+    .mobile-toggle .icon-close { display: none; }
 
     .nav-actions {
       display: flex;
@@ -514,7 +726,10 @@
 
     /* ===== Hero: Editorial ===== */
     .hero {
-      background: var(--color-bg-main);
+      background:
+        radial-gradient(1100px 600px at 5% -5%, rgba(255,255,255,0.04), transparent 55%),
+        radial-gradient(800px 500px at 90% 80%, rgba(120,120,140,0.03), transparent 55%),
+        linear-gradient(180deg, #0c0c0e 0%, #0b0b0c 100%);
       padding: 0 var(--padding-x);
       overflow: hidden;
       position: relative;
@@ -550,38 +765,82 @@
       margin: 0;
     }
 
-    .hero-headline h1 span {
+    /* ===== Hero Line Architecture ===== */
+    .hero-line {
       display: block;
     }
 
-    .hero-rotate-wrap {
+    .hero-line--rotating {
+      position: relative;
+    }
+
+    .rotate-stage {
       position: relative;
       display: block;
       height: 0.88em;
-      overflow: hidden;
+      overflow: visible;
     }
 
-    .hero-rotate-word {
+    .rotate-word {
       position: absolute;
       top: 0;
       left: 0;
       display: block;
+      white-space: nowrap;
       opacity: 0;
-      transform: translateY(12px);
-      transition:
-        opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
-        transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+      will-change: transform, opacity, filter;
     }
 
-    .hero-rotate-word.active {
+    .rotate-word.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .rotate-word.is-out {
+      opacity: 0;
+      transform: translateY(-10px);
+      transition:
+        opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Letter stagger animation */
+    .rotate-letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(6px);
+      filter: blur(4px);
+    }
+
+    .rotate-word.is-active .rotate-letter {
       opacity: 1;
       transform: translateY(0);
+      filter: blur(0);
+      transition:
+        opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+        filter 450ms cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: calc(var(--letter-i, 0) * 25ms);
     }
 
-    .hero-rotate-word.out {
-      opacity: 0;
-      transform: translateY(-12px);
+    /* Keep letters visible during word-level out fade */
+    .rotate-word.is-out .rotate-letter {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
     }
+
+    /* Per-word subtle text color tint */
+    .rotate-word--lavender { color: #B8B4F0; }
+    .rotate-word--sky { color: #9FB8F5; }
+    .rotate-word--peach { color: #E8A894; }
+    .rotate-word--mint { color: #8CD4B2; }
+
+    [data-theme="light"] .rotate-word--lavender { color: #7C73E6; }
+    [data-theme="light"] .rotate-word--sky { color: #6F8DFF; }
+    [data-theme="light"] .rotate-word--peach { color: #D28B74; }
+    [data-theme="light"] .rotate-word--mint { color: #5FAF8D; }
 
     .hero-editorial {
       width: clamp(280px, 28vw, 400px);
@@ -594,14 +853,26 @@
     }
 
     .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--color-fg-muted);
-      display: flex;
-      align-items: center;
+      line-height: 1;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #555555;
       gap: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    [data-theme="light"] .hero-eyebrow {
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.04);
+      border-color: rgba(0,0,0,0.06);
     }
 
     .hero-wave {
@@ -642,98 +913,72 @@
       margin-bottom: 0;
     }
 
-    /* ===== Hero Premium Background ===== */
-    .hero-bg-mesh {
+    .hero-text-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 32px;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 550;
+      letter-spacing: -0.2px;
+      color: var(--color-fg-default);
+      text-decoration: none;
+      transition: opacity 260ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hero-text-cta__arrow {
+      display: inline-block;
+      font-size: 18px;
+      transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hero-text-cta:hover {
+      opacity: 0.7;
+    }
+    .hero-text-cta:hover .hero-text-cta__arrow {
+      transform: translateX(3px);
+    }
+
+    .hero-bg-shape {
       position: absolute;
-      inset: 0;
-      z-index: 0;
       pointer-events: none;
-      overflow: hidden;
-    }
-
-    /* Animated gradient mesh blobs */
-    .hero-bg-mesh::before {
-      content: '';
-      position: absolute;
-      inset: -50%;
-      width: 200%;
-      height: 200%;
-      background:
-        radial-gradient(ellipse 60% 50% at 25% 30%, rgba(79,108,247,0.06) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 60% at 75% 60%, rgba(99,102,241,0.05) 0%, transparent 70%),
-        radial-gradient(ellipse 70% 40% at 50% 80%, rgba(79,108,247,0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 50% at 80% 20%, rgba(99,102,241,0.03) 0%, transparent 70%);
-      animation: meshDrift 30s ease-in-out infinite;
-    }
-    [data-theme="light"] .hero-bg-mesh::before {
-      background:
-        radial-gradient(ellipse 60% 50% at 25% 30%, rgba(79,108,247,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 60% at 75% 60%, rgba(99,102,241,0.06) 0%, transparent 70%),
-        radial-gradient(ellipse 70% 40% at 50% 80%, rgba(79,108,247,0.05) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 50% at 80% 20%, rgba(99,102,241,0.04) 0%, transparent 70%);
-    }
-
-    /* Secondary mesh layer for depth */
-    .hero-bg-mesh::after {
-      content: '';
-      position: absolute;
-      inset: -30%;
-      width: 160%;
-      height: 160%;
-      background:
-        radial-gradient(ellipse 45% 55% at 60% 40%, rgba(79,108,247,0.04) 0%, transparent 60%),
-        radial-gradient(ellipse 55% 45% at 30% 70%, rgba(99,102,241,0.035) 0%, transparent 60%);
-      animation: meshDrift2 35s ease-in-out infinite;
-    }
-    [data-theme="light"] .hero-bg-mesh::after {
-      background:
-        radial-gradient(ellipse 45% 55% at 60% 40%, rgba(79,108,247,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 55% 45% at 30% 70%, rgba(99,102,241,0.05) 0%, transparent 60%);
-    }
-
-    @keyframes meshDrift {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(2%, -1.5%) rotate(0.5deg); }
-      50% { transform: translate(-1.5%, 2%) rotate(-0.3deg); }
-      75% { transform: translate(1%, -0.5%) rotate(0.2deg); }
-    }
-
-    @keyframes meshDrift2 {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      33% { transform: translate(-1.5%, 1%) rotate(-0.4deg); }
-      66% { transform: translate(1%, -1.5%) rotate(0.3deg); }
-    }
-
-    /* Noise texture overlay */
-    .hero-bg-noise {
-      position: absolute;
-      inset: 0;
       z-index: 0;
-      pointer-events: none;
-      opacity: 0.018;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 200px 200px;
-    }
-    [data-theme="light"] .hero-bg-noise {
-      opacity: 0.025;
     }
 
-    /* Radial light depth - brighter center, subtle vignette */
-    .hero-bg-light {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background: radial-gradient(ellipse 70% 60% at 50% 55%, rgba(255,255,255,0.04) 0%, transparent 70%);
+    .hero-bg-logo {
+      width: clamp(400px, 50vw, 700px);
+      height: clamp(400px, 50vw, 700px);
+      top: 50%;
+      left: 58%;
+      transform: translate(-50%, -50%);
+      opacity: 0.09;
+      filter: blur(2.5px);
     }
-    [data-theme="light"] .hero-bg-light {
-      background: radial-gradient(ellipse 70% 60% at 50% 55%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
+    .hero-bg-logo svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    [data-theme="light"] .hero-bg-logo {
+      opacity: 0.07;
+      filter: brightness(0) blur(2.5px);
+    }
+
+    .hero-bg-circle {
+      width: clamp(300px, 35vw, 500px);
+      height: clamp(300px, 35vw, 500px);
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.04);
+      top: 15%;
+      right: -5%;
+    }
+    [data-theme="light"] .hero-bg-circle {
+      border-color: rgba(0,0,0,0.04);
     }
 
     /* ===== Logo Cloud ===== */
     .logo-cloud {
-      background: var(--color-bg-main);
+      background:
+        linear-gradient(180deg, #0a0a0b 0%, #0d0d0f 100%);
       padding: var(--padding-y) var(--padding-x);
       overflow: hidden;
     }
@@ -775,23 +1020,9 @@
       overflow: hidden;
       margin: 0 auto;
     }
-    .logo-marquee::before,
-    .logo-marquee::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 80px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .logo-marquee::before {
-      left: 0;
-      background: linear-gradient(to right, var(--color-bg-main), transparent);
-    }
-    .logo-marquee::after {
-      right: 0;
-      background: linear-gradient(to left, var(--color-bg-main), transparent);
+    .logo-marquee {
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
     }
     .logo-marquee__track {
       display: flex;
@@ -847,7 +1078,10 @@
 
     /* ===== Feature: Services Overview (Feature 36) ===== */
     .services-overview {
-      background: var(--color-bg-main);
+      background:
+        radial-gradient(1000px 600px at 80% 10%, rgba(255,255,255,0.035), transparent 55%),
+        radial-gradient(800px 500px at 10% 90%, rgba(120,120,140,0.025), transparent 50%),
+        linear-gradient(180deg, #0d0d0f 0%, #0b0b0c 100%);
       position: relative;
       overflow: hidden;
     }
@@ -919,7 +1153,11 @@
 
     /* ===== Feature: Approach Card (Feature 10) ===== */
     .approach-card-section {
-      background: var(--color-bg-main);
+      background:
+        radial-gradient(1200px 700px at 0% 0%, rgba(255,255,255,0.07), transparent 55%),
+        radial-gradient(1000px 700px at 100% 20%, rgba(140,140,160,0.05), transparent 60%),
+        radial-gradient(900px 700px at 50% 100%, rgba(90,90,110,0.04), transparent 65%),
+        linear-gradient(180deg, #050506 0%, #111113 100%);
       padding: var(--padding-y) var(--padding-x);
       overflow: hidden;
     }
@@ -927,11 +1165,14 @@
     .approach-card {
       --_parent-gap: 64px;
       background:
-        radial-gradient(600px 400px at 20% 0%, rgba(255,255,255,0.03), transparent 60%),
-        radial-gradient(500px 300px at 80% 100%, rgba(120,120,140,0.025), transparent 55%),
-        linear-gradient(180deg, #141518 0%, #111214 100%);
-      border: 1px solid rgba(255,255,255,0.04);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.025), 0 20px 60px rgba(0,0,0,0.3);
+        radial-gradient(700px 450px at 15% 0%, rgba(255,255,255,0.06), transparent 55%),
+        radial-gradient(600px 400px at 85% 100%, rgba(140,140,160,0.04), transparent 55%),
+        linear-gradient(180deg, #161619 0%, #111214 100%);
+      border: none;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.035),
+        inset 0 -60px 120px rgba(255,255,255,0.012),
+        0 8px 24px rgba(0,0,0,0.06);
       border-radius: var(--radius-card);
       padding: 40px;
       display: flex;
@@ -969,10 +1210,24 @@
       gap: 16px;
     }
 
+    .approach-feature-icon-wrap {
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      flex-shrink: 0;
+    }
+    .approach-feature-icon-wrap.icon-lavender { background: #EBEAFD; }
+    .approach-feature-icon-wrap.icon-mint { background: #E2F3EB; }
+    .approach-feature-icon-wrap.icon-peach { background: #FBEAE4; }
     .approach-feature-icon {
       width: 20px;
       height: 20px;
-      color: #ffffff;
+      color: #1a1a1e;
     }
 
     .approach-feature h3 {
@@ -997,13 +1252,16 @@
 
     /* ===== Feature: Services Detail (Feature 40) ===== */
     .services-detail {
-      background: var(--color-bg-main);
+      background:
+        radial-gradient(900px 500px at 95% 20%, rgba(255,255,255,0.035), transparent 50%),
+        radial-gradient(700px 400px at 5% 80%, rgba(120,120,140,0.03), transparent 50%),
+        linear-gradient(180deg, #0b0b0c 0%, #0e0e10 100%);
       padding: var(--padding-y) var(--padding-x);
     }
 
     .services-detail-card {
       background: linear-gradient(180deg, #131416 0%, #111214 100%);
-      border: 1px solid rgba(255,255,255,0.04);
+      border: none;
       border-radius: var(--radius-card);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.025), 0 16px 48px rgba(0,0,0,0.25);
       overflow: hidden;
@@ -1043,42 +1301,100 @@
     }
 
     .services-detail-body {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-
-    .services-detail-list {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      padding: 0 48px 48px;
-      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      padding: 0 48px 56px;
     }
 
     .service-item {
       display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      min-width: 200px;
+      flex-direction: column;
+      gap: 16px;
+      padding: 32px 28px;
+      position: relative;
+      transition: background 280ms cubic-bezier(0.22, 1, 0.36, 1);
+      border-radius: 0;
+    }
+
+    .service-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: var(--color-border);
+    }
+
+    .service-item:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .service-item:first-child {
+      border-radius: 12px 0 0 12px;
+    }
+
+    .service-item:last-child {
+      border-radius: 0 12px 12px 0;
     }
 
     .service-item-icon {
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
-      background: var(--color-accent-subtle);
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      background: var(--section-accent-subtle, rgba(85,85,85,0.1));
       border-radius: var(--radius-full);
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
+    .service-item-icon.icon-peach { background: #FBEAE4; border: 1px solid #F2DDD6; }
+    .service-item-icon.icon-sky { background: #E6EFFE; border: 1px solid #D6E4F6; }
+    .service-item-icon.icon-mint { background: #E2F3EB; border: 1px solid #D2E8DC; }
+    .service-item-icon.icon-lavender { background: #EBEAFD; border: 1px solid #DDDCF2; }
+
     .service-item-icon svg {
-      width: 20px;
-      height: 20px;
-      color: var(--color-accent);
+      width: 22px;
+      height: 22px;
+      color: rgba(0,0,0,0.75);
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    /* Service icon hover micro-interactions — unique per icon */
+    /* Brand Identity: subtle brush tilt */
+    .service-item:hover .icon-peach svg {
+      transform: rotate(2.5deg) translate(0.5px, -0.5px);
+    }
+    /* Website Design: tiny screen lift */
+    .service-item:hover .icon-sky svg {
+      transform: translateY(-1.5px);
+    }
+    /* Development: small orbital rotation */
+    .service-item:hover .icon-mint svg {
+      transform: rotate(-3deg);
+    }
+    /* Landing Pages: subtle card lift + scale */
+    .service-item:hover .icon-lavender svg {
+      transform: translateY(-1px) scale(1.03);
+    }
+
+    /* Icon container lift on hover */
+    .service-item-icon {
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .service-item:hover .service-item-icon {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .service-item-icon svg,
+      .service-item-icon { transition: none; }
+      .service-item:hover .service-item-icon svg,
+      .service-item:hover .service-item-icon { transform: none; box-shadow: none; }
     }
 
     .service-item-content {
@@ -1090,133 +1406,334 @@
 
     .service-item-content h3 {
       font-size: 16px;
-      font-weight: 500;
+      font-weight: 600;
       line-height: 24px;
-      letter-spacing: -0.37px;
+      letter-spacing: -0.02em;
       color: var(--color-fg-default);
     }
 
     .service-item-content p {
       font-size: 14px;
       font-weight: 400;
-      line-height: 20px;
-      letter-spacing: -0.37px;
+      line-height: 21px;
+      letter-spacing: -0.01em;
       color: var(--color-fg-muted);
-    }
-
-    .services-detail-image {
-      flex: 1;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-start;
-    }
-
-    .services-detail-image-inner {
-      width: 100%;
-      background: var(--color-bg-surface);
-      border-radius: var(--radius-card) 0 0 0;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
-      overflow: hidden;
-    }
-
-    .services-detail-image-inner img,
-    .services-detail-image-inner .img-placeholder {
-      width: 100%;
-      display: block;
-      min-height: 400px;
+      max-width: 260px;
     }
 
     /* ===== Feature: AI Advantage (Feature 17) ===== */
-    .ai-advantage {
-      background: var(--color-bg-main);
+    /* ===== Why Us / AI Workflow Section ===== */
+    .ai-workflow {
       padding: var(--padding-y) var(--padding-x);
       overflow: hidden;
     }
 
-    .ai-advantage .container {
+    .ai-workflow .container {
       display: flex;
-      gap: 64px;
+      flex-direction: column;
       align-items: center;
-    }
-
-    .ai-advantage-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-
-    .ai-advantage-text {
-      --_parent-gap: 16px;
-      display: flex;
-      flex-direction: column;
       gap: 16px;
+      text-align: center;
     }
 
-    .ai-advantage-text h2 {
+    .ai-workflow h2 {
       font-family: var(--font-heading);
-      letter-spacing: -0.02em;
       font-size: 48px;
       font-weight: 600;
-      line-height: 60px;
-      letter-spacing: -0.37px;
+      line-height: 58px;
+      letter-spacing: -0.02em;
       color: var(--color-fg-default);
     }
 
-    .ai-advantage-text p {
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 28px;
-      letter-spacing: -0.54px;
+    .ai-workflow > .container > p {
+      font-size: 16px;
+      line-height: 26px;
       color: var(--color-fg-muted);
-      max-width: 512px;
+      max-width: 520px;
     }
 
-    .checklist {
+    .workflow-diagram {
+      position: relative;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      list-style: none;
+      align-items: center;
+      gap: 0;
+      margin-top: 48px;
+      width: 100%;
+      max-width: 1020px;
     }
 
-    .checklist li {
+    .workflow-tools {
       display: flex;
-      gap: 8px;
-      align-items: flex-start;
+      align-items: center;
+      justify-content: center;
+      gap: 72px;
+      position: relative;
+      z-index: 2;
     }
 
-    .checklist-icon {
-      width: 24px;
-      height: 24px;
-      min-width: 24px;
-      color: var(--color-accent);
+    .workflow-tool {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      animation: wf-fade-in 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .workflow-tool:nth-child(1) { animation-delay: 200ms; }
+    .workflow-tool:nth-child(2) { animation-delay: 350ms; }
+    .workflow-tool:nth-child(3) { animation-delay: 500ms; }
+    .workflow-tool:nth-child(4) { animation-delay: 650ms; }
+
+    .workflow-tool-icon {
+      width: 78px;
+      height: 78px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+      backdrop-filter: blur(12px) saturate(140%);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 320ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .checklist li span {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-      letter-spacing: -0.37px;
+    .workflow-tool-icon svg {
+      width: 36px;
+      height: 36px;
+      opacity: 0.8;
+      transition: all 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .workflow-tool:hover .workflow-tool-icon {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .workflow-tool:hover .workflow-tool-icon svg {
+      opacity: 1;
+    }
+
+    .workflow-tool-label {
+      font-size: 13px;
+      font-weight: 500;
       color: var(--color-fg-muted);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
     }
 
-    .ai-advantage-image {
-      flex: 1;
-      aspect-ratio: 400 / 300;
-      border-radius: var(--radius-card);
-      overflow: hidden;
+    /* Connection SVG */
+    .workflow-connections {
+      width: 100%;
+      height: 120px;
+      position: relative;
+      z-index: 1;
     }
 
-    .ai-advantage-image img,
-    .ai-advantage-image .img-placeholder {
+    .workflow-connections svg {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+    }
+
+    .workflow-line {
+      stroke-width: 1;
+      fill: none;
+      opacity: 0.20;
+      stroke-dasharray: 300;
+      stroke-dashoffset: 300;
+      animation: wf-draw-line 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .workflow-line:nth-child(1) { animation-delay: 600ms; }
+    .workflow-line:nth-child(2) { animation-delay: 700ms; }
+    .workflow-line:nth-child(3) { animation-delay: 800ms; }
+    .workflow-line:nth-child(4) { animation-delay: 900ms; }
+
+    /* Brand-colored lines */
+    .line-claude { stroke: #C15F3C; }
+    .line-chatgpt { stroke: #74AA9C; }
+    .line-gemini { stroke: #4992EA; }
+    .line-perplexity { stroke: #20808D; }
+
+    .workflow-line-pulse {
+      stroke-width: 1.5;
+      fill: none;
+      opacity: 0;
+      stroke-dasharray: 16 284;
+      animation: wf-pulse 5s ease-in-out infinite;
+    }
+    .workflow-line-pulse:nth-child(5) { animation-delay: 1.8s; }
+    .workflow-line-pulse:nth-child(6) { animation-delay: 2.3s; }
+    .workflow-line-pulse:nth-child(7) { animation-delay: 2.8s; }
+    .workflow-line-pulse:nth-child(8) { animation-delay: 3.3s; }
+
+    @keyframes wf-draw-line {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes wf-pulse {
+      0%, 100% { stroke-dashoffset: 300; opacity: 0; }
+      10% { opacity: 0.35; }
+      50% { opacity: 0.20; }
+      90% { opacity: 0; }
+      95% { stroke-dashoffset: -300; }
+    }
+
+    /* Baseline hub */
+    .workflow-hub {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      animation: wf-fade-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 1.1s forwards;
+    }
+
+    .workflow-hub-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+      border: 1px solid rgba(255,255,255,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    @property --wf-border-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .workflow-hub-icon--dark {
+      background: linear-gradient(180deg, #1a1a1e 0%, #111114 100%);
+      border-color: transparent;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.30), 0 0 28px rgba(168,130,100,0.25), 0 0 56px rgba(168,130,100,0.10);
+      position: relative;
+      overflow: visible;
+    }
+
+    .workflow-hub-icon--dark::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 28px;
+      background: conic-gradient(
+        from var(--wf-border-angle),
+        #C15F3C 0%,
+        #C15F3C 12%,
+        #74AA9C 25%,
+        #74AA9C 37%,
+        #4992EA 50%,
+        #60A9A6 56%,
+        #DBB82D 62%,
+        #20808D 75%,
+        #20808D 87%,
+        #C15F3C 100%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      padding: 4px;
+      animation: wf-border-spin 8s linear infinite;
+      opacity: 1;
+      z-index: -1;
+      filter: blur(0.3px);
+    }
+
+    @keyframes wf-border-spin {
+      to { --wf-border-angle: 360deg; }
+    }
+
+    .workflow-hub-icon svg {
+      width: 42px;
+      height: 42px;
+    }
+
+    .workflow-hub-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-fg-default);
+      letter-spacing: -0.01em;
+    }
+
+    .workflow-hub-sublabel {
+      font-size: 12px;
+      color: var(--color-fg-muted);
+      margin-top: -6px;
+    }
+
+    @keyframes wf-fade-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Light mode overrides */
+    [data-theme="light"] .workflow-tool-icon {
+      background: rgba(255,255,255,0.72);
+      border-color: rgba(0,0,0,0.06);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    [data-theme="light"] .workflow-tool:hover .workflow-tool-icon {
+      background: rgba(255,255,255,0.85);
+      border-color: rgba(0,0,0,0.08);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+    [data-theme="light"] .workflow-hub-icon {
+      background: linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.02) 100%);
+      border-color: rgba(0,0,0,0.10);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    [data-theme="light"] .workflow-hub-icon--dark {
+      background: linear-gradient(180deg, #0e0e10 0%, #0b0b0c 100%);
+      border-color: rgba(0,0,0,0.15);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    }
+    [data-theme="light"] .workflow-hub-icon--dark svg rect { fill: #0b0b0c; }
+    [data-theme="light"] .workflow-hub-icon--dark svg path { fill: #ffffff; }
+    [data-theme="light"] .workflow-line {
+      opacity: 0.25;
+    }
+    [data-theme="light"] .workflow-hub-icon--dark::before {
+      opacity: 1;
+    }
+
+    @media (max-width: 1023px) {
+      .ai-workflow h2 { font-size: 40px; line-height: 50px; }
+      .workflow-tools { gap: 48px; }
+      .workflow-tool-icon { width: 64px; height: 64px; border-radius: 16px; }
+      .workflow-tool-icon svg { width: 28px; height: 28px; }
+      .workflow-connections { height: 100px; }
+      .workflow-hub-icon { width: 80px; height: 80px; border-radius: 20px; }
+      .workflow-hub-icon svg { width: 34px; height: 34px; }
+    }
+
+    @media (max-width: 767px) {
+      .ai-workflow h2 { font-size: 32px; line-height: 40px; }
+      .workflow-tools { gap: 28px; flex-wrap: wrap; }
+      .workflow-tool-icon { width: 52px; height: 52px; border-radius: 14px; }
+      .workflow-tool-icon svg { width: 24px; height: 24px; }
+      .workflow-diagram { margin-top: 28px; }
+      .workflow-connections { height: 70px; }
+      .workflow-hub-icon { width: 64px; height: 64px; border-radius: 16px; }
+      .workflow-hub-icon svg { width: 28px; height: 28px; }
     }
 
     /* ===== Pricing Section ===== */
     .pricing-section {
-      background: var(--color-bg-main);
+      background:
+        radial-gradient(1000px 600px at 50% 10%, rgba(255,255,255,0.04), transparent 55%),
+        radial-gradient(800px 400px at 80% 90%, rgba(120,120,140,0.025), transparent 50%),
+        linear-gradient(180deg, #0d0d0f 0%, #0b0b0c 100%);
       padding: var(--padding-y) var(--padding-x);
       overflow: hidden;
     }
@@ -1240,102 +1757,102 @@
       text-align: center;
     }
 
-    .pricing-card {
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
       width: 100%;
-      max-width: 800px;
+      max-width: 1080px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-card {
+      position: relative;
       background: linear-gradient(180deg, #131416 0%, #111214 100%);
       border: 1px solid rgba(255,255,255,0.04);
       border-radius: var(--radius-card);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.025), 0 16px 48px rgba(0,0,0,0.25);
-      display: flex;
-      overflow: hidden;
-    }
-
-    .pricing-details {
-      flex: 1;
-      padding: 40px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.20);
       display: flex;
       flex-direction: column;
+      padding: 32px 28px;
       gap: 24px;
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .pricing-details h3 {
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.30);
+    }
+
+    .pricing-card.featured {
+      border: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.06);
+      background: linear-gradient(180deg, #18191c 0%, #111214 100%);
+      overflow: visible;
+      isolation: isolate;
+    }
+    .pricing-card.featured::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: calc(var(--radius-card) + 3px);
+      background: conic-gradient(
+        from var(--wf-border-angle),
+        #C15F3C 0%, #C15F3C 12%,
+        #74AA9C 25%, #74AA9C 37%,
+        #4992EA 50%, #60A9A6 56%, #DBB82D 62%,
+        #20808D 75%, #20808D 87%,
+        #C15F3C 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      padding: 3px;
+      animation: wf-border-spin 8s linear infinite;
+      z-index: -1;
+      filter: blur(0.5px);
+      pointer-events: none;
+    }
+
+    .pricing-card-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-fg-default);
+      background: #161719;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-full);
+      padding: 5px 14px;
+      white-space: nowrap;
+      z-index: 1;
+    }
+
+    .pricing-card-header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pricing-card-header h3 {
       font-family: var(--font-heading);
       letter-spacing: -0.02em;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 600;
-      line-height: 32px;
+      line-height: 28px;
       color: var(--color-fg-default);
     }
 
-    .pricing-details > p {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
-      letter-spacing: -0.37px;
-      color: var(--color-fg-muted);
-      max-width: 360px;
-    }
-
-    .pricing-includes-label {
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 16px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--color-fg-muted);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .pricing-includes-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--color-border);
-    }
-
-    .pricing-includes {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      list-style: none;
-    }
-
-    .pricing-includes li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
-      letter-spacing: -0.37px;
-      color: var(--color-fg-default);
-    }
-
-    .pricing-includes li svg {
-      width: 20px;
-      height: 20px;
-      min-width: 20px;
-      color: var(--color-fg-default);
-    }
-
-    .pricing-action {
-      flex: 0 0 auto;
-      width: 280px;
-      background: rgba(255,255,255,0.02);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      padding: 40px 32px;
-      border-left: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .pricing-action-label {
-      font-size: 14px;
+    .pricing-card-header p {
+      font-size: 13px;
       font-weight: 400;
       line-height: 20px;
       color: var(--color-fg-muted);
@@ -1343,37 +1860,94 @@
 
     .pricing-amount {
       font-family: var(--font-heading);
-      letter-spacing: -0.02em;
-      font-size: 56px;
+      font-size: 40px;
       font-weight: 600;
       line-height: 1;
       letter-spacing: -1px;
       color: var(--color-fg-default);
     }
 
-    .pricing-action .btn {
-      width: 100%;
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 999px;
+    .pricing-divider {
+      height: 1px;
+      background: var(--color-border);
     }
 
-    .pricing-action-secondary {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
+    .pricing-includes-label {
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 16px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--color-fg-muted);
-      transition: color 0.15s ease;
+      margin-bottom: -8px;
     }
 
-    .pricing-action-secondary:hover {
+    .pricing-includes-label.includes-purple,
+    .pricing-includes-label.includes-blue,
+    .pricing-includes-label.includes-orange,
+    .pricing-includes-label.includes-rose { color: var(--color-fg-muted); }
+
+    .pricing-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      list-style: none;
+      flex: 1;
+    }
+
+    .pricing-includes li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 19px;
       color: var(--color-fg-default);
+    }
+
+    .pricing-includes li svg {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      margin-top: 1px;
+      color: var(--color-fg-muted);
+    }
+
+    .pricing-card .btn {
+      width: 100%;
+      padding: 14px 24px;
+      font-size: 14px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .pricing-card .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--color-fg-default);
+      background: transparent;
+    }
+    .pricing-card .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .pricing-card.featured .btn-primary {
+      background: linear-gradient(180deg, #f0f0f2 0%, #e0e0e4 100%);
+      color: #0b0b0c;
+    }
+    .pricing-card.featured .btn-primary:hover {
+      background: linear-gradient(180deg, #ffffff 0%, #eeeeee 100%);
     }
 
     @media (max-width: 1023px) {
       .pricing-section h2 {
         font-size: 40px;
         line-height: 50px;
+      }
+
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
       }
     }
 
@@ -1383,21 +1957,23 @@
         line-height: 40px;
       }
 
-      .pricing-card {
-        flex-direction: column;
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 420px;
+        margin: 0 auto;
       }
 
-      .pricing-action {
-        width: 100%;
-        border-left: none;
-        border-top: 1px solid var(--color-border);
-        padding: 32px 40px;
+      .pricing-card {
+        padding: 28px 24px;
       }
     }
 
     /* ===== Case Studies Section ===== */
     .case-studies {
-      background: var(--color-bg-main);
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(255,255,255,0.035), transparent 50%),
+        linear-gradient(180deg, #0b0b0c 0%, #0e0e10 100%);
       padding: var(--padding-y) var(--padding-x);
       overflow: hidden;
     }
@@ -1418,15 +1994,22 @@
     }
 
     .case-studies-label {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
       font-size: 12px;
       font-weight: 600;
-      line-height: 16px;
-      letter-spacing: 0.12em;
+      line-height: 1;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      background: var(--color-accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(108,106,228,0.08);
+      color: #A8A6F0;
+    }
+    [data-theme="light"] .case-studies-label {
+      background: #F2F1FF;
+      color: #6C6AE4;
     }
 
     .case-studies-header h2 {
@@ -1450,6 +2033,20 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      border-radius: var(--radius-card);
+      transition:
+        transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    a.case-study-card {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .case-study-card:hover {
+      transform: translateY(-5px);
     }
 
     .case-study-card.full-width {
@@ -1458,11 +2055,36 @@
 
     .case-study-image {
       width: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 1 / 1;
       border-radius: var(--radius-card);
       overflow: hidden;
       background: #131416;
       border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      transition:
+        border-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .case-study-image > * {
+      transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), filter 420ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .case-study-image img {
+      filter: brightness(0.97) contrast(1.01);
+    }
+
+    .case-study-card:hover .case-study-image {
+      border-color: rgba(255,255,255,0.10);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.30);
+    }
+
+    .case-study-card:hover .case-study-image > * {
+      transform: scale(1.03);
+    }
+
+    .case-study-card:hover .case-study-image img {
+      filter: brightness(1.02) contrast(1.03);
     }
 
     .case-study-image img,
@@ -1470,18 +2092,17 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .case-study-card:hover .case-study-image img,
-    .case-study-card:hover .case-study-image .img-placeholder {
-      transform: scale(1.03);
     }
 
     .case-study-info {
       display: flex;
       flex-direction: column;
       gap: 8px;
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .case-study-card:hover .case-study-info {
+      transform: translateY(-2px);
     }
 
     .case-study-info h3 {
@@ -1502,13 +2123,36 @@
       color: var(--color-fg-muted);
     }
 
+    .case-study-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .chip {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: #111111;
+      white-space: nowrap;
+    }
+    .chip-sky { background: #E6EFFE; }
+    .chip-peach { background: #FBEAE4; }
+    .chip-mint { background: #E2F3EB; }
+    .chip-lavender { background: #EBEAFD; }
+    .chip-sand { background: #FFF1E3; }
+
     /* ===== CTA Section ===== */
     .cta-section {
       background:
-        radial-gradient(800px 500px at 50% 0%, rgba(255,255,255,0.04), transparent 60%),
-        linear-gradient(180deg, #141518 0%, #0e0f11 100%);
+        radial-gradient(1200px 700px at 0% 0%, rgba(255,255,255,0.08), transparent 55%),
+        radial-gradient(1000px 700px at 100% 30%, rgba(140,140,160,0.06), transparent 60%),
+        radial-gradient(800px 600px at 50% 100%, rgba(90,90,110,0.04), transparent 65%),
+        linear-gradient(180deg, #0a0a0c 0%, #111113 100%);
       border-top: 1px solid rgba(255,255,255,0.04);
-      padding: var(--padding-y) var(--padding-x) 0;
+      padding: var(--padding-y) var(--padding-x);
       overflow: hidden;
       position: relative;
       z-index: 1;
@@ -1518,7 +2162,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 64px;
     }
 
     .cta-content {
@@ -1542,28 +2185,15 @@
       text-align: center;
     }
 
-    .cta-image {
-      width: 100%;
-      height: min(56vw, 640px);
-      border-radius: var(--radius-card) var(--radius-card) 0 0;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .cta-image img,
-    .cta-image .img-placeholder {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
 
     /* ===== Footer ===== */
     .footer {
-      background: var(--color-bg-main);
+      background:
+        linear-gradient(180deg, #0e0e10 0%, #090909 100%);
       padding: 0 var(--padding-x);
       position: relative;
       z-index: 2;
-      overflow: hidden;
+      overflow: visible;
     }
 
     .footer .container {
@@ -1576,137 +2206,241 @@
     .footer-watermark {
       position: absolute;
       left: 50%;
-      bottom: -12%;
-      transform: translateX(-50%);
+      top: 75%;
+      transform: translate(-50%, -50%);
       font-family: var(--font-heading);
-      font-size: clamp(140px, 18vw, 340px);
+      font-size: clamp(160px, 20vw, 380px);
       font-weight: 800;
       line-height: 0.85;
       letter-spacing: -0.04em;
-      color: rgba(255,255,255,0.09);
+      color: rgba(255,255,255,0.07);
       white-space: nowrap;
       user-select: none;
       pointer-events: none;
-      z-index: 0;
+      z-index: -1;
     }
     [data-theme="light"] .footer-watermark {
-      color: rgba(0,0,0,0.035);
+      color: rgba(0,0,0,0.04);
     }
 
-    .footer-main {
+    /* Two-column footer layout */
+    .footer-grid {
       display: flex;
-      gap: 32px;
-      padding: var(--padding-y) 0;
+      justify-content: space-between;
+      align-items: start;
+      gap: 64px;
+      padding: var(--padding-y) 0 48px;
     }
 
     .footer-brand {
-      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 16px;
+      max-width: 340px;
     }
 
     .footer-description {
       font-size: 14px;
       font-weight: 400;
-      line-height: 20px;
-      letter-spacing: -0.37px;
-      color: var(--color-fg-default);
-      max-width: 384px;
+      line-height: 22px;
+      letter-spacing: -0.2px;
+      color: var(--color-fg-muted);
     }
 
-    .footer-socials {
+    .footer-col-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-fg-muted);
+      opacity: 0.45;
+      margin-bottom: 18px;
+    }
+
+    .footer-nav-groups {
       display: flex;
-      gap: 20px;
+      gap: 64px;
+      align-items: flex-start;
+      padding-top: 4px;
     }
 
-    .footer-socials a {
-      display: block;
-      width: 20px;
-      height: 20px;
-      color: var(--color-fg-default);
-      transition: color 0.15s ease;
-    }
-
-    .footer-socials a:hover {
-      color: var(--color-accent);
-    }
-
-    .footer-links-wrap {
-      flex: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 48px 32px;
-    }
-
-    .footer-col {
-      flex: 1;
-      min-width: 100px;
+    .footer-nav-group {
       display: flex;
       flex-direction: column;
-      gap: 16px;
     }
 
-    .footer-col-title {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 20px;
-      letter-spacing: -0.37px;
-      color: var(--color-fg-default);
-    }
-
-    .footer-col-links {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .footer-col-links a {
+    .footer-nav-group a {
       font-size: 14px;
       font-weight: 400;
-      line-height: 20px;
-      letter-spacing: -0.37px;
+      line-height: 1;
+      letter-spacing: -0.2px;
       color: var(--color-fg-muted);
       transition: color 0.15s ease;
+      white-space: nowrap;
+      padding: 7px 0;
     }
 
-    .footer-col-links a:hover {
+    .footer-nav-group a:hover {
       color: var(--color-fg-default);
     }
 
-    .footer-bottom {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-      padding: 40px 0 56px;
+    .footer-divider {
+      position: relative;
+      z-index: 1;
+      border: none;
       border-top: 1px solid var(--color-border);
-      font-size: 14px;
+      margin: 0;
+    }
+
+    .footer-lower {
+      position: relative;
+      padding: 28px 0 80px;
+      overflow: visible;
+    }
+
+    .footer-copyright {
+      position: relative;
+      z-index: 1;
+      font-size: 13px;
       font-weight: 400;
       line-height: 20px;
-      letter-spacing: -0.37px;
       color: var(--color-fg-muted);
+      opacity: 0.5;
     }
 
-    .footer-bottom-left {
-      flex: 1;
-    }
-
-    .footer-bottom-right {
+    /* ===== Contact Modal ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 12, 0.34);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
       display: flex;
-      gap: 24px;
       align-items: center;
-      justify-content: flex-end;
-      flex: 1;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 280ms cubic-bezier(0.22, 1, 0.36, 1);
     }
-
-    .footer-bottom-right a {
-      color: var(--color-fg-muted);
-      transition: color 0.15s ease;
+    .modal-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
     }
-
-    .footer-bottom-right a:hover {
-      color: var(--color-fg-default);
+    .modal-panel {
+      position: relative;
+      width: calc(100% - 32px);
+      max-width: 620px;
+      max-height: calc(100vh - 64px);
+      overflow-y: auto;
+      background: #fafafa;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 18px;
+      padding: 36px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.65);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 300ms cubic-bezier(0.22, 1, 0.36, 1), transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+      color: #191a1d;
     }
+    .modal-overlay.is-open .modal-panel {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: rgba(0,0,0,0.04);
+      border-radius: 10px;
+      cursor: pointer;
+      color: #555;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .modal-close:hover { background: rgba(0,0,0,0.08); color: #111; }
+    .modal-close svg { width: 18px; height: 18px; }
+    .modal-title {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #111;
+      margin-bottom: 6px;
+    }
+    .modal-subtitle {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #666;
+      margin-bottom: 28px;
+    }
+    .modal-form { display: flex; flex-direction: column; gap: 16px; }
+    .modal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .modal-field { display: flex; flex-direction: column; gap: 5px; }
+    .modal-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #888;
+    }
+    .modal-input,
+    .modal-select,
+    .modal-textarea {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.4;
+      padding: 13px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.72);
+      color: #111;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .modal-input:focus,
+    .modal-select:focus,
+    .modal-textarea:focus {
+      border-color: rgba(108,106,228,0.4);
+      box-shadow: 0 0 0 3px rgba(108,106,228,0.1);
+    }
+    .modal-input::placeholder,
+    .modal-textarea::placeholder { color: #bbb; }
+    .modal-select { padding-right: 36px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+    .modal-textarea { min-height: 120px; resize: vertical; }
+    .modal-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(180deg, #1c1c1f 0%, #080809 100%);
+      color: #ffffff;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 20px rgba(0,0,0,0.14);
+      transition: background 0.26s cubic-bezier(0.22, 1, 0.36, 1), transform 0.26s ease, box-shadow 0.26s ease;
+      margin-top: 4px;
+      width: 100%;
+    }
+    .modal-submit:hover {
+      background: linear-gradient(180deg, #28282b 0%, #111113 100%);
+      transform: translateY(-1px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 12px 28px rgba(0,0,0,0.18);
+    }
+    .modal-submit:active { transform: translateY(0) scale(0.98); }
+    body.modal-open { overflow: hidden; }
 
     /* ===== Responsive: Tablet (768px) ===== */
     @media (max-width: 1023px) {
@@ -1726,39 +2460,29 @@
       .services-overview-header .header-left h2,
       .approach-card h2,
       .services-detail-header h2,
-      .ai-advantage-text h2,
       .cta-content h2 {
         font-size: 40px;
         line-height: 50px;
       }
 
       .services-detail-body {
-        flex-direction: column;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 32px 40px;
       }
 
-      .services-detail-image {
-        width: 100%;
-        min-height: 300px;
+      .service-item:nth-child(2)::after {
+        display: none;
       }
 
-      .services-detail-image-inner {
-        position: relative;
-        bottom: auto;
-        width: 100%;
+      .service-item:nth-child(1),
+      .service-item:nth-child(2) {
+        border-bottom: 1px solid var(--color-border);
       }
 
-      .services-detail-list {
-        padding: 0 32px 32px;
-      }
-
-      .ai-advantage .container {
-        flex-direction: column;
-        gap: 48px;
-      }
-
-      .ai-advantage-image {
-        width: 100%;
-      }
+      .service-item:first-child { border-radius: 12px 0 0 0; }
+      .service-item:nth-child(2) { border-radius: 0 12px 0 0; }
+      .service-item:nth-child(3) { border-radius: 0 0 0 12px; }
+      .service-item:last-child { border-radius: 0 0 12px 0; }
 
       /* Case studies tablet */
       .case-studies-header h2 {
@@ -1788,33 +2512,63 @@
         display: none;
       }
 
+      .logo {
+        position: relative;
+        z-index: 1000;
+      }
+
       .nav-wrap.open {
         display: flex;
         flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
         position: fixed;
-        top: 72px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: var(--color-bg-main);
-        padding: 24px var(--padding-x);
-        z-index: 100;
-        gap: 24px;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(11, 11, 12, 0.92);
+        -webkit-backdrop-filter: blur(24px) saturate(120%);
+        backdrop-filter: blur(24px) saturate(120%);
+        padding: 80px var(--padding-x) 40px;
+        z-index: 999;
+        gap: 48px;
+        flex: none;
+      }
+
+      [data-theme="light"] .nav-wrap.open {
+        background: rgba(245, 245, 246, 0.96);
       }
 
       .nav-wrap.open .nav-menu {
         flex-direction: column;
-        align-items: stretch;
+        align-items: flex-start;
         gap: 4px;
+        width: 100%;
       }
 
       .nav-wrap.open .nav-menu a {
-        padding: 12px;
-        font-size: 16px;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        font-size: 32px;
+        font-weight: 650;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--color-fg-default);
+        border-radius: 0;
+        background: none;
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        -webkit-text-fill-color: unset;
       }
 
       .nav-wrap.open .nav-actions {
         flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        width: 100%;
+        padding-top: 8px;
+        border-top: 1px solid var(--color-border);
       }
 
       .nav-wrap.open .nav-actions .btn {
@@ -1822,10 +2576,46 @@
         justify-content: center;
       }
 
+      /* Text-flip animation */
+      .nav-wrap.open .nav-text-flip {
+        display: block;
+        position: relative;
+        overflow: hidden;
+        height: 1.1em;
+      }
+
+      .nav-wrap.open .nav-text-flip span {
+        display: block;
+        transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .nav-wrap.open .nav-text-flip span:nth-child(2) {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+
+      .nav-wrap.open .nav-menu a:hover .nav-text-flip span:first-child,
+      .nav-wrap.open .nav-menu a:active .nav-text-flip span:first-child {
+        transform: translateY(-100%);
+      }
+
+      .nav-wrap.open .nav-menu a:hover .nav-text-flip span:nth-child(2),
+      .nav-wrap.open .nav-menu a:active .nav-text-flip span:nth-child(2) {
+        transform: translateY(-100%);
+      }
+
+      /* Hamburger / close toggle */
       .mobile-toggle {
         display: block;
         margin-left: auto;
+        position: relative;
+        z-index: 1000;
       }
+
+      .mobile-toggle.is-open .icon-hamburger { display: none; }
+      .mobile-toggle.is-open .icon-close { display: block; }
 
       /* Hero mobile */
       .hero {
@@ -1853,7 +2643,17 @@
         padding-bottom: 0;
       }
 
-      /* hero bg mesh scales naturally */
+      .hero-bg-logo {
+        width: clamp(200px, 50vw, 350px);
+        height: clamp(200px, 50vw, 350px);
+      }
+
+      .hero-bg-circle {
+        width: 200px;
+        height: 200px;
+        top: 10%;
+        right: -10%;
+      }
 
       /* Logo cloud mobile */
       .logo-cloud h2 {
@@ -1914,43 +2714,22 @@
       }
 
       .services-detail-body {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        padding: 0 24px 32px;
       }
 
-      .services-detail-list {
-        padding: 0 24px 24px;
+      .service-item:not(:last-child)::after {
+        display: none;
       }
 
-      .services-detail-image {
-        min-height: 200px;
-        width: 100%;
+      .service-item:not(:last-child) {
+        border-bottom: 1px solid var(--color-border);
       }
 
-      .services-detail-image-inner {
-        position: relative;
-        bottom: auto;
-        width: 100%;
-      }
-
-      /* AI advantage mobile */
-      .ai-advantage .container {
-        flex-direction: column;
-        gap: 32px;
-      }
-
-      .ai-advantage-text h2 {
-        font-size: 32px;
-        line-height: 40px;
-      }
-
-      .ai-advantage-text p {
-        font-size: 16px;
-        line-height: 24px;
-      }
-
-      .ai-advantage-image {
-        width: 100%;
-      }
+      .service-item:first-child { border-radius: 12px 12px 0 0; }
+      .service-item:last-child { border-radius: 0 0 12px 12px; }
+      .service-item:nth-child(2),
+      .service-item:nth-child(3) { border-radius: 0; }
 
       /* Case studies mobile */
       .case-studies-header h2 {
@@ -1974,41 +2753,45 @@
       }
 
       /* Footer mobile */
-      .footer-main {
+      .footer-grid {
         flex-direction: column;
         gap: 40px;
       }
+      .footer-brand { max-width: 100%; }
+      .footer-nav-groups { gap: 48px; }
 
-      .footer-links-wrap {
-        gap: 32px 24px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 16px;
-        align-items: flex-start;
-      }
-
-      .footer-bottom-right {
-        justify-content: flex-start;
-      }
+      /* Modal mobile */
+      .modal-panel { padding: 28px 20px; }
+      .modal-row { grid-template-columns: 1fr; }
     }
 
-    /* ===== Section Eyebrow ===== */
+    /* ===== Section Eyebrow (pill style) ===== */
     .section-eyebrow {
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       line-height: 1;
       margin-bottom: 12px;
-      background: var(--color-accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--section-accent-subtle, rgba(85,85,85,0.1));
+      color: var(--section-accent, rgba(255,255,255,0.5));
+    }
+    /* Sections without accent class get explicit pill colors */
+    .cta-section .section-eyebrow {
+      background: rgba(74,143,214,0.08);
+      color: #7BB8F0;
+    }
+    [data-theme="light"] .cta-section .section-eyebrow {
+      background: #F1F6FF;
+      color: #4A8FD6;
     }
 
+    /* Cancel parent flex gap between eyebrow and title so only 12px margin remains */
     .section-eyebrow + h2 {
       margin-top: calc(var(--_parent-gap, 0px) * -1);
     }
@@ -2038,6 +2821,10 @@
       transition-delay: 530ms;
       transition-duration: 900ms;
     }
+    .hero-editorial .hero-text-cta.reveal {
+      transition-delay: 620ms;
+      transition-duration: 900ms;
+    }
   </style>
 </head>
 <body>
@@ -2057,22 +2844,23 @@
         <span class="logo-text">Baseline</span>
       </a>
 
-      <button class="mobile-toggle" onclick="document.querySelector('.nav-wrap').classList.toggle('open')" aria-label="Toggle menu">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <button class="mobile-toggle" onclick="(function(b){var w=document.querySelector('.nav-wrap');w.classList.toggle('open');b.classList.toggle('is-open')})(this)" aria-label="Toggle menu">
+        <svg class="icon-hamburger" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+        <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
 
       <div class="nav-wrap">
         <ul class="nav-menu">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#services"><span class="nav-text-flip"><span>Services</span><span>Services</span></span></a></li>
+          <li><a href="#pricing"><span class="nav-text-flip"><span>Pricing</span><span>Pricing</span></span></a></li>
+          <li><a href="#work"><span class="nav-text-flip"><span>Work</span><span>Work</span></span></a></li>
         </ul>
         <div class="nav-actions">
-          <a href="#" class="btn btn-secondary btn-sm">Log in</a>
-          <a href="#start" class="btn btn-primary btn-sm">Start a project</a>
+          <a href="#start" class="btn btn-primary btn-sm">Let's connect</a>
         </div>
       </div>
     </div>
@@ -2080,17 +2868,21 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero">
-    <div class="hero-bg-mesh" aria-hidden="true"></div>
-    <div class="hero-bg-noise" aria-hidden="true"></div>
-    <div class="hero-bg-light" aria-hidden="true"></div>
-
+    <div class="hero-bg-shape hero-bg-logo" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4.5C2 3.12 3.12 2 4.5 2H8v5.5H2V4.5z" fill="white"/><path d="M8 2h3.5C12.88 2 14 3.12 14 4.5V7.5H8V2z" fill="white" opacity="0.45"/><path d="M2 7.5h6V14H4.5C3.12 14 2 12.88 2 11.5V7.5z" fill="white" opacity="0.45"/><path d="M8 7.5h6v4c0 1.38-1.12 2.5-2.5 2.5H8V7.5z" fill="white" opacity="0.18"/></svg></div>
     <div class="container">
       <div class="hero-headline">
         <h1>
-          <span class="reveal" style="--i:0">We Help</span>
-          <span class="reveal hero-rotate-wrap" style="--i:1"><span class="hero-rotate-word active">Brands</span><span class="hero-rotate-word">Websites</span><span class="hero-rotate-word">Businesses</span><span class="hero-rotate-word">Companies</span></span>
-          <span class="reveal" style="--i:2">Look</span>
-          <span class="reveal" style="--i:3">Modern</span>
+          <span class="hero-line reveal" style="--i:0">We Help</span>
+          <span class="hero-line hero-line--rotating reveal" style="--i:1">
+            <span class="rotate-stage">
+              <span class="rotate-word rotate-word--lavender is-active">Brands</span>
+              <span class="rotate-word rotate-word--sky">Websites</span>
+              <span class="rotate-word rotate-word--peach">Businesses</span>
+              <span class="rotate-word rotate-word--mint">Companies</span>
+            </span>
+          </span>
+          <span class="hero-line reveal" style="--i:2">Look</span>
+          <span class="hero-line reveal" style="--i:3">Modern</span>
         </h1>
       </div>
 
@@ -2100,6 +2892,10 @@
           <p>Baseline is a creative studio designing modern brands, websites, and digital systems for ambitious companies.</p>
           <p>Brand identity, web design, development, and creative systems built with taste, speed, and precision.</p>
         </div>
+        <a href="#start" class="hero-text-cta reveal">
+          <span class="hero-text-cta__label">Start your project</span>
+          <span class="hero-text-cta__arrow" aria-hidden="true">&rarr;</span>
+        </a>
       </div>
     </div>
   </section>
@@ -2126,10 +2922,10 @@
   </section>
 
   <!-- ===== Feature: Services Overview ===== -->
-  <section class="services-overview" id="services">
+  <section class="services-overview accent-lavender">
     <div class="line-art line-art-adaptive" style="bottom:-10%;left:-10%;width:120%;height:120%;">
       <svg viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
-        <line x1="0" y1="580" x2="1200" y2="80" stroke="rgba(255,255,255,0.10)" stroke-width="0.75"/>
+        <line x1="0" y1="580" x2="1200" y2="80" stroke="rgba(255,255,255,0.04)" stroke-width="0.75"/>
       </svg>
     </div>
     <div class="services-overview-header">
@@ -2153,7 +2949,7 @@
   </section>
 
   <!-- ===== Feature: Approach Card ===== -->
-  <section class="approach-card-section" id="about">
+  <section class="approach-card-section accent-mint" id="about">
     <div class="container">
       <div class="approach-card">
         <span class="section-eyebrow">Our Approach</span>
@@ -2161,25 +2957,34 @@
         <div class="approach-features">
 
           <div class="approach-feature">
-            <svg class="approach-feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-            </svg>
+            <div class="approach-feature-icon-wrap icon-lavender">
+              <svg class="approach-feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.6 -0.6 24 24" stroke-width="1.2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.425 1.9h-18.05c-1.0493415 0 -1.9 0.8506584999999999 -1.9 1.9v15.2c0 1.04937 0.8506584999999999 1.9 1.9 1.9h18.05c1.04937 0 1.9 -0.8506299999999999 1.9 -1.9V3.8c0 -1.0493415 -0.8506299999999999 -1.9 -1.9 -1.9Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M0.475 6.6499999999999995h21.849999999999998" /><path stroke-linecap="round" stroke-linejoin="round" d="M6.175 6.6499999999999995v14.25" /><path stroke-linecap="round" stroke-linejoin="round" d="M6.175 13.299999999999999h16.15" /><path d="M3.8 4.5125c-0.1311665 0 -0.2375 -0.1063335 -0.2375 -0.2375s0.1063335 -0.2375 0.2375 -0.2375" /><path d="M3.8 4.5125c0.1311665 0 0.2375 -0.1063335 0.2375 -0.2375s-0.1063335 -0.2375 -0.2375 -0.2375" /><path d="M6.6499999999999995 4.5125c-0.1311665 0 -0.2375 -0.1063335 -0.2375 -0.2375s0.1063335 -0.2375 0.2375 -0.2375" /><path d="M6.6499999999999995 4.5125c0.1311665 0 0.2375 -0.1063335 0.2375 -0.2375s-0.1063335 -0.2375 -0.2375 -0.2375" /><path d="M9.5 4.5125c-0.1311665 0 -0.2375 -0.1063335 -0.2375 -0.2375s0.1063335 -0.2375 0.2375 -0.2375" /><path d="M9.5 4.5125c0.131195 0 0.2375 -0.1063335 0.2375 -0.2375s-0.106305 -0.2375 -0.2375 -0.2375" />
+              </svg>
+            </div>
             <h3>Design with precision</h3>
             <p>Every project starts with strategic design thinking — identity, visual systems, and layouts crafted to stand out and convert.</p>
           </div>
 
           <div class="approach-feature">
-            <svg class="approach-feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
-            </svg>
+            <div class="approach-feature-icon-wrap icon-mint">
+              <svg class="approach-feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.6 -0.6 24 24" stroke-width="1.2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M0.9525079999999999 2.1230124999999997 2.4725175 21.027965c0.095 0.855 1.2349904999999999 1.2349999999999999 1.8049905 0.475l4.3700095 -5.225h6.7450475c0.95 0 1.4249049999999999 -1.14 0.854905 -1.71L2.7575079999999996 1.2679935c-0.6649999999999999 -0.6650009499999999 -1.8999962 -0.094981 -1.805 0.855019Z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M15.962470000000001 0.8880153499999999H7.2225269999999995" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M18.81247 4.402964999999999h-8.739904999999998" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m21.852565 7.918154999999999 -7.927655000000001 0" />
+              </svg>
+            </div>
             <h3>Build with speed</h3>
             <p>AI-assisted workflows let us deliver agency-quality websites and brand assets in days, not months. No shortcuts, just smarter processes.</p>
           </div>
 
           <div class="approach-feature">
-            <svg class="approach-feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-            </svg>
+            <div class="approach-feature-icon-wrap icon-peach">
+              <svg class="approach-feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.6 -0.6 24 24" stroke-width="1.2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m7.8565 11.875 5.186999999999999 0" /><path stroke-linecap="round" stroke-linejoin="round" d="M12.35 18.4015c0 1.672 -1.9 2.9734999999999996 -1.9 2.9734999999999996s-1.9 -1.3015 -1.9 -2.9734999999999996a1.653 1.653 0 0 1 1.9 -1.7765 1.653 1.653 0 0 1 1.9 1.7765Z" /><path stroke-linecap="round" stroke-linejoin="round" d="m18.05 0.475 0 1.9" /><path stroke-linecap="round" stroke-linejoin="round" d="m19 1.4249999999999998 -1.9 0" /><path stroke-linecap="round" stroke-linejoin="round" d="M21.849999999999998 9.025h-1.615a1.2349999999999999 1.2349999999999999 0 0 0 -1.2349999999999999 1.2349999999999999 1.2445 1.2445 0 0 0 0.5509999999999999 1.0355l1.748 1.159A1.2445 1.2445 0 0 1 21.849999999999998 13.489999999999998a1.2349999999999999 1.2349999999999999 0 0 1 -1.2349999999999999 1.2349999999999999H19" /><path stroke-linecap="round" stroke-linejoin="round" d="m20.9 9.025 0 -0.95" /><path stroke-linecap="round" stroke-linejoin="round" d="m19.95 15.674999999999999 0 -0.95" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.8 1.4249999999999998H2.1849999999999996A1.2349999999999999 1.2349999999999999 0 0 0 0.95 2.6599999999999997a1.2445 1.2445 0 0 0 0.5509999999999999 1.0355l1.748 1.159A1.2445 1.2445 0 0 1 3.8 5.89a1.2349999999999999 1.2349999999999999 0 0 1 -1.2349999999999999 1.2349999999999999H0.95" /><path stroke-linecap="round" stroke-linejoin="round" d="m2.8499999999999996 1.4249999999999998 0 -0.95" /><path stroke-linecap="round" stroke-linejoin="round" d="m1.9 8.075 0 -0.95" /><path stroke-linecap="round" stroke-linejoin="round" d="M10.45 0.475C5.225 4.75 7.1819999999999995 9.5 8.549999999999999 14.25h3.8c1.3679999999999999 -4.75 3.3249999999999997 -9.5 -1.9 -13.774999999999999Z" /><path stroke-linecap="round" stroke-linejoin="round" d="m7.7044999999999995 11.399999999999999 -0.95 0.494A2.0614999999999997 2.0614999999999997 0 0 0 5.699999999999999 13.642V15.2a0.5035 0.5035 0 0 0 0.247 0.44649999999999995 0.44649999999999995 0.44649999999999995 0 0 0 0.494 0L8.549999999999999 14.25" /><path stroke-linecap="round" stroke-linejoin="round" d="m13.1955 11.333499999999999 0.95 0.513A2.0614999999999997 2.0614999999999997 0 0 1 15.2 13.642V15.2a0.5035 0.5035 0 0 1 -0.247 0.44649999999999995 0.44649999999999995 0.44649999999999995 0 0 1 -0.494 0L12.35 14.25" /><path stroke-linecap="round" stroke-linejoin="round" d="M9.025 6.175a1.4249999999999998 1.4249999999999998 0 1 0 2.8499999999999996 0 1.4249999999999998 1.4249999999999998 0 1 0 -2.8499999999999996 0" /><path stroke-linecap="round" stroke-linejoin="round" d="M6.175 18.05c-0.95 0 -1.9 0.5225 -1.9 1.4249999999999998l0 0.475H3.8a2.318 2.318 0 0 0 -2.375 2.375" /><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 18.05c0.9025 0 1.9 0.5225 1.9 1.4249999999999998l0 0.475h0.475a2.318 2.318 0 0 1 2.375 2.375" />
+              </svg>
+            </div>
             <h3>Launch with confidence</h3>
             <p>From brand guidelines to live website, we handle the full creative journey so you can focus on running your business.</p>
           </div>
@@ -2190,7 +2995,7 @@
   </section>
 
   <!-- ===== Feature: Services Detail ===== -->
-  <section class="services-detail" id="work">
+  <section class="services-detail accent-peach" id="services">
     <div class="container">
       <div class="services-detail-card">
         <div class="services-detail-header">
@@ -2199,10 +3004,9 @@
           <p>A complete suite of creative services designed for small businesses ready to upgrade their digital presence.</p>
         </div>
         <div class="services-detail-body">
-          <div class="services-detail-list">
 
             <div class="service-item">
-              <div class="service-item-icon">
+              <div class="service-item-icon icon-peach">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
                 </svg>
@@ -2214,9 +3018,9 @@
             </div>
 
             <div class="service-item">
-              <div class="service-item-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
+              <div class="service-item-icon icon-sky">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.6 -0.6 24 24" stroke-width="1.2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m3.8 8.549999999999999 1.4249999999999998 0" /><path stroke-linecap="round" stroke-linejoin="round" d="m4.75 20.9 13.299999999999999 0" /><path stroke-linecap="round" stroke-linejoin="round" d="m10.924999999999999 19 0 1.9" /><path stroke-linecap="round" stroke-linejoin="round" d="m0.475 15.2 21.849999999999998 0" /><path stroke-linecap="round" stroke-linejoin="round" d="M1.9 1.9h19s1.4249999999999998 0 1.4249999999999998 1.4249999999999998v14.25s0 1.4249999999999998 -1.4249999999999998 1.4249999999999998H1.9S0.475 19 0.475 17.575v-14.25S0.475 1.9 1.9 1.9" /><path stroke-linecap="round" stroke-linejoin="round" d="m3.8 5.225 2.5184499999999996 0" /><path stroke-linecap="round" stroke-linejoin="round" d="m8.075 5.225 1.4249999999999998 0" /><path stroke-linecap="round" stroke-linejoin="round" d="M7.13545 8.549999999999999 9.5 8.549999999999999" /><path stroke-linecap="round" stroke-linejoin="round" d="m3.8 11.875 5.699999999999999 0" /><path stroke-linecap="round" stroke-linejoin="round" d="m12.32435 1.9 0 13.299999999999999" /><path stroke-linecap="round" stroke-linejoin="round" d="m12.32435 12.127699999999999 2.90035 -2.82815a2.78445 2.78445 0 0 1 3.33735 -0.07885l3.7629499999999996 3.1445" /><path stroke-linecap="round" stroke-linejoin="round" d="M15.24465 5.6068999999999996a0.475 0.475 0 1 0 0.95 0 0.475 0.475 0 1 0 -0.95 0" />
                 </svg>
               </div>
               <div class="service-item-content">
@@ -2226,9 +3030,9 @@
             </div>
 
             <div class="service-item">
-              <div class="service-item-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+              <div class="service-item-icon icon-mint">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.6 -0.6 24 24" stroke-width="1.2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M0.475 11.399999999999999a10.924999999999999 4.2749999999999995 0 1 0 21.849999999999998 0 10.924999999999999 4.2749999999999995 0 1 0 -21.849999999999998 0" /><path stroke-linecap="round" stroke-linejoin="round" d="M5.93778960313 20.861037933194996a10.924999999999999 4.2749999999999995 -60 1 0 10.924999999999999 -18.922655072650002 10.924999999999999 4.2749999999999995 -60 1 0 -10.924999999999999 18.922655072650002" /><path stroke-linecap="round" stroke-linejoin="round" d="M7.6980310019800005 13.53778960313a10.924999999999999 4.2749999999999995 60 1 0 7.4045172023 -4.2749999999999995 10.924999999999999 4.2749999999999995 60 1 0 -7.4045172023 4.2749999999999995" /><path stroke-linecap="round" stroke-linejoin="round" d="M9.975 11.399999999999999a1.4249999999999998 1.4249999999999998 0 1 0 2.8499999999999996 0 1.4249999999999998 1.4249999999999998 0 1 0 -2.8499999999999996 0" />
                 </svg>
               </div>
               <div class="service-item-content">
@@ -2238,9 +3042,9 @@
             </div>
 
             <div class="service-item">
-              <div class="service-item-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 002.25 2.25h13.5A2.25 2.25 0 0021 18V8.25m-18 0V6a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6zM7.5 6h.008v.008H7.5V6zm2.25 0h.008v.008H9.75V6z" />
+              <div class="service-item-icon icon-lavender">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.6 -0.6 24 24" stroke-width="1.2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 8.074040499999999H3.8V16.14905h15.2V8.074040499999999Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.8 19h5.699999999999999" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.8 21.849999999999998h5.699999999999999" /><path stroke-linecap="round" stroke-linejoin="round" d="M12.35 22.325V19h6.6499999999999995v3.3249999999999997" /><path stroke-linecap="round" stroke-linejoin="round" d="m8.075 16.15 3.7582 -4.18c0.24947 -0.277115 0.55632 -0.49666 0.89908 -0.64334 0.34285499999999997 -0.146775 0.7134499999999999 -0.217075 1.08623 -0.20624499999999998 0.372685 0.01083 0.738625 0.1026 1.07236 0.26904 0.33364 0.166345 0.62719 0.40336999999999995 0.86013 0.694545L19 16.15" /><path stroke-linecap="round" stroke-linejoin="round" d="M7.125 11.87405c0.262333 0 0.475 -0.21270499999999998 0.475 -0.475s-0.212667 -0.475 -0.475 -0.475 -0.475 0.21270499999999998 -0.475 0.475 0.212667 0.475 0.475 0.475Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M0.475 22.325v-19.95c0 -0.5039085 0.2001783 -0.9871829999999999 0.5565005 -1.3434994999999998C1.387817 0.6751782999999999 1.8710915 0.475 2.375 0.475h18.05c0.50388 0 0.9871449999999998 0.2001783 1.3434899999999999 0.5565005 0.35634499999999997 0.3563165 0.55651 0.839591 0.55651 1.3434994999999998v19.95" /><path stroke-linecap="round" stroke-linejoin="round" d="M0.475 5.225h21.849999999999998" /><path d="M3.8 3.0875c-0.1311665 0 -0.2375 -0.1063335 -0.2375 -0.2375s0.1063335 -0.2375 0.2375 -0.2375" /><path d="M3.8 3.0875c0.1311665 0 0.2375 -0.1063335 0.2375 -0.2375s-0.1063335 -0.2375 -0.2375 -0.2375" /><path d="M6.6499999999999995 3.0875c-0.1311665 0 -0.2375 -0.1063335 -0.2375 -0.2375s0.1063335 -0.2375 0.2375 -0.2375" /><path d="M6.6499999999999995 3.0875c0.1311665 0 0.2375 -0.1063335 0.2375 -0.2375s-0.1063335 -0.2375 -0.2375 -0.2375" /><path d="M9.5 3.0875c-0.1311665 0 -0.2375 -0.1063335 -0.2375 -0.2375s0.1063335 -0.2375 0.2375 -0.2375" /><path d="M9.5 3.0875c0.131195 0 0.2375 -0.1063335 0.2375 -0.2375s-0.106305 -0.2375 -0.2375 -0.2375" />
                 </svg>
               </div>
               <div class="service-item-content">
@@ -2249,99 +3053,160 @@
               </div>
             </div>
 
-          </div>
-          <div class="services-detail-image">
-            <div class="services-detail-image-inner">
-              <div class="img-placeholder" aria-label="Website design dashboard"></div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== Feature: AI Advantage ===== -->
-  <section class="ai-advantage">
+  <!-- ===== Why Us Section ===== -->
+  <section class="ai-workflow accent-sky" id="why-us">
     <div class="container">
-      <div class="ai-advantage-content">
-        <div class="ai-advantage-text">
-          <span class="section-eyebrow">Why Us</span>
-          <h2>The AI advantage, without the gimmick</h2>
-          <p>We use AI to accelerate our creative process — not replace it. The result is premium design work delivered faster and more affordably than traditional agencies.</p>
+      <span class="section-eyebrow">Why Us</span>
+      <h2>The AI advantage, without the gimmick</h2>
+      <p>We use AI to accelerate our creative process — not replace it. The result is premium design work delivered faster and more affordably than traditional agencies.</p>
+
+      <div class="workflow-diagram">
+        <!-- AI Tool logos -->
+        <div class="workflow-tools">
+
+          <div class="workflow-tool">
+            <div class="workflow-tool-icon">
+              <!-- Claude (Anthropic) -->
+              <svg viewBox="0 -.01 39.5 39.53" fill="#C15F3C" xmlns="http://www.w3.org/2000/svg"><path d="m7.75 26.27 7.77-4.36.13-.38-.13-.21h-.38l-1.3-.08-4.44-.12-3.85-.16-3.73-.2-.94-.2-.88-1.16.09-.58.79-.53 1.13.1 2.5.17 3.75.26 2.72.16 4.03.42h.64l.09-.26-.22-.16-.17-.16-3.88-2.63-4.2-2.78-2.2-1.6-1.19-.81-.6-.76-.26-1.66 1.08-1.19 1.45.1.37.1 1.47 1.13 3.14 2.43 4.1 3.02.6.5.24-.17.03-.12-.27-.45-2.23-4.03-2.38-4.1-1.06-1.7-.28-1.02c-.1-.42-.17-.77-.17-1.2l1.23-1.67.68-.22 1.64.22.69.6 1.02 2.33 1.65 3.67 2.56 4.99.75 1.48.4 1.37.15.42h.26v-.24l.21-2.81.39-3.45.38-4.44.13-1.25.62-1.5 1.23-.81.96.46.79 1.13-.11.73-.47 3.05-.92 4.78-.6 3.2h.35l.4-.4 1.62-2.15 2.72-3.4 1.2-1.35 1.4-1.49.9-.71h1.7l1.25 1.86-.56 1.92-1.75 2.22-1.45 1.88-2.08 2.8-1.3 2.24.12.18.31-.03 4.7-1 2.54-.46 3.03-.52 1.37.64.15.65-.54 1.33-3.24.8-3.8.76-5.66 1.34-.07.05.08.1 2.55.24 1.09.06h2.67l4.97.37 1.3.86.78 1.05-.13.8-2 1.02-2.7-.64-6.3-1.5-2.16-.54h-.3v.18l1.8 1.76 3.3 2.98 4.13 3.84.21.95-.53.75-.56-.08-3.63-2.73-1.4-1.23-3.17-2.67h-.21v.28l.73 1.07 3.86 5.8.2 1.78-.28.58-1 .35-1.1-.2-2.26-3.17-2.33-3.57-1.88-3.2-.23.13-1.11 11.95-.52.61-1.2.46-1-.76-.53-1.23.53-2.43.64-3.17.52-2.52.47-3.13.28-1.04-.02-.07-.23.03-2.36 3.24-3.59 4.85-2.84 3.04-.68.27-1.18-.61.11-1.09.66-.97 3.93-5 2.37-3.1 1.53-1.79-.01-.26h-.09l-10.44 6.78-1.86.24-.8-.75.1-1.23.38-.4 3.14-2.16z"/></svg>
+            </div>
+            <span class="workflow-tool-label">Claude</span>
+          </div>
+
+          <div class="workflow-tool">
+            <div class="workflow-tool-icon">
+              <!-- ChatGPT (OpenAI) -->
+              <svg viewBox="0 0 24 24" fill="#74AA9C" xmlns="http://www.w3.org/2000/svg"><path d="M22.282 9.821a5.985 5.985 0 00-.516-4.91 6.046 6.046 0 00-6.51-2.9A6.065 6.065 0 0011.71.418a6.047 6.047 0 00-5.764 4.167 5.986 5.986 0 00-3.997 2.9 6.049 6.049 0 00.743 7.097 5.98 5.98 0 00.51 4.911 6.051 6.051 0 006.515 2.9A5.985 5.985 0 0013.26 23.577a6.056 6.056 0 005.772-4.169 5.985 5.985 0 003.997-2.9 6.052 6.052 0 00-.747-6.687zM13.26 21.95a4.498 4.498 0 01-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 00.392-.681v-6.737l2.02 1.168a.071.071 0 01.038.052v5.583a4.504 4.504 0 01-4.494 4.494zM3.6 17.943a4.49 4.49 0 01-.535-3.014l.142.085 4.783 2.759a.771.771 0 00.78 0l5.843-3.369v2.332a.08.08 0 01-.033.062L9.74 19.591a4.504 4.504 0 01-6.14-1.648zM2.34 7.896a4.485 4.485 0 012.366-1.973V11.6a.766.766 0 00.388.676l5.815 3.355-2.02 1.168a.076.076 0 01-.071 0l-4.83-2.786A4.504 4.504 0 012.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 01.071 0l4.83 2.791a4.494 4.494 0 01-.676 8.105v-5.678a.79.79 0 00-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 00-.785 0L9.409 9.23V6.897a.066.066 0 01.028-.061l4.83-2.787a4.5 4.5 0 016.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 01-.038-.057V6.075a4.5 4.5 0 017.375-3.453l-.142.08L8.704 5.46a.795.795 0 00-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>
+            </div>
+            <span class="workflow-tool-label">ChatGPT</span>
+          </div>
+
+          <div class="workflow-tool">
+            <div class="workflow-tool-icon">
+              <!-- Google Gemini -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gemini-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4992EA"/><stop offset="35%" stop-color="#60A9A6"/><stop offset="65%" stop-color="#DBB82D"/><stop offset="100%" stop-color="#E8535D"/></linearGradient></defs><path fill="url(#gemini-grad)" d="M12 0C12 6.627 6.627 12 0 12c6.627 0 12 5.373 12 12 0-6.627 5.373-12 12-12C17.373 12 12 6.627 12 0z"/></svg>
+            </div>
+            <span class="workflow-tool-label">Gemini</span>
+          </div>
+
+          <div class="workflow-tool">
+            <div class="workflow-tool-icon">
+              <!-- Perplexity -->
+              <svg viewBox="0 0 24 24" fill="#20808D" xmlns="http://www.w3.org/2000/svg"><path d="M12.005.75L6.26 5.712V1.5H4.76v5.823L.75 11.085v7.125h4.01v4.29h1.5V18.21h4.245v5.04h1.5v-5.04h4.245v4.29h1.5v-4.29h4.01v-7.125l-4.01-3.762V1.5h-1.5v4.212L12.005.75zm4.245 15.96v-4.605l3.51 3.292v4.023h-2.51v-2.71zm-1.5-5.595v5.595H12.505V10.523l2.245-2.109v2.7zm-5.745 0v-2.7l2.245 2.109v6.187H9.005v-5.595zm-1.5.99v4.605H5.26V15.397l2.245-2.109v-1.183zm8.745-1.883l-4.245-3.984-4.245 3.984V8.413l4.245-3.984 4.245 3.984z"/></svg>
+            </div>
+            <span class="workflow-tool-label">Perplexity</span>
+          </div>
+
         </div>
-        <ul class="checklist">
-          <li>
-            <svg class="checklist-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+
+        <!-- Animated connection lines -->
+        <div class="workflow-connections">
+          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Static lines — anchored to each tool midpoint -->
+            <path class="workflow-line line-claude" d="M298 0 C298 65, 500 55, 500 120" />
+            <path class="workflow-line line-chatgpt" d="M433 0 C433 65, 500 55, 500 120" />
+            <path class="workflow-line line-gemini" d="M567 0 C567 65, 500 55, 500 120" />
+            <path class="workflow-line line-perplexity" d="M702 0 C702 65, 500 55, 500 120" />
+            <!-- Pulse overlays -->
+            <path class="workflow-line-pulse line-claude" d="M298 0 C298 65, 500 55, 500 120" />
+            <path class="workflow-line-pulse line-chatgpt" d="M433 0 C433 65, 500 55, 500 120" />
+            <path class="workflow-line-pulse line-gemini" d="M567 0 C567 65, 500 55, 500 120" />
+            <path class="workflow-line-pulse line-perplexity" d="M702 0 C702 65, 500 55, 500 120" />
+          </svg>
+        </div>
+
+        <!-- Baseline Studio hub -->
+        <div class="workflow-hub">
+          <div class="workflow-hub-icon workflow-hub-icon--dark">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#ffffff"/>
+              <path d="M5 10.5C5 8.01 7.01 6 9.5 6H16v11H5V10.5z" fill="#0b0b0c"/>
+              <path d="M16 6h6.5C24.99 6 27 8.01 27 10.5V17H16V6z" fill="#0b0b0c" opacity="0.7"/>
+              <path d="M5 17h11v11H9.5C7.01 28 5 25.99 5 23.5V17z" fill="#0b0b0c" opacity="0.7"/>
+              <path d="M16 17h11v6.5c0 2.49-2.01 4.5-4.5 4.5H16V17z" fill="#0b0b0c" opacity="0.4"/>
             </svg>
-            <span>Agency-quality results at a fraction of the cost</span>
-          </li>
-          <li>
-            <svg class="checklist-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-            </svg>
-            <span>Weeks of work delivered in days</span>
-          </li>
-          <li>
-            <svg class="checklist-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-            </svg>
-            <span>Modern, conversion-optimized design</span>
-          </li>
-        </ul>
-        <a href="#start" class="btn btn-secondary" style="align-self:flex-start;">Learn more</a>
-      </div>
-      <div class="ai-advantage-image">
-        <div class="img-placeholder" aria-label="Creative team at work"></div>
+          </div>
+          <span class="workflow-hub-label">Baseline Studio</span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ===== Pricing Section ===== -->
-  <section class="pricing-section" id="pricing">
+  <section class="pricing-section accent-sky" id="pricing">
     <div class="container">
       <span class="section-eyebrow">Pricing</span>
       <h2>Simple, transparent pricing</h2>
-      <div class="pricing-card">
-        <div class="pricing-details">
-          <h3>Single Landing Page</h3>
-          <p>A fully custom, conversion-optimized landing page designed and developed for your business. No templates. No shortcuts. Just premium work, delivered fast.</p>
+      <div class="pricing-grid">
+
+        <!-- Landing Page -->
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Landing Page</h3>
+            <p>A custom, conversion-optimized landing page — no templates, premium quality, delivered fast.</p>
+          </div>
+          <span class="pricing-amount">$999</span>
+          <div class="pricing-divider"></div>
           <span class="pricing-includes-label">What's included</span>
           <ul class="pricing-includes">
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" /></svg>
-              Custom responsive design
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
-              Mobile-optimized development
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
-              Brand-aligned copywriting
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
-              SEO-ready, fast-loading code
-            </li>
-            <li>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182M2.985 19.644l3.181-3.183" /></svg>
-              2 rounds of revisions
-            </li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Custom responsive design</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Mobile-optimized development</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Brand-aligned copywriting</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>SEO-ready fast-loading code</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>2 rounds of revisions</li>
           </ul>
+          <a href="#start" class="btn btn-secondary" data-package="Landing Page">Start your project</a>
         </div>
-        <div class="pricing-action">
-          <span class="pricing-action-label">One-time payment</span>
-          <span class="pricing-amount">$999</span>
-          <a href="#start" class="btn btn-primary">Start your project</a>
-          <a href="#" class="pricing-action-secondary">Schedule a free consultation</a>
+
+        <!-- Baseline Website (Featured) -->
+        <div class="pricing-card featured">
+          <span class="pricing-card-badge">Most Popular</span>
+          <div class="pricing-card-header">
+            <h3>Baseline Website</h3>
+            <p>A complete small business website designed to establish credibility, generate leads, and create a strong modern online presence.</p>
+          </div>
+          <span class="pricing-amount">$1,499</span>
+          <div class="pricing-divider"></div>
+          <span class="pricing-includes-label">What's included</span>
+          <ul class="pricing-includes">
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>3 custom pages</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Mobile-optimized design</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>SEO-friendly structure</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>2 rounds of revisions</li>
+          </ul>
+          <a href="#start" class="btn btn-primary" data-package="Baseline Website">Start your project</a>
         </div>
+
+        <!-- Premium Custom Website -->
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Premium Custom Website</h3>
+            <p>A tailored website engagement for businesses with more complex goals, content, or feature needs — scoped and quoted to fit.</p>
+          </div>
+          <span class="pricing-amount">Let's Chat</span>
+          <div class="pricing-divider"></div>
+          <span class="pricing-includes-label">What's included</span>
+          <ul class="pricing-includes">
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Custom scope & planning</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Advanced layouts & interactions</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Brand system refinement</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Performance optimization</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Tailored quote based on needs</li>
+          </ul>
+          <a href="#start" class="btn btn-secondary" data-package="Premium Custom Website">Start your project</a>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- ===== Case Studies Section ===== -->
-  <section class="case-studies" id="work-examples">
+  <section class="case-studies" id="work">
     <div class="container">
       <div class="case-studies-header">
         <span class="case-studies-label">Explore Projects</span>
@@ -2349,45 +3214,65 @@
       </div>
       <div class="case-studies-grid">
 
-        <div class="case-study-card">
+        <a href="/kinetic.html" class="case-study-card">
           <div class="case-study-image">
-            <div class="img-placeholder" aria-label="Bloom Botanicals rebrand"></div>
-          </div>
-          <div class="case-study-info">
-            <h3>Bloom Botanicals</h3>
-            <p>A modern rebrand for a neighborhood florist ready to grow beyond the block.</p>
-          </div>
-        </div>
-
-        <div class="case-study-card">
-          <div class="case-study-image">
-            <div class="img-placeholder" aria-label="Kinetic Fitness website"></div>
+            <img src="assets/case-studies/kinetic/hero.jpg" alt="Kinetic Fitness website" loading="lazy">
           </div>
           <div class="case-study-info">
             <h3>Kinetic Fitness</h3>
             <p>Launching a fitness studio into the digital age with a conversion-focused website.</p>
+            <div class="case-study-chips">
+              <span class="chip chip-sky">Website Design</span>
+              <span class="chip chip-peach">Creative Direction</span>
+              <span class="chip chip-lavender">Development</span>
+            </div>
           </div>
-        </div>
+        </a>
 
-        <div class="case-study-card">
+        <a href="/volta.html" class="case-study-card">
           <div class="case-study-image">
-            <div class="img-placeholder" aria-label="Volta Coffee e-commerce"></div>
+            <img src="assets/case-studies/volta/hero.jpg" alt="Volta Coffee e-commerce" loading="lazy">
           </div>
           <div class="case-study-info">
             <h3>Volta Coffee</h3>
             <p>Helping a specialty roaster sell direct online with a custom e-commerce experience.</p>
+            <div class="case-study-chips">
+              <span class="chip chip-sky">Website Design</span>
+              <span class="chip chip-peach">Brand Design</span>
+              <span class="chip chip-lavender">E-commerce</span>
+            </div>
           </div>
-        </div>
+        </a>
 
-        <div class="case-study-card">
+        <a href="/brightpath.html" class="case-study-card">
           <div class="case-study-image">
-            <div class="img-placeholder" aria-label="Clearpath Accounting brand"></div>
+            <img src="assets/case-studies/brightpath/hero.jpg" alt="BrightPath Daycare brand and website" loading="lazy">
           </div>
           <div class="case-study-info">
-            <h3>Clearpath Accounting</h3>
-            <p>From spreadsheet to standout brand for a growing Chicago-based firm.</p>
+            <h3>BrightPath Daycare</h3>
+            <p>A modern brand identity and website for a growing daycare focused on clarity, warmth, and trust for parents.</p>
+            <div class="case-study-chips">
+              <span class="chip chip-peach">Brand Identity</span>
+              <span class="chip chip-sky">Website Design</span>
+              <span class="chip chip-mint">Small Business</span>
+            </div>
           </div>
-        </div>
+        </a>
+
+        <a href="/riverwalk.html" class="case-study-card">
+          <div class="case-study-image">
+            <img src="assets/case-studies/riverwalk/hero.jpg" alt="Riverwalk Realty brand and website" loading="lazy">
+          </div>
+          <div class="case-study-info">
+            <h3>Riverwalk Realty</h3>
+            <p>A sharper brand and polished digital presence for a local realty company.</p>
+            <div class="case-study-chips">
+              <span class="chip chip-peach">Brand Identity</span>
+              <span class="chip chip-sky">Website Design</span>
+              <span class="chip chip-mint">Real Estate</span>
+            </div>
+          </div>
+        </a>
 
       </div>
     </div>
@@ -2397,26 +3282,22 @@
   <section class="cta-section" id="start">
     <div class="line-art" style="bottom:-60%;left:-25%;width:900px;height:900px;">
       <svg viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg" width="900" height="900">
-        <circle cx="450" cy="450" r="380" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+        <circle cx="450" cy="450" r="380" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
       </svg>
     </div>
     <div class="container">
       <div class="cta-content">
         <span class="section-eyebrow reveal">Get Started</span>
         <h2 class="reveal">Ready to upgrade your brand and digital presence?</h2>
-        <a href="#" class="btn btn-cta">Start your project today</a>
-      </div>
-      <div class="cta-image">
-        <div class="img-placeholder" aria-label="Website design preview"></div>
+        <a href="#" class="btn btn-cta">Start your project</a>
       </div>
     </div>
   </section>
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
-    <div class="footer-watermark" aria-hidden="true">Baseline</div>
     <div class="container">
-      <div class="footer-main">
+      <div class="footer-grid">
         <div class="footer-brand">
           <a href="#" class="logo">
             <div class="logo-mark">
@@ -2430,33 +3311,8 @@
             <span class="logo-text">Baseline</span>
           </a>
           <p class="footer-description">AI-powered creative studio helping small businesses build premium brands and modern websites.</p>
-          <div class="footer-socials">
-            <!-- X / Twitter -->
-            <a href="#" aria-label="X">
-              <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.27 1.61h2.97l-6.49 7.41 7.63 10.09h-5.98l-4.68-6.12-5.35 6.12H.39l6.94-7.93L0 1.61h6.13l4.23 5.59 4.91-5.59zm-1.04 15.7h1.64L5.88 3.3H4.12l10.11 13.01z"/>
-              </svg>
-            </a>
-            <!-- Instagram -->
-            <a href="#" aria-label="Instagram">
-              <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 1.8c2.67 0 2.99.01 4.04.06 2.08.09 3.05 1.08 3.14 3.14.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.09 2.05-1.06 3.04-3.14 3.14-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-2.09-.1-3.05-1.1-3.14-3.14-.05-1.05-.06-1.37-.06-4.04s.01-2.99.06-4.04C2.91 2.94 3.88 1.95 5.96 1.86 7.01 1.81 7.33 1.8 10 1.8zM10 0C7.28 0 6.94.01 5.88.06 3.04.21 1.52 1.74 1.37 4.58.32 5.64.31 5.98.31 10s.01 4.36.06 5.42c.15 2.83 1.67 4.36 4.51 4.52C5.94 19.99 6.28 20 10 20s4.06-.01 5.12-.06c2.83-.16 4.37-1.68 4.52-4.52.05-1.06.06-1.4.06-5.42s-.01-4.36-.06-5.42C19.49 1.75 17.96.22 15.12.06 14.06.01 13.72 0 10 0zm0 4.86a5.14 5.14 0 100 10.28 5.14 5.14 0 000-10.28zm0 8.47A3.33 3.33 0 1113.33 10 3.33 3.33 0 0110 13.33zM15.34 3.46a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/>
-              </svg>
-            </a>
-            <!-- LinkedIn -->
-            <a href="#" aria-label="LinkedIn">
-              <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18.52 0H1.48C.66 0 0 .64 0 1.44v17.12C0 19.36.66 20 1.48 20h17.04c.82 0 1.48-.64 1.48-1.44V1.44C20 .64 19.34 0 18.52 0zM5.93 17.04H2.96V7.5h2.97v9.54zM4.45 6.2a1.72 1.72 0 110-3.44 1.72 1.72 0 010 3.44zm12.6 10.84h-2.97v-4.64c0-1.11-.02-2.53-1.54-2.53-1.54 0-1.78 1.2-1.78 2.45v4.72H7.79V7.5h2.85v1.3h.04c.4-.75 1.37-1.54 2.81-1.54 3.01 0 3.56 1.98 3.56 4.55v5.23z"/>
-              </svg>
-            </a>
-            <!-- Facebook -->
-            <a href="#" aria-label="Facebook">
-              <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 10c0-5.52-4.48-10-10-10S0 4.48 0 10c0 4.99 3.66 9.13 8.44 9.88v-6.99H5.9V10h2.54V7.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V10h2.78l-.44 2.89h-2.34v6.99C16.34 19.13 20 14.99 20 10z"/>
-              </svg>
-            </a>
-          </div>
           <div class="theme-toggle">
+            <span class="footer-col-label" style="margin-bottom:0">Theme</span>
             <button class="theme-toggle-track" id="theme-toggle" aria-label="Toggle dark and light mode" role="switch" aria-checked="false">
               <span class="theme-toggle-thumb">
                 <svg class="theme-toggle-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.455 2.004a.75.75 0 01.26.77 7 7 0 009.958 7.967.75.75 0 011.067.853A8.5 8.5 0 116.647 1.921a.75.75 0 01.808.083z" clip-rule="evenodd"/></svg>
@@ -2465,46 +3321,25 @@
             </button>
           </div>
         </div>
-        <div class="footer-links-wrap">
-          <div class="footer-col">
-            <p class="footer-col-title">Services</p>
-            <div class="footer-col-links">
-              <a href="#">Brand Identity</a>
-              <a href="#">Web Design</a>
-              <a href="#">Development</a>
-              <a href="#">Landing Pages</a>
-              <a href="#">Digital Refresh</a>
-            </div>
+        <nav class="footer-nav-groups">
+          <div class="footer-nav-group">
+            <p class="footer-col-label">Explore</p>
+            <a href="#services">Services</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#work">Work</a>
           </div>
-          <div class="footer-col">
-            <p class="footer-col-title">Company</p>
-            <div class="footer-col-links">
-              <a href="#">About</a>
-              <a href="#">Process</a>
-              <a href="#">Work</a>
-              <a href="#">Blog</a>
-              <a href="#">Pricing</a>
-            </div>
+          <div class="footer-nav-group">
+            <p class="footer-col-label">Studio</p>
+            <a href="about.html">About</a>
+            <a href="#start">Let's connect</a>
           </div>
-          <div class="footer-col">
-            <p class="footer-col-title">Support</p>
-            <div class="footer-col-links">
-              <a href="#">Contact us</a>
-              <a href="#">Help center</a>
-              <a href="#">FAQ</a>
-              <a href="#">Schedule a call</a>
-            </div>
-          </div>
-        </div>
+        </nav>
       </div>
-      <div class="footer-bottom">
-        <p class="footer-bottom-left"><span style="font-size:0.85em;vertical-align:0.05em;">©</span> 2026 Baseline Studio</p>
-        <div class="footer-bottom-right">
-          <a href="#">Cookies</a>
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-        </div>
+      <hr class="footer-divider">
+      <div class="footer-lower">
+        <p class="footer-copyright"><span style="font-size:0.85em;vertical-align:0.05em;">©</span> 2026 Baseline Studio</p>
       </div>
+      <div class="footer-watermark" aria-hidden="true">Baseline</div>
     </div>
   </footer>
 
@@ -2555,42 +3390,163 @@
   </script>
   <script>
   (function(){
-    var wrap = document.querySelector('.hero-rotate-wrap');
-    var words = wrap ? wrap.querySelectorAll('.hero-rotate-word') : [];
+    var stage = document.querySelector('.rotate-stage');
+    var words = stage ? stage.querySelectorAll('.rotate-word') : [];
     if(!words.length) return;
-    // Measure longest word and lock wrapper width
+
+    // Split each word into per-letter spans
+    words.forEach(function(word) {
+      var text = word.textContent;
+      word.textContent = '';
+      for (var i = 0; i < text.length; i++) {
+        var span = document.createElement('span');
+        span.className = 'rotate-letter';
+        span.style.setProperty('--letter-i', i);
+        span.textContent = text[i];
+        word.appendChild(span);
+      }
+    });
+
+    // Measure longest word and lock stage width
     var maxW = 0;
     words.forEach(function(w){
       maxW = Math.max(maxW, w.scrollWidth);
     });
-    wrap.style.width = maxW + 'px';
+    stage.style.width = maxW + 'px';
+
     var current = 0;
     setInterval(function(){
       var prev = current;
       current = (current + 1) % words.length;
-      words[prev].classList.add('out');
-      words[prev].classList.remove('active');
-      words[current].classList.add('active');
-      words[current].classList.remove('out');
-      setTimeout(function(){ words[prev].classList.remove('out'); }, 700);
+      words[prev].classList.add('is-out');
+      words[prev].classList.remove('is-active');
+      words[current].classList.add('is-active');
+      words[current].classList.remove('is-out');
+      setTimeout(function(){ words[prev].classList.remove('is-out'); }, 550);
     }, 2400);
   })();
   </script>
   <script>
   (function(){
-    var mesh = document.querySelector('.hero-bg-mesh');
-    if(!mesh || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var ticking = false;
-    window.addEventListener('scroll', function(){
-      if(!ticking){
-        requestAnimationFrame(function(){
-          var y = window.scrollY * 0.03;
-          mesh.style.transform = 'translateY(' + y + 'px)';
-          ticking = false;
-        });
-        ticking = true;
+    document.querySelectorAll('.nav-menu a, .nav-actions a').forEach(function(a){
+      a.addEventListener('click', function(){
+        document.querySelector('.nav-wrap').classList.remove('open');
+        document.querySelector('.mobile-toggle').classList.remove('is-open');
+      });
+    });
+  })();
+  </script>
+
+  <!-- ===== Contact Modal ===== -->
+  <div class="modal-overlay" id="contact-modal">
+    <div class="modal-panel">
+      <button class="modal-close" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <h2 class="modal-title">Let's connect</h2>
+      <p class="modal-subtitle">Tell us a bit about your project and we'll reach out with next steps.</p>
+      <form class="modal-form" onsubmit="return false;">
+        <div class="modal-row">
+          <div class="modal-field">
+            <label class="modal-label" for="m-fname">First name</label>
+            <input class="modal-input" id="m-fname" type="text" placeholder="Jane" autocomplete="given-name">
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" for="m-lname">Last name</label>
+            <input class="modal-input" id="m-lname" type="text" placeholder="Smith" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" for="m-email">Email</label>
+          <input class="modal-input" id="m-email" type="email" placeholder="jane@company.com" autocomplete="email">
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" for="m-company">Company / Brand name</label>
+          <input class="modal-input" id="m-company" type="text" placeholder="Acme Inc.">
+        </div>
+        <div class="modal-row">
+          <div class="modal-field">
+            <label class="modal-label" for="m-package">Package</label>
+            <select class="modal-select" id="m-package">
+              <option value="" disabled selected>Select one</option>
+              <option value="Landing Page">Landing Page</option>
+              <option value="Baseline Website">Baseline Website</option>
+              <option value="Premium Custom Website">Premium Custom Website</option>
+            </select>
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" for="m-timeline">Timeline</label>
+            <select class="modal-select" id="m-timeline">
+              <option value="" disabled selected>Select one</option>
+              <option>ASAP</option>
+              <option>Within 1 month</option>
+              <option>1–3 months</option>
+              <option>Flexible</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" for="m-outline">Project outline</label>
+          <textarea class="modal-textarea" id="m-outline" placeholder="Tell us a little about what you're building."></textarea>
+        </div>
+        <button type="submit" class="modal-submit">Send inquiry</button>
+      </form>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var modal = document.getElementById('contact-modal');
+    var panel = modal.querySelector('.modal-panel');
+    var closeBtn = modal.querySelector('.modal-close');
+    var packageSelect = document.getElementById('m-package');
+
+    function open(pkg) {
+      // Reset or preselect the package field
+      if (pkg && packageSelect) {
+        var opt = packageSelect.querySelector('option[value="' + pkg + '"]');
+        if (opt) {
+          packageSelect.value = pkg;
+        } else {
+          packageSelect.selectedIndex = 0;
+        }
+      } else if (packageSelect) {
+        packageSelect.selectedIndex = 0;
       }
-    }, {passive: true});
+      modal.classList.add('is-open');
+      document.body.classList.add('modal-open');
+    }
+    function close() {
+      modal.classList.remove('is-open');
+      document.body.classList.remove('modal-open');
+    }
+
+    // Wire all CTA triggers
+    document.querySelectorAll('a[href="#start"], .btn-cta').forEach(function(el){
+      el.addEventListener('click', function(e){
+        e.preventDefault();
+        var pkg = el.getAttribute('data-package') || '';
+        open(pkg);
+      });
+    });
+
+    closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', function(e){
+      if(!panel.contains(e.target)) close();
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && modal.classList.contains('is-open')) close();
+    });
+  })();
+  </script>
+  <script>
+  /* ===== View Transition: Case Study Cards ===== */
+  (function(){
+    document.querySelectorAll('a.case-study-card').forEach(function(card){
+      card.addEventListener('click', function(e){
+        var img = card.querySelector('.case-study-image');
+        if(img) img.style.viewTransitionName = 'cs-hero';
+      });
+    });
   })();
   </script>
 </body>
