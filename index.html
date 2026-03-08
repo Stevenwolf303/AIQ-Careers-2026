@@ -179,10 +179,6 @@
       border-color: rgba(0,0,0,0.20);
       background: rgba(0,0,0,0.03);
     }
-    [data-theme="light"] .pricing-includes-label.includes-purple { color: #6C6AE4; }
-    [data-theme="light"] .pricing-includes-label.includes-blue { color: #4A8FD6; }
-    [data-theme="light"] .pricing-includes-label.includes-orange { color: #D4714E; }
-    [data-theme="light"] .pricing-includes-label.includes-rose { color: #D45A73; }
     [data-theme="light"] .case-study-image {
       background: #f5f5f5;
       border: 1px solid #dfe0e5;
@@ -1850,10 +1846,10 @@
       margin-bottom: -8px;
     }
 
-    .pricing-includes-label.includes-purple { color: #A8A6F0; }
-    .pricing-includes-label.includes-blue { color: #7BB8F0; }
-    .pricing-includes-label.includes-orange { color: #E8926D; }
-    .pricing-includes-label.includes-rose { color: #F0889E; }
+    .pricing-includes-label.includes-purple,
+    .pricing-includes-label.includes-blue,
+    .pricing-includes-label.includes-orange,
+    .pricing-includes-label.includes-rose { color: var(--color-fg-muted); }
 
     .pricing-includes {
       display: flex;
