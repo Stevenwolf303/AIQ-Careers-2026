@@ -402,19 +402,11 @@
       border: 1px solid var(--color-border);
     }
 
-    .cs-hero-image .img-placeholder {
+    .cs-hero-image img {
       width: 100%;
       height: 100%;
-      background:
-        linear-gradient(135deg, #1a1b20 0%, #232429 40%, #1e1f24 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: var(--color-fg-muted);
-    }
-    [data-theme="light"] .cs-hero-image .img-placeholder {
-      background: linear-gradient(135deg, #f0f0f2 0%, #e8e9ed 40%, #f0f0f2 100%);
+      object-fit: cover;
+      object-position: top center;
     }
 
     /* ===== Hero Entrance Stagger ===== */
@@ -757,6 +749,24 @@
       .modal-panel { padding: 28px 20px; }
       .modal-row { grid-template-columns: 1fr; }
     }
+
+    .cs-screenshot-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .cs-screenshot {
+      width: 100%;
+      border-radius: var(--radius-card);
+      border: 1px solid var(--color-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    @media (max-width: 768px) {
+      .cs-screenshot-row {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -822,73 +832,7 @@
         </div>
       </div>
       <div class="cs-hero-image">
-        <!-- Website Homepage Mock -->
-        <div style="width:100%;height:100%;background:#1A1A1A;font-family:'Inter',system-ui,sans-serif;display:flex;flex-direction:column;overflow:hidden;position:relative;">
-          <!-- Nav bar -->
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid rgba(200,169,126,0.12);">
-            <div style="display:flex;align-items:center;gap:8px;">
-              <div style="width:22px;height:22px;border:1.5px solid #C8A97E;border-radius:50%;display:flex;align-items:center;justify-content:center;">
-                <div style="font-size:9px;font-weight:700;color:#C8A97E;letter-spacing:0.5px;">V</div>
-              </div>
-              <span style="font-size:11px;font-weight:600;color:#F5F0EB;letter-spacing:2px;text-transform:uppercase;">Volta</span>
-            </div>
-            <div style="display:flex;gap:20px;align-items:center;">
-              <span style="font-size:9px;color:#8B7355;letter-spacing:1px;text-transform:uppercase;">Shop</span>
-              <span style="font-size:9px;color:#8B7355;letter-spacing:1px;text-transform:uppercase;">Origins</span>
-              <span style="font-size:9px;color:#8B7355;letter-spacing:1px;text-transform:uppercase;">Subscribe</span>
-              <span style="font-size:9px;color:#8B7355;letter-spacing:1px;text-transform:uppercase;">About</span>
-              <div style="width:50px;height:20px;background:#C8A97E;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-                <span style="font-size:7px;font-weight:600;color:#1A1A1A;letter-spacing:0.5px;">CART (0)</span>
-              </div>
-            </div>
-          </div>
-          <!-- Hero section -->
-          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px;position:relative;">
-            <!-- Subtle radial glow -->
-            <div style="position:absolute;width:60%;height:60%;background:radial-gradient(ellipse,rgba(200,169,126,0.06) 0%,transparent 70%);top:20%;left:20%;"></div>
-            <div style="font-size:8px;color:#C8A97E;letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;">Single Origin Specialty</div>
-            <div style="font-size:clamp(22px,4vw,36px);font-weight:300;color:#F5F0EB;letter-spacing:-0.02em;line-height:1.1;text-align:center;font-style:italic;font-family:Georgia,'Times New Roman',serif;">Coffee, elevated.</div>
-            <div style="font-size:9px;color:#8B7355;max-width:260px;text-align:center;line-height:1.6;margin-top:12px;">Ethically sourced, small-batch roasted. Delivered fresh to your door.</div>
-            <div style="margin-top:16px;display:flex;gap:8px;">
-              <div style="padding:7px 18px;background:#C8A97E;border-radius:3px;font-size:8px;font-weight:600;color:#1A1A1A;letter-spacing:1px;text-transform:uppercase;">Shop Now</div>
-              <div style="padding:7px 18px;border:1px solid rgba(200,169,126,0.3);border-radius:3px;font-size:8px;font-weight:500;color:#C8A97E;letter-spacing:1px;text-transform:uppercase;">Our Story</div>
-            </div>
-          </div>
-          <!-- Product carousel preview -->
-          <div style="padding:16px 24px 20px;border-top:1px solid rgba(200,169,126,0.08);">
-            <div style="font-size:7px;color:#8B7355;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">Featured Roasts</div>
-            <div style="display:flex;gap:12px;">
-              <div style="flex:1;background:#232323;border-radius:6px;padding:10px;display:flex;flex-direction:column;align-items:center;border:1px solid rgba(200,169,126,0.08);">
-                <div style="width:32px;height:40px;background:linear-gradient(180deg,#3D3D3D,#2A2A2A);border-radius:3px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;">
-                  <div style="width:16px;height:16px;border:1px solid #C8A97E;border-radius:50%;opacity:0.4;"></div>
-                </div>
-                <div style="font-size:8px;color:#F5F0EB;font-weight:500;">Ethiopia Yirgacheffe</div>
-                <div style="font-size:7px;color:#8B7355;margin-top:2px;">$22</div>
-              </div>
-              <div style="flex:1;background:#232323;border-radius:6px;padding:10px;display:flex;flex-direction:column;align-items:center;border:1px solid rgba(200,169,126,0.08);">
-                <div style="width:32px;height:40px;background:linear-gradient(180deg,#3D3D3D,#2A2A2A);border-radius:3px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;">
-                  <div style="width:16px;height:16px;border:1px solid #C8A97E;border-radius:50%;opacity:0.4;"></div>
-                </div>
-                <div style="font-size:8px;color:#F5F0EB;font-weight:500;">Colombia Huila</div>
-                <div style="font-size:7px;color:#8B7355;margin-top:2px;">$19</div>
-              </div>
-              <div style="flex:1;background:#232323;border-radius:6px;padding:10px;display:flex;flex-direction:column;align-items:center;border:1px solid rgba(200,169,126,0.08);">
-                <div style="width:32px;height:40px;background:linear-gradient(180deg,#3D3D3D,#2A2A2A);border-radius:3px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;">
-                  <div style="width:16px;height:16px;border:1px solid #C8A97E;border-radius:50%;opacity:0.4;"></div>
-                </div>
-                <div style="font-size:8px;color:#F5F0EB;font-weight:500;">Guatemala Antigua</div>
-                <div style="font-size:7px;color:#8B7355;margin-top:2px;">$21</div>
-              </div>
-              <div style="flex:1;background:#232323;border-radius:6px;padding:10px;display:flex;flex-direction:column;align-items:center;border:1px solid rgba(200,169,126,0.08);">
-                <div style="width:32px;height:40px;background:linear-gradient(180deg,#3D3D3D,#2A2A2A);border-radius:3px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;">
-                  <div style="width:16px;height:16px;border:1px solid #C8A97E;border-radius:50%;opacity:0.4;"></div>
-                </div>
-                <div style="font-size:8px;color:#F5F0EB;font-weight:500;">Kenya AA</div>
-                <div style="font-size:7px;color:#8B7355;margin-top:2px;">$24</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <img src="assets/case-studies/volta/hero.jpg" alt="Volta Coffee website homepage" loading="eager">
       </div>
     </div>
   </section>
@@ -943,6 +887,11 @@
   <section class="cs-work">
     <div class="container">
       <span class="cs-eyebrow eyebrow-sky">The Work</span>
+
+      <div class="cs-screenshot-row">
+        <img src="assets/case-studies/volta/section1.jpg" alt="Volta Coffee website detail" loading="lazy" class="cs-screenshot">
+        <img src="assets/case-studies/volta/section2.jpg" alt="Volta Coffee website detail" loading="lazy" class="cs-screenshot">
+      </div>
 
       <div class="cs-work-image">
         <!-- Brand Identity System Panel -->

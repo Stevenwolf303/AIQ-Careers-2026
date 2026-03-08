@@ -402,19 +402,11 @@
       border: 1px solid var(--color-border);
     }
 
-    .cs-hero-image .img-placeholder {
+    .cs-hero-image img {
       width: 100%;
       height: 100%;
-      background:
-        linear-gradient(135deg, #1a1b20 0%, #232429 40%, #1e1f24 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: var(--color-fg-muted);
-    }
-    [data-theme="light"] .cs-hero-image .img-placeholder {
-      background: linear-gradient(135deg, #f0f0f2 0%, #e8e9ed 40%, #f0f0f2 100%);
+      object-fit: cover;
+      object-position: top center;
     }
 
     /* ===== Hero Entrance Stagger ===== */
@@ -754,6 +746,24 @@
       .modal-panel { padding: 28px 20px; }
       .modal-row { grid-template-columns: 1fr; }
     }
+
+    .cs-screenshot-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .cs-screenshot {
+      width: 100%;
+      border-radius: var(--radius-card);
+      border: 1px solid var(--color-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    @media (max-width: 768px) {
+      .cs-screenshot-row {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -804,53 +814,7 @@
         </div>
       </div>
       <div class="cs-hero-image">
-        <div style="width:100%;height:100%;background:#1A1A1A;font-family:'Inter',system-ui,sans-serif;display:flex;flex-direction:column;overflow:hidden;border-radius:inherit;">
-          <!-- Nav -->
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #2a2a2a;">
-            <div style="display:flex;align-items:center;gap:8px;">
-              <div style="width:22px;height:22px;background:#FF4D00;border-radius:4px;display:flex;align-items:center;justify-content:center;">
-                <span style="color:#fff;font-weight:800;font-size:11px;">K</span>
-              </div>
-              <span style="color:#fff;font-weight:700;font-size:12px;letter-spacing:1px;">KINETIC</span>
-            </div>
-            <div style="display:flex;gap:16px;align-items:center;">
-              <span style="color:#999;font-size:9px;font-weight:500;">CLASSES</span>
-              <span style="color:#999;font-size:9px;font-weight:500;">TRAINERS</span>
-              <span style="color:#999;font-size:9px;font-weight:500;">PRICING</span>
-              <div style="background:#FF4D00;padding:4px 10px;border-radius:4px;">
-                <span style="color:#fff;font-size:8px;font-weight:700;letter-spacing:0.5px;">JOIN NOW</span>
-              </div>
-            </div>
-          </div>
-          <!-- Hero -->
-          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;text-align:center;background:linear-gradient(180deg,#1A1A1A 0%,#0d0d0d 100%);position:relative;">
-            <div style="position:absolute;top:20%;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(255,77,0,0.12) 0%,transparent 70%);border-radius:50%;"></div>
-            <div style="font-size:10px;color:#FF4D00;font-weight:700;letter-spacing:3px;margin-bottom:10px;">YOUR BODY. YOUR RULES.</div>
-            <div style="font-size:clamp(22px,4vw,36px);color:#fff;font-weight:900;letter-spacing:-1px;line-height:1.05;margin-bottom:6px;">MOVE. TRAIN.</div>
-            <div style="font-size:clamp(22px,4vw,36px);font-weight:900;letter-spacing:-1px;line-height:1.05;margin-bottom:16px;background:linear-gradient(90deg,#FF4D00,#FF6B35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">EVOLVE.</div>
-            <div style="background:#FF4D00;padding:8px 22px;border-radius:6px;cursor:pointer;">
-              <span style="color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;">START FREE TRIAL</span>
-            </div>
-          </div>
-          <!-- Class cards -->
-          <div style="display:flex;gap:8px;padding:12px 24px;background:#111;">
-            <div style="flex:1;background:#1f1f1f;border-radius:6px;padding:10px;border:1px solid #2a2a2a;">
-              <div style="width:100%;height:28px;background:linear-gradient(135deg,#FF4D00 0%,#cc3d00 100%);border-radius:4px;margin-bottom:6px;"></div>
-              <div style="font-size:9px;color:#fff;font-weight:700;">HIIT BURN</div>
-              <div style="font-size:7px;color:#666;margin-top:2px;">45 MIN &bull; HIGH INTENSITY</div>
-            </div>
-            <div style="flex:1;background:#1f1f1f;border-radius:6px;padding:10px;border:1px solid #2a2a2a;">
-              <div style="width:100%;height:28px;background:linear-gradient(135deg,#333 0%,#222 100%);border-radius:4px;margin-bottom:6px;"></div>
-              <div style="font-size:9px;color:#fff;font-weight:700;">POWER YOGA</div>
-              <div style="font-size:7px;color:#666;margin-top:2px;">60 MIN &bull; FLEXIBILITY</div>
-            </div>
-            <div style="flex:1;background:#1f1f1f;border-radius:6px;padding:10px;border:1px solid #2a2a2a;">
-              <div style="width:100%;height:28px;background:linear-gradient(135deg,#FF6B35 0%,#e55a2b 100%);border-radius:4px;margin-bottom:6px;"></div>
-              <div style="font-size:9px;color:#fff;font-weight:700;">STRENGTH</div>
-              <div style="font-size:7px;color:#666;margin-top:2px;">50 MIN &bull; BUILD MUSCLE</div>
-            </div>
-          </div>
-        </div>
+        <img src="assets/case-studies/kinetic/hero.jpg" alt="Kinetic Fitness website homepage" loading="eager">
       </div>
     </div>
   </section>
@@ -905,6 +869,11 @@
   <section class="cs-work">
     <div class="container">
       <span class="cs-eyebrow eyebrow-sky">The Work</span>
+
+      <div class="cs-screenshot-row">
+        <img src="assets/case-studies/kinetic/section1.jpg" alt="Kinetic Fitness website detail" loading="lazy" class="cs-screenshot">
+        <img src="assets/case-studies/kinetic/section2.jpg" alt="Kinetic Fitness website detail" loading="lazy" class="cs-screenshot">
+      </div>
 
       <div class="cs-work-image">
         <div style="width:100%;height:100%;background:#F5F5F5;font-family:'Inter',system-ui,sans-serif;display:flex;flex-direction:column;overflow:hidden;border-radius:inherit;padding:24px 28px;">
