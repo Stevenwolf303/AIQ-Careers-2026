@@ -939,72 +939,8 @@
       transform: translateX(3px);
     }
 
-    /* ===== Hero — transparent, inherits shared page background ===== */
-    /* Color wash is overlay-only via .hero-spotlight, not a section fill */
-
-    /* Frosted color overlay — sits behind hero content only */
     .hero-spotlight {
-      position: absolute;
-      z-index: 0;
-      pointer-events: none;
-      inset: 0;
-      overflow: hidden;
-      visibility: hidden;
-      -webkit-mask-image: linear-gradient(180deg, black 0%, black 55%, transparent 90%);
-      mask-image: linear-gradient(180deg, black 0%, black 55%, transparent 90%);
-    }
-    [data-theme="light"] .hero-spotlight {
-      visibility: visible;
-    }
-
-    /* Color field 1: Lavender — separate compositing layer */
-    .hero-spotlight {
-      background:
-        radial-gradient(circle 420px at 40% 40%,
-          rgba(150,120,240,0.30) 0%,
-          rgba(150,120,240,0.10) 40%,
-          transparent 70%);
-    }
-
-    /* Color field 2: Blue — own layer via ::before */
-    .hero-spotlight::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle 380px at 58% 32%,
-          rgba(70,130,230,0.28) 0%,
-          rgba(70,130,230,0.08) 40%,
-          transparent 70%);
-      animation: frostDriftA 26s ease-in-out infinite alternate;
-    }
-
-    /* Color fields 3 & 4: Mint + Rose — own layer via ::after */
-    .hero-spotlight::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        /* Mint */
-        radial-gradient(circle 360px at 48% 55%,
-          rgba(60,200,165,0.25) 0%,
-          rgba(60,200,165,0.08) 40%,
-          transparent 70%),
-        /* Soft rose */
-        radial-gradient(circle 320px at 33% 58%,
-          rgba(220,140,155,0.20) 0%,
-          rgba(220,140,155,0.06) 40%,
-          transparent 65%);
-      animation: frostDriftB 30s ease-in-out infinite alternate;
-    }
-
-    @keyframes frostDriftA {
-      0%   { transform: translate(0, 0) rotate(0deg); }
-      100% { transform: translate(-1.5%, 1%) rotate(0.5deg); }
-    }
-    @keyframes frostDriftB {
-      0%   { transform: translate(0, 0) rotate(0deg); }
-      100% { transform: translate(1%, -0.8%) rotate(-0.3deg); }
+      display: none;
     }
 
     /* Noise grain — editorial texture */
