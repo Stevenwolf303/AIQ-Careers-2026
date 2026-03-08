@@ -159,7 +159,7 @@
     }
     [data-theme="light"] .pricing-card.featured {
       background: #ffffff;
-      border: 2px solid #111111;
+      border: none;
       box-shadow: 0 4px 24px rgba(0,0,0,0.10);
     }
     [data-theme="light"] .pricing-card-badge {
@@ -863,12 +863,16 @@
       line-height: 1;
       padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      color: var(--color-fg-muted);
+      background: #ffffff;
+      color: #555555;
       gap: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
     }
     [data-theme="light"] .hero-eyebrow {
-      background: rgba(0,0,0,0.05);
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.04);
+      border-color: rgba(0,0,0,0.06);
     }
 
     .hero-wave {
@@ -1782,9 +1786,33 @@
     }
 
     .pricing-card.featured {
-      border: 2px solid rgba(255,255,255,0.85);
+      border: none;
       box-shadow: 0 4px 24px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.06);
       background: linear-gradient(180deg, #18191c 0%, #111214 100%);
+      overflow: visible;
+      isolation: isolate;
+    }
+    .pricing-card.featured::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: calc(var(--radius-card) + 3px);
+      background: conic-gradient(
+        from var(--wf-border-angle),
+        #C15F3C 0%, #C15F3C 12%,
+        #74AA9C 25%, #74AA9C 37%,
+        #4992EA 50%, #60A9A6 56%, #DBB82D 62%,
+        #20808D 75%, #20808D 87%,
+        #C15F3C 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      padding: 3px;
+      animation: wf-border-spin 8s linear infinite;
+      z-index: -1;
+      filter: blur(0.5px);
+      pointer-events: none;
     }
 
     .pricing-card-badge {
@@ -3142,14 +3170,13 @@
             <h3>Baseline Website</h3>
             <p>A complete small business website designed to establish credibility, generate leads, and create a strong modern online presence.</p>
           </div>
-          <span class="pricing-amount">$2,200</span>
+          <span class="pricing-amount">$1,499</span>
           <div class="pricing-divider"></div>
           <span class="pricing-includes-label">What's included</span>
           <ul class="pricing-includes">
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>4–6 custom pages</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>3 custom pages</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Mobile-optimized design</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>SEO-friendly structure</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Contact forms & analytics setup</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>2 rounds of revisions</li>
           </ul>
           <a href="#start" class="btn btn-primary" data-package="Baseline Website">Start your project</a>
@@ -3161,7 +3188,7 @@
             <h3>Premium Custom Website</h3>
             <p>A tailored website engagement for businesses with more complex goals, content, or feature needs — scoped and quoted to fit.</p>
           </div>
-          <span class="pricing-amount">$4,000+</span>
+          <span class="pricing-amount">Let's Chat</span>
           <div class="pricing-divider"></div>
           <span class="pricing-includes-label">What's included</span>
           <ul class="pricing-includes">
