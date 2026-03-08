@@ -12,6 +12,37 @@
     (function(){var s=localStorage.getItem('theme');if(s==='dark')return;document.documentElement.setAttribute('data-theme','light');})();
   </script>
   <style>
+    /* ===== View Transitions ===== */
+    @view-transition { navigation: auto; }
+
+    ::view-transition-old(root) {
+      animation: vt-fade-out 300ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    ::view-transition-new(root) {
+      animation: vt-fade-in 350ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    ::view-transition-old(cs-hero) {
+      animation: vt-scale-out 400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    ::view-transition-new(cs-hero) {
+      animation: vt-scale-in 450ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes vt-fade-out {
+      to { opacity: 0; filter: blur(4px); }
+    }
+    @keyframes vt-fade-in {
+      from { opacity: 0; filter: blur(4px); transform: translateY(6px); }
+      to { opacity: 1; filter: blur(0); transform: translateY(0); }
+    }
+    @keyframes vt-scale-out {
+      to { opacity: 0; transform: scale(1.04); }
+    }
+    @keyframes vt-scale-in {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
     /* ===== Design Tokens (matches homepage) ===== */
     :root {
       --color-accent: #555555;
@@ -339,6 +370,7 @@
     }
 
     .cs-hero-image {
+      view-transition-name: cs-hero;
       width: 100%;
       aspect-ratio: 16 / 9;
       background: var(--color-bg-surface);
@@ -363,6 +395,27 @@
     }
     [data-theme="light"] .cs-hero-image .img-placeholder {
       background: linear-gradient(135deg, #f0f0f2 0%, #e8e9ed 40%, #f0f0f2 100%);
+    }
+
+    /* ===== Hero Entrance Stagger ===== */
+    .cs-hero-text,
+    .cs-meta,
+    .cs-hero-image {
+      animation: cs-settle-in 500ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    }
+    .cs-hero-text { animation-delay: 80ms; }
+    .cs-meta { animation-delay: 160ms; }
+    .cs-hero-image { animation-delay: 0ms; }
+
+    @keyframes cs-settle-in {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ===== Case Study Sections ===== */
@@ -844,6 +897,21 @@
     }
     .modal-submit:active { transform: translateY(0) scale(0.98); }
     body.modal-open { overflow: hidden; }
+
+    /* ===== Reduced Motion ===== */
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-old(root),
+      ::view-transition-new(root),
+      ::view-transition-old(cs-hero),
+      ::view-transition-new(cs-hero) {
+        animation-duration: 0.01ms !important;
+      }
+      .cs-hero-text,
+      .cs-meta,
+      .cs-hero-image {
+        animation: none !important;
+      }
+    }
 
     /* ===== Responsive ===== */
     @media (max-width: 767px) {
