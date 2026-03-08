@@ -1500,8 +1500,7 @@
     .workflow-tool-icon svg {
       width: 36px;
       height: 36px;
-      opacity: 0.5;
-      filter: grayscale(100%);
+      opacity: 0.8;
       transition: all 320ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -1513,8 +1512,7 @@
     }
 
     .workflow-tool:hover .workflow-tool-icon svg {
-      opacity: 0.9;
-      filter: grayscale(0%);
+      opacity: 1;
     }
 
     .workflow-tool-label {
@@ -1539,12 +1537,11 @@
     }
 
     .workflow-line {
-      stroke: var(--color-fg-muted);
       stroke-width: 1;
       fill: none;
-      opacity: 0.12;
-      stroke-dasharray: 200;
-      stroke-dashoffset: 200;
+      opacity: 0.20;
+      stroke-dasharray: 300;
+      stroke-dashoffset: 300;
       animation: wf-draw-line 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
     .workflow-line:nth-child(1) { animation-delay: 600ms; }
@@ -1552,29 +1549,34 @@
     .workflow-line:nth-child(3) { animation-delay: 800ms; }
     .workflow-line:nth-child(4) { animation-delay: 900ms; }
 
+    /* Brand-colored lines */
+    .line-claude { stroke: #C15F3C; }
+    .line-chatgpt { stroke: #74AA9C; }
+    .line-gemini { stroke: #4992EA; }
+    .line-perplexity { stroke: #20808D; }
+
     .workflow-line-pulse {
-      stroke: var(--color-fg-default);
-      stroke-width: 1;
+      stroke-width: 1.5;
       fill: none;
       opacity: 0;
-      stroke-dasharray: 12 188;
-      animation: wf-pulse 4s ease-in-out infinite;
+      stroke-dasharray: 16 284;
+      animation: wf-pulse 5s ease-in-out infinite;
     }
     .workflow-line-pulse:nth-child(5) { animation-delay: 1.8s; }
-    .workflow-line-pulse:nth-child(6) { animation-delay: 2.1s; }
-    .workflow-line-pulse:nth-child(7) { animation-delay: 2.4s; }
-    .workflow-line-pulse:nth-child(8) { animation-delay: 2.7s; }
+    .workflow-line-pulse:nth-child(6) { animation-delay: 2.3s; }
+    .workflow-line-pulse:nth-child(7) { animation-delay: 2.8s; }
+    .workflow-line-pulse:nth-child(8) { animation-delay: 3.3s; }
 
     @keyframes wf-draw-line {
       to { stroke-dashoffset: 0; }
     }
 
     @keyframes wf-pulse {
-      0%, 100% { stroke-dashoffset: 200; opacity: 0; }
-      10% { opacity: 0.25; }
-      50% { opacity: 0.15; }
+      0%, 100% { stroke-dashoffset: 300; opacity: 0; }
+      10% { opacity: 0.35; }
+      50% { opacity: 0.20; }
       90% { opacity: 0; }
-      95% { stroke-dashoffset: -200; }
+      95% { stroke-dashoffset: -300; }
     }
 
     /* Baseline hub */
@@ -1601,10 +1603,51 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
 
+    @property --wf-border-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
     .workflow-hub-icon--dark {
       background: linear-gradient(180deg, #1a1a1e 0%, #111114 100%);
-      border-color: rgba(255,255,255,0.12);
+      border-color: transparent;
       box-shadow: 0 6px 24px rgba(0,0,0,0.30);
+      position: relative;
+      overflow: visible;
+    }
+
+    .workflow-hub-icon--dark::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 26px;
+      background: conic-gradient(
+        from var(--wf-border-angle),
+        #C15F3C 0%,
+        #C15F3C 12%,
+        #74AA9C 25%,
+        #74AA9C 37%,
+        #4992EA 50%,
+        #60A9A6 56%,
+        #DBB82D 62%,
+        #20808D 75%,
+        #20808D 87%,
+        #C15F3C 100%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      padding: 2px;
+      animation: wf-border-spin 8s linear infinite;
+      opacity: 0.55;
+      z-index: -1;
+    }
+
+    @keyframes wf-border-spin {
+      to { --wf-border-angle: 360deg; }
     }
 
     .workflow-hub-icon svg {
@@ -1653,8 +1696,10 @@
     [data-theme="light"] .workflow-hub-icon--dark svg rect { fill: #0b0b0c; }
     [data-theme="light"] .workflow-hub-icon--dark svg path { fill: #ffffff; }
     [data-theme="light"] .workflow-line {
-      stroke: var(--color-fg-muted);
-      opacity: 0.15;
+      opacity: 0.25;
+    }
+    [data-theme="light"] .workflow-hub-icon--dark::before {
+      opacity: 0.65;
     }
 
     @media (max-width: 1023px) {
@@ -2995,7 +3040,7 @@
           <div class="workflow-tool">
             <div class="workflow-tool-icon">
               <!-- Claude (Anthropic) -->
-              <svg viewBox="0 -.01 39.5 39.53" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m7.75 26.27 7.77-4.36.13-.38-.13-.21h-.38l-1.3-.08-4.44-.12-3.85-.16-3.73-.2-.94-.2-.88-1.16.09-.58.79-.53 1.13.1 2.5.17 3.75.26 2.72.16 4.03.42h.64l.09-.26-.22-.16-.17-.16-3.88-2.63-4.2-2.78-2.2-1.6-1.19-.81-.6-.76-.26-1.66 1.08-1.19 1.45.1.37.1 1.47 1.13 3.14 2.43 4.1 3.02.6.5.24-.17.03-.12-.27-.45-2.23-4.03-2.38-4.1-1.06-1.7-.28-1.02c-.1-.42-.17-.77-.17-1.2l1.23-1.67.68-.22 1.64.22.69.6 1.02 2.33 1.65 3.67 2.56 4.99.75 1.48.4 1.37.15.42h.26v-.24l.21-2.81.39-3.45.38-4.44.13-1.25.62-1.5 1.23-.81.96.46.79 1.13-.11.73-.47 3.05-.92 4.78-.6 3.2h.35l.4-.4 1.62-2.15 2.72-3.4 1.2-1.35 1.4-1.49.9-.71h1.7l1.25 1.86-.56 1.92-1.75 2.22-1.45 1.88-2.08 2.8-1.3 2.24.12.18.31-.03 4.7-1 2.54-.46 3.03-.52 1.37.64.15.65-.54 1.33-3.24.8-3.8.76-5.66 1.34-.07.05.08.1 2.55.24 1.09.06h2.67l4.97.37 1.3.86.78 1.05-.13.8-2 1.02-2.7-.64-6.3-1.5-2.16-.54h-.3v.18l1.8 1.76 3.3 2.98 4.13 3.84.21.95-.53.75-.56-.08-3.63-2.73-1.4-1.23-3.17-2.67h-.21v.28l.73 1.07 3.86 5.8.2 1.78-.28.58-1 .35-1.1-.2-2.26-3.17-2.33-3.57-1.88-3.2-.23.13-1.11 11.95-.52.61-1.2.46-1-.76-.53-1.23.53-2.43.64-3.17.52-2.52.47-3.13.28-1.04-.02-.07-.23.03-2.36 3.24-3.59 4.85-2.84 3.04-.68.27-1.18-.61.11-1.09.66-.97 3.93-5 2.37-3.1 1.53-1.79-.01-.26h-.09l-10.44 6.78-1.86.24-.8-.75.1-1.23.38-.4 3.14-2.16z"/></svg>
+              <svg viewBox="0 -.01 39.5 39.53" fill="#C15F3C" xmlns="http://www.w3.org/2000/svg"><path d="m7.75 26.27 7.77-4.36.13-.38-.13-.21h-.38l-1.3-.08-4.44-.12-3.85-.16-3.73-.2-.94-.2-.88-1.16.09-.58.79-.53 1.13.1 2.5.17 3.75.26 2.72.16 4.03.42h.64l.09-.26-.22-.16-.17-.16-3.88-2.63-4.2-2.78-2.2-1.6-1.19-.81-.6-.76-.26-1.66 1.08-1.19 1.45.1.37.1 1.47 1.13 3.14 2.43 4.1 3.02.6.5.24-.17.03-.12-.27-.45-2.23-4.03-2.38-4.1-1.06-1.7-.28-1.02c-.1-.42-.17-.77-.17-1.2l1.23-1.67.68-.22 1.64.22.69.6 1.02 2.33 1.65 3.67 2.56 4.99.75 1.48.4 1.37.15.42h.26v-.24l.21-2.81.39-3.45.38-4.44.13-1.25.62-1.5 1.23-.81.96.46.79 1.13-.11.73-.47 3.05-.92 4.78-.6 3.2h.35l.4-.4 1.62-2.15 2.72-3.4 1.2-1.35 1.4-1.49.9-.71h1.7l1.25 1.86-.56 1.92-1.75 2.22-1.45 1.88-2.08 2.8-1.3 2.24.12.18.31-.03 4.7-1 2.54-.46 3.03-.52 1.37.64.15.65-.54 1.33-3.24.8-3.8.76-5.66 1.34-.07.05.08.1 2.55.24 1.09.06h2.67l4.97.37 1.3.86.78 1.05-.13.8-2 1.02-2.7-.64-6.3-1.5-2.16-.54h-.3v.18l1.8 1.76 3.3 2.98 4.13 3.84.21.95-.53.75-.56-.08-3.63-2.73-1.4-1.23-3.17-2.67h-.21v.28l.73 1.07 3.86 5.8.2 1.78-.28.58-1 .35-1.1-.2-2.26-3.17-2.33-3.57-1.88-3.2-.23.13-1.11 11.95-.52.61-1.2.46-1-.76-.53-1.23.53-2.43.64-3.17.52-2.52.47-3.13.28-1.04-.02-.07-.23.03-2.36 3.24-3.59 4.85-2.84 3.04-.68.27-1.18-.61.11-1.09.66-.97 3.93-5 2.37-3.1 1.53-1.79-.01-.26h-.09l-10.44 6.78-1.86.24-.8-.75.1-1.23.38-.4 3.14-2.16z"/></svg>
             </div>
             <span class="workflow-tool-label">Claude</span>
           </div>
@@ -3003,7 +3048,7 @@
           <div class="workflow-tool">
             <div class="workflow-tool-icon">
               <!-- ChatGPT (OpenAI) -->
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.282 9.821a5.985 5.985 0 00-.516-4.91 6.046 6.046 0 00-6.51-2.9A6.065 6.065 0 0011.71.418a6.047 6.047 0 00-5.764 4.167 5.986 5.986 0 00-3.997 2.9 6.049 6.049 0 00.743 7.097 5.98 5.98 0 00.51 4.911 6.051 6.051 0 006.515 2.9A5.985 5.985 0 0013.26 23.577a6.056 6.056 0 005.772-4.169 5.985 5.985 0 003.997-2.9 6.052 6.052 0 00-.747-6.687zM13.26 21.95a4.498 4.498 0 01-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 00.392-.681v-6.737l2.02 1.168a.071.071 0 01.038.052v5.583a4.504 4.504 0 01-4.494 4.494zM3.6 17.943a4.49 4.49 0 01-.535-3.014l.142.085 4.783 2.759a.771.771 0 00.78 0l5.843-3.369v2.332a.08.08 0 01-.033.062L9.74 19.591a4.504 4.504 0 01-6.14-1.648zM2.34 7.896a4.485 4.485 0 012.366-1.973V11.6a.766.766 0 00.388.676l5.815 3.355-2.02 1.168a.076.076 0 01-.071 0l-4.83-2.786A4.504 4.504 0 012.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 01.071 0l4.83 2.791a4.494 4.494 0 01-.676 8.105v-5.678a.79.79 0 00-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 00-.785 0L9.409 9.23V6.897a.066.066 0 01.028-.061l4.83-2.787a4.5 4.5 0 016.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 01-.038-.057V6.075a4.5 4.5 0 017.375-3.453l-.142.08L8.704 5.46a.795.795 0 00-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#74AA9C" xmlns="http://www.w3.org/2000/svg"><path d="M22.282 9.821a5.985 5.985 0 00-.516-4.91 6.046 6.046 0 00-6.51-2.9A6.065 6.065 0 0011.71.418a6.047 6.047 0 00-5.764 4.167 5.986 5.986 0 00-3.997 2.9 6.049 6.049 0 00.743 7.097 5.98 5.98 0 00.51 4.911 6.051 6.051 0 006.515 2.9A5.985 5.985 0 0013.26 23.577a6.056 6.056 0 005.772-4.169 5.985 5.985 0 003.997-2.9 6.052 6.052 0 00-.747-6.687zM13.26 21.95a4.498 4.498 0 01-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 00.392-.681v-6.737l2.02 1.168a.071.071 0 01.038.052v5.583a4.504 4.504 0 01-4.494 4.494zM3.6 17.943a4.49 4.49 0 01-.535-3.014l.142.085 4.783 2.759a.771.771 0 00.78 0l5.843-3.369v2.332a.08.08 0 01-.033.062L9.74 19.591a4.504 4.504 0 01-6.14-1.648zM2.34 7.896a4.485 4.485 0 012.366-1.973V11.6a.766.766 0 00.388.676l5.815 3.355-2.02 1.168a.076.076 0 01-.071 0l-4.83-2.786A4.504 4.504 0 012.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 01.071 0l4.83 2.791a4.494 4.494 0 01-.676 8.105v-5.678a.79.79 0 00-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 00-.785 0L9.409 9.23V6.897a.066.066 0 01.028-.061l4.83-2.787a4.5 4.5 0 016.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 01-.038-.057V6.075a4.5 4.5 0 017.375-3.453l-.142.08L8.704 5.46a.795.795 0 00-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>
             </div>
             <span class="workflow-tool-label">ChatGPT</span>
           </div>
@@ -3011,7 +3056,7 @@
           <div class="workflow-tool">
             <div class="workflow-tool-icon">
               <!-- Google Gemini -->
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C12 6.627 6.627 12 0 12c6.627 0 12 5.373 12 12 0-6.627 5.373-12 12-12C17.373 12 12 6.627 12 0z"/></svg>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gemini-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4992EA"/><stop offset="35%" stop-color="#60A9A6"/><stop offset="65%" stop-color="#DBB82D"/><stop offset="100%" stop-color="#E8535D"/></linearGradient></defs><path fill="url(#gemini-grad)" d="M12 0C12 6.627 6.627 12 0 12c6.627 0 12 5.373 12 12 0-6.627 5.373-12 12-12C17.373 12 12 6.627 12 0z"/></svg>
             </div>
             <span class="workflow-tool-label">Gemini</span>
           </div>
@@ -3019,7 +3064,7 @@
           <div class="workflow-tool">
             <div class="workflow-tool-icon">
               <!-- Perplexity -->
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.005.75L6.26 5.712V1.5H4.76v5.823L.75 11.085v7.125h4.01v4.29h1.5V18.21h4.245v5.04h1.5v-5.04h4.245v4.29h1.5v-4.29h4.01v-7.125l-4.01-3.762V1.5h-1.5v4.212L12.005.75zm4.245 15.96v-4.605l3.51 3.292v4.023h-2.51v-2.71zm-1.5-5.595v5.595H12.505V10.523l2.245-2.109v2.7zm-5.745 0v-2.7l2.245 2.109v6.187H9.005v-5.595zm-1.5.99v4.605H5.26V15.397l2.245-2.109v-1.183zm8.745-1.883l-4.245-3.984-4.245 3.984V8.413l4.245-3.984 4.245 3.984z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#20808D" xmlns="http://www.w3.org/2000/svg"><path d="M12.005.75L6.26 5.712V1.5H4.76v5.823L.75 11.085v7.125h4.01v4.29h1.5V18.21h4.245v5.04h1.5v-5.04h4.245v4.29h1.5v-4.29h4.01v-7.125l-4.01-3.762V1.5h-1.5v4.212L12.005.75zm4.245 15.96v-4.605l3.51 3.292v4.023h-2.51v-2.71zm-1.5-5.595v5.595H12.505V10.523l2.245-2.109v2.7zm-5.745 0v-2.7l2.245 2.109v6.187H9.005v-5.595zm-1.5.99v4.605H5.26V15.397l2.245-2.109v-1.183zm8.745-1.883l-4.245-3.984-4.245 3.984V8.413l4.245-3.984 4.245 3.984z"/></svg>
             </div>
             <span class="workflow-tool-label">Perplexity</span>
           </div>
@@ -3030,15 +3075,15 @@
         <div class="workflow-connections">
           <svg viewBox="0 0 1000 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
             <!-- Static lines — anchored to each tool midpoint -->
-            <path class="workflow-line" d="M298 0 C298 65, 500 55, 500 120" />
-            <path class="workflow-line" d="M433 0 C433 65, 500 55, 500 120" />
-            <path class="workflow-line" d="M567 0 C567 65, 500 55, 500 120" />
-            <path class="workflow-line" d="M702 0 C702 65, 500 55, 500 120" />
+            <path class="workflow-line line-claude" d="M298 0 C298 65, 500 55, 500 120" />
+            <path class="workflow-line line-chatgpt" d="M433 0 C433 65, 500 55, 500 120" />
+            <path class="workflow-line line-gemini" d="M567 0 C567 65, 500 55, 500 120" />
+            <path class="workflow-line line-perplexity" d="M702 0 C702 65, 500 55, 500 120" />
             <!-- Pulse overlays -->
-            <path class="workflow-line-pulse" d="M298 0 C298 65, 500 55, 500 120" />
-            <path class="workflow-line-pulse" d="M433 0 C433 65, 500 55, 500 120" />
-            <path class="workflow-line-pulse" d="M567 0 C567 65, 500 55, 500 120" />
-            <path class="workflow-line-pulse" d="M702 0 C702 65, 500 55, 500 120" />
+            <path class="workflow-line-pulse line-claude" d="M298 0 C298 65, 500 55, 500 120" />
+            <path class="workflow-line-pulse line-chatgpt" d="M433 0 C433 65, 500 55, 500 120" />
+            <path class="workflow-line-pulse line-gemini" d="M567 0 C567 65, 500 55, 500 120" />
+            <path class="workflow-line-pulse line-perplexity" d="M702 0 C702 65, 500 55, 500 120" />
           </svg>
         </div>
 
