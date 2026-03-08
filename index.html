@@ -207,7 +207,7 @@
     }
 
     /* ===== Theme Toggle ===== */
-    .theme-toggle { margin-top: 0; }
+    .theme-toggle { margin-top: 12px; }
     .theme-toggle-track {
       position: relative;
       width: 48px;
@@ -1858,9 +1858,6 @@
 
     .footer-lower {
       position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       padding: 28px 0 56px;
       overflow: hidden;
     }
@@ -1871,14 +1868,6 @@
       line-height: 20px;
       color: var(--color-fg-muted);
       opacity: 0.5;
-    }
-
-    .footer-theme {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      position: relative;
-      z-index: 1;
     }
 
     /* ===== Responsive: Tablet (768px) ===== */
@@ -2714,6 +2703,14 @@
             <span class="logo-text">Baseline</span>
           </a>
           <p class="footer-description">AI-powered creative studio helping small businesses build premium brands and modern websites.</p>
+          <div class="theme-toggle">
+            <button class="theme-toggle-track" id="theme-toggle" aria-label="Toggle dark and light mode" role="switch" aria-checked="false">
+              <span class="theme-toggle-thumb">
+                <svg class="theme-toggle-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.455 2.004a.75.75 0 01.26.77 7 7 0 009.958 7.967.75.75 0 011.067.853A8.5 8.5 0 116.647 1.921a.75.75 0 01.808.083z" clip-rule="evenodd"/></svg>
+                <svg class="theme-toggle-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 2zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 15zm8-5a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0118 10zM5 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 015 10zm11.95-4.95a.75.75 0 010 1.06l-1.06 1.06a.75.75 0 01-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-12.73 8.73a.75.75 0 010 1.06l-1.06 1.06a.75.75 0 01-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zM16.95 14.95a.75.75 0 01-1.06 0l-1.06-1.06a.75.75 0 011.06-1.06l1.06 1.06a.75.75 0 010 1.06zM5.16 6.22a.75.75 0 01-1.06 0L3.04 5.16a.75.75 0 111.06-1.06L5.16 5.16a.75.75 0 010 1.06zM10 6.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
+              </span>
+            </button>
+          </div>
         </div>
         <nav class="footer-nav-groups">
           <div class="footer-nav-group">
@@ -2733,17 +2730,6 @@
       <div class="footer-lower">
         <div class="footer-watermark" aria-hidden="true">Baseline</div>
         <p class="footer-copyright"><span style="font-size:0.85em;vertical-align:0.05em;">©</span> 2026 Baseline Studio</p>
-        <div class="footer-theme">
-          <span class="footer-col-label" style="margin-bottom:0">Theme</span>
-          <div class="theme-toggle" style="margin-top:0">
-            <button class="theme-toggle-track" id="theme-toggle" aria-label="Toggle dark and light mode" role="switch" aria-checked="false">
-              <span class="theme-toggle-thumb">
-                <svg class="theme-toggle-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.455 2.004a.75.75 0 01.26.77 7 7 0 009.958 7.967.75.75 0 011.067.853A8.5 8.5 0 116.647 1.921a.75.75 0 01.808.083z" clip-rule="evenodd"/></svg>
-                <svg class="theme-toggle-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 2zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 15zm8-5a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0118 10zM5 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 015 10zm11.95-4.95a.75.75 0 010 1.06l-1.06 1.06a.75.75 0 01-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-12.73 8.73a.75.75 0 010 1.06l-1.06 1.06a.75.75 0 01-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zM16.95 14.95a.75.75 0 01-1.06 0l-1.06-1.06a.75.75 0 011.06-1.06l1.06 1.06a.75.75 0 010 1.06zM5.16 6.22a.75.75 0 01-1.06 0L3.04 5.16a.75.75 0 111.06-1.06L5.16 5.16a.75.75 0 010 1.06zM10 6.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
-              </span>
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   </footer>
