@@ -444,21 +444,24 @@
     .capabilities-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 48px;
     }
     .capability-card {
       background: var(--color-bg-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-card);
-      padding: 36px;
+      padding: 44px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
       transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1);
     }
     .capability-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-3px);
       box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+    }
+    .capability-card:hover .capability-icon {
+      transform: scale(1.06);
     }
     [data-theme="light"] .capability-card {
       background: #ffffff;
@@ -469,16 +472,17 @@
       box-shadow: 0 16px 48px rgba(0,0,0,0.08);
     }
     .capability-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
     }
     .capability-icon svg {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
     }
     .capability-icon.icon-peach { background: rgba(212,113,78,0.12); }
     .capability-icon.icon-sky { background: rgba(74,143,214,0.12); }
@@ -498,7 +502,7 @@
     [data-theme="light"] .capability-icon.icon-mint svg { color: #3DA87A; }
     .capability-card h3 {
       font-family: var(--font-heading);
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 600;
       letter-spacing: -0.01em;
       color: var(--color-fg-default);
@@ -678,25 +682,25 @@
     .checklist {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px;
       list-style: none;
     }
     .checklist li {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       align-items: flex-start;
     }
     .checklist-icon {
-      width: 22px;
-      height: 22px;
-      min-width: 22px;
-      margin-top: 2px;
+      width: 26px;
+      height: 26px;
+      min-width: 26px;
+      margin-top: 1px;
       color: var(--section-accent, var(--color-fg-muted));
     }
     .checklist li span {
       font-size: 16px;
       font-weight: 400;
-      line-height: 1.5;
+      line-height: 1.6;
       color: var(--color-fg-muted);
     }
 
@@ -1389,7 +1393,7 @@
           <span>Gemini</span>
         </div>
         <div class="tool-item reveal reveal-d3">
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.005.75L6.26 5.712V1.5H4.76v5.823L.75 11.085v7.125h4.01v4.29h1.5V18.21h4.245v5.04h1.5v-5.04h4.245v4.29h1.5v-4.29h4.01v-7.125l-4.01-3.762V1.5h-1.5v4.212L12.005.75zm4.245 15.96v-4.605l3.51 3.292v4.023h-2.51v-2.71zm-1.5-5.595v5.595H12.505V10.523l2.245-2.109v2.7zm-5.745 0v-2.7l2.245 2.109v6.187H9.005v-5.595zm-1.5.99v4.605H5.26V15.397l2.245-2.109v-1.183zm8.745-1.883l-4.245-3.984-4.245 3.984V8.413l4.245-3.984 4.245 3.984z"/></svg>
+          <svg viewBox="0 0 272 316" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M37.008 0L126.99 82.905V0.191H144.506V83.276L234.891 0V94.524H272V230.866H235.005V315.035L144.506 235.525V315.948H126.99V236.836L37.11 316V230.866H0V94.524H37.008V0ZM113.785 111.826H17.516V213.564H37.088V181.472L113.785 111.826ZM54.625 189.149V277.392L126.99 213.655V123.421L54.625 189.149ZM145.01 212.812V123.336L217.396 189.068V230.866H217.489V276.491L145.01 212.812ZM235.005 213.564H254.484V111.826H158.932L235.005 180.751V213.564ZM217.375 94.524V39.798L157.977 94.524H217.375ZM113.921 94.524H54.524V39.798L113.921 94.524Z" fill="currentColor"/></svg>
           <span>Perplexity</span>
         </div>
         <div class="tool-item reveal">
