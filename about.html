@@ -266,12 +266,34 @@
       border-radius: 10px; transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .nav-menu a:hover {
-      background: linear-gradient(90deg, var(--color-fg-default), var(--color-fg-muted));
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      color: var(--color-fg-default);
     }
-    /* Text-flip wrapper: neutral on desktop */
-    .nav-text-flip { display: inline; }
-    .nav-text-flip span:nth-child(2) { display: none; }
+
+    /* Text-flip animation (desktop) */
+    .nav-text-flip {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      height: 20px;
+      vertical-align: top;
+    }
+    .nav-text-flip span {
+      display: block;
+      transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .nav-text-flip span:nth-child(2) {
+      position: absolute;
+      top: 100%;
+      left: 0;
+    }
+    .nav-menu a:hover .nav-text-flip span:first-child,
+    .nav-menu a:active .nav-text-flip span:first-child {
+      transform: translateY(-100%);
+    }
+    .nav-menu a:hover .nav-text-flip span:nth-child(2),
+    .nav-menu a:active .nav-text-flip span:nth-child(2) {
+      transform: translateY(-100%);
+    }
     .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
     .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
     .mobile-toggle svg { width: 24px; height: 24px; color: var(--color-fg-default); }
@@ -972,7 +994,6 @@
           <li><a href="index.html#services"><span class="nav-text-flip"><span>Services</span><span>Services</span></span></a></li>
           <li><a href="index.html#pricing"><span class="nav-text-flip"><span>Pricing</span><span>Pricing</span></span></a></li>
           <li><a href="index.html#work"><span class="nav-text-flip"><span>Work</span><span>Work</span></span></a></li>
-          <li><a href="about.html"><span class="nav-text-flip"><span>About</span><span>About</span></span></a></li>
         </ul>
         <div class="nav-actions">
           <a href="#start" class="btn btn-primary btn-sm">Let's connect</a>
