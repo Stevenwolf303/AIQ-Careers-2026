@@ -371,18 +371,20 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
-      padding-top: 16px;
+      padding-top: 20px;
     }
     .about-hero-subtitle {
       font-size: 18px;
       line-height: 1.65;
       color: var(--color-fg-default);
       font-weight: 500;
+      max-width: 65ch;
     }
     .about-hero-body {
       font-size: 16px;
       line-height: 1.7;
       color: var(--color-fg-muted);
+      max-width: 65ch;
     }
 
     /* ===== Split Section Layout (reusable 2-col) ===== */
@@ -391,8 +393,8 @@
     }
     .about-split .container {
       display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 80px;
+      grid-template-columns: 2fr 3fr;
+      gap: 96px;
       align-items: start;
       max-width: var(--max-width);
     }
@@ -403,8 +405,8 @@
     }
     .about-split-left h2 {
       font-family: var(--font-heading);
-      font-size: clamp(32px, 4vw, 48px);
-      font-weight: 600;
+      font-size: clamp(36px, 4.5vw, 52px);
+      font-weight: 700;
       line-height: 1.12;
       letter-spacing: -0.025em;
       color: var(--color-fg-default);
@@ -418,6 +420,7 @@
       font-size: 17px;
       line-height: 1.7;
       color: var(--color-fg-muted);
+      max-width: 60ch;
     }
 
     /* ===== Capabilities Grid (premium 2×2) ===== */
