@@ -1612,7 +1612,7 @@
     .workflow-hub-icon--dark {
       background: linear-gradient(180deg, #1a1a1e 0%, #111114 100%);
       border-color: transparent;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.30), 0 0 20px rgba(168,130,100,0.15);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.30), 0 0 28px rgba(168,130,100,0.25), 0 0 56px rgba(168,130,100,0.10);
       position: relative;
       overflow: visible;
     }
@@ -1620,8 +1620,8 @@
     .workflow-hub-icon--dark::before {
       content: '';
       position: absolute;
-      inset: -3px;
-      border-radius: 27px;
+      inset: -4px;
+      border-radius: 28px;
       background: conic-gradient(
         from var(--wf-border-angle),
         #C15F3C 0%,
@@ -1640,11 +1640,11 @@
         linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
-      padding: 3px;
+      padding: 4px;
       animation: wf-border-spin 8s linear infinite;
-      opacity: 0.85;
+      opacity: 1;
       z-index: -1;
-      filter: blur(0.5px);
+      filter: blur(0.3px);
     }
 
     @keyframes wf-border-spin {
@@ -1700,7 +1700,7 @@
       opacity: 0.25;
     }
     [data-theme="light"] .workflow-hub-icon--dark::before {
-      opacity: 0.9;
+      opacity: 1;
     }
 
     @media (max-width: 1023px) {
