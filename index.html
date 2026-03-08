@@ -1757,24 +1757,24 @@
     .footer-watermark {
       position: absolute;
       left: 50%;
-      bottom: -18%;
+      bottom: -30%;
       transform: translateX(-50%);
       font-family: var(--font-heading);
-      font-size: clamp(140px, 18vw, 340px);
+      font-size: clamp(120px, 16vw, 300px);
       font-weight: 800;
       line-height: 0.85;
       letter-spacing: -0.04em;
-      color: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.035);
       white-space: nowrap;
       user-select: none;
       pointer-events: none;
       z-index: 0;
     }
     [data-theme="light"] .footer-watermark {
-      color: rgba(0,0,0,0.025);
+      color: rgba(0,0,0,0.02);
     }
 
-    /* Two-part horizontal footer */
+    /* Two-column footer layout */
     .footer-grid {
       display: flex;
       justify-content: space-between;
@@ -1787,7 +1787,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      max-width: 380px;
+      max-width: 340px;
     }
 
     .footer-description {
@@ -1804,38 +1804,47 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--color-fg-muted);
-      opacity: 0.5;
+      opacity: 0.45;
+      margin-bottom: 18px;
     }
 
-    .footer-nav {
+    .footer-nav-groups {
       display: flex;
-      flex-direction: column;
-      gap: 14px;
+      gap: 64px;
+      align-items: flex-start;
       padding-top: 4px;
     }
 
-    .footer-nav-links {
+    .footer-nav-group {
       display: flex;
-      gap: 28px;
+      flex-direction: column;
     }
 
-    .footer-nav-links a {
+    .footer-nav-group a {
       font-size: 14px;
       font-weight: 400;
-      line-height: 20px;
+      line-height: 1;
       letter-spacing: -0.2px;
       color: var(--color-fg-muted);
       transition: color 0.15s ease;
       white-space: nowrap;
+      padding: 7px 0;
     }
 
-    .footer-nav-links a:hover {
+    .footer-nav-group a:hover {
       color: var(--color-fg-default);
     }
 
-    .footer-bottom {
+    .footer-divider {
+      border: none;
       border-top: 1px solid var(--color-border);
-      padding: 28px 0 48px;
+      margin: 0;
+    }
+
+    .footer-lower {
+      position: relative;
+      padding: 28px 0 56px;
+      overflow: hidden;
     }
 
     .footer-copyright {
@@ -2192,6 +2201,8 @@
         flex-direction: column;
         gap: 40px;
       }
+      .footer-brand { max-width: 100%; }
+      .footer-nav-groups { gap: 48px; }
 
     }
 
@@ -2655,7 +2666,6 @@
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
-    <div class="footer-watermark" aria-hidden="true">Baseline</div>
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
@@ -2680,17 +2690,23 @@
             </button>
           </div>
         </div>
-        <nav class="footer-nav">
-          <p class="footer-col-label">Navigate</p>
-          <div class="footer-nav-links">
+        <nav class="footer-nav-groups">
+          <div class="footer-nav-group">
+            <p class="footer-col-label">Explore</p>
             <a href="#services">Services</a>
             <a href="#pricing">Pricing</a>
             <a href="#work">Work</a>
-            <a href="#start">Start a project</a>
+          </div>
+          <div class="footer-nav-group">
+            <p class="footer-col-label">Studio</p>
+            <a href="#about">About</a>
+            <a href="#start">Let's connect</a>
           </div>
         </nav>
       </div>
-      <div class="footer-bottom">
+      <hr class="footer-divider">
+      <div class="footer-lower">
+        <div class="footer-watermark" aria-hidden="true">Baseline</div>
         <p class="footer-copyright"><span style="font-size:0.85em;vertical-align:0.05em;">©</span> 2026 Baseline Studio</p>
       </div>
     </div>
