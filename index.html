@@ -836,7 +836,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      opacity: 0.015;
+      opacity: 0.07;
+      filter: blur(1.5px);
     }
     .hero-bg-logo svg {
       width: 100%;
@@ -844,20 +845,20 @@
       display: block;
     }
     [data-theme="light"] .hero-bg-logo {
-      opacity: 0.012;
-      filter: brightness(0);
+      opacity: 0.06;
+      filter: brightness(0) blur(1.5px);
     }
 
     .hero-bg-circle {
       width: clamp(300px, 35vw, 500px);
       height: clamp(300px, 35vw, 500px);
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.012);
+      border: 1px solid rgba(255,255,255,0.04);
       top: 15%;
       right: -5%;
     }
     [data-theme="light"] .hero-bg-circle {
-      border-color: rgba(0,0,0,0.015);
+      border-color: rgba(0,0,0,0.04);
     }
 
     /* ===== Logo Cloud ===== */
@@ -1779,14 +1780,14 @@
       font-weight: 800;
       line-height: 0.85;
       letter-spacing: -0.04em;
-      color: rgba(255,255,255,0.035);
+      color: rgba(255,255,255,0.06);
       white-space: nowrap;
       user-select: none;
       pointer-events: none;
       z-index: 0;
     }
     [data-theme="light"] .footer-watermark {
-      color: rgba(0,0,0,0.02);
+      color: rgba(0,0,0,0.03);
     }
 
     /* Two-column footer layout */
