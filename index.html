@@ -1807,16 +1807,14 @@
     .footer-watermark {
       position: absolute;
       left: 50%;
-      bottom: 0;
+      bottom: -0.22em;
       transform: translateX(-50%);
-      width: 80%;
-      text-align: center;
       font-family: var(--font-heading);
-      font-size: clamp(100px, 12vw, 240px);
+      font-size: clamp(160px, 20vw, 380px);
       font-weight: 800;
       line-height: 0.85;
       letter-spacing: -0.04em;
-      color: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.04);
       white-space: nowrap;
       user-select: none;
       pointer-events: none;
@@ -3076,10 +3074,10 @@
       </div>
       <hr class="footer-divider">
       <div class="footer-lower">
-        <div class="footer-watermark" aria-hidden="true">Baseline</div>
         <p class="footer-copyright"><span style="font-size:0.85em;vertical-align:0.05em;">©</span> 2026 Baseline Studio</p>
       </div>
     </div>
+    <div class="footer-watermark" aria-hidden="true">Baseline</div>
   </footer>
 
   <script>
