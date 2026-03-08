@@ -689,7 +689,68 @@
         </div>
       </div>
       <div class="cs-hero-image">
-        <div class="img-placeholder">Homepage mockup</div>
+        <div style="width:100%;height:100%;background:#FAF8F5;font-family:'Inter',system-ui,sans-serif;display:flex;flex-direction:column;overflow:hidden;">
+          <!-- Nav -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #E8E2D9;">
+            <div style="display:flex;align-items:center;gap:6px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="color:#2C3E50;"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" stroke="currentColor" stroke-width="1.5"/><path d="M9 21V13h6v8" stroke="currentColor" stroke-width="1.5"/></svg>
+              <span style="font-size:11px;font-weight:700;letter-spacing:0.03em;color:#2C3E50;">RIVERWALK</span>
+              <span style="font-size:11px;font-weight:400;color:#C9A96E;">REALTY</span>
+            </div>
+            <div style="display:flex;gap:16px;">
+              <span style="font-size:9px;color:#2C3E50;font-weight:500;">Listings</span>
+              <span style="font-size:9px;color:#2C3E50;font-weight:500;">Neighborhoods</span>
+              <span style="font-size:9px;color:#2C3E50;font-weight:500;">Agents</span>
+              <span style="font-size:9px;color:#2C3E50;font-weight:500;">About</span>
+              <span style="font-size:9px;background:#C9A96E;color:#fff;padding:3px 10px;border-radius:3px;font-weight:600;">Contact</span>
+            </div>
+          </div>
+          <!-- Hero Section -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;background:linear-gradient(180deg,#FAF8F5 0%,#f0ece5 100%);position:relative;">
+            <div style="font-size:clamp(14px,2.5vw,28px);font-weight:300;color:#2C3E50;letter-spacing:-0.01em;line-height:1.2;">Find your</div>
+            <div style="font-size:clamp(18px,3.5vw,38px);font-weight:700;color:#2C3E50;letter-spacing:-0.02em;line-height:1.15;margin-top:2px;">forever home.</div>
+            <p style="font-size:9px;color:#7a7a7a;margin-top:6px;max-width:280px;line-height:1.4;">Discover curated properties in the city's most desirable neighborhoods, guided by agents who know every street.</p>
+            <!-- Search Bar -->
+            <div style="display:flex;align-items:center;margin-top:12px;background:#fff;border:1px solid #E8E2D9;border-radius:6px;padding:6px 10px;gap:6px;width:min(340px,80%);box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#C9A96E" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/></svg>
+              <span style="font-size:8px;color:#aaa;flex:1;">Search by neighborhood, address, or MLS #...</span>
+              <span style="font-size:7px;background:#2C3E50;color:#fff;padding:3px 8px;border-radius:3px;font-weight:600;">Search</span>
+            </div>
+          </div>
+          <!-- Featured Listings -->
+          <div style="padding:10px 24px 14px;background:#FAF8F5;">
+            <div style="font-size:9px;font-weight:600;color:#2C3E50;margin-bottom:6px;letter-spacing:0.04em;">FEATURED LISTINGS</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+              <div style="background:#fff;border-radius:5px;overflow:hidden;border:1px solid #E8E2D9;">
+                <div style="height:48px;background:linear-gradient(135deg,#d4c5a9 0%,#b8a88a 50%,#ccc0a6 100%);position:relative;">
+                  <span style="position:absolute;bottom:3px;left:5px;font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,0.3);">$875,000</span>
+                </div>
+                <div style="padding:5px;">
+                  <div style="font-size:7px;font-weight:600;color:#2C3E50;">142 Riverside Dr</div>
+                  <div style="font-size:6px;color:#999;margin-top:1px;">3 bed &bull; 2 bath &bull; 1,850 sqft</div>
+                </div>
+              </div>
+              <div style="background:#fff;border-radius:5px;overflow:hidden;border:1px solid #E8E2D9;">
+                <div style="height:48px;background:linear-gradient(135deg,#8fa4b5 0%,#6e8899 50%,#92a8b8 100%);position:relative;">
+                  <span style="position:absolute;bottom:3px;left:5px;font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,0.3);">$1,250,000</span>
+                </div>
+                <div style="padding:5px;">
+                  <div style="font-size:7px;font-weight:600;color:#2C3E50;">88 Harbor View Ln</div>
+                  <div style="font-size:6px;color:#999;margin-top:1px;">4 bed &bull; 3 bath &bull; 2,400 sqft</div>
+                </div>
+              </div>
+              <div style="background:#fff;border-radius:5px;overflow:hidden;border:1px solid #E8E2D9;">
+                <div style="height:48px;background:linear-gradient(135deg,#c9b896 0%,#a89878 50%,#c4b48e 100%);position:relative;">
+                  <span style="position:absolute;bottom:3px;left:5px;font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,0.3);">$625,000</span>
+                </div>
+                <div style="padding:5px;">
+                  <div style="font-size:7px;font-weight:600;color:#2C3E50;">310 Oak Terrace</div>
+                  <div style="font-size:6px;color:#999;margin-top:1px;">2 bed &bull; 2 bath &bull; 1,200 sqft</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -746,29 +807,400 @@
       <span class="cs-eyebrow eyebrow-sky">The Work</span>
 
       <div class="cs-work-image">
-        <div class="img-placeholder">Homepage — full width desktop view</div>
+        <div style="width:100%;height:100%;background:#FAF8F5;font-family:'Inter',system-ui,sans-serif;display:flex;overflow:hidden;">
+          <!-- Left: Logo & Brand Mark -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:#2C3E50;position:relative;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="8" fill="#1A1A1A"/>
+                <path d="M10 22L24 12L38 22V36a2 2 0 01-2 2H12a2 2 0 01-2-2V22z" stroke="#C9A96E" stroke-width="1.5" fill="none"/>
+                <path d="M18 38V28h12v10" stroke="#C9A96E" stroke-width="1.5" fill="none"/>
+                <path d="M24 12v-2M24 10l-3 2M24 10l3 2" stroke="#C9A96E" stroke-width="1"/>
+              </svg>
+              <div style="text-align:center;">
+                <div style="font-size:14px;font-weight:700;letter-spacing:0.12em;color:#FAF8F5;">RIVERWALK</div>
+                <div style="font-size:10px;font-weight:400;letter-spacing:0.18em;color:#C9A96E;margin-top:1px;">REALTY</div>
+              </div>
+            </div>
+            <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;">
+              <span style="font-size:7px;color:rgba(250,248,245,0.35);letter-spacing:0.08em;">PRIMARY LOGO MARK</span>
+            </div>
+          </div>
+          <!-- Center: Palette & Typography -->
+          <div style="flex:1.5;display:flex;flex-direction:column;padding:20px 24px;gap:14px;background:#FAF8F5;">
+            <!-- Palette -->
+            <div>
+              <div style="font-size:7px;font-weight:600;letter-spacing:0.1em;color:#2C3E50;margin-bottom:6px;">COLOR PALETTE</div>
+              <div style="display:flex;gap:6px;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+                  <div style="width:36px;height:36px;border-radius:4px;background:#2C3E50;"></div>
+                  <span style="font-size:6px;color:#999;">Slate Blue</span>
+                  <span style="font-size:5px;color:#bbb;">#2C3E50</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+                  <div style="width:36px;height:36px;border-radius:4px;background:#C9A96E;"></div>
+                  <span style="font-size:6px;color:#999;">Muted Gold</span>
+                  <span style="font-size:5px;color:#bbb;">#C9A96E</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+                  <div style="width:36px;height:36px;border-radius:4px;background:#FAF8F5;border:1px solid #E8E2D9;"></div>
+                  <span style="font-size:6px;color:#999;">Warm White</span>
+                  <span style="font-size:5px;color:#bbb;">#FAF8F5</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+                  <div style="width:36px;height:36px;border-radius:4px;background:#1A1A1A;"></div>
+                  <span style="font-size:6px;color:#999;">Black</span>
+                  <span style="font-size:5px;color:#bbb;">#1A1A1A</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+                  <div style="width:36px;height:36px;border-radius:4px;background:#E8E2D9;"></div>
+                  <span style="font-size:6px;color:#999;">Warm Gray</span>
+                  <span style="font-size:5px;color:#bbb;">#E8E2D9</span>
+                </div>
+              </div>
+            </div>
+            <!-- Typography -->
+            <div>
+              <div style="font-size:7px;font-weight:600;letter-spacing:0.1em;color:#2C3E50;margin-bottom:6px;">TYPOGRAPHY</div>
+              <div style="display:flex;gap:20px;">
+                <div>
+                  <div style="font-size:18px;font-weight:300;color:#2C3E50;font-family:Georgia,serif;line-height:1;">Aa</div>
+                  <div style="font-size:7px;color:#999;margin-top:2px;">Georgia / Serif</div>
+                  <div style="font-size:6px;color:#bbb;margin-top:1px;">Headlines & Accents</div>
+                </div>
+                <div>
+                  <div style="font-size:18px;font-weight:500;color:#2C3E50;line-height:1;">Aa</div>
+                  <div style="font-size:7px;color:#999;margin-top:2px;">Inter / Sans-Serif</div>
+                  <div style="font-size:6px;color:#bbb;margin-top:1px;">Body & Interface</div>
+                </div>
+              </div>
+            </div>
+            <!-- Type Scale -->
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <span style="font-size:14px;font-weight:700;color:#2C3E50;font-family:Georgia,serif;">Display Heading</span>
+              <span style="font-size:10px;font-weight:600;color:#2C3E50;">Section Title</span>
+              <span style="font-size:8px;font-weight:400;color:#666;">Body text for descriptions and property details.</span>
+              <span style="font-size:6px;font-weight:500;color:#999;letter-spacing:0.08em;">CAPTION &middot; LABEL</span>
+            </div>
+          </div>
+          <!-- Right: UI Elements -->
+          <div style="flex:1;display:flex;flex-direction:column;padding:20px 20px;gap:10px;background:#f5f1eb;">
+            <div style="font-size:7px;font-weight:600;letter-spacing:0.1em;color:#2C3E50;margin-bottom:2px;">UI ELEMENTS</div>
+            <!-- Buttons -->
+            <div style="display:flex;flex-direction:column;gap:5px;">
+              <div style="background:#2C3E50;color:#fff;font-size:8px;font-weight:600;text-align:center;padding:6px 0;border-radius:4px;">Schedule a Tour</div>
+              <div style="background:transparent;color:#2C3E50;font-size:8px;font-weight:600;text-align:center;padding:5px 0;border-radius:4px;border:1px solid #2C3E50;">View Listings</div>
+              <div style="background:#C9A96E;color:#fff;font-size:8px;font-weight:600;text-align:center;padding:6px 0;border-radius:4px;">Contact Agent</div>
+            </div>
+            <!-- Listing Card Outline -->
+            <div style="border:1px solid #E8E2D9;border-radius:5px;padding:8px;background:#fff;">
+              <div style="height:28px;background:linear-gradient(135deg,#d4c5a9,#b8a88a);border-radius:3px;margin-bottom:5px;"></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:8px;font-weight:700;color:#2C3E50;">$1,250,000</span>
+                <span style="font-size:6px;color:#C9A96E;font-weight:600;">NEW</span>
+              </div>
+              <div style="font-size:6px;color:#999;margin-top:2px;">4 bed &bull; 3 bath &bull; 2,400 sqft</div>
+              <div style="font-size:6px;color:#666;margin-top:1px;">88 Harbor View Lane</div>
+            </div>
+            <!-- Input field -->
+            <div style="border:1px solid #E8E2D9;border-radius:4px;padding:5px 8px;background:#fff;">
+              <span style="font-size:6px;color:#C9A96E;font-weight:500;display:block;margin-bottom:1px;">Email Address</span>
+              <span style="font-size:7px;color:#bbb;">agent@riverwalk.com</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="cs-work-grid">
         <div class="cs-work-image">
-          <div class="img-placeholder">Property listings page</div>
+          <div style="width:100%;height:100%;background:#FAF8F5;font-family:'Inter',system-ui,sans-serif;display:flex;flex-direction:column;padding:16px;gap:10px;overflow:hidden;">
+            <div style="font-size:7px;font-weight:600;letter-spacing:0.1em;color:#2C3E50;">UI COMPONENTS</div>
+            <!-- Buttons Row -->
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <div style="background:#2C3E50;color:#fff;font-size:7px;font-weight:600;padding:5px 12px;border-radius:4px;">Primary</div>
+              <div style="background:#C9A96E;color:#fff;font-size:7px;font-weight:600;padding:5px 12px;border-radius:4px;">Accent</div>
+              <div style="background:transparent;color:#2C3E50;font-size:7px;font-weight:600;padding:4px 12px;border-radius:4px;border:1px solid #2C3E50;">Outline</div>
+              <div style="background:#E8E2D9;color:#2C3E50;font-size:7px;font-weight:600;padding:5px 12px;border-radius:4px;">Muted</div>
+            </div>
+            <!-- Property Cards -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+              <div style="background:#fff;border:1px solid #E8E2D9;border-radius:5px;overflow:hidden;">
+                <div style="height:32px;background:linear-gradient(135deg,#8fa4b5 0%,#6e8899 100%);"></div>
+                <div style="padding:5px;">
+                  <div style="font-size:7px;font-weight:700;color:#2C3E50;">$875,000</div>
+                  <div style="font-size:6px;color:#999;margin-top:1px;">3 bed &bull; 2 bath</div>
+                  <div style="font-size:6px;color:#666;">142 Riverside Dr</div>
+                </div>
+              </div>
+              <div style="background:#fff;border:1px solid #E8E2D9;border-radius:5px;overflow:hidden;">
+                <div style="height:32px;background:linear-gradient(135deg,#c9b896 0%,#a89878 100%);"></div>
+                <div style="padding:5px;">
+                  <div style="font-size:7px;font-weight:700;color:#2C3E50;">$1,100,000</div>
+                  <div style="font-size:6px;color:#999;margin-top:1px;">4 bed &bull; 3 bath</div>
+                  <div style="font-size:6px;color:#666;">55 Elm Street</div>
+                </div>
+              </div>
+            </div>
+            <!-- Search Filters -->
+            <div style="display:flex;gap:5px;align-items:center;">
+              <div style="font-size:7px;font-weight:600;color:#2C3E50;">Filters:</div>
+              <div style="font-size:6px;background:#fff;border:1px solid #E8E2D9;border-radius:3px;padding:3px 8px;color:#666;">Price Range &#9662;</div>
+              <div style="font-size:6px;background:#fff;border:1px solid #E8E2D9;border-radius:3px;padding:3px 8px;color:#666;">Bedrooms &#9662;</div>
+              <div style="font-size:6px;background:#2C3E50;border-radius:3px;padding:3px 8px;color:#fff;">Waterfront</div>
+            </div>
+            <!-- Form Fields -->
+            <div style="display:flex;gap:6px;">
+              <div style="flex:1;border:1px solid #E8E2D9;border-radius:4px;padding:4px 6px;background:#fff;">
+                <div style="font-size:5px;color:#C9A96E;font-weight:600;margin-bottom:1px;">Full Name</div>
+                <div style="font-size:7px;color:#2C3E50;">Sarah Mitchell</div>
+              </div>
+              <div style="flex:1;border:1px solid #E8E2D9;border-radius:4px;padding:4px 6px;background:#fff;">
+                <div style="font-size:5px;color:#C9A96E;font-weight:600;margin-bottom:1px;">Phone</div>
+                <div style="font-size:7px;color:#2C3E50;">(555) 012-3456</div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="cs-work-image">
-          <div class="img-placeholder">Neighborhood guide page</div>
+          <div style="width:100%;height:100%;background:#FAF8F5;font-family:'Inter',system-ui,sans-serif;display:flex;flex-direction:column;overflow:hidden;">
+            <!-- Property Detail Header -->
+            <div style="height:42%;background:linear-gradient(135deg,#7a96a8 0%,#5a7a8f 40%,#8aabb8 100%);position:relative;">
+              <div style="position:absolute;top:8px;left:10px;display:flex;gap:4px;">
+                <span style="font-size:6px;background:rgba(0,0,0,0.4);color:#fff;padding:2px 6px;border-radius:2px;">&#8592; Back</span>
+                <span style="font-size:6px;background:#C9A96E;color:#fff;padding:2px 6px;border-radius:2px;">For Sale</span>
+              </div>
+              <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.5));padding:8px 12px;">
+                <div style="font-size:6px;color:rgba(255,255,255,0.7);">88 Harbor View Lane, Riverwalk District</div>
+              </div>
+            </div>
+            <!-- Property Info -->
+            <div style="padding:10px 14px;flex:1;display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:14px;font-weight:700;color:#2C3E50;">$1,250,000</div>
+                  <div style="font-size:7px;color:#999;margin-top:1px;">88 Harbor View Lane</div>
+                </div>
+                <div style="display:flex;gap:3px;">
+                  <span style="font-size:6px;color:#fff;background:#2C3E50;padding:2px 5px;border-radius:2px;">Save</span>
+                  <span style="font-size:6px;color:#fff;background:#2C3E50;padding:2px 5px;border-radius:2px;">Share</span>
+                </div>
+              </div>
+              <!-- Specs -->
+              <div style="display:flex;gap:12px;padding:6px 0;border-top:1px solid #E8E2D9;border-bottom:1px solid #E8E2D9;">
+                <div style="text-align:center;">
+                  <div style="font-size:10px;font-weight:700;color:#2C3E50;">4</div>
+                  <div style="font-size:6px;color:#999;">Beds</div>
+                </div>
+                <div style="text-align:center;">
+                  <div style="font-size:10px;font-weight:700;color:#2C3E50;">3</div>
+                  <div style="font-size:6px;color:#999;">Baths</div>
+                </div>
+                <div style="text-align:center;">
+                  <div style="font-size:10px;font-weight:700;color:#2C3E50;">2,400</div>
+                  <div style="font-size:6px;color:#999;">Sq Ft</div>
+                </div>
+                <div style="text-align:center;">
+                  <div style="font-size:10px;font-weight:700;color:#2C3E50;">2019</div>
+                  <div style="font-size:6px;color:#999;">Built</div>
+                </div>
+              </div>
+              <!-- CTA -->
+              <div style="background:#C9A96E;color:#fff;font-size:8px;font-weight:600;text-align:center;padding:7px 0;border-radius:4px;margin-top:auto;">Contact Agent</div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="cs-work-grid">
         <div class="cs-work-image tall">
-          <div class="img-placeholder">Mobile property view</div>
+          <div style="width:100%;height:100%;background:#E8E2D9;font-family:'Inter',system-ui,sans-serif;display:flex;align-items:center;justify-content:center;padding:20px;">
+            <!-- Phone Frame -->
+            <div style="width:72%;max-width:200px;height:88%;background:#1A1A1A;border-radius:20px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,0.15);display:flex;flex-direction:column;overflow:hidden;">
+              <!-- Notch -->
+              <div style="display:flex;justify-content:center;padding:4px 0 2px;">
+                <div style="width:40%;height:10px;background:#000;border-radius:10px;"></div>
+              </div>
+              <!-- Screen -->
+              <div style="flex:1;background:#FAF8F5;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;">
+                <!-- Mobile Nav -->
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #E8E2D9;">
+                  <div style="display:flex;align-items:center;gap:4px;">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" stroke="#2C3E50" stroke-width="2"/></svg>
+                    <span style="font-size:7px;font-weight:700;color:#2C3E50;">RIVERWALK</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:2px;">
+                    <div style="width:12px;height:1.5px;background:#2C3E50;border-radius:1px;"></div>
+                    <div style="width:12px;height:1.5px;background:#2C3E50;border-radius:1px;"></div>
+                  </div>
+                </div>
+                <!-- Mobile Property Image -->
+                <div style="height:35%;background:linear-gradient(135deg,#7a96a8 0%,#5a7a8f 40%,#8aabb8 100%);position:relative;">
+                  <span style="position:absolute;top:6px;right:6px;font-size:5px;background:#C9A96E;color:#fff;padding:2px 5px;border-radius:2px;font-weight:600;">FOR SALE</span>
+                  <!-- Image dots -->
+                  <div style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);display:flex;gap:3px;">
+                    <div style="width:4px;height:4px;border-radius:50%;background:#fff;"></div>
+                    <div style="width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.4);"></div>
+                    <div style="width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.4);"></div>
+                  </div>
+                </div>
+                <!-- Mobile Property Details -->
+                <div style="padding:8px 10px;flex:1;display:flex;flex-direction:column;gap:5px;">
+                  <div style="font-size:11px;font-weight:700;color:#2C3E50;">$1,250,000</div>
+                  <div style="font-size:6px;color:#666;">88 Harbor View Lane, Riverwalk</div>
+                  <div style="display:flex;gap:8px;padding:5px 0;border-top:1px solid #E8E2D9;border-bottom:1px solid #E8E2D9;">
+                    <div style="text-align:center;"><div style="font-size:9px;font-weight:700;color:#2C3E50;">4</div><div style="font-size:5px;color:#999;">Beds</div></div>
+                    <div style="text-align:center;"><div style="font-size:9px;font-weight:700;color:#2C3E50;">3</div><div style="font-size:5px;color:#999;">Baths</div></div>
+                    <div style="text-align:center;"><div style="font-size:9px;font-weight:700;color:#2C3E50;">2,400</div><div style="font-size:5px;color:#999;">Sq Ft</div></div>
+                  </div>
+                  <div style="font-size:6px;color:#666;line-height:1.5;">Stunning waterfront property featuring panoramic river views, open-concept living, chef's kitchen...</div>
+                  <div style="background:#C9A96E;color:#fff;font-size:7px;font-weight:600;text-align:center;padding:6px 0;border-radius:4px;margin-top:auto;">Schedule a Tour</div>
+                  <div style="background:transparent;color:#2C3E50;font-size:7px;font-weight:600;text-align:center;padding:5px 0;border-radius:4px;border:1px solid #2C3E50;">Contact Agent</div>
+                </div>
+              </div>
+              <!-- Home indicator -->
+              <div style="display:flex;justify-content:center;padding:4px 0 2px;">
+                <div style="width:30%;height:3px;background:#555;border-radius:3px;"></div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="cs-work-image">
-          <div class="img-placeholder">Brand identity &amp; signage system</div>
+          <div style="width:100%;height:100%;background:#FAF8F5;font-family:'Inter',system-ui,sans-serif;display:flex;flex-direction:column;padding:16px 18px;gap:12px;overflow:hidden;">
+            <!-- Typography Section -->
+            <div>
+              <div style="font-size:7px;font-weight:600;letter-spacing:0.1em;color:#2C3E50;margin-bottom:6px;">TYPOGRAPHY</div>
+              <div style="display:flex;gap:16px;">
+                <div style="flex:1;">
+                  <div style="font-size:28px;font-weight:300;color:#2C3E50;font-family:Georgia,serif;line-height:1;">Aa</div>
+                  <div style="font-size:7px;font-weight:600;color:#2C3E50;margin-top:4px;">Georgia</div>
+                  <div style="font-size:6px;color:#999;">Serif &middot; Headlines</div>
+                  <div style="font-size:6px;color:#666;margin-top:3px;font-family:Georgia,serif;line-height:1.3;">
+                    ABCDEFGHIJKLM<br/>abcdefghijklm<br/>0123456789
+                  </div>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:28px;font-weight:500;color:#2C3E50;line-height:1;">Aa</div>
+                  <div style="font-size:7px;font-weight:600;color:#2C3E50;margin-top:4px;">Inter</div>
+                  <div style="font-size:6px;color:#999;">Sans-Serif &middot; Body</div>
+                  <div style="font-size:6px;color:#666;margin-top:3px;line-height:1.3;">
+                    ABCDEFGHIJKLM<br/>abcdefghijklm<br/>0123456789
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Divider -->
+            <div style="height:1px;background:#E8E2D9;"></div>
+            <!-- Icons Section -->
+            <div>
+              <div style="font-size:7px;font-weight:600;letter-spacing:0.1em;color:#2C3E50;margin-bottom:8px;">ICON SET</div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                  <div style="width:32px;height:32px;border-radius:6px;background:#2C3E50;display:flex;align-items:center;justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" stroke="#C9A96E" stroke-width="1.5"/><path d="M9 21V13h6v8" stroke="#C9A96E" stroke-width="1.5"/></svg>
+                  </div>
+                  <span style="font-size:5px;color:#999;">Home</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                  <div style="width:32px;height:32px;border-radius:6px;background:#2C3E50;display:flex;align-items:center;justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <span style="font-size:5px;color:#999;">Key</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                  <div style="width:32px;height:32px;border-radius:6px;background:#2C3E50;display:flex;align-items:center;justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#C9A96E" stroke-width="1.5"/><circle cx="12" cy="9" r="2.5" stroke="#C9A96E" stroke-width="1.5"/></svg>
+                  </div>
+                  <span style="font-size:5px;color:#999;">Map Pin</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                  <div style="width:32px;height:32px;border-radius:6px;background:#2C3E50;display:flex;align-items:center;justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4M9 9v.01M9 12v.01M9 15v.01M9 18v.01" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <span style="font-size:5px;color:#999;">Building</span>
+                </div>
+              </div>
+            </div>
+            <!-- Additional icons row -->
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:32px;height:32px;border-radius:6px;background:#f5f1eb;border:1px solid #E8E2D9;display:flex;align-items:center;justify-content:center;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#2C3E50" stroke-width="1.5"/><path d="M16.5 16.5L21 21" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <span style="font-size:5px;color:#999;">Search</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:32px;height:32px;border-radius:6px;background:#f5f1eb;border:1px solid #E8E2D9;display:flex;align-items:center;justify-content:center;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="#2C3E50" stroke-width="1.5"/></svg>
+                </div>
+                <span style="font-size:5px;color:#999;">Favorite</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:32px;height:32px;border-radius:6px;background:#f5f1eb;border:1px solid #E8E2D9;display:flex;align-items:center;justify-content:center;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span style="font-size:5px;color:#999;">Calendar</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:32px;height:32px;border-radius:6px;background:#f5f1eb;border:1px solid #E8E2D9;display:flex;align-items:center;justify-content:center;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span style="font-size:5px;color:#999;">Agents</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="cs-work-image">
-        <div class="img-placeholder">Agent contact &amp; inquiry flow</div>
+        <div style="width:100%;height:100%;background:linear-gradient(135deg,#2C3E50 0%,#1a2a38 50%,#2C3E50 100%);font-family:'Inter',system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow:hidden;">
+          <!-- Title -->
+          <div style="font-size:7px;font-weight:600;letter-spacing:0.15em;color:#C9A96E;margin-bottom:6px;">THE CLIENT JOURNEY</div>
+          <div style="font-size:14px;font-weight:300;color:#FAF8F5;margin-bottom:24px;font-family:Georgia,serif;letter-spacing:-0.01em;">Search &rarr; Tour &rarr; Close</div>
+          <!-- Flow Cards -->
+          <div style="display:flex;align-items:center;gap:0;width:90%;max-width:600px;">
+            <!-- Step 1: Search -->
+            <div style="flex:1;background:#FAF8F5;border-radius:8px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;">
+              <div style="width:28px;height:28px;border-radius:50%;background:#C9A96E;display:flex;align-items:center;justify-content:center;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <div style="font-size:10px;font-weight:700;color:#2C3E50;">Search</div>
+              <div style="font-size:6px;color:#999;text-align:center;line-height:1.4;">Browse listings by neighborhood, price, and features</div>
+              <div style="position:absolute;top:6px;left:6px;font-size:6px;font-weight:700;color:#C9A96E;">01</div>
+            </div>
+            <!-- Connector Arrow -->
+            <div style="display:flex;align-items:center;padding:0 4px;">
+              <div style="width:20px;height:1px;background:#C9A96E;position:relative;">
+                <div style="position:absolute;right:-3px;top:-3px;width:0;height:0;border-top:3px solid transparent;border-bottom:3px solid transparent;border-left:5px solid #C9A96E;"></div>
+              </div>
+            </div>
+            <!-- Step 2: Tour -->
+            <div style="flex:1;background:#FAF8F5;border-radius:8px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;">
+              <div style="width:28px;height:28px;border-radius:50%;background:#C9A96E;display:flex;align-items:center;justify-content:center;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div style="font-size:10px;font-weight:700;color:#2C3E50;">Tour</div>
+              <div style="font-size:6px;color:#999;text-align:center;line-height:1.4;">Schedule private showings with a dedicated agent</div>
+              <div style="position:absolute;top:6px;left:6px;font-size:6px;font-weight:700;color:#C9A96E;">02</div>
+            </div>
+            <!-- Connector Arrow -->
+            <div style="display:flex;align-items:center;padding:0 4px;">
+              <div style="width:20px;height:1px;background:#C9A96E;position:relative;">
+                <div style="position:absolute;right:-3px;top:-3px;width:0;height:0;border-top:3px solid transparent;border-bottom:3px solid transparent;border-left:5px solid #C9A96E;"></div>
+              </div>
+            </div>
+            <!-- Step 3: Close -->
+            <div style="flex:1;background:#FAF8F5;border-radius:8px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;">
+              <div style="width:28px;height:28px;border-radius:50%;background:#C9A96E;display:flex;align-items:center;justify-content:center;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div style="font-size:10px;font-weight:700;color:#2C3E50;">Close</div>
+              <div style="font-size:6px;color:#999;text-align:center;line-height:1.4;">Expert guidance through offer, negotiation & closing</div>
+              <div style="position:absolute;top:6px;left:6px;font-size:6px;font-weight:700;color:#C9A96E;">03</div>
+            </div>
+          </div>
+          <!-- Subtext -->
+          <div style="margin-top:16px;font-size:7px;color:rgba(250,248,245,0.4);letter-spacing:0.05em;">Guided by local expertise at every step</div>
+        </div>
       </div>
     </div>
   </section>
