@@ -940,7 +940,7 @@
 
     /* ===== Hero Spotlight Background (light mode) ===== */
     [data-theme="light"] .hero {
-      background: #F4F5F9;
+      background: linear-gradient(180deg, #F4F5F9 0%, #F4F5F9 60%, #FFFFFF 100%);
     }
 
     /* Spotlight glow element — large soft light behind headline */
@@ -990,8 +990,7 @@
       z-index: 0;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 65% 60% at 35% 50%, transparent 0%, transparent 40%, rgba(225,227,237,0.5) 100%),
-        linear-gradient(180deg, transparent 75%, #F0F1F5 100%);
+        radial-gradient(ellipse 65% 60% at 35% 50%, transparent 0%, transparent 40%, rgba(225,227,237,0.35) 100%);
     }
 
     @keyframes spotlightDrift {
