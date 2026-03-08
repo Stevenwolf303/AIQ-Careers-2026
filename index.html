@@ -1728,7 +1728,6 @@
       flex-direction: column;
       position: relative;
       z-index: 1;
-      max-width: 960px;
     }
 
     .footer-watermark {
@@ -1751,18 +1750,19 @@
       color: rgba(0,0,0,0.025);
     }
 
-    .footer-main {
-      display: flex;
-      justify-content: space-between;
+    /* 3-column horizontal grid */
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
       gap: 64px;
-      padding: var(--padding-y) 0 56px;
+      align-items: start;
+      padding: var(--padding-y) 0 48px;
     }
 
     .footer-brand {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      max-width: 360px;
+      gap: 16px;
     }
 
     .footer-description {
@@ -1771,27 +1771,15 @@
       line-height: 22px;
       letter-spacing: -0.2px;
       color: var(--color-fg-muted);
-      max-width: 320px;
     }
 
-    .footer-copyright {
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 20px;
-      color: var(--color-fg-muted);
-      opacity: 0.5;
-      margin-top: auto;
-      padding-top: 12px;
-    }
-
-    .footer-nav {
+    .footer-theme {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      padding-top: 4px;
+      gap: 12px;
     }
 
-    .footer-nav-label {
+    .footer-col-label {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.1em;
@@ -1800,10 +1788,16 @@
       opacity: 0.5;
     }
 
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
     .footer-nav-links {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .footer-nav-links a {
@@ -1817,6 +1811,19 @@
 
     .footer-nav-links a:hover {
       color: var(--color-fg-default);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--color-border);
+      padding: 28px 0 48px;
+    }
+
+    .footer-copyright {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--color-fg-muted);
+      opacity: 0.5;
     }
 
     /* ===== Responsive: Tablet (768px) ===== */
@@ -2161,9 +2168,12 @@
       }
 
       /* Footer mobile */
-      .footer-main {
-        flex-direction: column;
-        gap: 40px;
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px 32px;
+      }
+      .footer-brand {
+        grid-column: 1 / -1;
       }
 
     }
@@ -2632,7 +2642,7 @@
   <footer class="footer">
     <div class="footer-watermark" aria-hidden="true">Baseline</div>
     <div class="container">
-      <div class="footer-main">
+      <div class="footer-grid">
         <div class="footer-brand">
           <a href="#" class="logo">
             <div class="logo-mark">
@@ -2646,6 +2656,9 @@
             <span class="logo-text">Baseline</span>
           </a>
           <p class="footer-description">AI-powered creative studio helping small businesses build premium brands and modern websites.</p>
+        </div>
+        <div class="footer-theme">
+          <p class="footer-col-label">Theme</p>
           <div class="theme-toggle">
             <button class="theme-toggle-track" id="theme-toggle" aria-label="Toggle dark and light mode" role="switch" aria-checked="false">
               <span class="theme-toggle-thumb">
@@ -2654,10 +2667,9 @@
               </span>
             </button>
           </div>
-          <p class="footer-copyright"><span style="font-size:0.85em;vertical-align:0.05em;">©</span> 2026 Baseline Studio</p>
         </div>
         <nav class="footer-nav">
-          <p class="footer-nav-label">Navigate</p>
+          <p class="footer-col-label">Navigate</p>
           <div class="footer-nav-links">
             <a href="#services">Services</a>
             <a href="#pricing">Pricing</a>
@@ -2665,6 +2677,9 @@
             <a href="#start">Start a project</a>
           </div>
         </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright"><span style="font-size:0.85em;vertical-align:0.05em;">©</span> 2026 Baseline Studio</p>
       </div>
     </div>
   </footer>
