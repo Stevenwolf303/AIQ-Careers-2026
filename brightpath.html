@@ -287,7 +287,7 @@
       gap: 48px;
       padding-top: 32px;
       border-top: 1px solid var(--color-border);
-      margin-top: 32px;
+      margin-top: -16px;
     }
 
     .cs-meta-item {
@@ -301,7 +301,10 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--color-fg-muted);
+      color: rgba(255,255,255,0.35);
+    }
+    [data-theme="light"] .cs-meta-label {
+      color: rgba(0,0,0,0.4);
     }
 
     .cs-meta-value {
@@ -659,23 +662,23 @@
       <div class="cs-hero-text">
         <h1>Brightpath Daycare</h1>
         <p class="cs-hero-subtitle">Repositioning a legacy daycare brand for modern families.</p>
-        <div class="cs-meta">
-          <div class="cs-meta-item">
-            <span class="cs-meta-label">Industry</span>
-            <span class="cs-meta-value">Childcare</span>
+      </div>
+      <div class="cs-meta">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Industry</span>
+          <span class="cs-meta-value">Childcare</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Services</span>
+          <div class="cs-chips">
+            <span class="chip chip-peach">Brand Identity</span>
+            <span class="chip chip-sky">Website Design</span>
+            <span class="chip chip-lavender">Development</span>
           </div>
-          <div class="cs-meta-item">
-            <span class="cs-meta-label">Services</span>
-            <div class="cs-chips">
-              <span class="chip chip-peach">Brand Identity</span>
-              <span class="chip chip-sky">Website Design</span>
-              <span class="chip chip-lavender">Development</span>
-            </div>
-          </div>
-          <div class="cs-meta-item">
-            <span class="cs-meta-label">Year</span>
-            <span class="cs-meta-value">2026</span>
-          </div>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Year</span>
+          <span class="cs-meta-value">2026</span>
         </div>
       </div>
       <div class="cs-hero-image">

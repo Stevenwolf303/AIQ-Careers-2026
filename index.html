@@ -729,14 +729,22 @@
     }
 
     .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      line-height: 1;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
       color: var(--color-fg-muted);
-      display: flex;
-      align-items: center;
       gap: 6px;
+    }
+    [data-theme="light"] .hero-eyebrow {
+      background: rgba(0,0,0,0.05);
     }
 
     .hero-wave {
@@ -1524,15 +1532,22 @@
     }
 
     .case-studies-label {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
       font-size: 12px;
       font-weight: 600;
-      line-height: 16px;
-      letter-spacing: 0.12em;
+      line-height: 1;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      background: var(--section-accent-gradient, linear-gradient(90deg, #555 0%, #777 100%));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(108,106,228,0.15);
+      color: #A8A6F0;
+    }
+    [data-theme="light"] .case-studies-label {
+      background: #E8E6FF;
+      color: #1A1A1A;
     }
 
     .case-studies-header h2 {
@@ -1713,107 +1728,95 @@
       flex-direction: column;
       position: relative;
       z-index: 1;
+      max-width: 960px;
     }
 
     .footer-watermark {
       position: absolute;
       left: 50%;
-      bottom: -12%;
+      bottom: -18%;
       transform: translateX(-50%);
       font-family: var(--font-heading);
       font-size: clamp(140px, 18vw, 340px);
       font-weight: 800;
       line-height: 0.85;
       letter-spacing: -0.04em;
-      color: rgba(255,255,255,0.09);
+      color: rgba(255,255,255,0.04);
       white-space: nowrap;
       user-select: none;
       pointer-events: none;
       z-index: 0;
     }
     [data-theme="light"] .footer-watermark {
-      color: rgba(0,0,0,0.035);
+      color: rgba(0,0,0,0.025);
     }
 
     .footer-main {
       display: flex;
-      gap: 32px;
-      padding: var(--padding-y) 0;
+      justify-content: space-between;
+      gap: 64px;
+      padding: var(--padding-y) 0 56px;
     }
 
     .footer-brand {
-      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 20px;
+      max-width: 360px;
     }
 
     .footer-description {
       font-size: 14px;
       font-weight: 400;
+      line-height: 22px;
+      letter-spacing: -0.2px;
+      color: var(--color-fg-muted);
+      max-width: 320px;
+    }
+
+    .footer-copyright {
+      font-size: 13px;
+      font-weight: 400;
       line-height: 20px;
-      letter-spacing: -0.37px;
-      color: var(--color-fg-default);
-      max-width: 384px;
+      color: var(--color-fg-muted);
+      opacity: 0.5;
+      margin-top: auto;
+      padding-top: 12px;
     }
 
-    .footer-links-wrap {
-      flex: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 48px 32px;
-    }
-
-    .footer-col {
-      flex: 1;
-      min-width: 100px;
+    .footer-nav {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
+      padding-top: 4px;
     }
 
-    .footer-col-title {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 20px;
-      letter-spacing: -0.37px;
-      color: var(--color-fg-default);
+    .footer-nav-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-fg-muted);
+      opacity: 0.5;
     }
 
-    .footer-col-links {
+    .footer-nav-links {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
     }
 
-    .footer-col-links a {
+    .footer-nav-links a {
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
-      letter-spacing: -0.37px;
+      letter-spacing: -0.2px;
       color: var(--color-fg-muted);
       transition: color 0.15s ease;
     }
 
-    .footer-col-links a:hover {
+    .footer-nav-links a:hover {
       color: var(--color-fg-default);
-    }
-
-    .footer-bottom {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-      padding: 40px 0 56px;
-      border-top: 1px solid var(--color-border);
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
-      letter-spacing: -0.37px;
-      color: var(--color-fg-muted);
-    }
-
-    .footer-bottom-left {
-      flex: 1;
     }
 
     /* ===== Responsive: Tablet (768px) ===== */
@@ -2163,62 +2166,34 @@
         gap: 40px;
       }
 
-      .footer-links-wrap {
-        gap: 32px 24px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 16px;
-        align-items: flex-start;
-      }
-
     }
 
-    /* ===== Section Eyebrow ===== */
+    /* ===== Section Eyebrow (pill style) ===== */
     .section-eyebrow {
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       line-height: 1;
       margin-bottom: 12px;
-      background: var(--section-accent-gradient, linear-gradient(90deg, #555 0%, #777 100%));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--section-accent-subtle, rgba(85,85,85,0.1));
+      color: var(--section-accent, rgba(255,255,255,0.5));
     }
-    /* Section-specific eyebrow color overrides */
-    .case-studies .case-studies-label {
-      background: linear-gradient(90deg, #A8A6F0, #C4C3F5);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-    .ai-advantage .section-eyebrow {
-      background: linear-gradient(90deg, #6DD4A0, #95E2BC);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
+    /* Sections without accent class get explicit pill colors */
     .cta-section .section-eyebrow {
-      background: linear-gradient(90deg, #7BB8F0, #A3D0F5);
-      -webkit-background-clip: text;
-      background-clip: text;
+      background: rgba(74,143,214,0.15);
+      color: #7BB8F0;
     }
-    [data-theme="light"] .case-studies .case-studies-label {
-      background: linear-gradient(90deg, #6C6AE4, #8B89EE);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-    [data-theme="light"] .ai-advantage .section-eyebrow {
-      background: linear-gradient(90deg, #3DA87A, #5DBF96);
-      -webkit-background-clip: text;
-      background-clip: text;
+    [data-theme="light"] .section-eyebrow {
+      color: #1A1A1A;
     }
     [data-theme="light"] .cta-section .section-eyebrow {
-      background: linear-gradient(90deg, #4A8FD6, #72AAE2);
-      -webkit-background-clip: text;
-      background-clip: text;
+      background: #EAF2FF;
     }
 
     /* Cancel parent flex gap between eyebrow and title so only 12px margin remains */
@@ -2679,21 +2654,17 @@
               </span>
             </button>
           </div>
+          <p class="footer-copyright"><span style="font-size:0.85em;vertical-align:0.05em;">©</span> 2026 Baseline Studio</p>
         </div>
-        <div class="footer-links-wrap">
-          <div class="footer-col">
-            <p class="footer-col-title">Navigate</p>
-            <div class="footer-col-links">
-              <a href="#services">Services</a>
-              <a href="#pricing">Pricing</a>
-              <a href="#work">Work</a>
-              <a href="#start">Start a project</a>
-            </div>
+        <nav class="footer-nav">
+          <p class="footer-nav-label">Navigate</p>
+          <div class="footer-nav-links">
+            <a href="#services">Services</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#work">Work</a>
+            <a href="#start">Start a project</a>
           </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p class="footer-bottom-left"><span style="font-size:0.85em;vertical-align:0.05em;">©</span> 2026 Baseline Studio</p>
+        </nav>
       </div>
     </div>
   </footer>
