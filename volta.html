@@ -369,6 +369,26 @@
       color: var(--color-fg-default);
     }
 
+    .cs-meta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-fg-default);
+      text-decoration: none;
+      transition: opacity 180ms ease;
+    }
+    .cs-meta-link:hover { opacity: 0.65; }
+    .cs-meta-link svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+      opacity: 0.5;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+    .cs-meta-link:hover svg { opacity: 0.8; transform: translate(1px, -1px); }
+
     .cs-hero-image {
       view-transition-name: cs-hero;
       width: 100%;
@@ -795,6 +815,10 @@
         <div class="cs-meta-item">
           <span class="cs-meta-label">Year</span>
           <span class="cs-meta-value">2026</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Website</span>
+          <a href="volta-site/" target="_blank" rel="noopener" class="cs-meta-link">View Website <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a>
         </div>
       </div>
       <div class="cs-hero-image">
