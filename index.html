@@ -938,12 +938,12 @@
       transform: translateX(3px);
     }
 
-    /* ===== Hero Spotlight Background (light mode) ===== */
+    /* ===== Hero Frosted Asymmetric Background (light mode) ===== */
     [data-theme="light"] .hero {
-      background: linear-gradient(180deg, #F4F5F9 0%, #F4F5F9 60%, #FFFFFF 100%);
+      background: linear-gradient(180deg, #F7F8FB 0%, #F7F8FB 65%, #FFFFFF 100%);
     }
 
-    /* Spotlight glow element — large soft light behind headline */
+    /* Frosted color wash container */
     .hero-spotlight {
       position: absolute;
       z-index: 0;
@@ -956,33 +956,44 @@
       visibility: visible;
     }
 
-    /* Main spotlight — bright center-left glow behind headline */
+    /* Layer A — lavender-indigo bloom from upper-right, diagonal drift */
     .hero-spotlight::before {
       content: '';
       position: absolute;
-      width: 140%;
-      height: 140%;
-      top: -20%;
-      left: -30%;
+      width: 110%;
+      height: 120%;
+      top: -25%;
+      right: -15%;
+      left: auto;
       background:
-        radial-gradient(ellipse 50% 55% at 32% 48%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 20%, rgba(255,255,255,0.2) 45%, transparent 70%);
-      animation: spotlightDrift 28s ease-in-out infinite alternate;
+        radial-gradient(ellipse 60% 55% at 70% 25%,
+          rgba(139,131,227,0.09) 0%,
+          rgba(120,115,210,0.05) 30%,
+          rgba(100,143,214,0.03) 55%,
+          transparent 75%);
+      filter: blur(40px);
+      animation: frostDriftA 26s ease-in-out infinite alternate;
     }
 
-    /* Secondary glow — softer fill light from upper-right */
+    /* Layer B — mint-blue wash from lower-left, counter-diagonal */
     .hero-spotlight::after {
       content: '';
       position: absolute;
       width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
+      height: 110%;
+      bottom: -15%;
+      left: -10%;
       background:
-        radial-gradient(ellipse 45% 40% at 68% 30%, rgba(255,255,255,0.5) 0%, transparent 60%);
-      animation: spotlightDrift2 32s ease-in-out infinite alternate;
+        radial-gradient(ellipse 55% 50% at 25% 70%,
+          rgba(61,168,140,0.07) 0%,
+          rgba(74,143,214,0.04) 35%,
+          rgba(100,130,200,0.02) 55%,
+          transparent 75%);
+      filter: blur(50px);
+      animation: frostDriftB 30s ease-in-out infinite alternate;
     }
 
-    /* Edge darkening — cool tonal falloff at edges for depth */
+    /* Layer C — white spotlight under headline for text clarity */
     [data-theme="light"] .hero::before {
       content: '';
       position: absolute;
@@ -990,16 +1001,19 @@
       z-index: 0;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 65% 60% at 35% 50%, transparent 0%, transparent 40%, rgba(225,227,237,0.35) 100%);
+        radial-gradient(ellipse 50% 50% at 30% 50%,
+          rgba(255,255,255,0.7) 0%,
+          rgba(255,255,255,0.3) 35%,
+          transparent 65%);
     }
 
-    @keyframes spotlightDrift {
-      0%   { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(1.2%, -0.8%) scale(1.02); }
+    @keyframes frostDriftA {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(-1.5%, 1%) rotate(0.5deg); }
     }
-    @keyframes spotlightDrift2 {
-      0%   { transform: translate(0, 0); }
-      100% { transform: translate(-0.8%, 0.5%); }
+    @keyframes frostDriftB {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(1%, -0.8%) rotate(-0.3deg); }
     }
 
     /* Noise grain — editorial texture */
@@ -1014,7 +1028,7 @@
       background-size: 180px 180px;
     }
     [data-theme="light"] .hero-noise {
-      opacity: 0.018;
+      opacity: 0.015;
     }
 
     /* ===== Logo Cloud ===== */
