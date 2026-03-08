@@ -533,6 +533,7 @@
 
     .hero-headline {
       flex: 1;
+      min-width: 0;
       display: flex;
       align-items: flex-end;
       padding: 0 0 calc(clamp(48px, 6vh, 80px) - 10px) 0;
@@ -641,40 +642,93 @@
       margin-bottom: 0;
     }
 
-    .hero-bg-shape {
+    /* ===== Hero Premium Background ===== */
+    .hero-bg-mesh {
       position: absolute;
-      pointer-events: none;
+      inset: 0;
       z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
     }
 
-    .hero-bg-logo {
-      width: clamp(400px, 50vw, 700px);
-      height: clamp(400px, 50vw, 700px);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0.06;
+    /* Animated gradient mesh blobs */
+    .hero-bg-mesh::before {
+      content: '';
+      position: absolute;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      background:
+        radial-gradient(ellipse 60% 50% at 25% 30%, rgba(79,108,247,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 75% 60%, rgba(99,102,241,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 70% 40% at 50% 80%, rgba(79,108,247,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 80% 20%, rgba(99,102,241,0.03) 0%, transparent 70%);
+      animation: meshDrift 30s ease-in-out infinite;
     }
-    .hero-bg-logo svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    [data-theme="light"] .hero-bg-logo {
-      opacity: 0.045;
-      filter: brightness(0);
+    [data-theme="light"] .hero-bg-mesh::before {
+      background:
+        radial-gradient(ellipse 60% 50% at 25% 30%, rgba(79,108,247,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 75% 60%, rgba(99,102,241,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 70% 40% at 50% 80%, rgba(79,108,247,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 80% 20%, rgba(99,102,241,0.04) 0%, transparent 70%);
     }
 
-    .hero-bg-circle {
-      width: clamp(300px, 35vw, 500px);
-      height: clamp(300px, 35vw, 500px);
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.06);
-      top: 15%;
-      right: -5%;
+    /* Secondary mesh layer for depth */
+    .hero-bg-mesh::after {
+      content: '';
+      position: absolute;
+      inset: -30%;
+      width: 160%;
+      height: 160%;
+      background:
+        radial-gradient(ellipse 45% 55% at 60% 40%, rgba(79,108,247,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 30% 70%, rgba(99,102,241,0.035) 0%, transparent 60%);
+      animation: meshDrift2 35s ease-in-out infinite;
     }
-    [data-theme="light"] .hero-bg-circle {
-      border-color: rgba(0,0,0,0.06);
+    [data-theme="light"] .hero-bg-mesh::after {
+      background:
+        radial-gradient(ellipse 45% 55% at 60% 40%, rgba(79,108,247,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 30% 70%, rgba(99,102,241,0.05) 0%, transparent 60%);
+    }
+
+    @keyframes meshDrift {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(2%, -1.5%) rotate(0.5deg); }
+      50% { transform: translate(-1.5%, 2%) rotate(-0.3deg); }
+      75% { transform: translate(1%, -0.5%) rotate(0.2deg); }
+    }
+
+    @keyframes meshDrift2 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(-1.5%, 1%) rotate(-0.4deg); }
+      66% { transform: translate(1%, -1.5%) rotate(0.3deg); }
+    }
+
+    /* Noise texture overlay */
+    .hero-bg-noise {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.018;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+    [data-theme="light"] .hero-bg-noise {
+      opacity: 0.025;
+    }
+
+    /* Radial light depth - brighter center, subtle vignette */
+    .hero-bg-light {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse 70% 60% at 50% 55%, rgba(255,255,255,0.04) 0%, transparent 70%);
+    }
+    [data-theme="light"] .hero-bg-light {
+      background: radial-gradient(ellipse 70% 60% at 50% 55%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
     }
 
     /* ===== Logo Cloud ===== */
@@ -871,6 +925,7 @@
     }
 
     .approach-card {
+      --_parent-gap: 64px;
       background:
         radial-gradient(600px 400px at 20% 0%, rgba(255,255,255,0.03), transparent 60%),
         radial-gradient(500px 300px at 80% 100%, rgba(120,120,140,0.025), transparent 55%),
@@ -955,6 +1010,7 @@
     }
 
     .services-detail-header {
+      --_parent-gap: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1091,6 +1147,7 @@
     }
 
     .ai-advantage-text {
+      --_parent-gap: 16px;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -1165,6 +1222,7 @@
     }
 
     .pricing-section .container {
+      --_parent-gap: 48px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1260,7 +1318,7 @@
       width: 20px;
       height: 20px;
       min-width: 20px;
-      color: var(--color-accent);
+      color: var(--color-fg-default);
     }
 
     .pricing-action {
@@ -1464,6 +1522,7 @@
     }
 
     .cta-content {
+      --_parent-gap: 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1794,17 +1853,7 @@
         padding-bottom: 0;
       }
 
-      .hero-bg-logo {
-        width: clamp(200px, 50vw, 350px);
-        height: clamp(200px, 50vw, 350px);
-      }
-
-      .hero-bg-circle {
-        width: 200px;
-        height: 200px;
-        top: 10%;
-        right: -10%;
-      }
+      /* hero bg mesh scales naturally */
 
       /* Logo cloud mobile */
       .logo-cloud h2 {
@@ -1831,6 +1880,7 @@
 
       /* Approach card mobile */
       .approach-card {
+        --_parent-gap: 40px;
         padding: 32px 24px;
         gap: 40px;
       }
@@ -1959,6 +2009,10 @@
       background-clip: text;
     }
 
+    .section-eyebrow + h2 {
+      margin-top: calc(var(--_parent-gap, 0px) * -1);
+    }
+
     /* ===== Reveal Animation ===== */
     .reveal {
       opacity: 0;
@@ -2026,8 +2080,9 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero">
-    <div class="hero-bg-shape hero-bg-logo" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4.5C2 3.12 3.12 2 4.5 2H8v5.5H2V4.5z" fill="white"/><path d="M8 2h3.5C12.88 2 14 3.12 14 4.5V7.5H8V2z" fill="white" opacity="0.45"/><path d="M2 7.5h6V14H4.5C3.12 14 2 12.88 2 11.5V7.5z" fill="white" opacity="0.45"/><path d="M8 7.5h6v4c0 1.38-1.12 2.5-2.5 2.5H8V7.5z" fill="white" opacity="0.18"/></svg></div>
-    <div class="hero-bg-shape hero-bg-circle" aria-hidden="true"></div>
+    <div class="hero-bg-mesh" aria-hidden="true"></div>
+    <div class="hero-bg-noise" aria-hidden="true"></div>
+    <div class="hero-bg-light" aria-hidden="true"></div>
 
     <div class="container">
       <div class="hero-headline">
@@ -2500,8 +2555,15 @@
   </script>
   <script>
   (function(){
-    var words = document.querySelectorAll('.hero-rotate-word');
+    var wrap = document.querySelector('.hero-rotate-wrap');
+    var words = wrap ? wrap.querySelectorAll('.hero-rotate-word') : [];
     if(!words.length) return;
+    // Measure longest word and lock wrapper width
+    var maxW = 0;
+    words.forEach(function(w){
+      maxW = Math.max(maxW, w.scrollWidth);
+    });
+    wrap.style.width = maxW + 'px';
     var current = 0;
     setInterval(function(){
       var prev = current;
@@ -2512,6 +2574,23 @@
       words[current].classList.remove('out');
       setTimeout(function(){ words[prev].classList.remove('out'); }, 700);
     }, 2400);
+  })();
+  </script>
+  <script>
+  (function(){
+    var mesh = document.querySelector('.hero-bg-mesh');
+    if(!mesh || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var ticking = false;
+    window.addEventListener('scroll', function(){
+      if(!ticking){
+        requestAnimationFrame(function(){
+          var y = window.scrollY * 0.03;
+          mesh.style.transform = 'translateY(' + y + 'px)';
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, {passive: true});
   })();
   </script>
 </body>
