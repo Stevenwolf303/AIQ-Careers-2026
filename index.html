@@ -680,36 +680,44 @@
       margin: 0;
     }
 
-    .hero-headline h1 > span {
+    /* ===== Hero Line Architecture ===== */
+    .hero-line {
       display: block;
     }
 
-    .hero-rotate-wrap {
+    .hero-line--rotating {
+      position: relative;
+    }
+
+    .rotate-stage {
       position: relative;
       display: block;
-      height: 1.1em;
-      margin-bottom: -0.22em;
-      overflow: hidden;
+      min-height: 1.05em;
+      overflow: visible;
     }
 
-    .hero-rotate-word {
+    .rotate-word {
       position: absolute;
       top: 0;
       left: 0;
       display: block;
+      white-space: nowrap;
       opacity: 0;
+      pointer-events: none;
+      will-change: transform, opacity, filter;
     }
 
-    .hero-rotate-word.active {
+    .rotate-word.is-active {
       opacity: 1;
+      pointer-events: auto;
     }
 
-    .hero-rotate-word.out {
+    .rotate-word.is-out {
       opacity: 0;
-      transform: translateY(-12px);
+      transform: translateY(-10px);
       transition:
-        opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
-        transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     /* Letter stagger animation */
@@ -720,7 +728,7 @@
       filter: blur(4px);
     }
 
-    .hero-rotate-word.active .rotate-letter {
+    .rotate-word.is-active .rotate-letter {
       opacity: 1;
       transform: translateY(0);
       filter: blur(0);
@@ -731,8 +739,8 @@
       transition-delay: calc(var(--letter-i, 0) * 25ms);
     }
 
-    /* Keep letters visible during word-level out transition */
-    .hero-rotate-word.out .rotate-letter {
+    /* Keep letters visible during word-level out fade */
+    .rotate-word.is-out .rotate-letter {
       opacity: 1;
       transform: translateY(0);
       filter: blur(0);
@@ -2329,10 +2337,17 @@
     <div class="container">
       <div class="hero-headline">
         <h1>
-          <span class="reveal" style="--i:0">We Help</span>
-          <span class="reveal hero-rotate-wrap" style="--i:1"><span class="hero-rotate-word rotate-word--lavender active">Brands</span><span class="hero-rotate-word rotate-word--sky">Websites</span><span class="hero-rotate-word rotate-word--peach">Businesses</span><span class="hero-rotate-word rotate-word--mint">Companies</span></span>
-          <span class="reveal" style="--i:2">Look</span>
-          <span class="reveal" style="--i:3">Modern</span>
+          <span class="hero-line reveal" style="--i:0">We Help</span>
+          <span class="hero-line hero-line--rotating reveal" style="--i:1">
+            <span class="rotate-stage">
+              <span class="rotate-word rotate-word--lavender is-active">Brands</span>
+              <span class="rotate-word rotate-word--sky">Websites</span>
+              <span class="rotate-word rotate-word--peach">Businesses</span>
+              <span class="rotate-word rotate-word--mint">Companies</span>
+            </span>
+          </span>
+          <span class="hero-line reveal" style="--i:2">Look</span>
+          <span class="hero-line reveal" style="--i:3">Modern</span>
         </h1>
       </div>
 
@@ -2780,8 +2795,8 @@
   </script>
   <script>
   (function(){
-    var wrap = document.querySelector('.hero-rotate-wrap');
-    var words = wrap ? wrap.querySelectorAll('.hero-rotate-word') : [];
+    var stage = document.querySelector('.rotate-stage');
+    var words = stage ? stage.querySelectorAll('.rotate-word') : [];
     if(!words.length) return;
 
     // Split each word into per-letter spans
@@ -2797,22 +2812,22 @@
       }
     });
 
-    // Measure longest word and lock wrapper width
+    // Measure longest word and lock stage width
     var maxW = 0;
     words.forEach(function(w){
       maxW = Math.max(maxW, w.scrollWidth);
     });
-    wrap.style.width = maxW + 'px';
+    stage.style.width = maxW + 'px';
 
     var current = 0;
     setInterval(function(){
       var prev = current;
       current = (current + 1) % words.length;
-      words[prev].classList.add('out');
-      words[prev].classList.remove('active');
-      words[current].classList.add('active');
-      words[current].classList.remove('out');
-      setTimeout(function(){ words[prev].classList.remove('out'); }, 600);
+      words[prev].classList.add('is-out');
+      words[prev].classList.remove('is-active');
+      words[current].classList.add('is-active');
+      words[current].classList.remove('is-out');
+      setTimeout(function(){ words[prev].classList.remove('is-out'); }, 550);
     }, 2400);
   })();
   </script>
