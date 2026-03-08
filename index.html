@@ -731,11 +731,23 @@
         radial-gradient(800px 500px at 90% 80%, rgba(120,120,140,0.03), transparent 55%),
         linear-gradient(180deg, #0c0c0e 0%, #0b0b0c 100%);
       padding: 0 var(--padding-x);
-      overflow: hidden;
+      overflow: visible;
       position: relative;
       min-height: calc(100vh - 72px);
       display: flex;
       align-items: stretch;
+    }
+    /* Soft dissolve extending below hero into next section */
+    [data-theme="light"] .hero::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -300px;
+      height: 350px;
+      z-index: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, #F7F8FB 0%, rgba(247,248,251,0.6) 30%, rgba(247,248,251,0.2) 60%, transparent 100%);
     }
 
     .hero .container {
