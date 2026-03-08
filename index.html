@@ -1359,6 +1359,42 @@
       width: 22px;
       height: 22px;
       color: rgba(0,0,0,0.75);
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    /* Service icon hover micro-interactions — unique per icon */
+    /* Brand Identity: subtle brush tilt */
+    .service-item:hover .icon-peach svg {
+      transform: rotate(2.5deg) translate(0.5px, -0.5px);
+    }
+    /* Website Design: tiny screen lift */
+    .service-item:hover .icon-sky svg {
+      transform: translateY(-1.5px);
+    }
+    /* Development: small orbital rotation */
+    .service-item:hover .icon-mint svg {
+      transform: rotate(-3deg);
+    }
+    /* Landing Pages: subtle card lift + scale */
+    .service-item:hover .icon-lavender svg {
+      transform: translateY(-1px) scale(1.03);
+    }
+
+    /* Icon container lift on hover */
+    .service-item-icon {
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .service-item:hover .service-item-icon {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .service-item-icon svg,
+      .service-item-icon { transition: none; }
+      .service-item:hover .service-item-icon svg,
+      .service-item:hover .service-item-icon { transform: none; box-shadow: none; }
     }
 
     .service-item-content {
