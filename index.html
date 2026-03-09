@@ -408,7 +408,8 @@
 
     /* --- Filled button shimmer --- */
     .btn-primary,
-    .btn-cta {
+    .btn-cta,
+    .modal-submit {
       position: relative;
       overflow: hidden;
       z-index: 0;
@@ -442,7 +443,8 @@
       opacity: 1;
     }
     .btn-primary::after,
-    .btn-cta::after {
+    .btn-cta::after,
+    .modal-submit::after {
       content: '';
       position: absolute;
       inset: 0;
@@ -463,8 +465,10 @@
     }
     .btn-primary:hover::after,
     .btn-cta:hover::after,
+    .modal-submit:hover::after,
     .btn-primary:focus-visible::after,
-    .btn-cta:focus-visible::after {
+    .btn-cta:focus-visible::after,
+    .modal-submit:focus-visible::after {
       animation: btn-shimmer 1400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     @keyframes btn-shimmer {
@@ -595,7 +599,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .btn-primary::after, .btn-cta::after, .btn-secondary::before { animation: none !important; }
+      .btn-primary::after, .btn-cta::after, .modal-submit::after, .btn-secondary::before { animation: none !important; }
       ::view-transition-old(root),
       ::view-transition-new(root),
       ::view-transition-old(cs-hero),
