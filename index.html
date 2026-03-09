@@ -747,23 +747,25 @@
 
     .hero .container {
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      align-items: stretch;
       width: 100%;
       position: relative;
       z-index: 1;
-      min-height: 100%;
     }
 
     .hero-headline {
-      width: 100%;
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 0 calc(clamp(48px, 6vh, 80px) - 10px) 0;
     }
 
     .hero-headline h1 {
       font-family: var(--font-heading);
-      font-size: clamp(64px, 9vw, 112px);
-      font-weight: 700;
-      line-height: 0.88;
+      font-size: clamp(64px, 11vw, 180px);
+      font-weight: 600;
+      line-height: 0.92;
       letter-spacing: -0.04em;
       color: var(--color-fg-default);
       text-transform: uppercase;
@@ -775,26 +777,22 @@
       display: block;
     }
 
-    /* "WE HELP" — introductory label, muted */
+    /* "WE HELP" — introductory label, lighter and smaller */
     .hero-line:first-child {
-      font-weight: 700;
-      font-size: 0.75em;
+      font-weight: 500;
+      font-size: 0.88em;
       letter-spacing: -0.02em;
-      color: rgba(0,0,0,0.40);
+      color: rgba(0,0,0,0.35);
     }
     [data-theme="dark"] .hero-line:first-child {
-      color: rgba(255,255,255,0.40);
+      color: rgba(255,255,255,0.35);
     }
 
-    /* Rotating word — visual anchor, largest */
+    /* Rotating word — visual anchor, largest and heaviest */
     .hero-line--rotating {
       position: relative;
-      font-weight: 700;
-    }
-
-    /* "LOOK MODERN" */
-    .hero-line:last-child {
-      font-weight: 700;
+      font-weight: 800;
+      font-size: 1.08em;
     }
 
     .rotate-stage {
@@ -865,22 +863,14 @@
     [data-theme="light"] .rotate-word--peach { color: #D28B74; }
     [data-theme="light"] .rotate-word--mint { color: #5FAF8D; }
 
-    /* Hero bottom row: circles left, editorial right */
-    .hero-bottom {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-top: clamp(32px, 3vw, 48px);
-      gap: 40px;
-    }
-
-
     .hero-editorial {
       width: clamp(280px, 28vw, 400px);
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 0 clamp(48px, 6vh, 80px) 0;
+      gap: 32px;
       flex-shrink: 0;
-      gap: 16px;
     }
 
     .hero-eyebrow {
@@ -2460,10 +2450,6 @@
         font-size: clamp(56px, 9vw, 120px);
       }
 
-      .hero-bottom {
-        margin-top: clamp(40px, 4vw, 64px);
-      }
-
       .hero-editorial {
         width: clamp(220px, 30vw, 320px);
       }
@@ -2648,16 +2634,10 @@
         font-size: clamp(48px, 14vw, 80px);
       }
 
-      .hero-bottom {
-        flex-direction: column;
-        margin-top: 40px;
-        gap: 32px;
-      }
-
-
       .hero-editorial {
         width: 100%;
         max-width: 400px;
+        padding-bottom: 0;
       }
 
       /* hero bg mesh scales naturally */
@@ -2889,22 +2869,21 @@
               <span class="rotate-word rotate-word--mint">Companies</span>
             </span>
           </span>
-          <span class="hero-line reveal" style="--i:2">Look Modern</span>
+          <span class="hero-line reveal" style="--i:2">Look</span>
+          <span class="hero-line reveal" style="--i:3">Modern</span>
         </h1>
       </div>
 
-      <div class="hero-bottom">
-        <div class="hero-editorial">
-          <span class="hero-eyebrow reveal">Hello <span class="hero-wave" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.4 -0.4 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M2.973 6.808c-.38-.38-1.013-.38-1.457 0-.38.38-.38 1.013 0 1.457l5.447 5.447c.633.633 1.52 1.013 2.47 1.013s1.837-.38 2.47-1.013l1.393-1.393c.95-.95 1.393-2.343 1.14-3.673l-.887-4.37c-.063-.443-.38-.76-.823-.823-.57-.127-1.203.317-1.267.887l-.253 2.09-4.687-4.687c-.38-.38-1.013-.38-1.457 0-.38.38-.38 1.013 0 1.457l-.633-.697c-.38-.38-1.013-.38-1.457 0-.38.38-.38 1.013 0 1.457l.697.697c-.38-.38-1.013-.38-1.457 0-.38.38-.38 1.013 0 1.457l.76.697Z" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m5.062 3.196 2.85 2.85" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m3.67 4.655 2.913 2.85" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m5.127 8.962-2.154-2.154" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M10.383 2.058c.253 0 .443.063.633.19" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M10.7.475c.697 0 1.33.253 1.773.76" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M2.277 11.875c0 .697.57 1.267 1.266 1.267" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M.693 12.192c0 1.393 1.14 2.533 2.533 2.533" stroke-width="0.8"/></svg></span></span>
-          <div class="hero-body reveal">
-            <p>Baseline is a creative studio designing modern brands, websites, and digital systems for ambitious companies.</p>
-            <p>Brand identity, web design, development, and creative systems built with taste, speed, and precision.</p>
-          </div>
-          <a href="#start" class="hero-text-cta reveal">
-            <span class="hero-text-cta__label">Start your project</span>
-            <span class="hero-text-cta__arrow" aria-hidden="true">&rarr;</span>
-          </a>
+      <div class="hero-editorial">
+        <span class="hero-eyebrow reveal">Hello <span class="hero-wave" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.4 -0.4 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M2.973 6.808c-.38-.38-1.013-.38-1.457 0-.38.38-.38 1.013 0 1.457l5.447 5.447c.633.633 1.52 1.013 2.47 1.013s1.837-.38 2.47-1.013l1.393-1.393c.95-.95 1.393-2.343 1.14-3.673l-.887-4.37c-.063-.443-.38-.76-.823-.823-.57-.127-1.203.317-1.267.887l-.253 2.09-4.687-4.687c-.38-.38-1.013-.38-1.457 0-.38.38-.38 1.013 0 1.457l-.633-.697c-.38-.38-1.013-.38-1.457 0-.38.38-.38 1.013 0 1.457l.697.697c-.38-.38-1.013-.38-1.457 0-.38.38-.38 1.013 0 1.457l.76.697Z" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m5.062 3.196 2.85 2.85" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m3.67 4.655 2.913 2.85" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m5.127 8.962-2.154-2.154" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M10.383 2.058c.253 0 .443.063.633.19" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M10.7.475c.697 0 1.33.253 1.773.76" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M2.277 11.875c0 .697.57 1.267 1.266 1.267" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M.693 12.192c0 1.393 1.14 2.533 2.533 2.533" stroke-width="0.8"/></svg></span></span>
+        <div class="hero-body reveal">
+          <p>Baseline is a creative studio designing modern brands, websites, and digital systems for ambitious companies.</p>
+          <p>Brand identity, web design, development, and creative systems built with taste, speed, and precision.</p>
         </div>
+        <a href="#start" class="hero-text-cta reveal">
+          <span class="hero-text-cta__label">Start your project</span>
+          <span class="hero-text-cta__arrow" aria-hidden="true">&rarr;</span>
+        </a>
       </div>
     </div>
   </section>
