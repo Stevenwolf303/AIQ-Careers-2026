@@ -106,12 +106,12 @@
     .accent-sand { --section-accent: #D9B06A; --section-accent-subtle: rgba(196,138,63,0.08); --section-accent-gradient: linear-gradient(90deg, #D9B06A, #E5C890); }
     .accent-rose { --section-accent: #E88BA8; --section-accent-subtle: rgba(232,139,168,0.08); --section-accent-gradient: linear-gradient(90deg, #E88BA8, #F0A8BE); }
 
-    [data-theme="light"] .accent-lavender { --section-accent: #6C6AE4; --section-accent-subtle: #F2F1FF; --section-accent-gradient: linear-gradient(90deg, #6C6AE4, #8B89EE); }
-    [data-theme="light"] .accent-mint { --section-accent: #3DA87A; --section-accent-subtle: #EFF8F4; --section-accent-gradient: linear-gradient(90deg, #3DA87A, #5DBF96); }
-    [data-theme="light"] .accent-peach { --section-accent: #D4714E; --section-accent-subtle: #FFF3EE; --section-accent-gradient: linear-gradient(90deg, #D4714E, #E09474); }
-    [data-theme="light"] .accent-sky { --section-accent: #4A8FD6; --section-accent-subtle: #F1F6FF; --section-accent-gradient: linear-gradient(90deg, #4A8FD6, #72AAE2); }
-    [data-theme="light"] .accent-sand { --section-accent: #C48A3F; --section-accent-subtle: #FFF7EF; --section-accent-gradient: linear-gradient(90deg, #C48A3F, #D4A565); }
-    [data-theme="light"] .accent-rose { --section-accent: #D87091; --section-accent-subtle: #FFF2F5; --section-accent-gradient: linear-gradient(90deg, #D87091, #E48BA5); }
+    [data-theme="light"] .accent-lavender { --section-accent: #6C6AE4; --section-accent-subtle: rgba(108,106,228,0.10); --section-accent-gradient: linear-gradient(90deg, #6C6AE4, #8B89EE); }
+    [data-theme="light"] .accent-mint { --section-accent: #3DA87A; --section-accent-subtle: rgba(61,168,122,0.10); --section-accent-gradient: linear-gradient(90deg, #3DA87A, #5DBF96); }
+    [data-theme="light"] .accent-peach { --section-accent: #D4714E; --section-accent-subtle: rgba(212,113,78,0.10); --section-accent-gradient: linear-gradient(90deg, #D4714E, #E09474); }
+    [data-theme="light"] .accent-sky { --section-accent: #4A8FD6; --section-accent-subtle: rgba(74,143,214,0.10); --section-accent-gradient: linear-gradient(90deg, #4A8FD6, #72AAE2); }
+    [data-theme="light"] .accent-sand { --section-accent: #C48A3F; --section-accent-subtle: rgba(196,138,63,0.10); --section-accent-gradient: linear-gradient(90deg, #C48A3F, #D4A565); }
+    [data-theme="light"] .accent-rose { --section-accent: #D87091; --section-accent-subtle: rgba(232,139,168,0.10); --section-accent-gradient: linear-gradient(90deg, #D87091, #E48BA5); }
 
     [data-theme="light"] body {
       background:
@@ -899,15 +899,18 @@
       line-height: 1;
       padding: 6px 14px;
       border-radius: 999px;
-      background: #ffffff;
-      color: #555555;
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.7);
       gap: 6px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 1px 3px rgba(0,0,0,0.08);
     }
     [data-theme="light"] .hero-eyebrow {
-      background: #ffffff;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.04);
+      background: rgba(255,255,255,0.55);
+      color: #555555;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 1px 3px rgba(0,0,0,0.03);
       border-color: rgba(0,0,0,0.06);
     }
     [data-theme="dark"] .hero-editorial {
@@ -937,6 +940,17 @@
     [data-theme="dark"] .service-item-icon svg {
       color: #ffffff;
     }
+
+    /* Dark mode: frosted chips */
+    [data-theme="dark"] .chip {
+      color: rgba(255,255,255,0.9);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 3px rgba(0,0,0,0.1);
+    }
+    [data-theme="dark"] .chip-sky { background: rgba(74,143,214,0.15); border-color: rgba(123,184,240,0.2); }
+    [data-theme="dark"] .chip-peach { background: rgba(212,113,78,0.15); border-color: rgba(232,146,109,0.2); }
+    [data-theme="dark"] .chip-mint { background: rgba(61,168,122,0.15); border-color: rgba(109,212,160,0.2); }
+    [data-theme="dark"] .chip-lavender { background: rgba(108,106,228,0.15); border-color: rgba(168,166,240,0.2); }
+    [data-theme="dark"] .chip-sand { background: rgba(196,138,63,0.15); border-color: rgba(217,176,106,0.2); }
 
     /* Dark mode: ChatGPT logo white */
     [data-theme="dark"] .workflow-tool-icon svg[fill="#000"] {
@@ -2181,12 +2195,15 @@
       border-radius: 999px;
       color: #111111;
       white-space: nowrap;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 3px rgba(0,0,0,0.03);
     }
-    .chip-sky { background: #E6EFFE; }
-    .chip-peach { background: #FBEAE4; }
-    .chip-mint { background: #E2F3EB; }
-    .chip-lavender { background: #EBEAFD; }
-    .chip-sand { background: #FFF1E3; }
+    .chip-sky { background: rgba(230,239,254,0.55); border: 1px solid rgba(214,228,246,0.5); }
+    .chip-peach { background: rgba(251,234,228,0.55); border: 1px solid rgba(242,221,214,0.5); }
+    .chip-mint { background: rgba(226,243,235,0.55); border: 1px solid rgba(210,232,220,0.5); }
+    .chip-lavender { background: rgba(235,234,253,0.55); border: 1px solid rgba(221,220,242,0.5); }
+    .chip-sand { background: rgba(255,241,227,0.55); border: 1px solid rgba(242,228,210,0.5); }
 
     /* ===== CTA Section ===== */
     .cta-section {
@@ -2831,6 +2848,14 @@
       border-radius: 999px;
       background: var(--section-accent-subtle, rgba(85,85,85,0.1));
       color: var(--section-accent, rgba(255,255,255,0.5));
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 3px rgba(0,0,0,0.03);
+    }
+    [data-theme="light"] .section-eyebrow {
+      border-color: rgba(0,0,0,0.06);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 1px 3px rgba(0,0,0,0.03);
     }
     /* Sections without accent class get explicit pill colors */
     .cta-section .section-eyebrow {
@@ -2838,7 +2863,7 @@
       color: #7BB8F0;
     }
     [data-theme="light"] .cta-section .section-eyebrow {
-      background: #F1F6FF;
+      background: rgba(74,143,214,0.10);
       color: #4A8FD6;
     }
 
@@ -2941,7 +2966,6 @@
         <span class="hero-eyebrow reveal">Hello <span class="hero-wave" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.4 -0.4 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M2.973 6.808c-.38-.38-1.013-.38-1.457 0-.38.38-.38 1.013 0 1.457l5.447 5.447c.633.633 1.52 1.013 2.47 1.013s1.837-.38 2.47-1.013l1.393-1.393c.95-.95 1.393-2.343 1.14-3.673l-.887-4.37c-.063-.443-.38-.76-.823-.823-.57-.127-1.203.317-1.267.887l-.253 2.09-4.687-4.687c-.38-.38-1.013-.38-1.457 0-.38.38-.38 1.013 0 1.457l-.633-.697c-.38-.38-1.013-.38-1.457 0-.38.38-.38 1.013 0 1.457l.697.697c-.38-.38-1.013-.38-1.457 0-.38.38-.38 1.013 0 1.457l.76.697Z" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m5.062 3.196 2.85 2.85" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m3.67 4.655 2.913 2.85" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m5.127 8.962-2.154-2.154" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M10.383 2.058c.253 0 .443.063.633.19" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M10.7.475c.697 0 1.33.253 1.773.76" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M2.277 11.875c0 .697.57 1.267 1.266 1.267" stroke-width="0.8"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M.693 12.192c0 1.393 1.14 2.533 2.533 2.533" stroke-width="0.8"/></svg></span></span>
         <div class="hero-body reveal">
           <p>Baseline is a creative studio designing modern brands, websites, and digital systems for ambitious companies.</p>
-          <p>Brand identity, web design, development, and creative systems built with taste, speed, and precision.</p>
         </div>
         <a href="#start" class="hero-text-cta reveal">
           <span class="hero-text-cta__arrow" aria-hidden="true">&rarr;</span>
