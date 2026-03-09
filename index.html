@@ -757,14 +757,14 @@
       flex: 1;
       min-width: 0;
       display: flex;
-      align-items: flex-start;
-      padding: clamp(48px, 6vh, 80px) 0 0 0;
+      align-items: flex-end;
+      padding: 0 0 calc(clamp(48px, 6vh, 80px) - 10px) 0;
     }
 
     .hero-headline h1 {
       font-family: var(--font-heading);
-      font-size: clamp(64px, 7.5vw, 120px);
-      font-weight: 700;
+      font-size: clamp(64px, 11vw, 180px);
+      font-weight: 600;
       line-height: 0.92;
       letter-spacing: -0.04em;
       color: var(--color-fg-default);
@@ -775,7 +775,6 @@
     /* ===== Hero Line Architecture ===== */
     .hero-line {
       display: block;
-      white-space: nowrap;
     }
 
     /* "WE HELP" — introductory label, lighter and smaller */
@@ -788,7 +787,6 @@
     [data-theme="dark"] .hero-line:first-child {
       color: rgba(255,255,255,0.35);
     }
-
 
     /* Rotating word — visual anchor, largest and heaviest */
     .hero-line--rotating {
@@ -871,7 +869,7 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 0 0 clamp(48px, 6vh, 80px) 0;
-      gap: 16px;
+      gap: 32px;
       flex-shrink: 0;
     }
 
@@ -940,7 +938,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin-top: 0;
+      margin-top: 8px;
       font-family: var(--font-heading);
       font-size: 15px;
       font-weight: 550;
@@ -2637,13 +2635,9 @@
       }
 
       .hero-editorial {
-        position: static;
         width: 100%;
         max-width: 400px;
-      }
-
-      .hero-line {
-        white-space: normal;
+        padding-bottom: 0;
       }
 
       /* hero bg mesh scales naturally */
@@ -2875,7 +2869,8 @@
               <span class="rotate-word rotate-word--mint">Companies</span>
             </span>
           </span>
-          <span class="hero-line reveal" style="--i:2">Look Modern</span>
+          <span class="hero-line reveal" style="--i:2">Look</span>
+          <span class="hero-line reveal" style="--i:3">Modern</span>
         </h1>
       </div>
 
