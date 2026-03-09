@@ -43,6 +43,15 @@
       to { opacity: 1; transform: scale(1); }
     }
 
+    /* ===== Custom Fonts ===== */
+    @font-face {
+      font-family: "PP Neue York";
+      src: url("otf/PPNeueYork-NarrowExtraboldItalic.otf") format("opentype");
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
     /* ===== Design Tokens ===== */
     :root {
       --color-accent: #555555;
@@ -59,6 +68,7 @@
       --color-border: rgba(255,255,255,0.06);
       --color-white-alpha30: rgba(255,255,255,0.12);
 
+      --font-display: "PP Neue York", Georgia, "Times New Roman", serif;
       --font-heading: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Google Sans", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --font-body: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Google Sans", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
@@ -349,7 +359,8 @@
       line-height: 1.5;
     }
 
-    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
+    h1, h2 { font-family: var(--font-display); }
+    h3, h4, h5, h6 { font-family: var(--font-heading); }
     button, input, textarea, select { font-family: var(--font-body); }
 
     img {
@@ -759,9 +770,9 @@
     }
 
     .hero-headline h1 {
-      font-family: var(--font-heading);
+      font-family: var(--font-display);
       font-size: clamp(58px, 9.9vw, 162px);
-      font-weight: 600;
+      font-weight: 800;
       line-height: 0.92;
       letter-spacing: -0.04em;
       color: var(--color-fg-default);
@@ -1112,7 +1123,7 @@
     }
 
     .services-overview-header .header-left h2 {
-      font-family: var(--font-heading);
+      font-family: var(--font-display);
       letter-spacing: -0.02em;
       font-size: 48px;
       font-weight: 600;
@@ -1193,7 +1204,7 @@
     }
 
     .approach-card h2 {
-      font-family: var(--font-heading);
+      font-family: var(--font-display);
       letter-spacing: -0.02em;
       font-size: 48px;
       font-weight: 600;
@@ -1283,7 +1294,7 @@
     }
 
     .services-detail-header h2 {
-      font-family: var(--font-heading);
+      font-family: var(--font-display);
       letter-spacing: -0.02em;
       font-size: 48px;
       font-weight: 600;
@@ -1441,7 +1452,7 @@
     }
 
     .ai-workflow h2 {
-      font-family: var(--font-heading);
+      font-family: var(--font-display);
       font-size: 48px;
       font-weight: 600;
       line-height: 58px;
@@ -1751,7 +1762,7 @@
     }
 
     .pricing-section h2 {
-      font-family: var(--font-heading);
+      font-family: var(--font-display);
       letter-spacing: -0.02em;
       font-size: 48px;
       font-weight: 600;
@@ -2017,7 +2028,7 @@
     }
 
     .case-studies-header h2 {
-      font-family: var(--font-heading);
+      font-family: var(--font-display);
       letter-spacing: -0.02em;
       font-size: 48px;
       font-weight: 600;
@@ -2179,7 +2190,7 @@
     }
 
     .cta-content h2 {
-      font-family: var(--font-heading);
+      font-family: var(--font-display);
       letter-spacing: -0.02em;
       font-size: 48px;
       font-weight: 600;
