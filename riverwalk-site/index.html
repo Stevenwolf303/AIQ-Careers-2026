@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Riverwalk Realty — Find your forever home. Curated properties in the finest neighborhoods with trusted local agents.">
+  <meta name="keywords" content="real estate, homes for sale, realty, Riverwalk, property listings">
+  <title>Riverwalk Realty — Find Your Forever Home</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3L2 15h4v12h8v-8h4v8h8V15h4L16 3z' fill='%232C3E50'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #2C3E50;
+      --gold: #C9A96E;
+      --cream: #FAF8F5;
+      --warm-gray: #E8E2D9;
+      --black: #1A1A1A;
+      --gold-hover: #b8944f;
+      --navy-light: #3d5266;
+      --text-muted: #6B7280;
+      --white: #FFFFFF;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--black);
+      background-color: var(--cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.3s ease;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ───────── NAVIGATION ───────── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--cream);
+      border-bottom: 1px solid var(--warm-gray);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .nav.scrolled {
+      box-shadow: 0 2px 20px rgba(44, 62, 80, 0.08);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo svg {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      letter-spacing: 2.5px;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .nav-logo-text span {
+      font-weight: 700;
+    }
+
+    .nav-logo-text .realty {
+      font-weight: 400;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: 0.3px;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--white) !important;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      transition: background 0.3s ease, transform 0.2s ease !important;
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold-hover) !important;
+      color: var(--white) !important;
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--warm-gray);
+      padding: 24px;
+      z-index: 999;
+      box-shadow: 0 8px 30px rgba(44, 62, 80, 0.1);
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 14px 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--navy);
+      border-bottom: 1px solid var(--warm-gray);
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+      margin-top: 8px;
+      text-align: center;
+      background: var(--gold);
+      color: var(--white);
+      padding: 14px;
+      border-radius: 50px;
+    }
+
+    /* ───────── HERO ───────── */
+    .hero {
+      padding: 160px 0 100px;
+      background: linear-gradient(180deg, var(--cream) 0%, #F5F0EA 50%, var(--cream) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 80px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201, 169, 110, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(44, 62, 80, 0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 64px);
+      color: var(--navy);
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+
+    .hero h1 .light {
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    .hero h1 .bold {
+      font-weight: 700;
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border: 1px solid var(--warm-gray);
+      border-radius: 60px;
+      padding: 6px 6px 6px 24px;
+      max-width: 580px;
+      margin: 0 auto;
+      box-shadow: 0 4px 24px rgba(44, 62, 80, 0.06);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .search-bar:focus-within {
+      border-color: var(--gold);
+      box-shadow: 0 4px 24px rgba(201, 169, 110, 0.15);
+    }
+
+    .search-icon {
+      color: var(--text-muted);
+      flex-shrink: 0;
+      margin-right: 12px;
+    }
+
+    .search-bar input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--black);
+      background: transparent;
+      min-width: 0;
+    }
+
+    .search-bar input::placeholder {
+      color: #B0A99F;
+    }
+
+    .search-btn {
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .search-btn:hover {
+      background: var(--gold-hover);
+    }
+
+    /* ───────── SECTION STYLES ───────── */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ───────── FEATURED LISTINGS ───────── */
+    .listings {
+      background: var(--white);
+      border-top: 1px solid var(--warm-gray);
+      border-bottom: 1px solid var(--warm-gray);
+    }
+
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .listing-card {
+      background: var(--cream);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--warm-gray);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .listing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(44, 62, 80, 0.1);
+    }
+
+    .listing-img {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .listing-img-1 {
+      background: linear-gradient(135deg, #7BA5A5 0%, #5A8F8F 30%, #8FAAA0 60%, #A3B5A0 100%);
+    }
+
+    .listing-img-2 {
+      background: linear-gradient(135deg, #6B8CAE 0%, #5578A0 30%, #7A9AB8 60%, #8FAFC8 100%);
+    }
+
+    .listing-img-3 {
+      background: linear-gradient(135deg, #A89070 0%, #9B7F60 30%, #B5A088 60%, #C4B498 100%);
+    }
+
+    .listing-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.3));
+    }
+
+    .listing-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--gold);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 4px;
+      z-index: 1;
+    }
+
+    .listing-price {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      color: var(--white);
+      font-family: Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      z-index: 1;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+
+    .listing-info {
+      padding: 24px;
+    }
+
+    .listing-address {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .listing-specs {
+      display: flex;
+      gap: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .listing-spec {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .listing-spec svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.6;
+    }
+
+    .listing-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      transition: gap 0.3s ease;
+    }
+
+    .listing-link:hover {
+      gap: 10px;
+      color: var(--gold-hover);
+    }
+
+    /* ───────── WHY RIVERWALK ───────── */
+    .why {
+      background: var(--cream);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 36px 20px;
+      background: var(--white);
+      border: 1px solid var(--warm-gray);
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .stat-number {
+      font-family: Georgia, serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    .stat-number .gold {
+      color: var(--gold);
+    }
+
+    .stat-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .why-text {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .why-text p {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .why-text p + p {
+      margin-top: 16px;
+    }
+
+    /* ───────── NEIGHBORHOODS ───────── */
+    .neighborhoods {
+      background: var(--white);
+      border-top: 1px solid var(--warm-gray);
+      border-bottom: 1px solid var(--warm-gray);
+    }
+
+    .neighborhoods-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .neighborhood-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--warm-gray);
+      background: var(--cream);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .neighborhood-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(44, 62, 80, 0.1);
+    }
+
+    .neighborhood-img {
+      height: 160px;
+      position: relative;
+    }
+
+    .neighborhood-img-1 {
+      background: linear-gradient(135deg, #5A7A8A 0%, #4A6A7A 40%, #6A8A9A 100%);
+    }
+
+    .neighborhood-img-2 {
+      background: linear-gradient(135deg, #6A8E7A 0%, #5A7E6A 40%, #7A9E8A 100%);
+    }
+
+    .neighborhood-img-3 {
+      background: linear-gradient(135deg, #8A7A6A 0%, #7A6A5A 40%, #9A8A7A 100%);
+    }
+
+    .neighborhood-img-4 {
+      background: linear-gradient(135deg, #6A7A9A 0%, #5A6A8A 40%, #7A8AAA 100%);
+    }
+
+    .neighborhood-info {
+      padding: 24px;
+    }
+
+    .neighborhood-name {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .neighborhood-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .neighborhood-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.3s ease;
+    }
+
+    .neighborhood-link:hover {
+      gap: 10px;
+      color: var(--gold-hover);
+    }
+
+    /* ───────── AGENTS ───────── */
+    .agents {
+      background: var(--cream);
+    }
+
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .agent-card {
+      text-align: center;
+      padding: 40px 28px;
+      background: var(--white);
+      border: 1px solid var(--warm-gray);
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .agent-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(44, 62, 80, 0.1);
+    }
+
+    .agent-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Georgia, serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .agent-avatar-1 {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    }
+
+    .agent-avatar-2 {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-hover) 100%);
+    }
+
+    .agent-avatar-3 {
+      background: linear-gradient(135deg, #5A7A8A 0%, #7A9AAA 100%);
+    }
+
+    .agent-name {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .agent-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .agent-specialty {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .agent-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .agent-contact a {
+      font-size: 13px;
+      color: var(--navy);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .agent-contact a:hover {
+      color: var(--gold);
+    }
+
+    .agent-contact svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    /* ───────── CTA / CONTACT ───────── */
+    .cta-section {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(201, 169, 110, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .cta-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-text .section-label {
+      color: var(--gold);
+      text-align: left;
+    }
+
+    .cta-text h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .cta-text h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .cta-text p {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.7;
+    }
+
+    .cta-form {
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      transition: border-color 0.3s ease, background 0.3s ease;
+      outline: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+
+    .form-group select option {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .form-submit:hover {
+      background: var(--gold-hover);
+      transform: translateY(-1px);
+    }
+
+    /* ───────── FOOTER ───────── */
+    .footer {
+      background: var(--cream);
+      border-top: 1px solid var(--warm-gray);
+      padding: 60px 0 0;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+    }
+
+    .footer-brand .nav-logo {
+      margin-bottom: 16px;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .footer-contact-item svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--gold);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--warm-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy);
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--white);
+    }
+
+    .footer-social svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--warm-gray);
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-bottom .license {
+      font-size: 12px;
+      color: #B0A99F;
+    }
+
+    /* ───────── RESPONSIVE ───────── */
+    @media (max-width: 1024px) {
+      .listings-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .neighborhoods-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .agents-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cta-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .cta-text {
+        text-align: center;
+      }
+
+      .cta-text .section-label {
+        text-align: center;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero {
+        padding: 130px 0 70px;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .search-bar {
+        flex-direction: column;
+        border-radius: 16px;
+        padding: 12px;
+        gap: 12px;
+      }
+
+      .search-icon {
+        display: none;
+      }
+
+      .search-bar input {
+        width: 100%;
+        text-align: center;
+        padding: 8px 0;
+      }
+
+      .search-btn {
+        width: 100%;
+      }
+
+      .listings-grid,
+      .agents-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .neighborhoods-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .stat-card {
+        padding: 24px 16px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ═══════ NAVIGATION ═══════ -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 4L3 15h4v11h7v-7h4v7h7V15h4L16 4z" fill="#2C3E50"/>
+          <rect x="13" y="12" width="6" height="5" rx="0.5" fill="#FAF8F5" opacity="0.9"/>
+        </svg>
+        <div class="nav-logo-text">
+          <span>RIVERWALK</span> <span class="realty">REALTY</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#listings">Listings</a></li>
+        <li><a href="#neighborhoods">Neighborhoods</a></li>
+        <li><a href="#agents">Agents</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#listings">Listings</a>
+    <a href="#neighborhoods">Neighborhoods</a>
+    <a href="#agents">Agents</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact Us</a>
+  </div>
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-label">Riverwalk Realty</p>
+        <h1>
+          <span class="light">Find your</span>
+          <span class="bold">forever home.</span>
+        </h1>
+        <p class="hero-subtitle">Curated properties in the most sought-after neighborhoods, guided by agents who know every street by name.</p>
+        <div class="search-bar">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" placeholder="Search by neighborhood, address, or MLS #...">
+          <button class="search-btn">Search</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ FEATURED LISTINGS ═══════ -->
+  <section class="section listings" id="listings">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Featured Listings</p>
+        <h2 class="section-title">Properties You'll Love</h2>
+        <p class="section-subtitle">Hand-selected homes that represent the best of what our neighborhoods have to offer.</p>
+      </div>
+      <div class="listings-grid">
+        <!-- Listing 1 -->
+        <div class="listing-card">
+          <div class="listing-img listing-img-1">
+            <span class="listing-badge">Featured</span>
+            <span class="listing-price">$875,000</span>
+          </div>
+          <div class="listing-info">
+            <h3 class="listing-address">142 Riverside Drive</h3>
+            <div class="listing-specs">
+              <span class="listing-spec">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v11a2 2 0 002 2h14a2 2 0 002-2V7"/><path d="M2 10h20"/><path d="M7 20V10"/></svg>
+                3 Bed
+              </span>
+              <span class="listing-spec">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16a1 1 0 011 1v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a1 1 0 011-1z"/><path d="M6 12V5a2 2 0 012-2h1a2 2 0 012 2v7"/></svg>
+                2 Bath
+              </span>
+              <span class="listing-spec">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18"/></svg>
+                1,850 sqft
+              </span>
+            </div>
+            <a href="#" class="listing-link">
+              View Details
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Listing 2 -->
+        <div class="listing-card">
+          <div class="listing-img listing-img-2">
+            <span class="listing-badge">New</span>
+            <span class="listing-price">$1,250,000</span>
+          </div>
+          <div class="listing-info">
+            <h3 class="listing-address">88 Harbor View Lane</h3>
+            <div class="listing-specs">
+              <span class="listing-spec">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v11a2 2 0 002 2h14a2 2 0 002-2V7"/><path d="M2 10h20"/><path d="M7 20V10"/></svg>
+                4 Bed
+              </span>
+              <span class="listing-spec">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16a1 1 0 011 1v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a1 1 0 011-1z"/><path d="M6 12V5a2 2 0 012-2h1a2 2 0 012 2v7"/></svg>
+                3 Bath
+              </span>
+              <span class="listing-spec">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18"/></svg>
+                2,400 sqft
+              </span>
+            </div>
+            <a href="#" class="listing-link">
+              View Details
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Listing 3 -->
+        <div class="listing-card">
+          <div class="listing-img listing-img-3">
+            <span class="listing-badge">Open House</span>
+            <span class="listing-price">$625,000</span>
+          </div>
+          <div class="listing-info">
+            <h3 class="listing-address">310 Oak Terrace</h3>
+            <div class="listing-specs">
+              <span class="listing-spec">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v11a2 2 0 002 2h14a2 2 0 002-2V7"/><path d="M2 10h20"/><path d="M7 20V10"/></svg>
+                2 Bed
+              </span>
+              <span class="listing-spec">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16a1 1 0 011 1v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a1 1 0 011-1z"/><path d="M6 12V5a2 2 0 012-2h1a2 2 0 012 2v7"/></svg>
+                2 Bath
+              </span>
+              <span class="listing-spec">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18"/></svg>
+                1,200 sqft
+              </span>
+            </div>
+            <a href="#" class="listing-link">
+              View Details
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ WHY RIVERWALK ═══════ -->
+  <section class="section why" id="about">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Why Riverwalk</p>
+        <h2 class="section-title">Trusted by Our Community</h2>
+        <p class="section-subtitle">More than a brokerage -- we're your neighbors, your advocates, and your partners in finding home.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">150<span class="gold">+</span></div>
+          <div class="stat-label">Homes Sold</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Years Local</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4.8<span class="gold">&#9733;</span></div>
+          <div class="stat-label">Client Rating</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">98<span class="gold">%</span></div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+      </div>
+      <div class="why-text">
+        <p>Riverwalk Realty was founded on a simple belief: buying or selling a home should feel personal. We've spent over a decade building deep roots in this community, learning every neighborhood block by block, school by school, park by park.</p>
+        <p>Our agents don't just close deals -- they build relationships. From your first showing to the moment you turn the key, we're beside you every step. That's the Riverwalk difference.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ NEIGHBORHOODS ═══════ -->
+  <section class="section neighborhoods" id="neighborhoods">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Neighborhoods</p>
+        <h2 class="section-title">Explore the Area</h2>
+        <p class="section-subtitle">Each neighborhood has its own character. Let us help you find the one that fits your life.</p>
+      </div>
+      <div class="neighborhoods-grid">
+        <div class="neighborhood-card">
+          <div class="neighborhood-img neighborhood-img-1"></div>
+          <div class="neighborhood-info">
+            <h3 class="neighborhood-name">Riverwalk District</h3>
+            <p class="neighborhood-desc">Tree-lined streets, waterfront trails, and a charming mix of historic and modern homes.</p>
+            <a href="#" class="neighborhood-link">
+              Explore
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="neighborhood-card">
+          <div class="neighborhood-img neighborhood-img-2"></div>
+          <div class="neighborhood-info">
+            <h3 class="neighborhood-name">Harbor Heights</h3>
+            <p class="neighborhood-desc">Elevated views, premium finishes, and easy access to the marina and waterfront dining.</p>
+            <a href="#" class="neighborhood-link">
+              Explore
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="neighborhood-card">
+          <div class="neighborhood-img neighborhood-img-3"></div>
+          <div class="neighborhood-info">
+            <h3 class="neighborhood-name">Oak Park</h3>
+            <p class="neighborhood-desc">Family-friendly with top-rated schools, spacious lots, and a vibrant community center.</p>
+            <a href="#" class="neighborhood-link">
+              Explore
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="neighborhood-card">
+          <div class="neighborhood-img neighborhood-img-4"></div>
+          <div class="neighborhood-info">
+            <h3 class="neighborhood-name">Downtown</h3>
+            <p class="neighborhood-desc">Walk-to-everything living with condos, lofts, and converted warehouse spaces.</p>
+            <a href="#" class="neighborhood-link">
+              Explore
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ AGENTS ═══════ -->
+  <section class="section agents" id="agents">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Our Team</p>
+        <h2 class="section-title">Meet Our Agents</h2>
+        <p class="section-subtitle">Experienced professionals who live and breathe these neighborhoods.</p>
+      </div>
+      <div class="agents-grid">
+        <div class="agent-card">
+          <div class="agent-avatar agent-avatar-1">EC</div>
+          <h3 class="agent-name">Elena Castillo</h3>
+          <p class="agent-title">Senior Agent</p>
+          <p class="agent-specialty">Specializing in waterfront properties and luxury homes in the Riverwalk District.</p>
+          <div class="agent-contact">
+            <a href="tel:5551234567">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              (555) 123-4567
+            </a>
+            <a href="mailto:elena@riverwalk.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              elena@riverwalk.com
+            </a>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-avatar agent-avatar-2">JW</div>
+          <h3 class="agent-name">James Whitfield</h3>
+          <p class="agent-title">Senior Agent</p>
+          <p class="agent-specialty">First-time buyer expert with deep knowledge of Oak Park and family-friendly communities.</p>
+          <div class="agent-contact">
+            <a href="tel:5559876543">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              (555) 987-6543
+            </a>
+            <a href="mailto:james@riverwalk.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              james@riverwalk.com
+            </a>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-avatar agent-avatar-3">SP</div>
+          <h3 class="agent-name">Sarah Pemberton</h3>
+          <p class="agent-title">Senior Agent</p>
+          <p class="agent-specialty">Downtown and Harbor Heights specialist focused on condos, lofts, and investment properties.</p>
+          <div class="agent-contact">
+            <a href="tel:5554561234">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              (555) 456-1234
+            </a>
+            <a href="mailto:sarah@riverwalk.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              sarah@riverwalk.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CTA / CONTACT ═══════ -->
+  <section class="section cta-section" id="contact">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <p class="section-label">Get In Touch</p>
+          <h2>Ready to find <em>your</em> home?</h2>
+          <p>Tell us what you're looking for, and one of our agents will reach out within 24 hours. No pressure, no obligation -- just a conversation about what matters to you.</p>
+        </div>
+        <form class="cta-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="interest">I'm looking to...</label>
+            <select id="interest" name="interest">
+              <option value="" disabled selected>Select an option</option>
+              <option value="buy">Buy a Home</option>
+              <option value="sell">Sell a Home</option>
+              <option value="both">Buy & Sell</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your ideal home, timeline, or any questions you have..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 4L3 15h4v11h7v-7h4v7h7V15h4L16 4z" fill="#2C3E50"/>
+              <rect x="13" y="12" width="6" height="5" rx="0.5" fill="#FAF8F5" opacity="0.9"/>
+            </svg>
+            <div class="nav-logo-text">
+              <span>RIVERWALK</span> <span class="realty">REALTY</span>
+            </div>
+          </a>
+          <p>Helping families and individuals find their perfect home in the neighborhoods they love, for over 12 years.</p>
+          <div class="footer-social">
+            <!-- Facebook -->
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z"/></svg>
+            </a>
+            <!-- Twitter/X -->
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#listings">Listings</a></li>
+            <li><a href="#neighborhoods">Neighborhoods</a></li>
+            <li><a href="#agents">Our Agents</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Services</h4>
+          <ul class="footer-links">
+            <li><a href="#">Buyer Representation</a></li>
+            <li><a href="#">Seller Representation</a></li>
+            <li><a href="#">Market Analysis</a></li>
+            <li><a href="#">Home Valuation</a></li>
+            <li><a href="#">Relocation</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>245 Riverwalk Blvd, Suite 100<br>Riverside, CA 92501</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span>(555) 100-2500</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>hello@riverwalk.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Riverwalk Realty. All rights reserved.</p>
+        <p class="license">License #01234567 | Equal Housing Opportunity</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Navbar scroll shadow ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // ── Mobile menu ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Close mobile menu on outside click
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      }
+    });
+
+    // ── Smooth scroll for nav links ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const offset = 72; // nav height
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ── Contact form handler ──
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('.form-submit');
+      const originalText = btn.textContent;
+      btn.textContent = 'Message Sent!';
+      btn.style.background = '#2C3E50';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        this.reset();
+      }, 2500);
+    });
+
+    // ── Intersection Observer for scroll animations ──
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.listing-card, .stat-card, .neighborhood-card, .agent-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volta Coffee | Coffee, elevated.</title>
+  <meta name="description" content="Volta Coffee. Ethically sourced, small-batch roasted single origin specialty coffee delivered fresh to your door.">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='23' fill='none' stroke='%23C8A97E' stroke-width='1.5'/%3E%3Ctext x='24' y='32' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='28' fill='%23C8A97E'%3EV%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --gold: #C8A97E;
+      --charcoal: #1A1A1A;
+      --cream: #F5F0EB;
+      --mid-gray: #3D3D3D;
+      --brown: #8B7355;
+      --gold-border: rgba(200,169,126,0.12);
+      --gold-glow: rgba(200,169,126,0.06);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--charcoal);
+      color: var(--cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ---- Typography ---- */
+    h1, h2, h3, h4 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 400;
+    }
+
+    .serif-italic {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .section-pad {
+      padding: 6rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ---- Navigation ---- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(26,26,26,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gold-border);
+      transition: background 0.3s;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--cream);
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--gold);
+    }
+
+    .logo-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      font-weight: 500;
+      color: var(--cream);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brown);
+      transition: color 0.3s;
+      font-weight: 400;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .cart-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1.25rem;
+      border: 1.5px solid var(--gold);
+      border-radius: 100px;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+
+    .cart-btn:hover {
+      background: var(--gold);
+      color: var(--charcoal);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 1.5px;
+      background: var(--gold);
+      transition: transform 0.3s, opacity 0.3s;
+      display: block;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(26,26,26,0.98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 1.75rem;
+      color: var(--cream);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--gold);
+    }
+
+    /* ---- Hero ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 1.5rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(200,169,126,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.1;
+      margin: 1.25rem 0 1.5rem;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--brown);
+      max-width: 440px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2.5rem;
+      background: var(--gold);
+      color: var(--charcoal);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #d4b88e;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.85rem 2.5rem;
+      background: transparent;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1.5px solid rgba(245,240,235,0.25);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ---- Featured Roasts ---- */
+    .roasts {
+      background: var(--charcoal);
+      border-top: 1px solid var(--gold-border);
+    }
+
+    .roasts .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .roasts h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-style: italic;
+      margin-top: 0.75rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: var(--mid-gray);
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(200,169,126,0.3);
+    }
+
+    .product-img {
+      height: 260px;
+      background: linear-gradient(145deg, #2a2a2a 0%, #1f1f1f 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 75%;
+      background: linear-gradient(to top, rgba(200,169,126,0.08), transparent);
+      border-radius: 4px 4px 0 0;
+    }
+
+    /* CSS-only coffee bag silhouette */
+    .coffee-bag {
+      width: 80px;
+      height: 120px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .coffee-bag .bag-body {
+      width: 80px;
+      height: 100px;
+      background: linear-gradient(135deg, #2d2720 0%, #1e1a15 100%);
+      border-radius: 4px 4px 2px 2px;
+      position: absolute;
+      bottom: 0;
+      border: 1px solid rgba(200,169,126,0.15);
+    }
+
+    .coffee-bag .bag-top {
+      width: 60px;
+      height: 20px;
+      background: linear-gradient(135deg, #3a3228 0%, #2d2720 100%);
+      border-radius: 2px 2px 0 0;
+      position: absolute;
+      top: 0;
+      left: 10px;
+      border: 1px solid rgba(200,169,126,0.15);
+      border-bottom: none;
+    }
+
+    .coffee-bag .bag-label {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 35px;
+      border: 1px solid var(--gold);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coffee-bag .bag-label::after {
+      content: 'V';
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--gold);
+    }
+
+    .product-info {
+      padding: 1.25rem;
+    }
+
+    .product-origin {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+
+    .product-name {
+      font-family: Georgia, serif;
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+      color: var(--cream);
+    }
+
+    .product-price {
+      font-size: 1rem;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .product-card .quick-add {
+      display: block;
+      width: 100%;
+      padding: 0.7rem;
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--gold-border);
+      color: var(--brown);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .product-card .quick-add:hover {
+      background: var(--gold);
+      color: var(--charcoal);
+    }
+
+    /* ---- Our Story ---- */
+    .story {
+      background: #151515;
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .story-text h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .story-text p {
+      color: var(--brown);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      font-weight: 300;
+      font-size: 0.95rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .value-item {
+      padding: 1.5rem;
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .value-item:hover {
+      border-color: rgba(200,169,126,0.3);
+    }
+
+    .value-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-style: italic;
+    }
+
+    .value-item h4 {
+      font-size: 0.85rem;
+      margin-bottom: 0.35rem;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .value-item p {
+      font-size: 0.75rem;
+      color: var(--brown);
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    /* ---- Subscription ---- */
+    .subscription {
+      background: var(--charcoal);
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .subscription .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .subscription h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-style: italic;
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .subscription .section-desc {
+      color: var(--brown);
+      max-width: 500px;
+      margin: 0 auto;
+      font-weight: 300;
+      font-size: 0.95rem;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .step-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .step-card h3 {
+      font-size: 1.1rem;
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    .step-card p {
+      font-size: 0.85rem;
+      color: var(--brown);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .sub-tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .tier-card {
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      padding: 2rem;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+    }
+
+    .tier-card:hover {
+      border-color: rgba(200,169,126,0.3);
+      transform: translateY(-2px);
+    }
+
+    .tier-card.featured {
+      border-color: var(--gold);
+      background: rgba(200,169,126,0.04);
+    }
+
+    .tier-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--charcoal);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-weight: 600;
+    }
+
+    .tier-card h3 {
+      font-style: italic;
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-price {
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+    }
+
+    .tier-price span {
+      font-size: 0.8rem;
+      color: var(--brown);
+    }
+
+    .tier-desc {
+      font-size: 0.8rem;
+      color: var(--brown);
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+
+    .tier-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .tier-features li {
+      font-size: 0.8rem;
+      color: rgba(245,240,235,0.7);
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--gold-border);
+      font-weight: 300;
+    }
+
+    .tier-features li::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-right: 0.6rem;
+      vertical-align: middle;
+    }
+
+    /* ---- Product Detail Preview ---- */
+    .product-detail {
+      background: #151515;
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .detail-image {
+      aspect-ratio: 4/5;
+      background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .detail-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 60%, rgba(200,169,126,0.06) 0%, transparent 60%);
+    }
+
+    .detail-bag {
+      width: 140px;
+      height: 210px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .detail-bag .bag-body {
+      width: 140px;
+      height: 175px;
+      background: linear-gradient(135deg, #2d2720 0%, #1e1a15 100%);
+      border-radius: 6px 6px 3px 3px;
+      position: absolute;
+      bottom: 0;
+      border: 1px solid rgba(200,169,126,0.2);
+    }
+
+    .detail-bag .bag-top {
+      width: 105px;
+      height: 35px;
+      background: linear-gradient(135deg, #3a3228 0%, #2d2720 100%);
+      border-radius: 3px 3px 0 0;
+      position: absolute;
+      top: 0;
+      left: 17.5px;
+      border: 1px solid rgba(200,169,126,0.2);
+      border-bottom: none;
+    }
+
+    .detail-bag .bag-label {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 60px;
+      border: 1px solid var(--gold);
+      border-radius: 3px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .detail-bag .bag-label .label-v {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .detail-bag .bag-label .label-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.4rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .detail-info .eyebrow {
+      margin-bottom: 0.75rem;
+    }
+
+    .detail-info h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+
+    .detail-origin {
+      font-size: 0.85rem;
+      color: var(--brown);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .tasting-notes {
+      margin-bottom: 1.5rem;
+    }
+
+    .tasting-notes h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown);
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+
+    .flavor-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .flavor-tag {
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--gold-border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+
+    .size-options {
+      margin-bottom: 1.5rem;
+    }
+
+    .size-options h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown);
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+
+    .sizes {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .size-btn {
+      padding: 0.6rem 1.25rem;
+      border: 1.5px solid var(--gold-border);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: border-color 0.3s, background 0.3s, color 0.3s;
+      font-weight: 400;
+    }
+
+    .size-btn:hover,
+    .size-btn.active {
+      border-color: var(--gold);
+      background: rgba(200,169,126,0.08);
+    }
+
+    .size-btn.active {
+      color: var(--gold);
+    }
+
+    .detail-price {
+      font-size: 1.75rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .detail-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .qty-selector {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .qty-btn {
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      color: var(--cream);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .qty-btn:hover {
+      background: rgba(200,169,126,0.1);
+    }
+
+    .qty-val {
+      width: 40px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--cream);
+      border-left: 1px solid var(--gold-border);
+      border-right: 1px solid var(--gold-border);
+      line-height: 40px;
+    }
+
+    /* ---- CTA / Email Signup ---- */
+    .cta-section {
+      background: var(--charcoal);
+      text-align: center;
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-style: italic;
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-section .cta-desc {
+      color: var(--brown);
+      max-width: 460px;
+      margin: 0 auto 2rem;
+      font-weight: 300;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .email-form {
+      display: flex;
+      max-width: 480px;
+      margin: 0 auto;
+      gap: 0;
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .email-form input {
+      flex: 1;
+      padding: 0.9rem 1.25rem;
+      background: rgba(61,61,61,0.3);
+      border: none;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+      font-weight: 300;
+    }
+
+    .email-form input::placeholder {
+      color: var(--brown);
+    }
+
+    .email-form button {
+      padding: 0.9rem 1.75rem;
+      background: var(--gold);
+      border: none;
+      color: var(--charcoal);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+      white-space: nowrap;
+    }
+
+    .email-form button:hover {
+      background: #d4b88e;
+    }
+
+    .cta-note {
+      font-size: 0.7rem;
+      color: rgba(139,115,85,0.6);
+      margin-top: 1rem;
+      font-weight: 300;
+    }
+
+    /* ---- Footer ---- */
+    footer {
+      background: #111;
+      border-top: 1px solid var(--gold-border);
+      padding: 3.5rem 1.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .footer-brand .logo {
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.8rem;
+      color: var(--brown);
+      line-height: 1.6;
+      font-weight: 300;
+      max-width: 260px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--brown);
+      text-decoration: none;
+      padding: 0.25rem 0;
+      transition: color 0.3s;
+      font-weight: 300;
+    }
+
+    .footer-col a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+    }
+
+    .copyright {
+      font-size: 0.7rem;
+      color: rgba(139,115,85,0.5);
+      font-weight: 300;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .social-link:hover {
+      border-color: var(--gold);
+      background: rgba(200,169,126,0.08);
+    }
+
+    .social-link svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--brown);
+      transition: fill 0.3s;
+    }
+
+    .social-link:hover svg {
+      fill: var(--gold);
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .story-grid,
+      .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .section-pad {
+        padding: 4rem 1.25rem;
+      }
+
+      .hero {
+        padding: 7rem 1.25rem 4rem;
+        min-height: 90vh;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .product-img {
+        height: 200px;
+      }
+
+      .steps-grid,
+      .sub-tiers {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .detail-grid {
+        gap: 2rem;
+      }
+
+      .detail-image {
+        max-height: 400px;
+      }
+
+      .email-form {
+        flex-direction: column;
+      }
+
+      .email-form button {
+        padding: 0.85rem;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1.25rem;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .sizes {
+        flex-wrap: wrap;
+      }
+
+      .detail-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .detail-actions .btn-primary {
+        text-align: center;
+      }
+    }
+
+    /* ---- Animations ---- */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-mark">V</div>
+        <span class="logo-text">VOLTA</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#roasts">Shop</a></li>
+        <li><a href="#story">Origins</a></li>
+        <li><a href="#subscribe">Subscribe</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#" class="cart-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Cart (0)
+        </a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#roasts" onclick="closeMobile()">Shop</a>
+    <a href="#story" onclick="closeMobile()">Origins</a>
+    <a href="#subscribe" onclick="closeMobile()">Subscribe</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#" class="cart-btn" style="margin-top:1rem" onclick="closeMobile()">Cart (0)</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-content fade-in">
+      <span class="eyebrow">Single Origin Specialty</span>
+      <h1 class="serif-italic">Coffee, elevated.</h1>
+      <p class="hero-sub">Ethically sourced, small-batch roasted beans from the world's finest growing regions. Delivered fresh to your door.</p>
+      <div class="hero-buttons">
+        <a href="#roasts" class="btn-primary">Shop Now</a>
+        <a href="#story" class="btn-outline">Our Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Roasts -->
+  <section class="roasts section-pad" id="roasts">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="eyebrow">The Collection</span>
+        <h2 class="serif-italic">Featured Roasts</h2>
+      </div>
+      <div class="products-grid">
+
+        <div class="product-card fade-in">
+          <div class="product-img">
+            <div class="coffee-bag">
+              <div class="bag-top"></div>
+              <div class="bag-body">
+                <div class="bag-label"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-origin">Ethiopia</div>
+            <div class="product-name">Yirgacheffe</div>
+            <div class="product-price">$22</div>
+          </div>
+          <button class="quick-add">Quick Add</button>
+        </div>
+
+        <div class="product-card fade-in">
+          <div class="product-img">
+            <div class="coffee-bag">
+              <div class="bag-top"></div>
+              <div class="bag-body">
+                <div class="bag-label"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-origin">Colombia</div>
+            <div class="product-name">Huila</div>
+            <div class="product-price">$19</div>
+          </div>
+          <button class="quick-add">Quick Add</button>
+        </div>
+
+        <div class="product-card fade-in">
+          <div class="product-img">
+            <div class="coffee-bag">
+              <div class="bag-top"></div>
+              <div class="bag-body">
+                <div class="bag-label"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-origin">Guatemala</div>
+            <div class="product-name">Antigua</div>
+            <div class="product-price">$21</div>
+          </div>
+          <button class="quick-add">Quick Add</button>
+        </div>
+
+        <div class="product-card fade-in">
+          <div class="product-img">
+            <div class="coffee-bag">
+              <div class="bag-top"></div>
+              <div class="bag-body">
+                <div class="bag-label"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-origin">Kenya</div>
+            <div class="product-name">Kenya AA</div>
+            <div class="product-price">$24</div>
+          </div>
+          <button class="quick-add">Quick Add</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="story section-pad" id="story">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-text fade-in" id="about">
+          <span class="eyebrow">Our Story</span>
+          <h2 class="serif-italic">Crafted with intention.</h2>
+          <p>Volta began with a simple conviction: exceptional coffee deserves an exceptional journey. From the high-altitude farms where our beans are carefully hand-picked to the precise moment they reach your cup, every step is guided by craft and respect for the process.</p>
+          <p>We partner directly with growers who share our commitment to sustainable practices and fair compensation. Each lot is roasted in small batches at our studio to honor the distinct character of its origin.</p>
+        </div>
+        <div class="values-grid fade-in">
+          <div class="value-item">
+            <span class="value-icon">I</span>
+            <h4>Ethically Sourced</h4>
+            <p>Direct relationships with farming communities worldwide</p>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">II</span>
+            <h4>Small-Batch Roasted</h4>
+            <p>Precision-roasted in lots of fifty pounds or fewer</p>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">III</span>
+            <h4>Fresh Delivered</h4>
+            <p>Roasted to order and shipped within twenty-four hours</p>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">IV</span>
+            <h4>Single Origin</h4>
+            <p>Traceable beans from the world's premier growing regions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subscription -->
+  <section class="subscription section-pad" id="subscribe">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="eyebrow">Subscription</span>
+        <h2 class="serif-italic">Never run out.</h2>
+        <p class="section-desc">Choose your roast, set your schedule, and let us handle the rest. Fresh coffee arrives on your timeline.</p>
+      </div>
+
+      <div class="steps-grid fade-in">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="serif-italic">Choose your coffee</h3>
+          <p>Select from our rotating collection of single-origin roasts or let our roasters surprise you.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="serif-italic">Set your frequency</h3>
+          <p>Weekly, bi-weekly, or monthly deliveries tailored to how fast you go through your beans.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="serif-italic">Enjoy fresh coffee</h3>
+          <p>We roast and ship within twenty-four hours of your delivery date. Pause or cancel anytime.</p>
+        </div>
+      </div>
+
+      <div class="sub-tiers fade-in">
+        <div class="tier-card">
+          <h3 class="serif-italic">The Essentials</h3>
+          <div class="tier-price">$18 <span>/ delivery</span></div>
+          <p class="tier-desc">Perfect for the daily drinker</p>
+          <ul class="tier-features">
+            <li>250g single origin bag</li>
+            <li>Free shipping</li>
+            <li>Flexible schedule</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <a href="#" class="btn-outline" style="width:100%;text-align:center;display:block;">Select</a>
+        </div>
+        <div class="tier-card featured">
+          <span class="tier-badge">Most Popular</span>
+          <h3 class="serif-italic">The Ritual</h3>
+          <div class="tier-price">$32 <span>/ delivery</span></div>
+          <p class="tier-desc">For the committed coffee lover</p>
+          <ul class="tier-features">
+            <li>500g single origin bag</li>
+            <li>Free express shipping</li>
+            <li>Tasting notes card</li>
+            <li>Member pricing on shop</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <a href="#" class="btn-primary" style="width:100%;text-align:center;display:block;">Select</a>
+        </div>
+        <div class="tier-card">
+          <h3 class="serif-italic">The Devotion</h3>
+          <div class="tier-price">$54 <span>/ delivery</span></div>
+          <p class="tier-desc">For those who share the love</p>
+          <ul class="tier-features">
+            <li>1kg single origin bag</li>
+            <li>Free express shipping</li>
+            <li>Tasting notes card</li>
+            <li>Member pricing on shop</li>
+            <li>Early access to new roasts</li>
+          </ul>
+          <a href="#" class="btn-outline" style="width:100%;text-align:center;display:block;">Select</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Detail Preview -->
+  <section class="product-detail section-pad" id="product-detail">
+    <div class="container">
+      <div class="detail-grid">
+        <div class="detail-image fade-in">
+          <div class="detail-bag">
+            <div class="bag-top"></div>
+            <div class="bag-body">
+              <div class="bag-label">
+                <span class="label-v">V</span>
+                <span class="label-text">Volta</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="detail-info fade-in">
+          <span class="eyebrow">Featured Roast</span>
+          <h2 class="serif-italic">Ethiopia Yirgacheffe</h2>
+          <p class="detail-origin">Gedeo Zone, Southern Ethiopia &middot; 1,850 &ndash; 2,100m elevation</p>
+
+          <div class="tasting-notes">
+            <h4>Tasting Notes</h4>
+            <div class="flavor-tags">
+              <span class="flavor-tag">Floral</span>
+              <span class="flavor-tag">Bergamot</span>
+              <span class="flavor-tag">Stone Fruit</span>
+              <span class="flavor-tag">Honey</span>
+            </div>
+          </div>
+
+          <div class="size-options">
+            <h4>Size</h4>
+            <div class="sizes">
+              <button class="size-btn" data-size="250">250g</button>
+              <button class="size-btn active" data-size="500">500g</button>
+              <button class="size-btn" data-size="1000">1kg</button>
+            </div>
+          </div>
+
+          <div class="detail-price" id="detailPrice">$22</div>
+
+          <div class="detail-actions">
+            <div class="qty-selector">
+              <button class="qty-btn" id="qtyDown">&minus;</button>
+              <span class="qty-val" id="qtyVal">1</span>
+              <button class="qty-btn" id="qtyUp">+</button>
+            </div>
+            <a href="#" class="btn-primary" style="flex:1;text-align:center;">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Email Signup -->
+  <section class="cta-section section-pad" id="join">
+    <div class="container fade-in">
+      <span class="eyebrow">Stay Connected</span>
+      <h2 class="serif-italic">Join the Volta List</h2>
+      <p class="cta-desc">Be the first to hear about new roasts, limited releases, and the stories behind the beans. No spam, just good coffee.</p>
+      <form class="email-form" onsubmit="return handleSignup(event)">
+        <input type="email" placeholder="Your email address" required aria-label="Email address">
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="cta-note">We respect your inbox. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-mark">V</div>
+            <span class="logo-text">VOLTA</span>
+          </a>
+          <p>Ethically sourced, small-batch roasted single origin coffee. Crafted with intention, delivered with care.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#roasts">All Coffee</a></li>
+            <li><a href="#subscribe">Subscriptions</a></li>
+            <li><a href="#">Brewing Gear</a></li>
+            <li><a href="#">Gift Cards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#">Sourcing</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="copyright">&copy; 2026 Volta Coffee Co. All rights reserved.</span>
+        <div class="social-links">
+          <!-- Instagram -->
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <!-- Twitter / X -->
+          <a href="#" class="social-link" aria-label="Twitter">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- TikTok -->
+          <a href="#" class="social-link" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17v-3.44a4.85 4.85 0 01-3.58-1.46V6.69h3.58z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ---- Mobile Menu ----
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+
+    function closeMobile() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ---- Size selector ----
+    const sizeBtns = document.querySelectorAll('.size-btn');
+    const detailPrice = document.getElementById('detailPrice');
+    const prices = { 250: '$14', 500: '$22', 1000: '$38' };
+
+    sizeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sizeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        detailPrice.textContent = prices[btn.dataset.size] || '$22';
+      });
+    });
+
+    // ---- Quantity selector ----
+    const qtyVal = document.getElementById('qtyVal');
+    const qtyDown = document.getElementById('qtyDown');
+    const qtyUp = document.getElementById('qtyUp');
+    let qty = 1;
+
+    qtyDown.addEventListener('click', () => {
+      if (qty > 1) {
+        qty--;
+        qtyVal.textContent = qty;
+      }
+    });
+
+    qtyUp.addEventListener('click', () => {
+      if (qty < 10) {
+        qty++;
+        qtyVal.textContent = qty;
+      }
+    });
+
+    // ---- Email signup ----
+    function handleSignup(e) {
+      e.preventDefault();
+      const input = e.target.querySelector('input');
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Subscribed!';
+      btn.style.background = '#8B7355';
+      input.value = '';
+      setTimeout(() => {
+        btn.textContent = 'Subscribe';
+        btn.style.background = '';
+      }, 2500);
+      return false;
+    }
+
+    // ---- Scroll fade-in ----
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ---- Nav background on scroll ----
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(26,26,26,0.97)';
+      } else {
+        nav.style.background = 'rgba(26,26,26,0.92)';
+      }
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

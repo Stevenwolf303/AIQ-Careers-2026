@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BrightPath Daycare — Where little ones grow & thrive. Nurturing childcare programs for infants, toddlers, and pre-K children in a safe, loving environment.">
+  <meta name="keywords" content="daycare, childcare, preschool, infant care, toddler program, pre-k, early childhood education">
+  <title>BrightPath Daycare — Where Little Ones Grow & Thrive</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23F4A261'/%3E%3Cpath d='M32 14L16 28v16a2 2 0 002 2h8v-10h12v10h8a2 2 0 002-2V28L32 14z' fill='%23264653'/%3E%3Ccircle cx='32' cy='30' r='4' fill='%23E9C46A'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --orange: #F4A261;
+      --gold: #E9C46A;
+      --teal: #2A9D8F;
+      --navy: #264653;
+      --cream: #F8F0E3;
+      --white: #FFFFFF;
+      --gray-100: #F7F7F7;
+      --gray-200: #E5E5E5;
+      --gray-600: #6B7280;
+      --gray-800: #1F2937;
+      --shadow-sm: 0 1px 3px rgba(38, 70, 83, 0.08);
+      --shadow-md: 0 4px 12px rgba(38, 70, 83, 0.1);
+      --shadow-lg: 0 8px 30px rgba(38, 70, 83, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--navy);
+      background: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Navigation ── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(38, 70, 83, 0.06);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .nav.scrolled {
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .nav-logo-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .nav-logo-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 500;
+      font-size: 0.925rem;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--teal);
+      border-radius: 1px;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+    }
+
+    .nav-cta {
+      background: var(--teal);
+      color: var(--white) !important;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .nav-cta:hover {
+      background: #238b7e;
+      color: var(--white) !important;
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2.5px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 40px 24px;
+      z-index: 999;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 16px 0;
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 1.15rem;
+      border-bottom: 1px solid var(--gray-200);
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--teal);
+    }
+
+    .mobile-menu .mobile-cta {
+      display: inline-block;
+      margin-top: 20px;
+      background: var(--teal);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-align: center;
+      font-weight: 600;
+      border-bottom: none;
+    }
+
+    /* ── Container ── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Section base ── */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--teal);
+      border-radius: 1px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding-top: 140px;
+      padding-bottom: 80px;
+      background: linear-gradient(170deg, var(--cream) 0%, #FFF5EB 50%, var(--cream) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      right: -20%;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244, 162, 97, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(42, 157, 143, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(42, 157, 143, 0.1);
+      color: var(--teal);
+      font-weight: 600;
+      font-size: 0.82rem;
+      padding: 8px 18px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-eyebrow svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--teal);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5.5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero-title span {
+      color: var(--orange);
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 14px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+      border-color: var(--orange);
+    }
+
+    .btn-primary:hover {
+      background: #e8934f;
+      border-color: #e8934f;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(244, 162, 97, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .btn-outline:hover {
+      background: var(--navy);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-illustration {
+      width: 100%;
+      max-width: 460px;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, rgba(244, 162, 97, 0.15) 0%, rgba(233, 196, 106, 0.15) 50%, rgba(42, 157, 143, 0.12) 100%);
+      border-radius: 32px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-illustration-inner {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-illustration svg {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 16px;
+    }
+
+    .hero-illustration p {
+      font-weight: 600;
+      color: var(--navy);
+      opacity: 0.5;
+      font-size: 0.85rem;
+    }
+
+    .hero-illustration::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(233, 196, 106, 0.3);
+    }
+
+    .hero-illustration::after {
+      content: '';
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: rgba(42, 157, 143, 0.2);
+      transform: rotate(15deg);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: -12px;
+      right: -12px;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 14px 20px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-badge-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(42, 157, 143, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-badge-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hero-badge-text {
+      font-size: 0.8rem;
+    }
+
+    .hero-badge-text strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--navy);
+    }
+
+    .hero-badge-text span {
+      color: var(--gray-600);
+    }
+
+    /* ── Features ── */
+    .features {
+      background: var(--white);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .feature-card {
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .feature-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .feature-icon.orange { background: rgba(244, 162, 97, 0.15); }
+    .feature-icon.gold { background: rgba(233, 196, 106, 0.2); }
+    .feature-icon.teal { background: rgba(42, 157, 143, 0.12); }
+    .feature-icon.navy { background: rgba(38, 70, 83, 0.1); }
+
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* ── Programs ── */
+    .programs {
+      background: var(--cream);
+    }
+
+    .programs-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .programs-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .program-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .program-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .program-card-image {
+      height: 180px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .program-card:nth-child(1) .program-card-image {
+      background: linear-gradient(135deg, rgba(244, 162, 97, 0.2), rgba(233, 196, 106, 0.15));
+    }
+
+    .program-card:nth-child(2) .program-card-image {
+      background: linear-gradient(135deg, rgba(42, 157, 143, 0.15), rgba(233, 196, 106, 0.12));
+    }
+
+    .program-card:nth-child(3) .program-card-image {
+      background: linear-gradient(135deg, rgba(38, 70, 83, 0.12), rgba(42, 157, 143, 0.1));
+    }
+
+    .program-card-image svg {
+      width: 64px;
+      height: 64px;
+      opacity: 0.6;
+    }
+
+    .program-age-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--white);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--navy);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .program-card-body {
+      padding: 28px;
+    }
+
+    .program-card-body h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .program-age {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .program-card-body p {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .program-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .program-features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    .program-features li svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      color: var(--teal);
+    }
+
+    /* ── About / Why BrightPath ── */
+    .about {
+      background: var(--white);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-content .section-subtitle {
+      margin-bottom: 24px;
+    }
+
+    .about-text {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: var(--cream);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-number.teal { color: var(--teal); }
+    .stat-number.orange { color: var(--orange); }
+    .stat-number.gold { color: #c9a648; }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      font-weight: 500;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(42, 157, 143, 0.1), rgba(244, 162, 97, 0.12), rgba(233, 196, 106, 0.1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 15%;
+      left: 10%;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(244, 162, 97, 0.15);
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      bottom: 15%;
+      right: 15%;
+      width: 70px;
+      height: 70px;
+      border-radius: 14px;
+      background: rgba(42, 157, 143, 0.12);
+      transform: rotate(20deg);
+    }
+
+    .about-image svg {
+      width: 80px;
+      height: 80px;
+      opacity: 0.4;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-values {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .about-value {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .about-value-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-value-icon.orange { background: rgba(244, 162, 97, 0.12); }
+    .about-value-icon.teal { background: rgba(42, 157, 143, 0.1); }
+    .about-value-icon.gold { background: rgba(233, 196, 106, 0.15); }
+
+    .about-value-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .about-value h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+
+    .about-value p {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    /* ── Testimonials ── */
+    .testimonials {
+      background: linear-gradient(170deg, var(--cream), #FFF8F0);
+    }
+
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .testimonials-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-stars svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--gold);
+    }
+
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+    }
+
+    .testimonial-card:nth-child(1) .testimonial-avatar { background: var(--orange); }
+    .testimonial-card:nth-child(2) .testimonial-avatar { background: var(--teal); }
+    .testimonial-card:nth-child(3) .testimonial-avatar { background: var(--navy); }
+
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+
+    .testimonial-role {
+      font-size: 0.78rem;
+      color: var(--gray-600);
+    }
+
+    .testimonial-quote-icon {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      opacity: 0.08;
+    }
+
+    .testimonial-quote-icon svg {
+      width: 40px;
+      height: 40px;
+      fill: var(--navy);
+    }
+
+    /* ── Gallery ── */
+    .gallery {
+      background: var(--white);
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .gallery-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+
+    .gallery-item {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+    }
+
+    .gallery-item:nth-child(1) {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: 1;
+      background: linear-gradient(145deg, rgba(244, 162, 97, 0.12), rgba(233, 196, 106, 0.1));
+    }
+
+    .gallery-item:nth-child(2) { background: linear-gradient(145deg, rgba(42, 157, 143, 0.1), rgba(233, 196, 106, 0.08)); }
+    .gallery-item:nth-child(3) { background: linear-gradient(145deg, rgba(38, 70, 83, 0.08), rgba(42, 157, 143, 0.06)); }
+    .gallery-item:nth-child(4) { background: linear-gradient(145deg, rgba(233, 196, 106, 0.12), rgba(244, 162, 97, 0.08)); }
+    .gallery-item:nth-child(5) { background: linear-gradient(145deg, rgba(42, 157, 143, 0.08), rgba(38, 70, 83, 0.06)); }
+    .gallery-item:nth-child(6) {
+      grid-column: span 2;
+      aspect-ratio: 2 / 1;
+      background: linear-gradient(145deg, rgba(244, 162, 97, 0.08), rgba(42, 157, 143, 0.08));
+    }
+
+    .gallery-item svg {
+      width: 32px;
+      height: 32px;
+      opacity: 0.25;
+    }
+
+    .gallery-item:nth-child(1) svg {
+      width: 56px;
+      height: 56px;
+    }
+
+    .gallery-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(6px);
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    /* ── CTA / Contact ── */
+    .cta {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3a47 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(42, 157, 143, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -5%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244, 162, 97, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-content .section-label {
+      color: var(--gold);
+    }
+
+    .cta-content .section-label::before {
+      background: var(--gold);
+    }
+
+    .cta-content .section-title {
+      color: var(--white);
+    }
+
+    .cta-content .section-subtitle {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .cta-bullets {
+      list-style: none;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cta-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .cta-bullets li svg {
+      width: 18px;
+      height: 18px;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .cta-form {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+    }
+
+    .cta-form h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .cta-form > p {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--navy);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.1);
+    }
+
+    .form-group input::placeholder {
+      color: #B0B0B0;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 8px;
+    }
+
+    .form-submit:hover {
+      background: #e8934f;
+      transform: translateY(-1px);
+    }
+
+    .form-note {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: var(--gray-600);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.8);
+      padding: 60px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-brand .nav-logo-text {
+      color: var(--white);
+    }
+
+    .footer-brand p {
+      margin-top: 14px;
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.6);
+      max-width: 280px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .footer-social a:hover {
+      background: rgba(255,255,255,0.16);
+    }
+
+    .footer-social a svg {
+      width: 16px;
+      height: 16px;
+      fill: rgba(255,255,255,0.7);
+    }
+
+    .footer-col h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 18px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul li a,
+    .footer-col ul li {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--white);
+    }
+
+    .footer-col ul li svg {
+      width: 14px;
+      height: 14px;
+      display: inline;
+      vertical-align: middle;
+      margin-right: 6px;
+      fill: rgba(255,255,255,0.4);
+    }
+
+    .footer-bottom {
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom a:hover {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .hero-illustration {
+        max-width: 340px;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .programs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .programs-grid .program-card:last-child {
+        grid-column: span 2;
+        max-width: 400px;
+        justify-self: center;
+      }
+
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-visual {
+        order: -1;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .testimonials-grid .testimonial-card:last-child {
+        grid-column: span 2;
+        max-width: 440px;
+        justify-self: center;
+      }
+
+      .cta-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .hero {
+        padding-top: 120px;
+        padding-bottom: 60px;
+        text-align: center;
+      }
+
+      .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-badge {
+        bottom: -8px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .programs-grid .program-card:last-child {
+        grid-column: auto;
+        max-width: none;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-grid .testimonial-card:last-child {
+        grid-column: auto;
+        max-width: none;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-item:nth-child(1) {
+        grid-column: span 2;
+        grid-row: span 1;
+        aspect-ratio: 2 / 1;
+      }
+
+      .gallery-item:nth-child(6) {
+        grid-column: span 2;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-illustration {
+        max-width: 280px;
+      }
+
+      .btn {
+        padding: 12px 24px;
+        font-size: 0.88rem;
+      }
+
+      .cta-form {
+        padding: 28px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6L6 18v14a2 2 0 002 2h6V24h12v10h6a2 2 0 002-2V18L20 6z" fill="#264653"/>
+            <circle cx="20" cy="19" r="3.5" fill="#E9C46A"/>
+          </svg>
+        </div>
+        <span class="nav-logo-text">BrightPath</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="nav-cta">Enroll Now</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#programs" onclick="closeMobileMenu()">Programs</a>
+      <a href="#about" onclick="closeMobileMenu()">About Us</a>
+      <a href="#gallery" onclick="closeMobileMenu()">Gallery</a>
+      <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+      <a href="#contact" class="mobile-cta" onclick="closeMobileMenu()">Enroll Now</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4" fill="currentColor"/></svg>
+            Now Enrolling for Fall 2026
+          </div>
+          <h1 class="hero-title">Where little ones <span>grow & thrive</span></h1>
+          <p class="hero-subtitle">A warm, nurturing environment where your child builds confidence, curiosity, and a love of learning through play-based exploration and caring guidance.</p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">Schedule a Visit</a>
+            <a href="#programs" class="btn btn-outline">Our Programs</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-illustration">
+            <div class="hero-illustration-inner">
+              <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="50" r="28" fill="rgba(244,162,97,0.3)"/>
+                <circle cx="60" cy="50" r="16" fill="rgba(244,162,97,0.4)"/>
+                <path d="M48 48c0 0 4 8 12 8s12-8 12-8" stroke="#264653" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="52" cy="44" r="2.5" fill="#264653"/>
+                <circle cx="68" cy="44" r="2.5" fill="#264653"/>
+                <path d="M35 90c0-14 11-25 25-25s25 11 25 25" stroke="rgba(42,157,143,0.4)" stroke-width="3" stroke-linecap="round"/>
+                <rect x="20" y="95" width="80" height="4" rx="2" fill="rgba(233,196,106,0.3)"/>
+              </svg>
+              <p>Happy learning moments</p>
+            </div>
+          </div>
+          <div class="hero-badge">
+            <div class="hero-badge-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#2A9D8F" stroke-width="2" stroke-linecap="round">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <div class="hero-badge-text">
+              <strong>4.9 Rating</strong>
+              <span>500+ families trust us</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features section">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="section-label">Why Choose Us</div>
+        <h2 class="section-title">Everything your child needs to flourish</h2>
+        <p class="section-subtitle" style="margin:0 auto;">We create a world where children feel safe, inspired, and excited to learn every single day.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon orange">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F4A261" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Safe & Loving</h3>
+          <p>Secure facility with caring staff who treat every child like family.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c9a648" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/>
+            </svg>
+          </div>
+          <h3>Play-Based</h3>
+          <p>Hands-on learning through creative play, art, music, and outdoor exploration.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2A9D8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+          </div>
+          <h3>Certified Staff</h3>
+          <p>Experienced, CPR-certified educators with early childhood degrees.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon navy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#264653" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <h3>STEM Ready</h3>
+          <p>Age-appropriate science, math, and technology activities for curious minds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section class="programs section" id="programs">
+    <div class="container">
+      <div class="programs-header">
+        <div class="section-label">Our Programs</div>
+        <h2 class="section-title">Programs designed for every stage</h2>
+        <p class="section-subtitle">From first steps to kindergarten readiness, we provide developmentally appropriate care and education tailored to your child's age.</p>
+      </div>
+      <div class="programs-grid">
+        <!-- Infant Care -->
+        <div class="program-card">
+          <div class="program-card-image">
+            <svg viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="24" r="12" fill="rgba(244,162,97,0.4)"/>
+              <path d="M20 50c0-7 5-12 12-12s12 5 12 12" stroke="rgba(244,162,97,0.5)" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="28" cy="22" r="1.5" fill="#264653"/>
+              <circle cx="36" cy="22" r="1.5" fill="#264653"/>
+              <path d="M29 27c0 0 2 3 3 3s3-3 3-3" stroke="#264653" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span class="program-age-badge">6 wk - 12 mo</span>
+          </div>
+          <div class="program-card-body">
+            <h3>Infant Care</h3>
+            <p class="program-age">6 weeks to 12 months</p>
+            <p>Gentle, responsive care in a cozy setting designed to support your baby's earliest milestones and sensory development.</p>
+            <ul class="program-features">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                1:3 caregiver-to-child ratio
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Daily activity & feeding logs
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Tummy time & sensory play
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Toddler Program -->
+        <div class="program-card">
+          <div class="program-card-image">
+            <svg viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="22" r="10" fill="rgba(42,157,143,0.35)"/>
+              <path d="M22 48c0-6 4-10 10-10s10 4 10 10" stroke="rgba(42,157,143,0.4)" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="28" cy="20" r="1.5" fill="#264653"/>
+              <circle cx="36" cy="20" r="1.5" fill="#264653"/>
+              <path d="M28 25c0 0 2 3 4 3s4-3 4-3" stroke="#264653" stroke-width="1.5" stroke-linecap="round"/>
+              <rect x="44" y="32" width="8" height="10" rx="2" fill="rgba(233,196,106,0.4)"/>
+              <rect x="46" y="28" width="4" height="4" rx="1" fill="rgba(233,196,106,0.5)"/>
+            </svg>
+            <span class="program-age-badge">1 - 3 years</span>
+          </div>
+          <div class="program-card-body">
+            <h3>Toddler Program</h3>
+            <p class="program-age">1 to 3 years</p>
+            <p>An exciting world of discovery where toddlers develop language, social skills, and independence through guided play and exploration.</p>
+            <ul class="program-features">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                1:4 caregiver-to-child ratio
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Music, art & outdoor play
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Potty training support
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pre-K Academy -->
+        <div class="program-card">
+          <div class="program-card-image">
+            <svg viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="22" r="10" fill="rgba(38,70,83,0.2)"/>
+              <path d="M22 48c0-6 4-10 10-10s10 4 10 10" stroke="rgba(38,70,83,0.25)" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="28" cy="20" r="1.5" fill="#264653"/>
+              <circle cx="36" cy="20" r="1.5" fill="#264653"/>
+              <path d="M28 25c0 0 2 3 4 3s4-3 4-3" stroke="#264653" stroke-width="1.5" stroke-linecap="round"/>
+              <rect x="10" y="38" width="12" height="8" rx="1" fill="rgba(42,157,143,0.25)"/>
+              <line x1="12" y1="41" x2="20" y2="41" stroke="rgba(42,157,143,0.5)" stroke-width="1"/>
+              <line x1="12" y1="43" x2="18" y2="43" stroke="rgba(42,157,143,0.5)" stroke-width="1"/>
+            </svg>
+            <span class="program-age-badge">3 - 5 years</span>
+          </div>
+          <div class="program-card-body">
+            <h3>Pre-K Academy</h3>
+            <p class="program-age">3 to 5 years</p>
+            <p>Kindergarten-readiness program building literacy, numeracy, and social-emotional skills to prepare your child for school success.</p>
+            <ul class="program-features">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                1:8 teacher-to-child ratio
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                STEM & literacy curriculum
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Field trips & special events
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Why BrightPath -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-content">
+          <div class="section-label">About BrightPath</div>
+          <h2 class="section-title">Trusted by families for over 15 years</h2>
+          <p class="section-subtitle">We believe every child deserves a place where they feel safe, valued, and free to explore.</p>
+          <p class="about-text">Since 2011, BrightPath Daycare has been a second home for hundreds of families in our community. Our approach blends structured learning with free play, allowing children to develop at their own pace while building the skills they need for school and life. Every classroom is led by certified early childhood educators who are passionate about making a difference in young lives.</p>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number teal">15+</div>
+              <div class="stat-label">Years of Experience</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number orange">500+</div>
+              <div class="stat-label">Families Served</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number gold">4.9&#9733;</div>
+              <div class="stat-label">Parent Rating</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Licensed & Certified</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-visual">
+          <div class="about-image">
+            <svg viewBox="0 0 80 80" fill="none">
+              <path d="M40 10L12 30v30a4 4 0 004 4h48a4 4 0 004-4V30L40 10z" fill="rgba(38,70,83,0.15)"/>
+              <rect x="32" y="44" width="16" height="20" rx="2" fill="rgba(244,162,97,0.3)"/>
+              <rect x="20" y="34" width="10" height="10" rx="2" fill="rgba(233,196,106,0.3)"/>
+              <rect x="50" y="34" width="10" height="10" rx="2" fill="rgba(42,157,143,0.3)"/>
+              <circle cx="40" cy="24" r="4" fill="rgba(244,162,97,0.4)"/>
+            </svg>
+          </div>
+          <div class="about-values">
+            <div class="about-value">
+              <div class="about-value-icon orange">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#F4A261" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              </div>
+              <div>
+                <h4>Compassionate Care</h4>
+                <p>Every child is treated with warmth, patience, and respect.</p>
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="about-value-icon teal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2A9D8F" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+              </div>
+              <div>
+                <h4>Learning Through Play</h4>
+                <p>Curiosity-driven activities that make learning joyful.</p>
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="about-value-icon gold">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#c9a648" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              </div>
+              <div>
+                <h4>Community Focus</h4>
+                <p>Strong partnerships with families to support each child.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials section" id="testimonials">
+    <div class="container">
+      <div class="testimonials-header">
+        <div class="section-label">Testimonials</div>
+        <h2 class="section-title">Loved by families like yours</h2>
+        <p class="section-subtitle">Hear from parents who trust BrightPath with their most precious treasures.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-quote-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+          </div>
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testimonial-text">"BrightPath has been an absolute blessing for our family. My daughter Lily runs to the door every morning, excited to see her teachers. The progress she's made in just a few months is incredible."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SR</div>
+            <div>
+              <div class="testimonial-name">Sarah Rodriguez</div>
+              <div class="testimonial-role">Mother of Lily, age 3</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+          </div>
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testimonial-text">"As first-time parents, we were nervous about daycare. The staff at BrightPath made us feel completely at ease. They send photos and updates throughout the day — it's like having a window into our son's world."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JM</div>
+            <div>
+              <div class="testimonial-name">James & Maria Chen</div>
+              <div class="testimonial-role">Parents of Ethan, age 18 months</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+          </div>
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testimonial-text">"Both of my kids went through BrightPath's Pre-K program and started kindergarten reading above grade level. The STEM activities are amazing — my son still talks about his volcano experiment!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AT</div>
+            <div>
+              <div class="testimonial-name">Amanda Thompson</div>
+              <div class="testimonial-role">Mother of Noah, 5 & Emma, 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery section" id="gallery">
+    <div class="container">
+      <div class="gallery-header">
+        <div class="section-label">Gallery</div>
+        <h2 class="section-title">A peek inside BrightPath</h2>
+        <p class="section-subtitle">Bright spaces designed to inspire creativity, curiosity, and joyful learning moments every day.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <svg viewBox="0 0 64 64" fill="none"><rect x="16" y="20" width="32" height="24" rx="4" fill="rgba(38,70,83,0.2)"/><circle cx="28" cy="30" r="4" fill="rgba(244,162,97,0.3)"/><path d="M16 38l10-8 8 6 6-4 8 6v2a4 4 0 01-4 4H20a4 4 0 01-4-4v0z" fill="rgba(42,157,143,0.2)"/></svg>
+          <span class="gallery-label">Outdoor Play Area</span>
+        </div>
+        <div class="gallery-item">
+          <svg viewBox="0 0 64 64" fill="none"><rect x="16" y="20" width="32" height="24" rx="4" fill="rgba(38,70,83,0.15)"/><circle cx="32" cy="32" r="6" fill="rgba(233,196,106,0.3)"/></svg>
+          <span class="gallery-label">Art Studio</span>
+        </div>
+        <div class="gallery-item">
+          <svg viewBox="0 0 64 64" fill="none"><rect x="16" y="20" width="32" height="24" rx="4" fill="rgba(38,70,83,0.15)"/><circle cx="32" cy="32" r="6" fill="rgba(42,157,143,0.25)"/></svg>
+          <span class="gallery-label">Reading Nook</span>
+        </div>
+        <div class="gallery-item">
+          <svg viewBox="0 0 64 64" fill="none"><rect x="16" y="20" width="32" height="24" rx="4" fill="rgba(38,70,83,0.15)"/><circle cx="32" cy="32" r="6" fill="rgba(244,162,97,0.25)"/></svg>
+          <span class="gallery-label">STEM Lab</span>
+        </div>
+        <div class="gallery-item">
+          <svg viewBox="0 0 64 64" fill="none"><rect x="16" y="20" width="32" height="24" rx="4" fill="rgba(38,70,83,0.15)"/><circle cx="32" cy="32" r="6" fill="rgba(233,196,106,0.25)"/></svg>
+          <span class="gallery-label">Music Room</span>
+        </div>
+        <div class="gallery-item">
+          <svg viewBox="0 0 64 64" fill="none"><rect x="16" y="20" width="32" height="24" rx="4" fill="rgba(38,70,83,0.15)"/><circle cx="28" cy="30" r="4" fill="rgba(42,157,143,0.2)"/><path d="M16 38l10-8 8 6 14-2v4a4 4 0 01-4 4H20a4 4 0 01-4-4v0z" fill="rgba(244,162,97,0.15)"/></svg>
+          <span class="gallery-label">Garden & Nature Walk</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Contact -->
+  <section class="cta section" id="contact">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-content">
+          <div class="section-label">Get Started</div>
+          <h2 class="section-title">Schedule your visit today</h2>
+          <p class="section-subtitle">Come see our classrooms, meet our teachers, and discover why hundreds of families choose BrightPath.</p>
+          <ul class="cta-bullets">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Free 30-minute campus tour
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Meet our certified educators
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Flexible scheduling options
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              No enrollment fee for early sign-ups
+            </li>
+          </ul>
+        </div>
+
+        <div class="cta-form">
+          <h3>Request a Tour</h3>
+          <p>Fill out the form and we'll get back to you within 24 hours.</p>
+          <form id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label for="parentName">Parent / Guardian Name</label>
+              <input type="text" id="parentName" placeholder="Your full name" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="childAge">Child's Age</label>
+                <select id="childAge" required>
+                  <option value="" disabled selected>Select age</option>
+                  <option value="6wk-6mo">6 weeks - 6 months</option>
+                  <option value="6mo-12mo">6 - 12 months</option>
+                  <option value="1-2yr">1 - 2 years</option>
+                  <option value="2-3yr">2 - 3 years</option>
+                  <option value="3-4yr">3 - 4 years</option>
+                  <option value="4-5yr">4 - 5 years</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="(555) 123-4567">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="you@example.com" required>
+            </div>
+            <button type="submit" class="form-submit">Schedule My Visit</button>
+            <p class="form-note">We respect your privacy. No spam, ever.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo" style="margin-bottom:4px;">
+            <div class="nav-logo-icon">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L6 18v14a2 2 0 002 2h6V24h12v10h6a2 2 0 002-2V18L20 6z" fill="#264653"/>
+                <circle cx="20" cy="19" r="3.5" fill="#E9C46A"/>
+              </svg>
+            </div>
+            <span class="nav-logo-text">BrightPath</span>
+          </a>
+          <p>A nurturing daycare where children build confidence, curiosity, and a lifelong love of learning.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="rgba(255,255,255,0.7)"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="#programs">Infant Care</a></li>
+            <li><a href="#programs">Toddler Program</a></li>
+            <li><a href="#programs">Pre-K Academy</a></li>
+            <li><a href="#programs">Summer Camp</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3" fill="rgba(38,70,83,0.8)"/></svg>
+              742 Sunshine Lane, Maplewood
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              (555) 234-5678
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6" fill="none" stroke="rgba(38,70,83,0.6)" stroke-width="1.5"/></svg>
+              hello@brightpathdaycare.com
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Hours</h4>
+          <ul>
+            <li>Monday - Friday</li>
+            <li style="color:rgba(255,255,255,0.9);font-weight:600;">6:30 AM - 6:00 PM</li>
+            <li style="margin-top:8px;">Saturday</li>
+            <li style="color:rgba(255,255,255,0.9);font-weight:600;">8:00 AM - 1:00 PM</li>
+            <li style="margin-top:8px;">Sunday</li>
+            <li style="color:rgba(255,255,255,0.9);font-weight:600;">Closed</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 BrightPath Daycare. All rights reserved.</span>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Mobile Menu ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', function () {
+      this.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+
+    function closeMobileMenu() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ── Nav scroll shadow ──
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', function () {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    // ── Form handling ──
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector('.form-submit');
+      const originalText = btn.textContent;
+
+      btn.textContent = 'Sending...';
+      btn.style.opacity = '0.7';
+      btn.disabled = true;
+
+      setTimeout(function () {
+        btn.textContent = 'Thank you!';
+        btn.style.background = '#2A9D8F';
+        btn.style.opacity = '1';
+
+        setTimeout(function () {
+          form.reset();
+          btn.textContent = originalText;
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 2500);
+      }, 1200);
+    }
+
+    // ── Scroll reveal animation ──
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    };
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.feature-card, .program-card, .testimonial-card, .stat-card, .gallery-item').forEach(function (el) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
