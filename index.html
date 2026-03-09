@@ -794,10 +794,13 @@
       font-weight: 400;
       font-size: 0.72em;
       letter-spacing: -0.02em;
-      color: rgba(0,0,0,0.25);
+      background: linear-gradient(135deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.30) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     [data-theme="dark"] .hero-line:first-child {
-      color: rgba(255,255,255,0.65);
+      background-image: linear-gradient(135deg, rgba(255,255,255,0.48) 0%, rgba(255,255,255,0.42) 40%, rgba(255,255,255,0.36) 100%);
     }
 
     /* Rotating word — visual anchor, most dominant */
@@ -811,6 +814,13 @@
     .hero-line:last-child {
       font-weight: 600;
       font-size: 0.88em;
+      background: linear-gradient(135deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.90) 40%, rgba(0,0,0,0.96) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    [data-theme="dark"] .hero-line:last-child {
+      background-image: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.94) 40%, rgba(255,255,255,0.86) 100%);
     }
 
     .rotate-stage {
@@ -875,6 +885,16 @@
     .rotate-word--sky { color: #9FB8F5; }
     .rotate-word--peach { color: #E8A894; }
     .rotate-word--mint { color: #8CD4B2; }
+
+    /* Directional lighting overlay for rotating words */
+    .rotate-word::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.10) 0%, transparent 45%, rgba(0,0,0,0.06) 100%);
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+    }
 
     [data-theme="light"] .rotate-word--lavender { color: #7C73E6; }
     [data-theme="light"] .rotate-word--sky { color: #6F8DFF; }
