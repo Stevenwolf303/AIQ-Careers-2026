@@ -747,6 +747,7 @@
 
     .hero .container {
       display: flex;
+      flex-wrap: wrap;
       align-items: stretch;
       width: 100%;
       position: relative;
@@ -754,8 +755,7 @@
     }
 
     .hero-headline {
-      flex: 1;
-      min-width: 0;
+      width: 100%;
       display: flex;
       align-items: flex-end;
       padding: 0 0 calc(clamp(48px, 6vh, 80px) - 10px) 0;
@@ -866,13 +866,13 @@
     [data-theme="light"] .rotate-word--mint { color: #5FAF8D; }
 
     .hero-editorial {
+      position: absolute;
+      right: var(--padding-x);
+      bottom: clamp(48px, 6vh, 80px);
       width: clamp(280px, 28vw, 400px);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 0 clamp(48px, 6vh, 80px) 0;
       gap: 32px;
-      flex-shrink: 0;
     }
 
     .hero-eyebrow {
@@ -2637,9 +2637,13 @@
       }
 
       .hero-editorial {
+        position: static;
         width: 100%;
         max-width: 400px;
-        padding-bottom: 0;
+      }
+
+      .hero-line {
+        white-space: normal;
       }
 
       /* hero bg mesh scales naturally */
