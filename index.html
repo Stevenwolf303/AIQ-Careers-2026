@@ -2253,7 +2253,7 @@
       top: 85%;
       transform: translate(-50%, -50%);
       font-family: var(--font-heading);
-      font-size: clamp(160px, 20vw, 380px);
+      font-size: clamp(80px, 12vw, 200px);
       font-weight: 800;
       line-height: 0.85;
       letter-spacing: -0.04em;
@@ -2262,6 +2262,8 @@
       user-select: none;
       pointer-events: none;
       z-index: -1;
+      max-width: 100%;
+      overflow: hidden;
     }
     [data-theme="light"] .footer-watermark {
       color: rgba(0,0,0,0.04);
