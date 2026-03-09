@@ -2675,10 +2675,12 @@
 
       .hero-headline {
         padding-bottom: 0;
+        width: 100%;
+        overflow: hidden;
       }
 
       .hero-headline h1 {
-        font-size: clamp(48px, 14vw, 80px);
+        font-size: clamp(48px, 17vw, 80px);
       }
 
       .hero-editorial {
@@ -2738,6 +2740,8 @@
       /* Services detail mobile */
       .services-detail-header {
         padding: 32px 24px;
+        text-align: center;
+        align-items: center;
       }
 
       .services-detail-header h2 {
@@ -2753,6 +2757,11 @@
       .services-detail-body {
         grid-template-columns: 1fr;
         padding: 0 24px 32px;
+      }
+
+      .service-item {
+        align-items: center;
+        text-align: center;
       }
 
       .service-item:not(:last-child)::after {
