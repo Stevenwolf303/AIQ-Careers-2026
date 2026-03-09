@@ -765,7 +765,7 @@
       font-family: var(--font-heading);
       font-size: clamp(64px, 11vw, 180px);
       font-weight: 600;
-      line-height: 0.88;
+      line-height: 0.92;
       letter-spacing: -0.04em;
       color: var(--color-fg-default);
       text-transform: uppercase;
@@ -776,13 +776,19 @@
     .hero-line {
       display: block;
     }
+
+    /* "WE HELP" — introductory label, lighter and smaller */
     .hero-line:first-child {
       font-weight: 500;
+      font-size: 0.88em;
+      letter-spacing: -0.02em;
     }
 
+    /* Rotating word — visual anchor, largest and heaviest */
     .hero-line--rotating {
       position: relative;
       font-weight: 800;
+      font-size: 1.08em;
     }
 
     .rotate-stage {
