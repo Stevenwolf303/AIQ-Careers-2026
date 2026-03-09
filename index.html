@@ -793,7 +793,7 @@
       color: rgba(0,0,0,0.25);
     }
     [data-theme="dark"] .hero-line:first-child {
-      color: rgba(255,255,255,0.50);
+      color: rgba(255,255,255,0.65);
     }
 
     /* Rotating word — visual anchor, most dominant */
@@ -912,6 +912,35 @@
     }
     [data-theme="dark"] .hero-editorial {
       border-left-color: rgba(255,255,255,0.08);
+    }
+
+    /* Dark mode: continuous background */
+    [data-theme="dark"] .hero,
+    [data-theme="dark"] .logo-cloud,
+    [data-theme="dark"] .services-overview,
+    [data-theme="dark"] .approach-card-section,
+    [data-theme="dark"] .services-detail,
+    [data-theme="dark"] .ai-workflow,
+    [data-theme="dark"] .pricing-section,
+    [data-theme="dark"] .case-studies {
+      background: transparent;
+    }
+    [data-theme="dark"] .cta-section {
+      background: transparent;
+      border-top: none;
+    }
+    [data-theme="dark"] .footer {
+      background: transparent;
+    }
+
+    /* Dark mode: service icons white */
+    [data-theme="dark"] .service-item-icon svg {
+      color: #ffffff;
+    }
+
+    /* Dark mode: ChatGPT logo white */
+    [data-theme="dark"] .workflow-tool-icon svg[fill="#000"] {
+      fill: #ffffff;
     }
 
     .hero-wave {
