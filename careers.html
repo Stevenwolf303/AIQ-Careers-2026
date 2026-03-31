@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
   <title>Careers — ApartmentIQ</title>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
@@ -41,6 +42,8 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    .health-metrics svg { --icon-gradient: url(#health-icon-gradient); }
+    .health-metrics svg path { stroke: url(#health-icon-gradient); }
     /* Product icon circle — SVGs already contain full treatment */
     .icon-circle {
       width: 44px;
@@ -56,7 +59,7 @@
 
     /* Layout */
     .mobile-br { display: none; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; }
 
     /* Navbar */
     .navbar-pill {
@@ -331,7 +334,7 @@
       transition: background var(--duration-fast) var(--ease-out-expo);
     }
     .faq-item:hover {
-      background: rgba(0,0,0,0.02);
+      background: rgba(0,0,0,0.03);
     }
     .faq-answer {
       display: grid;
@@ -538,6 +541,14 @@
   </style>
 </head>
 <body class="bg-white overflow-x-hidden">
+  <svg width="0" height="0" style="position:absolute;">
+    <defs>
+      <linearGradient id="health-icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#694dec"/>
+        <stop offset="100%" stop-color="#9b6cb5"/>
+      </linearGradient>
+    </defs>
+  </svg>
 
   <!-- ─── NAVBAR ─── -->
   <header class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-8 px-8">
@@ -591,13 +602,13 @@
     </div>
     <!-- Content -->
     <div class="relative z-10 flex flex-col items-center text-center mx-auto" style="max-width: 832px; padding-top: 192px;">
-      <h1 class="hero-headline font-display font-semibold text-[#191a1d]" style="font-size: 72px; line-height: 1; letter-spacing: -1.44px; margin-bottom: 24px;">
+      <h1 class="hero-headline font-display font-semibold text-[#191a1d]" style="font-size: 72px; line-height: 1.1; letter-spacing: -1.44px; margin-bottom: 24px;">
         Move Fast.<br>Fix Multifamily.
       </h1>
       <p class="hero-subtitle" style="font-size: 20px; font-weight: 500; color: #40434c; line-height: 30px; letter-spacing: -0.54px; max-width: 680px; margin-bottom: 24px; padding: 0 24px;">
-        ApartmentIQ is a data and AI company that gives multifamily operators the intelligence to understand their market, and the AI tools to outperform it.
+        ApartmentIQ is a data and AI company that gives multifamily operators the intelligence to understand their market, and the&nbsp;AI&nbsp;tools&nbsp;to&nbsp;outperform&nbsp;it.
       </p>
-      <div class="hero-ctas-wrap flex items-start gap-6" style="padding: 0 24px;">
+      <div class="hero-ctas-wrap flex items-start gap-3" style="padding: 0 24px;">
         <a href="#jobs" class="btn-primary">View open roles</a>
         <a href="#about" class="btn-outline">
           Learn More
@@ -654,7 +665,7 @@
           <div class="icon-circle">
             <img src="icon-explore.svg" alt="" />
           </div>
-          <p style="font-size: 16px; font-weight: 500; color: #fff; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Market Research<br>(Explore Pro)</p>
+          <p style="font-size: 16px; font-weight: 500; color: #fff; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Market Research<br><span style="white-space: nowrap;">(Explore Pro)</span></p>
           <p style="font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 20px; letter-spacing: -0.37px;">helps operators decide where to buy, build, and redevelop.</p>
         </div>
         <div class="product-card" style="border-right: 1px solid #2b2e34; padding: 40px;">
@@ -791,18 +802,18 @@
        SECTION 5 · COMPANY HEALTH
   ═══════════════════════════════════════════════════ -->
   <section style="background: #fff; padding: 96px 32px;">
-    <div style="max-width: 1216px; margin: 0 auto;">
-      <div class="health-grid" style="display: flex; gap: 32px; align-items: center;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="health-grid" style="display: flex; gap: 48px; align-items: center; justify-content: center;">
         <!-- Left: heading -->
-        <div style="flex: 1; max-width: 480px;">
+        <div style="flex: 0 0 auto; max-width: 420px;">
           <p class="eyebrow-gradient" style="font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; line-height: 16px; margin-bottom: 16px;">Company Health</p>
           <h2 class="font-display font-medium" style="font-size: 48px; line-height: 60px; letter-spacing: -0.37px; color: #191a1d;">We're scaling with discipline.</h2>
         </div>
         <!-- Vertical divider -->
         <div class="health-divider" style="width: 1px; align-self: stretch; background: linear-gradient(180deg, transparent, #dfe0e5, transparent);"></div>
         <!-- Right: 2x2 metrics -->
-        <div style="flex: 1; padding: 24px 0;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px 32px; max-width: 540px; margin: 0 auto;">
+        <div class="health-metrics" style="flex: 0 0 auto; padding: 24px 0;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px 32px; max-width: 540px;">
             <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.38336 23.9166L11.6756 13.4666C11.9029 13.2157 12.2179 13.0617 12.5555 13.0365C12.8931 13.0113 13.2275 13.1167 13.4895 13.3311L19.1439 18.0431C19.4057 18.2574 19.7401 18.3625 20.0775 18.3365C20.4149 18.3106 20.7292 18.1556 20.9552 17.9037L29.6167 8.08325" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.8286 8.08325H29.6167V15.6567" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; text-align: center;">Top decile SaaS Growth Rate</p>
@@ -828,7 +839,7 @@
   <!-- ═══════════════════════════════════════════════════
        SECTION 6 · WHAT IT'S LIKE (FAQ + IMAGE)
   ═══════════════════════════════════════════════════ -->
-  <section style="background: linear-gradient(116deg, #f9fafb 0.65%, #eeeff1 100%); padding: 104px 32px;">
+  <section style="background: #f2f0ee; background-image: radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.9) 0%, transparent 60%), radial-gradient(ellipse at 100% 100%, rgba(215,210,205,0.4) 0%, transparent 55%), radial-gradient(ellipse at 50% 0%, rgba(250,248,246,0.7) 0%, transparent 50%), radial-gradient(ellipse at 100% 0%, rgba(255,253,250,0.5) 0%, transparent 45%); padding: 104px 32px;">
     <div style="max-width: 1200px; margin: 0 auto;">
       <!-- Header -->
       <div style="text-align: center; padding: 0 32px 48px;">
@@ -849,7 +860,7 @@
               <div><p style="font-size: 14px; color: #40434c; line-height: 20px; letter-spacing: -0.37px; padding-bottom: 24px;">We have a strict no assholes policy. Non-negotiable. But we go further than that, we're a low-ego, no-drama team that keeps things light while we build.</p></div>
             </div>
           </div>
-          <div style="height: 1px; background: #dfe0e5;"></div>
+          <div style="height: 1px; background: rgba(0,0,0,0.1);"></div>
           <!-- FAQ Item 2 -->
           <div class="faq-item" data-faq>
             <button onclick="toggleFaq(this)" style="display: flex; align-items: flex-start; gap: 16px; padding: 24px; width: 100%; background: none; border: none; cursor: pointer; text-align: left;">
@@ -860,7 +871,7 @@
               <div><p style="font-size: 14px; color: #40434c; line-height: 20px; letter-spacing: -0.37px; padding-bottom: 24px;">Our best-in-class employee retention is a result of our growth and pace, but we also believe building a sustainable company is a marathon, not a sprint. The vast majority of our team has been with us for 4+ years, and many have been with us for 8+ years.</p></div>
             </div>
           </div>
-          <div style="height: 1px; background: #dfe0e5;"></div>
+          <div style="height: 1px; background: rgba(0,0,0,0.1);"></div>
           <!-- FAQ Item 3 -->
           <div class="faq-item" data-faq>
             <button onclick="toggleFaq(this)" style="display: flex; align-items: flex-start; gap: 16px; padding: 24px; width: 100%; background: none; border: none; cursor: pointer; text-align: left;">
@@ -871,7 +882,7 @@
               <div><p style="font-size: 14px; color: #40434c; line-height: 20px; letter-spacing: -0.37px; padding-bottom: 24px;">We're a fully remote team spread across all U.S. timezones. That said, we like to see each other. We get together for an annual company-wide offsite, meet quarterly for team offsites, and find plenty of reasons to connect in person in between.</p></div>
             </div>
           </div>
-          <div style="height: 1px; background: #dfe0e5;"></div>
+          <div style="height: 1px; background: rgba(0,0,0,0.1);"></div>
           <!-- FAQ Item 4 -->
           <div class="faq-item" data-faq>
             <button onclick="toggleFaq(this)" style="display: flex; align-items: flex-start; gap: 16px; padding: 24px; width: 100%; background: none; border: none; cursor: pointer; text-align: left;">
@@ -895,7 +906,7 @@
        SECTION 7 · OPEN POSITIONS
   ═══════════════════════════════════════════════════ -->
   <section id="jobs" style="background: #111113;">
-    <div style="max-width: 1100px; margin: 0 auto; padding: 96px 32px 104px;">
+    <div style="max-width: 1248px; margin: 0 auto; padding: 96px 24px 104px;">
       <!-- Header -->
       <div style="margin-bottom: 64px;">
         <p style="font-size: 12px; font-weight: 700; color: #bab1ff; letter-spacing: 0.6px; text-transform: uppercase; line-height: 16px; margin-bottom: 16px;">OPEN POSITIONS</p>
