@@ -55,6 +55,7 @@
     }
 
     /* Layout */
+    .mobile-br { display: none; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
     /* Navbar */
@@ -300,6 +301,7 @@
       color: rgba(255,255,255,0.45);
     }
     .job-title {
+      flex: 1;
       font-family: 'Inter Tight', sans-serif;
       font-size: 20px;
       font-weight: 500;
@@ -309,6 +311,8 @@
       transition: color var(--duration-fast) var(--ease-out-expo);
     }
     .job-location {
+      flex-shrink: 0;
+      margin-left: auto;
       font-size: 14px;
       font-weight: 400;
       color: rgba(255,255,255,0.3);
@@ -481,11 +485,39 @@
       }
 
       .grid-products { grid-template-columns: 1fr !important; }
+      .grid-products .product-card { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.12); }
+      .grid-products .product-card:last-child { border-bottom: none; }
       .stats-metrics { grid-template-columns: 1fr !important; }
       .hero-heading { font-size: 48px !important; }
       .hero-subtitle { font-size: 17px !important; }
-      .dark-heading { font-size: 36px !important; }
+      .dark-heading { font-size: 28px !important; line-height: 36px !important; max-width: 100% !important; }
+      .desktop-br { display: none; }
+      .mobile-br { display: inline; }
+      h2 { font-size: 32px !important; line-height: 40px !important; }
       .dark-body-grid { flex-direction: column !important; gap: 32px !important; }
+      .dark-body-grid > div { width: 100% !important; flex-shrink: 1 !important; }
+      .hero-headline { font-size: 13vw !important; white-space: nowrap; }
+      .btn-primary, .btn-outline { white-space: nowrap; }
+      .hero-ctas-wrap { gap: 8px !important; }
+      .nav-logo { height: 27px !important; }
+      .hero-subtitle { max-width: 100% !important; }
+      section, .container, div { max-width: 100%; box-sizing: border-box; }
+      img { max-width: 100%; height: auto; }
+      h1, h2, h3, p { word-wrap: break-word; overflow-wrap: break-word; }
+
+      /* Who We Are: remove extra inner padding on mobile */
+      .who-we-are-grid div[style*="padding: 0 12px"] { padding: 0 !important; }
+      .container > div[style*="padding: 0 32px"] { padding: 0 !important; }
+
+      /* Company Health left-align on mobile */
+      .health-grid div[style*="align-items: center; gap: 16px"] { align-items: flex-start !important; }
+      .health-grid p[style*="text-align: center"] { text-align: left !important; }
+
+      /* Uniform 24px outer margin */
+      .container { padding-left: 24px !important; padding-right: 24px !important; }
+      section[style*="padding"] { padding-left: 24px !important; padding-right: 24px !important; }
+      .grid-products .product-card { padding: 32px 24px !important; }
+      .hero-headline { padding: 0 24px; }
 
       .footer-main { flex-direction: column !important; align-items: flex-start !important; gap: 0 !important; }
       .footer-left { flex-direction: column !important; gap: 0 !important; width: 100%; }
@@ -507,7 +539,7 @@
   <header class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-8 px-8">
     <div class="navbar-pill w-full max-w-[1216px] flex items-center justify-between gap-4 px-10 py-4">
       <a href="#" class="shrink-0">
-        <img src="IQ_logo.png" alt="ApartmentIQ" style="height: 32px; width: auto;" />
+        <img class="nav-logo" src="IQ_logo.png" alt="ApartmentIQ" style="height: 32px; width: auto;" />
       </a>
       <nav class="nav-desktop flex flex-1 items-center justify-center gap-2">
         <a href="#" class="px-3 py-1.5 text-[14px] font-medium text-[#40434c] rounded-[10px] hover:bg-white/50 transition-colors" style="letter-spacing: -0.37px;">Market Surveys</a>
@@ -558,10 +590,10 @@
       <h1 class="hero-headline font-display font-semibold text-[#191a1d]" style="font-size: 72px; line-height: 1; letter-spacing: -1.44px; margin-bottom: 24px;">
         Move Fast.<br>Fix Multifamily.
       </h1>
-      <p class="hero-subtitle" style="font-size: 20px; font-weight: 500; color: #40434c; line-height: 30px; letter-spacing: -0.54px; max-width: 764px; margin-bottom: 24px;">
+      <p class="hero-subtitle" style="font-size: 20px; font-weight: 500; color: #40434c; line-height: 30px; letter-spacing: -0.54px; max-width: 764px; margin-bottom: 24px; padding: 0 24px;">
         ApartmentIQ is a data and AI company that gives multifamily operators the intelligence to understand their market, and the AI tools to outperform it.
       </p>
-      <div class="hero-ctas-wrap flex items-start gap-6">
+      <div class="hero-ctas-wrap flex items-start gap-6" style="padding: 0 24px;">
         <a href="#jobs" class="btn-primary">View open roles</a>
         <a href="#about" class="btn-outline">
           Learn More
@@ -582,9 +614,9 @@
       <div style="padding: 32px 0 64px;">
         <div class="dark-body-grid" style="display: flex; justify-content: space-between; align-items: flex-start;">
           <h2 class="dark-heading font-display font-medium" style="font-size: 48px; line-height: 60px; letter-spacing: -0.37px; color: #fff; max-width: 480px; flex-shrink: 0;">
-            A $3.5 trillion asset class, run manually in spreadsheets.
+            A $3.5 trillion asset class, run manually<br class="desktop-br"> in spreadsheets.
           </h2>
-          <div style="display: flex; flex-direction: column; gap: 28px; width: 500px; flex-shrink: 0;">
+          <div style="display: flex; flex-direction: column; gap: 28px; width: 500px; max-width: 100%; flex-shrink: 1;">
             <p style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 28px; letter-spacing: -0.4px; color: rgba(255,255,255,0.7);">
               ApartmentIQ is a data and AI company that gives multifamily operators the intelligence to understand their market, and the AI tools to outperform it.
             </p>
@@ -704,7 +736,7 @@
           <!-- Heading + stat cards -->
           <div style="display: flex; flex-direction: column; gap: 48px; width: 100%;">
             <h2 class="font-display font-medium" style="font-size: 48px; line-height: 60px; letter-spacing: -0.37px; color: #fff; text-align: center;">
-              Multifamily operators rely on us.
+              Multifamily operators<br class="mobile-br"> rely&nbsp;on&nbsp;us.
             </h2>
             <!-- 4 stat cards -->
             <div class="stats-metrics" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
