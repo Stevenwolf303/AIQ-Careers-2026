@@ -20,10 +20,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 12px;
       padding: 10px 24px;
       background: rgba(10,10,12,0.92);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .switcher-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
     }
 
     .switcher-pill {
@@ -37,7 +46,6 @@
       border: 1px solid rgba(255,255,255,0.08);
     }
 
-    /* Sliding indicator */
     .switcher-indicator {
       position: absolute;
       top: 3px;
@@ -59,12 +67,12 @@
       font-size: 12px;
       font-weight: 500;
       letter-spacing: -0.01em;
-      padding: 6px 18px;
+      padding: 6px 16px;
       border: none;
       border-radius: 7px;
       cursor: pointer;
       transition: color 200ms ease;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.3);
       background: transparent;
       white-space: nowrap;
     }
@@ -88,7 +96,7 @@
       height: calc(100vh - 48px);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 220ms ease;
+      transition: opacity 180ms ease;
     }
 
     .version-frame.active {
@@ -99,19 +107,26 @@
 </head>
 <body>
   <div class="switcher-bar">
+    <span class="switcher-label">Version</span>
     <div class="switcher-pill" id="pill">
       <div class="switcher-indicator" id="indicator"></div>
-      <button class="switcher-btn" data-version="lovable" data-index="0" onclick="switchVersion('lovable', this)">Lovable</button>
-      <button class="switcher-btn" data-version="pre-edit" data-index="1" onclick="switchVersion('pre-edit', this)">Version 2</button>
-      <button class="switcher-btn active" data-version="edited" data-index="2" onclick="switchVersion('edited', this)">Version 3</button>
+      <button class="switcher-btn" data-version="lovable" onclick="switchVersion('lovable', this)">Lovable</button>
+      <button class="switcher-btn" data-version="v1" onclick="switchVersion('v1', this)">Version 1</button>
+      <button class="switcher-btn" data-version="text" onclick="switchVersion('text', this)">Text Edition</button>
+      <button class="switcher-btn active" data-version="card" onclick="switchVersion('card', this)">Card Edition</button>
     </div>
   </div>
 
   <iframe id="frame-lovable" class="version-frame" src="https://velocity-impact-hub.lovable.app/"></iframe>
-  <iframe id="frame-pre-edit" class="version-frame" src="pre-edit.html?v=2"></iframe>
-  <iframe id="frame-edited" class="version-frame active" src=""></iframe>
+  <iframe id="frame-v1" class="version-frame" src="pre-edit.html"></iframe>
+  <iframe id="frame-text" class="version-frame" src=""></iframe>
+  <iframe id="frame-card" class="version-frame active" src=""></iframe>
 
   <script>
+    var ts = Date.now();
+    document.getElementById('frame-text').src = 'text-edition.html?t=' + ts;
+    document.getElementById('frame-card').src = 'card-edition.html?t=' + ts;
+
     function updateIndicator(btn) {
       var indicator = document.getElementById('indicator');
       indicator.style.width = btn.offsetWidth + 'px';
@@ -126,16 +141,10 @@
       updateIndicator(btn);
     }
 
-    // Force fresh load of edited iframe
-    document.getElementById('frame-edited').src = 'edited.html?t=' + Date.now() + Math.random();
-
-    // Init indicator position on load
     window.addEventListener('load', function() {
       var active = document.querySelector('.switcher-btn.active');
       if (active) updateIndicator(active);
     });
-
-    // Also set immediately in case fonts are already loaded
     requestAnimationFrame(function() {
       var active = document.querySelector('.switcher-btn.active');
       if (active) updateIndicator(active);
