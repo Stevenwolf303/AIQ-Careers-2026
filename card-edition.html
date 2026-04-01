@@ -539,8 +539,10 @@
       section[style*="90vh"] { height: auto !important; min-height: 85vh; }
       section[style*="90vh"] > .site-container { padding-top: 140px !important; padding-bottom: 64px !important; }
 
-      /* Section headings */
-      h2 { font-size: 28px !important; line-height: 36px !important; }
+      /* Section headings — tighter spacing on mobile */
+      h2 { font-size: 28px !important; line-height: 36px !important; margin-bottom: 24px !important; }
+      section .container > div[style*="gap: 72px"] { gap: 48px !important; }
+      section .container > div[style*="gap: 48px"] { gap: 32px !important; }
       .desktop-br { display: none; }
       .desktop-br-inline { display: none; }
       .mobile-br { display: inline; }
@@ -653,7 +655,7 @@
     <!-- Content — left-aligned text, positioned on page -->
     <div class="site-container relative z-10" style="width: 100%; padding-top: 80px;">
       <div style="max-width: 680px; margin-left: 208px;">
-        <p class="hero-headline-eyebrow" style="font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7280; margin-bottom: 24px;">Careers at ApartmentIQ</p>
+        <p class="hero-headline-eyebrow eyebrow-gradient" style="font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 24px;">Careers at ApartmentIQ</p>
         <h1 class="hero-headline font-display font-semibold text-[#191a1d]" style="font-size: 72px; line-height: 1.1; letter-spacing: -1.44px; margin-bottom: 24px;">
           Move Fast.<br>Fix Multifamily.
         </h1>
