@@ -43,6 +43,34 @@
       background-clip: text;
     }
     .health-metrics svg path { stroke: url(#health-icon-gradient); stroke-width: 2; }
+    /* Who We Are card animations */
+    @keyframes cardBreathe {
+      0%, 100% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+    }
+    .who-cards-grid > div {
+      opacity: 0;
+      filter: blur(8px);
+      transform: translateY(14px);
+      transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1),
+                  filter 400ms ease,
+                  opacity 400ms ease;
+      background-size: 200% 200%;
+      animation: cardBreathe 8s ease-in-out infinite;
+    }
+    .who-cards-grid > div.is-visible {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+    .who-cards-grid > div:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 1px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.02), 0 8px 20px rgba(0,0,0,0.025), 0 20px 40px rgba(0,0,0,0.03), 0 40px 80px rgba(0,0,0,0.025);
+    }
+    .who-cards-grid > div:hover .value-icon { opacity: 1; }
+    .who-cards-grid > div:hover p:first-of-type { color: #0a0a0c; }
+
     /* Product icon circle — SVGs already contain full treatment */
     .icon-circle {
       width: 44px;
@@ -67,14 +95,24 @@
       -webkit-backdrop-filter: blur(24px);
       border-radius: 32px;
       box-shadow: 0 0 80px rgba(0, 0, 0, 0.04), 0 1px 0 rgba(255,255,255,0.5) inset;
-      transition: background var(--duration-base) var(--ease-out-expo),
-                  box-shadow var(--duration-base) var(--ease-out-expo);
+      transition: background 400ms var(--ease-out-expo),
+                  box-shadow 400ms var(--ease-out-expo);
     }
     .navbar-pill a {
-      transition: color var(--duration-fast) var(--ease-out-expo),
+      transition: color 400ms var(--ease-out-expo),
                   opacity var(--duration-fast) var(--ease-out-expo),
                   background var(--duration-fast) var(--ease-out-expo);
     }
+    /* Dark mode navbar */
+    .navbar-dark .navbar-pill {
+      background: rgba(0, 0, 0, 0.35);
+      box-shadow: 0 0 80px rgba(0, 0, 0, 0.15), 0 1px 0 rgba(255,255,255,0.06) inset;
+    }
+    .navbar-dark .navbar-pill .nav-desktop a { color: rgba(255,255,255,0.7) !important; }
+    .navbar-dark .navbar-pill .nav-desktop a:hover { color: #fff !important; }
+    .navbar-dark .navbar-pill .cta-desktop a:first-child { color: rgba(255,255,255,0.8) !important; }
+    .navbar-dark .navbar-pill .nav-logo { filter: brightness(0) invert(1); }
+    .navbar-dark .navbar-pill .cta-desktop a:last-child { background: #fff !important; color: #191a1d !important; }
 
     /* CTA Button */
     @property --border-angle {
@@ -1132,6 +1170,42 @@
       });
     }, { threshold: 0.15 });
     outlinedCards.forEach(function(card) { outlineObserver.observe(card); });
+
+    // Who We Are card entry animation with stagger
+    (function() {
+      var cards = document.querySelectorAll('.who-cards-grid > div');
+      if (!cards.length) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var idx = Array.prototype.indexOf.call(cards, entry.target);
+            setTimeout(function() { entry.target.classList.add('is-visible'); }, idx * 80);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      cards.forEach(function(card) { observer.observe(card); });
+    })();
+
+    // Navbar dark/light mode based on section behind it
+    (function() {
+      var header = document.querySelector('header');
+      if (!header) return;
+      var darkSections = document.querySelectorAll('section[style*="linear-gradient"], section[style*="#111"], section[id="jobs"]');
+      function checkNavbar() {
+        var navRect = header.getBoundingClientRect();
+        var navMid = navRect.top + navRect.height / 2;
+        var isDark = false;
+        darkSections.forEach(function(sec) {
+          var r = sec.getBoundingClientRect();
+          if (navMid >= r.top && navMid <= r.bottom) isDark = true;
+        });
+        if (isDark) { header.classList.add('navbar-dark'); }
+        else { header.classList.remove('navbar-dark'); }
+      }
+      window.addEventListener('scroll', checkNavbar, { passive: true });
+      checkNavbar();
+    })();
 
     // FAQ toggle
     function toggleFaq(btn) {
