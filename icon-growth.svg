@@ -1,4 +1,7 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M2.38336 23.9166L11.6756 13.4666C11.9029 13.2157 12.2179 13.0617 12.5555 13.0365C12.8931 13.0113 13.2275 13.1167 13.4895 13.3311L19.1439 18.0431C19.4057 18.2574 19.7401 18.3625 20.0775 18.3365C20.4149 18.3106 20.7292 18.1556 20.9552 17.9037L29.6167 8.08325" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M20.8286 8.08325H29.6167V15.6567" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<svg viewBox="-0.6 -0.6 24 24" xmlns="http://www.w3.org/2000/svg" id="Graph-Stats-Ascend--Streamline-Ultimate" height="24" width="24">
+  <desc>
+    Graph Stats Ascend Streamline Icon: https://streamlinehq.com
+  </desc>
+  <path d="M1.1875 17.3375 8.1567 9.5a0.9899 0.9899 0 0 1 1.3603999999999998 -0.10164999999999999l4.2408 3.534a0.9861 0.9861 0 0 0 1.3584999999999998 -0.1045L21.6125 5.4624999999999995" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"></path>
+  <path d="m15.021399999999998 5.4624999999999995 6.591099999999999 0 0 5.68005" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"></path>
 </svg>

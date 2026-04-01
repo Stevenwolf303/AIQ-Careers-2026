@@ -108,8 +108,8 @@
   </div>
 
   <iframe id="frame-lovable" class="version-frame" src="https://velocity-impact-hub.lovable.app/"></iframe>
-  <iframe id="frame-pre-edit" class="version-frame" src="pre-edit.html"></iframe>
-  <iframe id="frame-edited" class="version-frame active" src="edited.html"></iframe>
+  <iframe id="frame-pre-edit" class="version-frame" src="pre-edit.html?v=2"></iframe>
+  <iframe id="frame-edited" class="version-frame active" src=""></iframe>
 
   <script>
     function updateIndicator(btn) {
@@ -125,6 +125,9 @@
       btn.classList.add('active');
       updateIndicator(btn);
     }
+
+    // Force fresh load of edited iframe
+    document.getElementById('frame-edited').src = 'edited.html?t=' + Date.now() + Math.random();
 
     // Init indicator position on load
     window.addEventListener('load', function() {

@@ -59,7 +59,7 @@
 
     /* Layout */
     .mobile-br { display: none; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; }
+    .site-container { max-width: 1120px !important; margin: 0 auto; padding: 0 24px; box-sizing: border-box; }
 
     /* Navbar */
     .navbar-pill {
@@ -87,14 +87,14 @@
       display: inline-flex;
       position: relative;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       background: #000;
       border: 2px solid #7538ca;
       border-radius: 6px;
-      padding: 13px 23px 13px 25px;
+      padding: 10px 18px 10px 20px;
       color: #fff;
       font-family: 'Inter', sans-serif;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500;
       letter-spacing: -0.37px;
       text-decoration: none;
@@ -145,10 +145,10 @@
       gap: 12px;
       border: 2px solid #000;
       border-radius: 6px;
-      padding: 13px 23px 13px 25px;
+      padding: 10px 18px 10px 20px;
       color: #2b2e34;
       font-family: 'Inter', sans-serif;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500;
       letter-spacing: -0.37px;
       text-decoration: none;
@@ -351,7 +351,7 @@
       opacity: 1;
     }
     .faq-item.is-open .faq-icon {
-      transform: rotate(45deg);
+      transform: rotate(180deg);
     }
     .faq-icon {
       transition: transform 350ms var(--ease-out-quint);
@@ -505,7 +505,7 @@
       .hero-ctas-wrap { gap: 8px !important; }
       .nav-logo { height: 27px !important; }
       .hero-subtitle { max-width: 100% !important; }
-      section, .container, div { max-width: 100%; box-sizing: border-box; }
+      section, .site-container, div { max-width: 100%; box-sizing: border-box; }
       img { max-width: 100%; height: auto; }
       h1, h2, h3, p { word-wrap: break-word; overflow-wrap: break-word; }
 
@@ -514,16 +514,16 @@
 
       /* Who We Are: remove extra inner padding on mobile */
       .who-we-are-grid div[style*="padding: 0 12px"] { padding: 0 !important; }
-      .container > div[style*="padding: 0 32px"] { padding: 0 !important; }
+      .site-container > div[style*="padding: 0 32px"] { padding: 0 !important; }
 
       /* Company Health left-align on mobile */
       .health-grid div[style*="align-items: center; gap: 16px"] { align-items: flex-start !important; }
       .health-grid p[style*="text-align: center"] { text-align: left !important; }
 
       /* Uniform 24px outer margin */
-      .container { padding-left: 24px !important; padding-right: 24px !important; }
-      section:not(:has(.container))[style*="padding"] { padding-left: 24px !important; padding-right: 24px !important; }
-      section:has(.container) { padding-left: 0 !important; padding-right: 0 !important; }
+      .site-container { padding-left: 24px !important; padding-right: 24px !important; }
+      section:not(:has(.site-container))[style*="padding"] { padding-left: 24px !important; padding-right: 24px !important; }
+      section:has(.site-container) { padding-left: 0 !important; padding-right: 0 !important; }
       .grid-products .product-card { padding: 32px 24px !important; }
       .hero-headline { padding: 0 24px; }
 
@@ -553,7 +553,7 @@
 
   <!-- ─── NAVBAR ─── -->
   <header class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-8 px-8">
-    <div class="navbar-pill w-full max-w-[1216px] flex items-center justify-between gap-4 px-10 py-4">
+    <div class="navbar-pill w-full max-w-[1120px] flex items-center justify-between gap-4 px-10 py-4"
       <a href="#" class="shrink-0">
         <img class="nav-logo" src="IQ_logo.png" alt="ApartmentIQ" style="height: 32px; width: auto;" />
       </a>
@@ -595,20 +595,20 @@
   <!-- ═══════════════════════════════════════════════════
        SECTION 1 · HERO
   ═══════════════════════════════════════════════════ -->
-  <section class="relative w-full overflow-hidden bg-white" style="min-height: 680px;">
+  <section class="relative w-full overflow-hidden bg-white" style="height: 90vh; display: flex; align-items: center;">
     <!-- Map background from V2 -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
       <img src="hero-bg.jpg" alt="" class="hero-bg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;" />
       <div class="hero-shimmer"></div>
     </div>
-    <!-- Content — Lovable-style left-aligned layout -->
-    <div class="container relative z-10" style="padding-top: 200px; padding-bottom: 96px;">
-      <div style="max-width: 620px;">
+    <!-- Content — left-aligned text, positioned on page -->
+    <div class="site-container relative z-10" style="width: 100%; padding-top: 80px;">
+      <div style="max-width: 680px; margin-left: 208px;">
         <p class="hero-headline-eyebrow" style="font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7280; margin-bottom: 24px;">Careers at ApartmentIQ</p>
         <h1 class="hero-headline font-display font-semibold text-[#191a1d]" style="font-size: 72px; line-height: 1.1; letter-spacing: -1.44px; margin-bottom: 24px;">
           Move Fast.<br>Fix Multifamily.
         </h1>
-        <p class="hero-subtitle" style="font-size: 20px; font-weight: 400; color: #40434c; line-height: 30px; letter-spacing: -0.3px; max-width: 540px; margin-bottom: 32px;">
+        <p class="hero-subtitle" style="font-size: 20px; font-weight: 400; color: #40434c; line-height: 30px; letter-spacing: -0.3px; max-width: 600px; margin-bottom: 32px;">
           ApartmentIQ is a data and AI company that gives multifamily operators the intelligence to understand their market, and the <span style="white-space: nowrap;">AI tools to outperform it.</span>
         </p>
         <div class="hero-ctas-wrap flex items-start gap-3">
@@ -628,78 +628,59 @@
        SECTION 2 · DARK — $3.5 TRILLION
   ═══════════════════════════════════════════════════ -->
   <section id="about" style="background: linear-gradient(-87deg, #000 56%, #666 169%); padding: 96px 0;">
-    <div class="container">
-      <!-- Top text block -->
-      <div style="padding: 0 0 48px;">
-        <div class="dark-body-grid" style="display: flex; justify-content: space-between; align-items: flex-start;">
-          <h2 class="dark-heading font-display font-medium" style="font-size: 48px; line-height: 60px; letter-spacing: -0.37px; color: #fff; max-width: 480px; flex-shrink: 0;">
-            A $3.5 trillion asset class, run manually<br class="desktop-br"> in spreadsheets.
-          </h2>
-          <div style="display: flex; flex-direction: column; gap: 28px; width: 500px; max-width: 100%; flex-shrink: 1;">
-            <p style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 28px; letter-spacing: -0.4px; color: rgba(255,255,255,0.7);">
-              ApartmentIQ is a data and AI company that gives multifamily operators the intelligence to understand their market, and the AI tools to outperform it.
-            </p>
-            <p style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 28px; letter-spacing: -0.4px; color: rgba(255,255,255,0.7);">
-              Most of this happens in spreadsheets. Pricing is manual. Marketing is manual. And the data needed to do any of it well has never really existed.
-            </p>
-            <p style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 500; line-height: 28px; letter-spacing: -0.4px; color: #fff;">
-              We're building the data infrastructure and AI systems that change that.
-            </p>
-          </div>
-        </div>
-      </div>
+    <div class="site-container">
+      <div style="max-width: 680px;">
+      <!-- Eyebrow -->
+      <p class="eyebrow-gradient" style="font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; line-height: 16px; margin-bottom: 24px;">Our Opportunity</p>
 
-      <!-- Product lines — two groups -->
-      <div style="display: flex; flex-direction: column; gap: 40px; padding-top: 48px;">
+      <!-- Heading -->
+      <h2 class="font-display font-medium" style="font-size: 40px; line-height: 52px; letter-spacing: -0.37px; color: #fff; margin-bottom: 32px;">
+        A $3.5 trillion asset class, run manually in spreadsheets.
+      </h2>
 
-        <!-- IQ Suite — Data & Intelligence -->
-        <div>
-          <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px;">Data &amp; Intelligence</p>
-          <div class="grid-products" style="display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid #2b2e34; border-radius: 16px; overflow: hidden;">
-            <div class="product-card" style="border-right: 1px solid #2b2e34; padding: 40px;">
-              <div class="icon-circle">
-                <img src="icon-surveys.svg" alt="" />
-              </div>
-              <p style="font-size: 16px; font-weight: 500; color: #fff; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Market Surveys</p>
-              <p style="font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 20px; letter-spacing: -0.37px;">Show how operators are performing against competitors.</p>
-            </div>
-            <div class="product-card" style="border-right: 1px solid #2b2e34; padding: 40px;">
-              <div class="icon-circle">
-                <img src="icon-explore.svg" alt="" />
-              </div>
-              <p style="font-size: 16px; font-weight: 500; color: #fff; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Market Research <span class="desktop-br-inline"><br></span><span style="white-space: nowrap;">(Explore Pro)</span></p>
-              <p style="font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 20px; letter-spacing: -0.37px;">Helps operators decide where to buy, build, and redevelop.</p>
-            </div>
-            <div class="product-card" style="padding: 40px;">
-              <div class="icon-circle">
-                <img src="icon-revenue.svg" alt="" />
-              </div>
-              <p style="font-size: 16px; font-weight: 500; color: #fff; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Revenue Management (Daylight)</p>
-              <p style="font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 20px; letter-spacing: -0.37px;">Recommends the right rents to achieve occupancy goals.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Maven — AI Agents -->
-        <div>
-          <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px;">AI Agents</p>
-          <div style="display: grid; grid-template-columns: 1fr; max-width: 400px; border: 1px solid #2b2e34; border-radius: 16px; overflow: hidden;">
-            <div class="product-card" style="padding: 40px;">
-              <div class="icon-circle">
-                <img src="icon-maven.svg" alt="" />
-              </div>
-              <p style="font-size: 16px; font-weight: 500; color: #fff; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">MavenAI</p>
-              <p style="font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 20px; letter-spacing: -0.37px;">Our first AI agent, automating marketing across key channels like Google Business and Social.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bottom text -->
-      <div style="padding: 32px 0 24px;">
-        <p style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: -0.3px; color: rgba(255,255,255,0.7);">
-          Together, they move the industry from manual workflows to systems that <span style="font-weight: 500;">understand, decide, and act.</span>
+      <!-- Narrative paragraphs -->
+      <div style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px;">
+        <p style="font-size: 17px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 28px; letter-spacing: -0.2px;">
+          Multifamily operators manage billions in assets. They set rents, run marketing campaigns, and make investment decisions that affect how millions of people live.
         </p>
+        <p style="font-size: 17px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 28px; letter-spacing: -0.2px;">
+          Most of this happens in spreadsheets. Pricing is manual. Marketing is manual. And the data needed to do any of it well has never really existed.
+        </p>
+        <p style="font-size: 17px; font-weight: 500; color: #fff; line-height: 28px; letter-spacing: -0.2px;">
+          We're building the data infrastructure and AI systems that change that.
+        </p>
+      </div>
+
+      <!-- Product lines as inline list -->
+      <div style="margin-bottom: 40px;">
+        <p style="font-size: 17px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 28px; letter-spacing: -0.2px; margin-bottom: 16px;">
+          <span style="font-weight: 500; color: #fff;">ApartmentIQ</span> is our data and decisioning platform:
+        </p>
+        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px;">
+          <li style="font-size: 16px; color: rgba(255,255,255,0.7); line-height: 26px; letter-spacing: -0.2px; padding-left: 20px; position: relative;">
+            <span style="position: absolute; left: 0; color: rgba(255,255,255,0.5);">·</span>
+            <span style="font-weight: 500; color: #fff;">Market Surveys</span> show how operators are performing against competitors.
+          </li>
+          <li style="font-size: 16px; color: rgba(255,255,255,0.7); line-height: 26px; letter-spacing: -0.2px; padding-left: 20px; position: relative;">
+            <span style="position: absolute; left: 0; color: rgba(255,255,255,0.5);">·</span>
+            <span style="font-weight: 500; color: #fff;">Market Research (Explore Pro)</span> helps operators decide where to buy, build, and redevelop.
+          </li>
+          <li style="font-size: 16px; color: rgba(255,255,255,0.7); line-height: 26px; letter-spacing: -0.2px; padding-left: 20px; position: relative;">
+            <span style="position: absolute; left: 0; color: rgba(255,255,255,0.5);">·</span>
+            <span style="font-weight: 500; color: #fff;">Revenue Management (Daylight)</span> recommends the right rents to achieve occupancy goals.
+          </li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 40px;">
+        <p style="font-size: 17px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 28px; letter-spacing: -0.2px;">
+          <span style="font-weight: 500; color: #fff;">Maven</span> is our first AI agent, automating marketing across key channels like Google Business and Social.
+        </p>
+      </div>
+
+      <p style="font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.45); line-height: 26px; letter-spacing: -0.2px;">
+        Together, they move the industry from manual workflows to systems that <span style="font-weight: 500; color: rgba(255,255,255,0.7);">understand, decide, and act.</span>
+      </p>
       </div>
     </div>
   </section>
@@ -707,46 +688,32 @@
   <!-- ═══════════════════════════════════════════════════
        SECTION 3 · WHO WE ARE
   ═══════════════════════════════════════════════════ -->
-  <section style="background: #fff; padding: 88px 0;">
-    <div class="container" style="max-width: 1200px;">
-      <div style="padding: 0 32px;">
-        <div class="who-we-are-grid" style="display: flex; gap: 64px; align-items: flex-start;">
-          <!-- Left: heading -->
-          <div class="who-heading" style="width: 400px; flex-shrink: 0;">
-            <h2 class="font-display font-medium" style="font-size: 48px; line-height: 1.1; letter-spacing: -0.37px; color: #191a1d;">
-              Who we are
-            </h2>
-          </div>
-          <!-- Right: values list -->
-          <div style="flex: 1; display: flex; flex-direction: column; gap: 32px;">
-            <!-- Value 1 -->
-            <div style="padding: 0 12px;">
-              <img src="https://www.figma.com/api/mcp/asset/ffd48174-4004-4be5-8bb4-676f4cdab2e1" alt="" style="width: 64px; height: 64px; margin-bottom: 12px;" class="value-icon" />
-              <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Ownership seekers</p>
-              <p style="font-size: 14px; font-weight: 400; color: #40434c; line-height: 20px; letter-spacing: -0.37px;">People here own real surface area. It's common to take responsibility for entire products or problem spaces, and have the autonomy to shape how they evolve.</p>
-            </div>
-            <div class="value-divider"></div>
-            <!-- Value 2 -->
-            <div style="padding: 0 12px;">
-              <img src="https://www.figma.com/api/mcp/asset/599b32a4-dfb1-4a9a-b71d-253e6575d59a" alt="" style="width: 64px; height: 64px; margin-bottom: 12px;" class="value-icon" />
-              <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Growth chasers</p>
-              <p style="font-size: 14px; font-weight: 400; color: #40434c; line-height: 20px; letter-spacing: -0.37px;">People here want to grow faster than they would elsewhere. They're motivated to build the company, and grow alongside it.</p>
-            </div>
-            <div class="value-divider"></div>
-            <!-- Value 3 -->
-            <div style="padding: 0 12px;">
-              <img src="https://www.figma.com/api/mcp/asset/288a9379-3d6c-444e-8957-d1b4d6bce0b0" alt="" style="width: 64px; height: 64px; margin-bottom: 12px;" class="value-icon" />
-              <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Low ego builders</p>
-              <p style="font-size: 14px; font-weight: 400; color: #40434c; line-height: 20px; letter-spacing: -0.37px;">We take the work seriously. Not ourselves. Life's too short to work with people you don't like.</p>
-            </div>
-            <div class="value-divider"></div>
-            <!-- Value 4 -->
-            <div style="padding: 0 12px;">
-              <img src="https://www.figma.com/api/mcp/asset/08f4273e-5969-4b75-8d99-534a862ea96c" alt="" style="width: 64px; height: 64px; margin-bottom: 12px;" class="value-icon" />
-              <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Fast-movers</p>
-              <p style="font-size: 14px; font-weight: 400; color: #40434c; line-height: 20px; letter-spacing: -0.37px;">Pace is our top priority and a competitive advantage. We move quickly because it matters to our customers.</p>
-            </div>
-          </div>
+  <section style="background: #f9f9f9; padding: 88px 0;">
+    <div class="site-container">
+      <h2 class="font-display font-medium" style="font-size: 40px; line-height: 52px; letter-spacing: -0.37px; color: #191a1d; margin-bottom: 48px;">
+        Who we are.
+      </h2>
+      <!-- 2x2 independent cards -->
+      <div class="who-cards-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px;">
+        <div style="background: linear-gradient(135deg, #F4F4F3 0%, #EEEDED 100%); background-image: linear-gradient(135deg, #F4F4F3 0%, #EEEDED 100%), radial-gradient(ellipse at 15% 15%, rgba(255,255,255,0.08) 0%, transparent 70%); background-blend-mode: normal, screen; border-radius: 20px; padding: 48px 40px; box-shadow: 0 0 1px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.02), 0 12px 24px rgba(0,0,0,0.025), 0 32px 64px rgba(0,0,0,0.02);">
+          <img src="icon-fast-movers.svg" alt="" style="width: 32px; height: 32px; margin-bottom: 24px;" class="value-icon" />
+          <p class="font-display" style="font-size: 24px; font-weight: 600; color: #191a1d; line-height: 1.3; letter-spacing: -0.37px; margin-bottom: 12px;">Fast-movers</p>
+          <p style="font-size: 15px; font-weight: 400; color: #5a5d66; line-height: 24px; letter-spacing: -0.2px;">Pace is our top priority and a competitive advantage. We move quickly because it matters to our customers.</p>
+        </div>
+        <div style="background: linear-gradient(135deg, #F4F4F3 0%, #EEEDED 100%); background-image: linear-gradient(135deg, #F4F4F3 0%, #EEEDED 100%), radial-gradient(ellipse at 15% 15%, rgba(255,255,255,0.08) 0%, transparent 70%); background-blend-mode: normal, screen; border-radius: 20px; padding: 48px 40px; box-shadow: 0 0 1px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.02), 0 12px 24px rgba(0,0,0,0.025), 0 32px 64px rgba(0,0,0,0.02);">
+          <img src="icon-ownership.svg" alt="" style="width: 32px; height: 32px; margin-bottom: 24px;" class="value-icon" />
+          <p class="font-display" style="font-size: 24px; font-weight: 600; color: #191a1d; line-height: 1.3; letter-spacing: -0.37px; margin-bottom: 12px;">Ownership seekers</p>
+          <p style="font-size: 15px; font-weight: 400; color: #5a5d66; line-height: 24px; letter-spacing: -0.2px;">People here own real surface area. It's common to take responsibility for entire products or problem spaces, and have the autonomy to shape how they evolve.</p>
+        </div>
+        <div style="background: linear-gradient(135deg, #F4F4F3 0%, #EEEDED 100%); background-image: linear-gradient(135deg, #F4F4F3 0%, #EEEDED 100%), radial-gradient(ellipse at 15% 15%, rgba(255,255,255,0.08) 0%, transparent 70%); background-blend-mode: normal, screen; border-radius: 20px; padding: 48px 40px; box-shadow: 0 0 1px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.02), 0 12px 24px rgba(0,0,0,0.025), 0 32px 64px rgba(0,0,0,0.02);">
+          <img src="icon-growth.svg" alt="" style="width: 32px; height: 32px; margin-bottom: 24px;" class="value-icon" />
+          <p class="font-display" style="font-size: 24px; font-weight: 600; color: #191a1d; line-height: 1.3; letter-spacing: -0.37px; margin-bottom: 12px;">Growth chasers</p>
+          <p style="font-size: 15px; font-weight: 400; color: #5a5d66; line-height: 24px; letter-spacing: -0.2px;">People here want to grow faster than they would elsewhere. They're motivated to build the company, and grow alongside it.</p>
+        </div>
+        <div style="background: linear-gradient(135deg, #F4F4F3 0%, #EEEDED 100%); background-image: linear-gradient(135deg, #F4F4F3 0%, #EEEDED 100%), radial-gradient(ellipse at 15% 15%, rgba(255,255,255,0.08) 0%, transparent 70%); background-blend-mode: normal, screen; border-radius: 20px; padding: 48px 40px; box-shadow: 0 0 1px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.02), 0 12px 24px rgba(0,0,0,0.025), 0 32px 64px rgba(0,0,0,0.02);">
+          <img src="icon-low-ego.svg" alt="" style="width: 32px; height: 32px; margin-bottom: 24px;" class="value-icon" />
+          <p class="font-display" style="font-size: 24px; font-weight: 600; color: #191a1d; line-height: 1.3; letter-spacing: -0.37px; margin-bottom: 12px;">Low ego builders</p>
+          <p style="font-size: 15px; font-weight: 400; color: #5a5d66; line-height: 24px; letter-spacing: -0.2px;">We take the work seriously. Not ourselves. Life's too short to work with people you don't like.</p>
         </div>
       </div>
     </div>
@@ -756,53 +723,47 @@
        SECTION 4 · STATS — OPERATORS RELY ON US
   ═══════════════════════════════════════════════════ -->
   <section style="background: linear-gradient(-86deg, #000 56%, #666 169%); padding: 96px 0;">
-    <div class="container">
+    <div class="site-container">
       <div>
-        <div style="display: flex; flex-direction: column; gap: 72px; align-items: center;">
-          <!-- Heading + stat cards -->
-          <div style="display: flex; flex-direction: column; gap: 48px; width: 100%;">
-            <h2 class="font-display font-medium" style="font-size: 48px; line-height: 60px; letter-spacing: -0.37px; color: #fff;">
-              Multifamily operators<br class="mobile-br"> rely&nbsp;on&nbsp;us.
-            </h2>
-            <!-- 4 stat cards -->
-            <div class="stats-metrics" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
-              <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
-                <p class="gradient-metric font-semibold stat-number" data-target="8" data-suffix="M+" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; text-align: center; margin-bottom: 16px;">8M+</p>
-                <div class="stat-divider" style="margin-bottom: 16px;"></div>
-                <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px; text-align: center;">Units on platform</p>
-              </div>
-              <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
-                <p class="gradient-metric font-semibold stat-number" data-target="1500" data-suffix="+" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; text-align: center; margin-bottom: 16px;">1500+</p>
-                <div class="stat-divider" style="margin-bottom: 16px;"></div>
-                <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px; text-align: center;">Customers</p>
-              </div>
-              <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
-                <p class="gradient-metric font-semibold stat-number" data-target="70" data-suffix="%" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; text-align: center; margin-bottom: 16px;">70%</p>
-                <div class="stat-divider" style="margin-bottom: 16px;"></div>
-                <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px; text-align: center;">NMHC Top 50</p>
-              </div>
-              <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
-                <p class="gradient-metric font-semibold stat-number" data-target="96" data-suffix="%+" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; text-align: center; margin-bottom: 16px;">96%+</p>
-                <div class="stat-divider" style="margin-bottom: 16px;"></div>
-                <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px; text-align: center;">Renewal rate</p>
-              </div>
+        <div style="display: flex; flex-direction: column; gap: 64px;">
+          <!-- Heading -->
+          <h2 class="font-display font-medium" style="font-size: 40px; line-height: 52px; letter-spacing: -0.37px; color: #fff;">
+            Multifamily operators rely&nbsp;on&nbsp;us.
+          </h2>
+
+          <!-- Stats — V2 card style, left-aligned internally -->
+          <div class="stats-metrics" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+            <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
+              <p class="gradient-metric font-semibold stat-number" data-target="8" data-suffix="M+" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; margin-bottom: 16px;">8M+</p>
+              <div class="stat-divider" style="margin-bottom: 16px;"></div>
+              <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px;">Units on platform</p>
+            </div>
+            <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
+              <p class="gradient-metric font-semibold stat-number" data-target="1500" data-suffix="+" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; margin-bottom: 16px;">1500+</p>
+              <div class="stat-divider" style="margin-bottom: 16px;"></div>
+              <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px;">Customers</p>
+            </div>
+            <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
+              <p class="gradient-metric font-semibold stat-number" data-target="70" data-suffix="%" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; margin-bottom: 16px;">70%</p>
+              <div class="stat-divider" style="margin-bottom: 16px;"></div>
+              <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px;">NMHC Top 50</p>
+            </div>
+            <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
+              <p class="gradient-metric font-semibold stat-number" data-target="96" data-suffix="%+" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; margin-bottom: 16px;">96%+</p>
+              <div class="stat-divider" style="margin-bottom: 16px;"></div>
+              <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px;">Renewal rate</p>
             </div>
           </div>
 
-          <!-- USED EVERY DAY card -->
-          <div style="position: relative; border: 1px solid rgba(255,255,255,0.4); border-radius: 16px; padding: 32px 24px 24px; width: 100%;">
-            <!-- Floating label -->
-            <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #000; padding: 0 24px;">
-              <p class="font-display font-medium" style="font-size: 14px; color: #fff; text-align: center; letter-spacing: 0.8px; text-transform: uppercase; line-height: 24px; white-space: nowrap;">USED EVERY DAY</p>
-            </div>
-            <div style="max-width: 912px; margin: 0 auto;">
-              <p style="font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 30px; letter-spacing: -0.54px; text-align: center; margin-bottom: 16px;">
-                Our products are used daily. Customers rely on them for pricing decisions, competitive analysis, and marketing strategy. This isn't software that gets bought and forgotten.
-              </p>
-              <p style="font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 30px; letter-spacing: -0.54px; text-align: center;">
-                Customers actively engage, give feedback, and help shape the product. Their workflows depend on what we build.
-              </p>
-            </div>
+          <!-- Used every day — left-aligned -->
+          <div style="max-width: 680px;">
+            <p class="font-display font-medium" style="font-size: 20px; color: #fff; letter-spacing: -0.3px; margin-bottom: 20px;">Used every day</p>
+            <p style="font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.6); line-height: 28px; letter-spacing: -0.2px; margin-bottom: 16px;">
+              Our products are used daily. Customers rely on them for pricing decisions, competitive analysis, and marketing strategy. This isn't software that gets bought and forgotten.
+            </p>
+            <p style="font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.6); line-height: 28px; letter-spacing: -0.2px;">
+              Customers actively engage, give feedback, and help shape the product. Their workflows depend on what we build.
+            </p>
           </div>
         </div>
       </div>
@@ -812,16 +773,18 @@
   <!-- ═══════════════════════════════════════════════════
        SECTION 5 · COMPANY HEALTH
   ═══════════════════════════════════════════════════ -->
-  <section style="background: #fff; padding: 96px 32px;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-      <div class="health-grid" style="display: flex; gap: 48px; align-items: center; justify-content: center;">
+  <section style="background: #fff; padding: 96px 0;">
+    <div class="site-container">
+      <div class="health-grid" style="display: flex; gap: 48px; align-items: stretch; justify-content: center;">
         <!-- Left: heading -->
-        <div style="flex: 0 0 auto; max-width: 420px;">
-          <p class="eyebrow-gradient" style="font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; line-height: 16px; margin-bottom: 16px;">Company Health</p>
-          <h2 class="font-display font-medium" style="font-size: 48px; line-height: 60px; letter-spacing: -0.37px; color: #191a1d;">We're scaling with discipline.</h2>
+        <div style="flex: 0 0 auto; max-width: 420px; display: flex; align-items: center;">
+          <div>
+            <p class="eyebrow-gradient" style="font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; line-height: 16px; margin-bottom: 16px;">Company Health</p>
+            <h2 class="font-display font-medium" style="font-size: 40px; line-height: 52px; letter-spacing: -0.37px; color: #191a1d;">We're scaling with discipline.</h2>
+          </div>
         </div>
         <!-- Vertical divider -->
-        <div class="health-divider" style="width: 1px; align-self: stretch; background: linear-gradient(180deg, transparent, #dfe0e5, transparent);"></div>
+        <div class="health-divider" style="width: 1px; background: linear-gradient(180deg, transparent, #dfe0e5, transparent);"></div>
         <!-- Right: 2x2 metrics -->
         <div class="health-metrics" style="flex: 0 0 auto; padding: 24px 0;">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px 32px; max-width: 540px;">
@@ -850,12 +813,12 @@
   <!-- ═══════════════════════════════════════════════════
        SECTION 6 · WHAT IT'S LIKE (FAQ + IMAGE)
   ═══════════════════════════════════════════════════ -->
-  <section style="background: #f2f0ee; background-image: radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.9) 0%, transparent 60%), radial-gradient(ellipse at 100% 100%, rgba(215,210,205,0.4) 0%, transparent 55%), radial-gradient(ellipse at 50% 0%, rgba(250,248,246,0.7) 0%, transparent 50%), radial-gradient(ellipse at 100% 0%, rgba(255,253,250,0.5) 0%, transparent 45%); padding: 104px 32px;">
-    <div style="max-width: 1200px; margin: 0 auto;">
+  <section style="background: #f2f0ee; background-image: radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.9) 0%, transparent 60%), radial-gradient(ellipse at 100% 100%, rgba(215,210,205,0.4) 0%, transparent 55%), radial-gradient(ellipse at 50% 0%, rgba(250,248,246,0.7) 0%, transparent 50%), radial-gradient(ellipse at 100% 0%, rgba(255,253,250,0.5) 0%, transparent 45%); padding: 104px 0;">
+    <div class="site-container">
       <!-- Header -->
-      <div style="text-align: center; padding: 0 32px 48px;">
+      <div style="text-align: left; padding: 0 0 48px;">
         <p class="eyebrow-gradient" style="font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; line-height: 16px; margin-bottom: 16px;">What It's Like</p>
-        <h2 class="font-display font-medium" style="font-size: 56px; line-height: 64px; letter-spacing: -0.5px; color: #191a1d;">The kind of team you actually want to be on.</h2>
+        <h2 class="font-display font-medium" style="font-size: 40px; line-height: 52px; letter-spacing: -0.37px; color: #191a1d;">The kind of team you actually want to be on.</h2>
       </div>
       <!-- FAQ + Image side by side -->
       <div class="faq-grid" style="display: flex; gap: 32px; align-items: start;">
@@ -865,7 +828,7 @@
           <div class="faq-item" data-faq>
             <button onclick="toggleFaq(this)" style="display: flex; align-items: flex-start; gap: 16px; padding: 24px; width: 100%; background: none; border: none; cursor: pointer; text-align: left;">
               <p style="flex: 1; font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px;">No Assholes</p>
-              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;"><path d="M12 5V19M5 12H19" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0;"><path d="M5 7.5L10 12.5L15 7.5" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div class="faq-answer" style="padding: 0 24px;">
               <div><p style="font-size: 14px; color: #40434c; line-height: 20px; letter-spacing: -0.37px; padding-bottom: 24px;">We have a strict no assholes policy. Non-negotiable. But we go further than that, we're a low-ego, no-drama team that keeps things light while we build.</p></div>
@@ -876,7 +839,7 @@
           <div class="faq-item" data-faq>
             <button onclick="toggleFaq(this)" style="display: flex; align-items: flex-start; gap: 16px; padding: 24px; width: 100%; background: none; border: none; cursor: pointer; text-align: left;">
               <p style="flex: 1; font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px;">Exceptional employee retention</p>
-              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;"><path d="M12 5V19M5 12H19" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0;"><path d="M5 7.5L10 12.5L15 7.5" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div class="faq-answer" style="padding: 0 24px;">
               <div><p style="font-size: 14px; color: #40434c; line-height: 20px; letter-spacing: -0.37px; padding-bottom: 24px;">Our best-in-class employee retention is a result of our growth and pace, but we also believe building a sustainable company is a marathon, not a sprint. The vast majority of our team has been with us for 4+ years, and many have been with us for 8+ years.</p></div>
@@ -887,7 +850,7 @@
           <div class="faq-item" data-faq>
             <button onclick="toggleFaq(this)" style="display: flex; align-items: flex-start; gap: 16px; padding: 24px; width: 100%; background: none; border: none; cursor: pointer; text-align: left;">
               <p style="flex: 1; font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px;">Fully Remote</p>
-              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;"><path d="M12 5V19M5 12H19" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0;"><path d="M5 7.5L10 12.5L15 7.5" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div class="faq-answer" style="padding: 0 24px;">
               <div><p style="font-size: 14px; color: #40434c; line-height: 20px; letter-spacing: -0.37px; padding-bottom: 24px;">We're a fully remote team spread across all U.S. timezones. That said, we like to see each other. We get together for an annual company-wide offsite, meet quarterly for team offsites, and find plenty of reasons to connect in person in between.</p></div>
@@ -898,7 +861,7 @@
           <div class="faq-item" data-faq>
             <button onclick="toggleFaq(this)" style="display: flex; align-items: flex-start; gap: 16px; padding: 24px; width: 100%; background: none; border: none; cursor: pointer; text-align: left;">
               <p style="flex: 1; font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px;">Competitive Benefits</p>
-              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;"><path d="M12 5V19M5 12H19" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0;"><path d="M5 7.5L10 12.5L15 7.5" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div class="faq-answer" style="padding: 0 24px;">
               <div><p style="font-size: 14px; color: #40434c; line-height: 20px; letter-spacing: -0.37px; padding-bottom: 24px;">Competitive compensation. Flexible, paid time off. Medical, dental, and vision insurance. Short-term, long-term, and basic life insurance. Supplemental coverage, including pet insurance. 401(k) with employer match. Oh, and unlimited tokens.</p></div>
@@ -917,11 +880,11 @@
        SECTION 7 · OPEN POSITIONS
   ═══════════════════════════════════════════════════ -->
   <section id="jobs" style="background: #111113;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px 104px; box-sizing: border-box;">
+    <div class="site-container" style="padding-top: 96px; padding-bottom: 104px;">
       <!-- Header -->
       <div style="margin-bottom: 64px;">
         <p style="font-size: 12px; font-weight: 700; color: #bab1ff; letter-spacing: 0.6px; text-transform: uppercase; line-height: 16px; margin-bottom: 16px;">OPEN POSITIONS</p>
-        <h2 class="font-display font-medium" style="font-size: 48px; line-height: 60px; letter-spacing: -0.37px; color: #fff; margin-bottom: 12px;">We're hiring!</h2>
+        <h2 class="font-display font-medium" style="font-size: 40px; line-height: 52px; letter-spacing: -0.37px; color: #fff; margin-bottom: 12px;">We're hiring!</h2>
         <p style="font-size: 18px; font-weight: 400; color: rgba(255,255,255,0.45); line-height: 28px; letter-spacing: -0.54px;">All roles are fully remote. 21 open positions across 6 teams.</p>
       </div>
 
@@ -1067,7 +1030,7 @@
        FOOTER
   ═══════════════════════════════════════════════════ -->
   <footer style="background: #fff; padding: 48px 0 0;">
-    <div class="container" style="max-width: 1148px;">
+    <div class="site-container">
       <div class="footer-main" style="display: flex; align-items: flex-end; justify-content: space-between; padding-bottom: 24px;">
         <div class="footer-left" style="display: flex; flex-direction: column; gap: 24px;">
           <a href="#">
