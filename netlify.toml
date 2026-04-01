@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/"
+  to = "/card-edition.html"
+  status = 200
+  force = true
