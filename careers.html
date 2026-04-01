@@ -113,19 +113,22 @@
       <button class="switcher-btn" data-version="lovable" onclick="switchVersion('lovable', this)">Lovable</button>
       <button class="switcher-btn" data-version="v1" onclick="switchVersion('v1', this)">Version 1</button>
       <button class="switcher-btn" data-version="text" onclick="switchVersion('text', this)">Text Edition</button>
-      <button class="switcher-btn active" data-version="card" onclick="switchVersion('card', this)">Card Edition</button>
+      <button class="switcher-btn" data-version="card" onclick="switchVersion('card', this)">Card Edition</button>
+      <button class="switcher-btn active" data-version="card2" onclick="switchVersion('card2', this)">Card Edition 2</button>
     </div>
   </div>
 
   <iframe id="frame-lovable" class="version-frame" src="https://velocity-impact-hub.lovable.app/"></iframe>
   <iframe id="frame-v1" class="version-frame" src="pre-edit.html"></iframe>
   <iframe id="frame-text" class="version-frame" src=""></iframe>
-  <iframe id="frame-card" class="version-frame active" src=""></iframe>
+  <iframe id="frame-card" class="version-frame" src=""></iframe>
+  <iframe id="frame-card2" class="version-frame active" src=""></iframe>
 
   <script>
     var ts = Date.now();
     document.getElementById('frame-text').src = 'text-edition.html?t=' + ts;
     document.getElementById('frame-card').src = 'card-edition.html?t=' + ts;
+    document.getElementById('frame-card2').src = 'card-edition-2.html?t=' + ts;
 
     function updateIndicator(btn) {
       var indicator = document.getElementById('indicator');
