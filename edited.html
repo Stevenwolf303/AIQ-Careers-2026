@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <title>Careers — ApartmentIQ</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #191a1d; }
+    .font-display { font-family: 'Inter Tight', sans-serif; }
+
+    /* ── Motion system tokens ── */
+    :root {
+      --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+      --duration-fast: 280ms;
+      --duration-base: 420ms;
+      --duration-slow: 580ms;
+      --duration-hero: 650ms;
+    }
+
+    /* Gradients */
+    .gradient-metric {
+      background: linear-gradient(90deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 100%),
+                  linear-gradient(90deg, #694dec 0%, #ff8e5f 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .eyebrow-gradient {
+      background: linear-gradient(90deg, #694dec 0%, #ae45c8 163%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .health-metrics svg { --icon-gradient: url(#health-icon-gradient); }
+    .health-metrics svg path { stroke: url(#health-icon-gradient); }
+    /* Product icon circle — SVGs already contain full treatment */
+    .icon-circle {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+    .icon-circle img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Layout */
+    .mobile-br { display: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; }
+
+    /* Navbar */
+    .navbar-pill {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 32px;
+      box-shadow: 0 0 80px rgba(0, 0, 0, 0.04), 0 1px 0 rgba(255,255,255,0.5) inset;
+      transition: background var(--duration-base) var(--ease-out-expo),
+                  box-shadow var(--duration-base) var(--ease-out-expo);
+    }
+    .navbar-pill a {
+      transition: color var(--duration-fast) var(--ease-out-expo),
+                  opacity var(--duration-fast) var(--ease-out-expo),
+                  background var(--duration-fast) var(--ease-out-expo);
+    }
+
+    /* CTA Button */
+    @property --border-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+    .btn-primary {
+      display: inline-flex;
+      position: relative;
+      align-items: center;
+      gap: 10px;
+      background: #000;
+      border: 2px solid #7538ca;
+      border-radius: 6px;
+      padding: 13px 23px 13px 25px;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.37px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform var(--duration-fast) var(--ease-out-expo),
+                  border-color var(--duration-base) var(--ease-out-expo),
+                  box-shadow var(--duration-base) var(--ease-out-expo);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      border-color: #a56ef5;
+      box-shadow: 0 4px 20px rgba(117, 56, 202, 0.25), 0 0 0 1px rgba(165, 110, 245, 0.1);
+    }
+    .btn-primary:active {
+      transform: translateY(0) scale(0.99);
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 6px;
+      padding: 1.5px;
+      background: conic-gradient(
+        from var(--border-angle),
+        transparent 0%, transparent 70%,
+        rgba(165, 110, 245, 0.55) 80%,
+        rgba(255, 255, 255, 0.38) 85%,
+        rgba(165, 110, 245, 0.55) 90%,
+        transparent 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .btn-primary:hover::before {
+      opacity: 1;
+      --border-angle: 360deg;
+      transition: opacity 0.35s ease, --border-angle 1.1s linear;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      border: 2px solid #000;
+      border-radius: 6px;
+      padding: 13px 23px 13px 25px;
+      color: #2b2e34;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.37px;
+      text-decoration: none;
+      cursor: pointer;
+      background: transparent;
+      transition: background var(--duration-fast) var(--ease-out-expo),
+                  border-color var(--duration-fast) var(--ease-out-expo),
+                  transform var(--duration-fast) var(--ease-out-expo);
+    }
+    .btn-outline:hover {
+      background: rgba(0,0,0,0.04);
+      border-color: #40434c;
+      transform: translateY(-1px);
+    }
+    .btn-outline:active {
+      transform: translateY(0) scale(0.99);
+    }
+
+    /* Stat divider */
+    .stat-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    }
+
+    /* ── Unified section reveal ── */
+    .reveal {
+      opacity: 0;
+      filter: blur(6px);
+      transform: translateY(6px);
+      transition: opacity var(--duration-slow) var(--ease-out-expo),
+                  filter var(--duration-slow) var(--ease-out-expo),
+                  transform var(--duration-slow) var(--ease-out-expo);
+    }
+    .reveal.in {
+      opacity: 1;
+      filter: blur(0);
+      transform: none;
+    }
+
+    /* ── Hero motion ── */
+    @keyframes heroBgSettle {
+      0%   { opacity: 0; transform: scale(1.025); filter: blur(4px); }
+      100% { opacity: 0.7; transform: scale(1); filter: blur(0); }
+    }
+    .hero-bg {
+      opacity: 0;
+      animation: heroBgSettle 1.4s var(--ease-out-quint) 0.1s forwards;
+      will-change: transform, opacity, filter;
+    }
+    @keyframes shimmerSweep {
+      from { transform: translateX(-100%); }
+      to   { transform: translateX(260%); }
+    }
+    .hero-shimmer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      width: 30%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
+      animation: shimmerSweep 8s ease-in-out 2s infinite;
+      will-change: transform;
+    }
+
+    /* Hero elements: headline, subtitle, CTAs — staggered blur-in */
+    .hero-headline {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(8px) scale(0.985);
+      transition: opacity var(--duration-hero) var(--ease-out-quint),
+                  filter var(--duration-hero) var(--ease-out-quint),
+                  transform var(--duration-hero) var(--ease-out-quint);
+    }
+    .hero-headline.is-visible {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0) scale(1);
+    }
+    .hero-subtitle {
+      opacity: 0;
+      filter: blur(8px);
+      transform: translateY(6px);
+      transition: opacity 550ms var(--ease-out-quint),
+                  filter 550ms var(--ease-out-quint),
+                  transform 550ms var(--ease-out-quint);
+    }
+    .hero-subtitle.is-visible {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+    .hero-ctas-wrap {
+      opacity: 0;
+      filter: blur(6px);
+      transform: translateY(5px);
+      transition: opacity 480ms var(--ease-out-quint),
+                  filter 480ms var(--ease-out-quint),
+                  transform 480ms var(--ease-out-quint);
+    }
+    .hero-ctas-wrap.is-visible {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+
+    /* Stats card border animation */
+    @property --stats-border-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+    @keyframes statsBorderSweep {
+      from { --stats-border-angle: 0deg; }
+      to   { --stats-border-angle: 360deg; }
+    }
+    .stats-card--outlined {
+      position: relative;
+    }
+
+    /* Stat column reveal */
+    .stat-col {
+      opacity: 0;
+      filter: blur(8px);
+      transform: translateY(6px) scale(0.985);
+      transition: opacity 600ms var(--ease-out-quint),
+                  filter 600ms var(--ease-out-quint),
+                  transform 600ms var(--ease-out-quint);
+    }
+    .stat-col.is-in {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0) scale(1);
+    }
+
+    /* Job rows */
+    .job-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 18px 4px;
+      margin: 0 -4px;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background var(--duration-fast) var(--ease-out-expo);
+    }
+    .job-row:hover {
+      background: rgba(255,255,255,0.04);
+    }
+    .job-row:hover .job-title {
+      color: #fff;
+    }
+    .job-row:hover .job-location {
+      color: rgba(255,255,255,0.45);
+    }
+    .job-title {
+      flex: 1;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: -0.4px;
+      line-height: 1.35;
+      transition: color var(--duration-fast) var(--ease-out-expo);
+    }
+    .job-location {
+      flex-shrink: 0;
+      margin-left: auto;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+      transition: color var(--duration-fast) var(--ease-out-expo);
+    }
+    .job-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* FAQ accordion */
+    .faq-item {
+      border-radius: 8px;
+      transition: background var(--duration-fast) var(--ease-out-expo);
+    }
+    .faq-item:hover {
+      background: rgba(0,0,0,0.03);
+    }
+    .faq-answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 500ms var(--ease-out-quint),
+                  opacity 400ms var(--ease-out-quint);
+    }
+    .faq-answer > div {
+      overflow: hidden;
+    }
+    .faq-item.is-open .faq-answer {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+    .faq-item.is-open .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-icon {
+      transition: transform 350ms var(--ease-out-quint);
+      flex-shrink: 0;
+    }
+
+    /* Value item divider */
+    .value-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #e5e7eb 10%, #e5e7eb 90%, transparent);
+    }
+
+    /* ── Product cards hover ── */
+    .product-card {
+      transition: background var(--duration-fast) var(--ease-out-expo);
+    }
+    .product-card:hover {
+      background: none;
+    }
+
+    /* ── Footer links ── */
+    footer a {
+      transition: color var(--duration-fast) var(--ease-out-expo) !important;
+    }
+    footer a:hover {
+      color: #191a1d !important;
+    }
+
+    /* ── Smooth page scroll ── */
+    html { scroll-behavior: smooth; }
+
+    /* ── Reduce motion for accessibility ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── Mobile menu ── */
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5.5px;
+      width: 40px; height: 40px;
+      padding: 8px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .hamburger-btn:hover { background: rgba(0,0,0,0.05); }
+    .bar {
+      display: block; width: 18px; height: 1.5px;
+      background: #191a1d; border-radius: 999px;
+      transform-origin: center;
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease;
+    }
+    .mobile-menu { display: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .grid-products { grid-template-columns: repeat(2, 1fr) !important; }
+      .who-we-are-grid { flex-direction: column !important; gap: 48px !important; }
+      .who-we-are-grid .who-heading { width: 100% !important; }
+      .stats-metrics { grid-template-columns: repeat(2, 1fr) !important; }
+      .health-grid { flex-direction: column !important; }
+      .health-grid .health-divider { display: none !important; }
+      .faq-grid { flex-direction: column !important; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-desktop { display: none !important; }
+      .cta-desktop { display: none !important; }
+      .hamburger-btn { display: flex; }
+      .navbar-pill { padding-left: 20px !important; padding-right: 20px !important; }
+
+      .hamburger-btn.is-open .bar-1 { transform: translateY(7px) rotate(45deg); }
+      .hamburger-btn.is-open .bar-2 { opacity: 0; }
+      .hamburger-btn.is-open .bar-3 { transform: translateY(-7px) rotate(-45deg); }
+
+      .mobile-menu {
+        display: flex; flex-direction: column;
+        position: fixed; inset: 0; z-index: 100;
+        background: rgba(250,250,252,0.92);
+        backdrop-filter: blur(22px);
+        opacity: 0; visibility: hidden; pointer-events: none;
+        transform: translateY(10px);
+        transition: opacity 300ms cubic-bezier(0.22,1,0.36,1), transform 300ms cubic-bezier(0.22,1,0.36,1), visibility 300ms;
+      }
+      .mobile-menu.is-open {
+        opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0);
+      }
+      .mmenu-bar {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 24px; min-height: 80px; border-bottom: 1px solid rgba(25,26,29,0.06);
+      }
+      .mmenu-content {
+        flex: 1; display: flex; flex-direction: column;
+        padding: 48px 28px 40px; gap: 48px; overflow-y: auto;
+      }
+      .mmenu-label {
+        font-size: 14px; font-weight: 600; color: #a0a3ac;
+        letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 16px;
+      }
+      .mmenu-link {
+        display: block; font-family: 'Inter Tight', sans-serif;
+        font-size: 24px; font-weight: 600; color: #191a1d;
+        text-decoration: none; letter-spacing: -0.03em; line-height: 1.35;
+        padding: 7px 0; transition: opacity 0.18s;
+      }
+      .mmenu-link:hover { opacity: 0.38; }
+      .mmenu-footer {
+        padding: 20px 28px 44px; display: flex; flex-direction: column; gap: 8px;
+        border-top: 1px solid rgba(25,26,29,0.06);
+      }
+      .mmenu-footer-cta {
+        display: flex; align-items: center; justify-content: center;
+        padding: 14px 20px; background: #191a1d; color: #fff;
+        font-size: 15px; font-weight: 500; border-radius: 10px; text-decoration: none;
+      }
+      .mmenu-footer-login {
+        display: flex; align-items: center; justify-content: center;
+        padding: 11px 20px; font-size: 14px; font-weight: 500;
+        color: #5a5d66; text-decoration: none;
+      }
+      .mmenu-close {
+        display: flex; align-items: center; justify-content: center;
+        width: 40px; height: 40px; border: none; background: transparent;
+        border-radius: 8px; cursor: pointer;
+      }
+
+      .grid-products { grid-template-columns: 1fr !important; }
+      .grid-products .product-card { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.12); }
+      .grid-products .product-card:last-child { border-bottom: none; }
+      .stats-metrics { grid-template-columns: 1fr !important; }
+      .hero-heading { font-size: 48px !important; }
+      .hero-subtitle { font-size: 17px !important; }
+      .dark-heading { font-size: 28px !important; line-height: 36px !important; max-width: 100% !important; }
+      .desktop-br { display: none; }
+      .desktop-br-inline { display: none; }
+      .mobile-br { display: inline; }
+      h2 { font-size: 32px !important; line-height: 40px !important; }
+      .dark-body-grid { flex-direction: column !important; gap: 32px !important; }
+      .dark-body-grid > div { width: 100% !important; flex-shrink: 1 !important; }
+      .hero-headline { font-size: 12vw !important; white-space: nowrap; }
+      .btn-primary, .btn-outline { white-space: nowrap; }
+      .hero-ctas-wrap { gap: 8px !important; }
+      .nav-logo { height: 27px !important; }
+      .hero-subtitle { max-width: 100% !important; }
+      section, .container, div { max-width: 100%; box-sizing: border-box; }
+      img { max-width: 100%; height: auto; }
+      h1, h2, h3, p { word-wrap: break-word; overflow-wrap: break-word; }
+
+      /* Who We Are illustrations bigger on mobile */
+      .value-icon { width: 80px !important; height: 80px !important; }
+
+      /* Who We Are: remove extra inner padding on mobile */
+      .who-we-are-grid div[style*="padding: 0 12px"] { padding: 0 !important; }
+      .container > div[style*="padding: 0 32px"] { padding: 0 !important; }
+
+      /* Company Health left-align on mobile */
+      .health-grid div[style*="align-items: center; gap: 16px"] { align-items: flex-start !important; }
+      .health-grid p[style*="text-align: center"] { text-align: left !important; }
+
+      /* Uniform 24px outer margin */
+      .container { padding-left: 24px !important; padding-right: 24px !important; }
+      section:not(:has(.container))[style*="padding"] { padding-left: 24px !important; padding-right: 24px !important; }
+      section:has(.container) { padding-left: 0 !important; padding-right: 0 !important; }
+      .grid-products .product-card { padding: 32px 24px !important; }
+      .hero-headline { padding: 0 24px; }
+
+      .footer-main { flex-direction: column !important; align-items: flex-start !important; gap: 0 !important; }
+      .footer-left { flex-direction: column !important; gap: 0 !important; width: 100%; }
+      .footer-left > a:first-child { margin-bottom: 28px; }
+      .footer-product-links { flex-direction: column !important; gap: 14px !important; }
+      .footer-right { flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; width: 100%; margin-top: 28px; padding-top: 28px; border-top: 1px solid #f0f0f2; }
+      .footer-bottom { flex-direction: column-reverse !important; align-items: flex-start !important; gap: 20px !important; padding: 24px 0 36px !important; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-heading { font-size: 38px !important; }
+      .hero-ctas { flex-direction: column !important; gap: 12px !important; }
+    }
+  </style>
+</head>
+<body class="bg-white overflow-x-hidden">
+  <svg width="0" height="0" style="position:absolute;">
+    <defs>
+      <linearGradient id="health-icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#694dec"/>
+        <stop offset="100%" stop-color="#9b6cb5"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ─── NAVBAR ─── -->
+  <header class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-8 px-8">
+    <div class="navbar-pill w-full max-w-[1216px] flex items-center justify-between gap-4 px-10 py-4">
+      <a href="#" class="shrink-0">
+        <img class="nav-logo" src="IQ_logo.png" alt="ApartmentIQ" style="height: 32px; width: auto;" />
+      </a>
+      <nav class="nav-desktop flex flex-1 items-center justify-center gap-2">
+        <a href="#" class="px-3 py-1.5 text-[14px] font-medium text-[#40434c] rounded-[10px] hover:bg-white/50 transition-colors" style="letter-spacing: -0.37px;">Market Surveys</a>
+        <a href="#" class="px-3 py-1.5 text-[14px] font-medium text-[#40434c] rounded-[10px] hover:bg-white/50 transition-colors" style="letter-spacing: -0.37px;">Market Research</a>
+        <a href="#" class="px-3 py-1.5 text-[14px] font-medium text-[#40434c] rounded-[10px] hover:bg-white/50 transition-colors" style="letter-spacing: -0.37px;">Revenue Management</a>
+      </nav>
+      <div class="cta-desktop flex items-center gap-3 shrink-0">
+        <a href="#" class="px-3 py-1.5 text-[14px] font-medium text-[#191a1d] hover:opacity-60 transition-opacity" style="letter-spacing: -0.37px;">Log in</a>
+        <a href="#" class="bg-[#191a1d] text-white text-[14px] font-medium px-3 py-1.5 rounded-lg hover:opacity-85 transition-opacity" style="letter-spacing: -0.37px;">Request a demo</a>
+      </div>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─── MOBILE MENU ─── -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="mmenu-bar">
+      <a href="#"><img src="IQ_logo.png" alt="ApartmentIQ" style="height: 26px;" /></a>
+      <button class="mmenu-close" id="mmenu-close-btn" aria-label="Close menu">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 1.5L12.5 12.5M12.5 1.5L1.5 12.5" stroke="#191a1d" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="mmenu-content">
+      <div><p class="mmenu-label">Product</p><nav><a href="#" class="mmenu-link">Market Surveys</a><a href="#" class="mmenu-link">Market Research</a><a href="#" class="mmenu-link">Revenue Management</a><a href="#" class="mmenu-link">MavenAI</a></nav></div>
+      <div><p class="mmenu-label">Company</p><nav><a href="#" class="mmenu-link">Careers</a><a href="#" class="mmenu-link">Resources</a><a href="#" class="mmenu-link">Sign In</a><a href="#" class="mmenu-link">Request a Demo</a></nav></div>
+    </div>
+    <div class="mmenu-footer">
+      <a href="#" class="mmenu-footer-cta">Request a demo</a>
+      <a href="#" class="mmenu-footer-login">Log in</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 1 · HERO
+  ═══════════════════════════════════════════════════ -->
+  <section class="relative w-full overflow-hidden bg-white" style="min-height: 680px;">
+    <!-- Map background from V2 -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <img src="hero-bg.jpg" alt="" class="hero-bg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;" />
+      <div class="hero-shimmer"></div>
+    </div>
+    <!-- Content — Lovable-style left-aligned layout -->
+    <div class="container relative z-10" style="padding-top: 200px; padding-bottom: 96px;">
+      <div style="max-width: 620px;">
+        <p class="hero-headline-eyebrow" style="font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7280; margin-bottom: 24px;">Careers at ApartmentIQ</p>
+        <h1 class="hero-headline font-display font-semibold text-[#191a1d]" style="font-size: 72px; line-height: 1.1; letter-spacing: -1.44px; margin-bottom: 24px;">
+          Move Fast.<br>Fix Multifamily.
+        </h1>
+        <p class="hero-subtitle" style="font-size: 20px; font-weight: 400; color: #40434c; line-height: 30px; letter-spacing: -0.3px; max-width: 540px; margin-bottom: 32px;">
+          ApartmentIQ is a data and AI company that gives multifamily operators the intelligence to understand their market, and the <span style="white-space: nowrap;">AI tools to outperform it.</span>
+        </p>
+        <div class="hero-ctas-wrap flex items-start gap-3">
+          <a href="#jobs" class="btn-primary">View open roles</a>
+          <a href="#about" class="btn-outline">
+            Learn More
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="transform: rotate(90deg);">
+              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#2b2e34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 2 · DARK — $3.5 TRILLION
+  ═══════════════════════════════════════════════════ -->
+  <section id="about" style="background: linear-gradient(-87deg, #000 56%, #666 169%); padding: 96px 0;">
+    <div class="container">
+      <!-- Top text block -->
+      <div style="padding: 0 0 48px;">
+        <div class="dark-body-grid" style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <h2 class="dark-heading font-display font-medium" style="font-size: 48px; line-height: 60px; letter-spacing: -0.37px; color: #fff; max-width: 480px; flex-shrink: 0;">
+            A $3.5 trillion asset class, run manually<br class="desktop-br"> in spreadsheets.
+          </h2>
+          <div style="display: flex; flex-direction: column; gap: 28px; width: 500px; max-width: 100%; flex-shrink: 1;">
+            <p style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 28px; letter-spacing: -0.4px; color: rgba(255,255,255,0.7);">
+              ApartmentIQ is a data and AI company that gives multifamily operators the intelligence to understand their market, and the AI tools to outperform it.
+            </p>
+            <p style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 28px; letter-spacing: -0.4px; color: rgba(255,255,255,0.7);">
+              Most of this happens in spreadsheets. Pricing is manual. Marketing is manual. And the data needed to do any of it well has never really existed.
+            </p>
+            <p style="font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 500; line-height: 28px; letter-spacing: -0.4px; color: #fff;">
+              We're building the data infrastructure and AI systems that change that.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product lines — two groups -->
+      <div style="display: flex; flex-direction: column; gap: 40px; padding-top: 48px;">
+
+        <!-- IQ Suite — Data & Intelligence -->
+        <div>
+          <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px;">Data &amp; Intelligence</p>
+          <div class="grid-products" style="display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid #2b2e34; border-radius: 16px; overflow: hidden;">
+            <div class="product-card" style="border-right: 1px solid #2b2e34; padding: 40px;">
+              <div class="icon-circle">
+                <img src="icon-surveys.svg" alt="" />
+              </div>
+              <p style="font-size: 16px; font-weight: 500; color: #fff; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Market Surveys</p>
+              <p style="font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 20px; letter-spacing: -0.37px;">Show how operators are performing against competitors.</p>
+            </div>
+            <div class="product-card" style="border-right: 1px solid #2b2e34; padding: 40px;">
+              <div class="icon-circle">
+                <img src="icon-explore.svg" alt="" />
+              </div>
+              <p style="font-size: 16px; font-weight: 500; color: #fff; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Market Research <span class="desktop-br-inline"><br></span><span style="white-space: nowrap;">(Explore Pro)</span></p>
+              <p style="font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 20px; letter-spacing: -0.37px;">Helps operators decide where to buy, build, and redevelop.</p>
+            </div>
+            <div class="product-card" style="padding: 40px;">
+              <div class="icon-circle">
+                <img src="icon-revenue.svg" alt="" />
+              </div>
+              <p style="font-size: 16px; font-weight: 500; color: #fff; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Revenue Management (Daylight)</p>
+              <p style="font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 20px; letter-spacing: -0.37px;">Recommends the right rents to achieve occupancy goals.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Maven — AI Agents -->
+        <div>
+          <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px;">AI Agents</p>
+          <div style="display: grid; grid-template-columns: 1fr; max-width: 400px; border: 1px solid #2b2e34; border-radius: 16px; overflow: hidden;">
+            <div class="product-card" style="padding: 40px;">
+              <div class="icon-circle">
+                <img src="icon-maven.svg" alt="" />
+              </div>
+              <p style="font-size: 16px; font-weight: 500; color: #fff; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">MavenAI</p>
+              <p style="font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 20px; letter-spacing: -0.37px;">Our first AI agent, automating marketing across key channels like Google Business and Social.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom text -->
+      <div style="padding: 32px 0 24px;">
+        <p style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: -0.3px; color: rgba(255,255,255,0.7);">
+          Together, they move the industry from manual workflows to systems that <span style="font-weight: 500;">understand, decide, and act.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 3 · WHO WE ARE
+  ═══════════════════════════════════════════════════ -->
+  <section style="background: #fff; padding: 88px 0;">
+    <div class="container" style="max-width: 1200px;">
+      <div style="padding: 0 32px;">
+        <div class="who-we-are-grid" style="display: flex; gap: 64px; align-items: flex-start;">
+          <!-- Left: heading -->
+          <div class="who-heading" style="width: 400px; flex-shrink: 0;">
+            <h2 class="font-display font-medium" style="font-size: 48px; line-height: 1.1; letter-spacing: -0.37px; color: #191a1d;">
+              Who we are
+            </h2>
+          </div>
+          <!-- Right: values list -->
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 32px;">
+            <!-- Value 1 -->
+            <div style="padding: 0 12px;">
+              <img src="https://www.figma.com/api/mcp/asset/ffd48174-4004-4be5-8bb4-676f4cdab2e1" alt="" style="width: 64px; height: 64px; margin-bottom: 12px;" class="value-icon" />
+              <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Ownership seekers</p>
+              <p style="font-size: 14px; font-weight: 400; color: #40434c; line-height: 20px; letter-spacing: -0.37px;">People here own real surface area. It's common to take responsibility for entire products or problem spaces, and have the autonomy to shape how they evolve.</p>
+            </div>
+            <div class="value-divider"></div>
+            <!-- Value 2 -->
+            <div style="padding: 0 12px;">
+              <img src="https://www.figma.com/api/mcp/asset/599b32a4-dfb1-4a9a-b71d-253e6575d59a" alt="" style="width: 64px; height: 64px; margin-bottom: 12px;" class="value-icon" />
+              <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Growth chasers</p>
+              <p style="font-size: 14px; font-weight: 400; color: #40434c; line-height: 20px; letter-spacing: -0.37px;">People here want to grow faster than they would elsewhere. They're motivated to build the company, and grow alongside it.</p>
+            </div>
+            <div class="value-divider"></div>
+            <!-- Value 3 -->
+            <div style="padding: 0 12px;">
+              <img src="https://www.figma.com/api/mcp/asset/288a9379-3d6c-444e-8957-d1b4d6bce0b0" alt="" style="width: 64px; height: 64px; margin-bottom: 12px;" class="value-icon" />
+              <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Low ego builders</p>
+              <p style="font-size: 14px; font-weight: 400; color: #40434c; line-height: 20px; letter-spacing: -0.37px;">We take the work seriously. Not ourselves. Life's too short to work with people you don't like.</p>
+            </div>
+            <div class="value-divider"></div>
+            <!-- Value 4 -->
+            <div style="padding: 0 12px;">
+              <img src="https://www.figma.com/api/mcp/asset/08f4273e-5969-4b75-8d99-534a862ea96c" alt="" style="width: 64px; height: 64px; margin-bottom: 12px;" class="value-icon" />
+              <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; margin-bottom: 8px;">Fast-movers</p>
+              <p style="font-size: 14px; font-weight: 400; color: #40434c; line-height: 20px; letter-spacing: -0.37px;">Pace is our top priority and a competitive advantage. We move quickly because it matters to our customers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 4 · STATS — OPERATORS RELY ON US
+  ═══════════════════════════════════════════════════ -->
+  <section style="background: linear-gradient(-86deg, #000 56%, #666 169%); padding: 96px 0;">
+    <div class="container">
+      <div>
+        <div style="display: flex; flex-direction: column; gap: 72px; align-items: center;">
+          <!-- Heading + stat cards -->
+          <div style="display: flex; flex-direction: column; gap: 48px; width: 100%;">
+            <h2 class="font-display font-medium" style="font-size: 48px; line-height: 60px; letter-spacing: -0.37px; color: #fff;">
+              Multifamily operators<br class="mobile-br"> rely&nbsp;on&nbsp;us.
+            </h2>
+            <!-- 4 stat cards -->
+            <div class="stats-metrics" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+              <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
+                <p class="gradient-metric font-semibold stat-number" data-target="8" data-suffix="M+" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; text-align: center; margin-bottom: 16px;">8M+</p>
+                <div class="stat-divider" style="margin-bottom: 16px;"></div>
+                <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px; text-align: center;">Units on platform</p>
+              </div>
+              <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
+                <p class="gradient-metric font-semibold stat-number" data-target="1500" data-suffix="+" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; text-align: center; margin-bottom: 16px;">1500+</p>
+                <div class="stat-divider" style="margin-bottom: 16px;"></div>
+                <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px; text-align: center;">Customers</p>
+              </div>
+              <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
+                <p class="gradient-metric font-semibold stat-number" data-target="70" data-suffix="%" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; text-align: center; margin-bottom: 16px;">70%</p>
+                <div class="stat-divider" style="margin-bottom: 16px;"></div>
+                <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px; text-align: center;">NMHC Top 50</p>
+              </div>
+              <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
+                <p class="gradient-metric font-semibold stat-number" data-target="96" data-suffix="%+" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; text-align: center; margin-bottom: 16px;">96%+</p>
+                <div class="stat-divider" style="margin-bottom: 16px;"></div>
+                <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px; text-align: center;">Renewal rate</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- USED EVERY DAY card -->
+          <div style="position: relative; border: 1px solid rgba(255,255,255,0.4); border-radius: 16px; padding: 32px 24px 24px; width: 100%;">
+            <!-- Floating label -->
+            <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #000; padding: 0 24px;">
+              <p class="font-display font-medium" style="font-size: 14px; color: #fff; text-align: center; letter-spacing: 0.8px; text-transform: uppercase; line-height: 24px; white-space: nowrap;">USED EVERY DAY</p>
+            </div>
+            <div style="max-width: 912px; margin: 0 auto;">
+              <p style="font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 30px; letter-spacing: -0.54px; text-align: center; margin-bottom: 16px;">
+                Our products are used daily. Customers rely on them for pricing decisions, competitive analysis, and marketing strategy. This isn't software that gets bought and forgotten.
+              </p>
+              <p style="font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 30px; letter-spacing: -0.54px; text-align: center;">
+                Customers actively engage, give feedback, and help shape the product. Their workflows depend on what we build.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 5 · COMPANY HEALTH
+  ═══════════════════════════════════════════════════ -->
+  <section style="background: #fff; padding: 96px 32px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="health-grid" style="display: flex; gap: 48px; align-items: center; justify-content: center;">
+        <!-- Left: heading -->
+        <div style="flex: 0 0 auto; max-width: 420px;">
+          <p class="eyebrow-gradient" style="font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; line-height: 16px; margin-bottom: 16px;">Company Health</p>
+          <h2 class="font-display font-medium" style="font-size: 48px; line-height: 60px; letter-spacing: -0.37px; color: #191a1d;">We're scaling with discipline.</h2>
+        </div>
+        <!-- Vertical divider -->
+        <div class="health-divider" style="width: 1px; align-self: stretch; background: linear-gradient(180deg, transparent, #dfe0e5, transparent);"></div>
+        <!-- Right: 2x2 metrics -->
+        <div class="health-metrics" style="flex: 0 0 auto; padding: 24px 0;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px 32px; max-width: 540px;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.38336 23.9166L11.6756 13.4666C11.9029 13.2157 12.2179 13.0617 12.5555 13.0365C12.8931 13.0113 13.2275 13.1167 13.4895 13.3311L19.1439 18.0431C19.4057 18.2574 19.7401 18.3625 20.0775 18.3365C20.4149 18.3106 20.7292 18.1556 20.9552 17.9037L29.6167 8.08325" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.8286 8.08325H29.6167V15.6567" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; text-align: center;">Top decile SaaS Growth Rate</p>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.675 19.325C12.675 19.9827 12.87 20.6255 13.2354 21.1723C13.6007 21.7191 14.12 22.1452 14.7276 22.3969C15.3351 22.6486 16.0037 22.7143 16.6487 22.5862C17.2936 22.4578 17.8862 22.1412 18.3512 21.6762C18.8162 21.2111 19.1328 20.6186 19.2612 19.9737C19.3895 19.3287 19.3236 18.6601 19.0719 18.0526C18.8202 17.445 18.3941 16.9257 17.8473 16.5604C17.3005 16.1951 16.6577 16 16 16C15.3423 16 14.6995 15.8049 14.1527 15.4396C13.606 15.0743 13.1798 14.555 12.9281 13.9474C12.6765 13.3399 12.6106 12.6713 12.7389 12.0263C12.8672 11.3813 13.1839 10.7889 13.6489 10.3239C14.1139 9.85886 14.7064 9.54219 15.3513 9.41389C15.9963 9.28559 16.6649 9.35144 17.2725 9.60311C17.88 9.85477 18.3993 10.2809 18.7646 10.8277C19.1301 11.3745 19.325 12.0174 19.325 12.675M16 7.13333V9.35M16 22.65V24.8667M29.1579 10.5192C27.0104 5.36961 21.9279 1.75 16 1.75C8.12983 1.75 1.75 8.12995 1.75 16C1.75 23.8702 8.12983 30.25 16 30.25C22.7382 30.25 28.3841 25.5732 29.8686 19.2885M30.25 5.03834V10.5191H24.7693" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; text-align: center;">Cash-flow positive</p>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.8847 30.5668C13.3288 29.6041 12.5293 28.8046 11.5665 28.2488C10.6038 27.693 9.51169 27.4004 8.40001 27.4004C7.28833 27.4004 6.19624 27.693 5.23348 28.2488C4.27073 28.8046 3.47123 29.6041 2.91534 30.5668" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.60004 22.3334C4.60004 23.3413 5.00039 24.3078 5.71303 25.0205C6.42567 25.7331 7.39221 26.1334 8.40004 26.1334C9.40786 26.1334 10.3744 25.7331 11.087 25.0205C11.7997 24.3078 12.2 23.3413 12.2 22.3334C12.2 21.3256 11.7997 20.3591 11.087 19.6464C10.3744 18.9338 9.40786 18.5334 8.40004 18.5334C7.39221 18.5334 6.42567 18.9338 5.71303 19.6464C5.00039 20.3591 4.60004 21.3256 4.60004 22.3334Z" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.1154 30.5668C18.6712 29.6041 19.4707 28.8046 20.4335 28.2488C21.3963 27.693 22.4883 27.4004 23.6 27.4004C24.7117 27.4004 25.8038 27.693 26.7666 28.2488C27.7293 28.8046 28.5288 29.6041 29.0847 30.5668" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.8 22.3334C19.8 23.3413 20.2004 24.3078 20.913 25.0205C21.6257 25.7331 22.5922 26.1334 23.6 26.1334C24.6079 26.1334 25.5744 25.7331 26.2871 25.0205C26.9997 24.3078 27.4 23.3413 27.4 22.3334C27.4 21.3256 26.9997 20.3591 26.2871 19.6464C25.5744 18.9338 24.6079 18.5334 23.6 18.5334C22.5922 18.5334 21.6257 18.9338 20.913 19.6464C20.2004 20.3591 19.8 21.3256 19.8 22.3334Z" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M24.8667 1.43335C25.2026 1.43335 25.5248 1.5668 25.7624 1.80435C25.9999 2.04189 26.1334 2.36408 26.1334 2.70002V14.1C26.1334 14.436 25.9999 14.7581 25.7624 14.9957C25.5248 15.2332 25.2026 15.3667 24.8667 15.3667H19.5847L15.7847 19.1667V15.3667H7.13337C6.79743 15.3667 6.47524 15.2332 6.2377 14.9957C6.00015 14.7581 5.8667 14.436 5.8667 14.1V2.70002C5.8667 2.36408 6.00015 2.04189 6.2377 1.80435C6.47524 1.5668 6.79743 1.43335 7.13337 1.43335H24.8667Z" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 10.9333V12.2" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 4.6001V5.86676" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.4667 10.9334H17.2667C17.6026 10.9334 17.9248 10.7999 18.1623 10.5624C18.3999 10.3248 18.5333 10.0026 18.5333 9.6667C18.5333 9.33076 18.3999 9.00858 18.1623 8.77103C17.9248 8.53348 17.6026 8.40003 17.2667 8.40003H14.7333C14.3974 8.40003 14.0752 8.26658 13.8377 8.02903C13.6001 7.79149 13.4667 7.46931 13.4667 7.13337C13.4667 6.79743 13.6001 6.47524 13.8377 6.2377C14.0752 6.00015 14.3974 5.8667 14.7333 5.8667H18.5333" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; text-align: center;">$55M raised from the world's best investors</p>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 11.5667H18.5333" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 15.3667H14.1" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 7.7666H15.3667" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 19.1667H11.5667" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 22.9666H11.5667" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.1 30.5667H2.70002C2.36408 30.5667 2.04189 30.4332 1.80435 30.1957C1.5668 29.9581 1.43335 29.636 1.43335 29.3V2.70002C1.43335 2.36408 1.5668 2.04189 1.80435 1.80435C2.04189 1.5668 2.36408 1.43335 2.70002 1.43335H19.5378C19.8737 1.43342 20.1959 1.56692 20.4334 1.80448L25.1289 6.50002C25.3664 6.73751 25.4999 7.05964 25.5 7.39555V11.5667" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M24.8667 19.1667H22.2916C21.8969 19.167 21.5147 19.3046 21.2104 19.5559C20.9061 19.8072 20.6987 20.1566 20.6238 20.544C20.5489 20.9315 20.6112 21.333 20.7999 21.6796C20.9887 22.0262 21.2921 22.2963 21.6582 22.4436L24.2726 23.4899C24.6388 23.6372 24.9422 23.9073 25.131 24.2539C25.3197 24.6005 25.382 25.002 25.3071 25.3895C25.2322 25.7769 25.0248 26.1263 24.7205 26.3776C24.4162 26.6289 24.034 26.7665 23.6393 26.7667H21.0667" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M22.9667 28.0333V26.7666" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M22.9667 19.1666V17.8999" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.3667 22.9667C15.3667 23.9647 15.5633 24.953 15.9452 25.8751C16.3272 26.7972 16.887 27.635 17.5927 28.3407C18.2984 29.0464 19.1362 29.6062 20.0583 29.9882C20.9804 30.3701 21.9687 30.5667 22.9667 30.5667C23.9647 30.5667 24.953 30.3701 25.8751 29.9882C26.7972 29.6062 27.635 29.0464 28.3407 28.3407C29.0464 27.635 29.6062 26.7972 29.9882 25.8751C30.3701 24.953 30.5667 23.9647 30.5667 22.9667C30.5667 20.9511 29.766 19.018 28.3407 17.5927C26.9154 16.1674 24.9823 15.3667 22.9667 15.3667C20.9511 15.3667 19.018 16.1674 17.5927 17.5927C16.1674 19.018 15.3667 20.9511 15.3667 22.9667Z" stroke="#191a1d" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <p style="font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px; text-align: center;">Strong balance sheet</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 6 · WHAT IT'S LIKE (FAQ + IMAGE)
+  ═══════════════════════════════════════════════════ -->
+  <section style="background: #f2f0ee; background-image: radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.9) 0%, transparent 60%), radial-gradient(ellipse at 100% 100%, rgba(215,210,205,0.4) 0%, transparent 55%), radial-gradient(ellipse at 50% 0%, rgba(250,248,246,0.7) 0%, transparent 50%), radial-gradient(ellipse at 100% 0%, rgba(255,253,250,0.5) 0%, transparent 45%); padding: 104px 32px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <!-- Header -->
+      <div style="text-align: center; padding: 0 32px 48px;">
+        <p class="eyebrow-gradient" style="font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; line-height: 16px; margin-bottom: 16px;">What It's Like</p>
+        <h2 class="font-display font-medium" style="font-size: 56px; line-height: 64px; letter-spacing: -0.5px; color: #191a1d;">The kind of team you actually want to be on.</h2>
+      </div>
+      <!-- FAQ + Image side by side -->
+      <div class="faq-grid" style="display: flex; gap: 32px; align-items: start;">
+        <!-- Left: FAQ accordion -->
+        <div style="flex: 1;">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item" data-faq>
+            <button onclick="toggleFaq(this)" style="display: flex; align-items: flex-start; gap: 16px; padding: 24px; width: 100%; background: none; border: none; cursor: pointer; text-align: left;">
+              <p style="flex: 1; font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px;">No Assholes</p>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;"><path d="M12 5V19M5 12H19" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-answer" style="padding: 0 24px;">
+              <div><p style="font-size: 14px; color: #40434c; line-height: 20px; letter-spacing: -0.37px; padding-bottom: 24px;">We have a strict no assholes policy. Non-negotiable. But we go further than that, we're a low-ego, no-drama team that keeps things light while we build.</p></div>
+            </div>
+          </div>
+          <div style="height: 1px; background: rgba(0,0,0,0.1);"></div>
+          <!-- FAQ Item 2 -->
+          <div class="faq-item" data-faq>
+            <button onclick="toggleFaq(this)" style="display: flex; align-items: flex-start; gap: 16px; padding: 24px; width: 100%; background: none; border: none; cursor: pointer; text-align: left;">
+              <p style="flex: 1; font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px;">Exceptional employee retention</p>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;"><path d="M12 5V19M5 12H19" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-answer" style="padding: 0 24px;">
+              <div><p style="font-size: 14px; color: #40434c; line-height: 20px; letter-spacing: -0.37px; padding-bottom: 24px;">Our best-in-class employee retention is a result of our growth and pace, but we also believe building a sustainable company is a marathon, not a sprint. The vast majority of our team has been with us for 4+ years, and many have been with us for 8+ years.</p></div>
+            </div>
+          </div>
+          <div style="height: 1px; background: rgba(0,0,0,0.1);"></div>
+          <!-- FAQ Item 3 -->
+          <div class="faq-item" data-faq>
+            <button onclick="toggleFaq(this)" style="display: flex; align-items: flex-start; gap: 16px; padding: 24px; width: 100%; background: none; border: none; cursor: pointer; text-align: left;">
+              <p style="flex: 1; font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px;">Fully Remote</p>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;"><path d="M12 5V19M5 12H19" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-answer" style="padding: 0 24px;">
+              <div><p style="font-size: 14px; color: #40434c; line-height: 20px; letter-spacing: -0.37px; padding-bottom: 24px;">We're a fully remote team spread across all U.S. timezones. That said, we like to see each other. We get together for an annual company-wide offsite, meet quarterly for team offsites, and find plenty of reasons to connect in person in between.</p></div>
+            </div>
+          </div>
+          <div style="height: 1px; background: rgba(0,0,0,0.1);"></div>
+          <!-- FAQ Item 4 -->
+          <div class="faq-item" data-faq>
+            <button onclick="toggleFaq(this)" style="display: flex; align-items: flex-start; gap: 16px; padding: 24px; width: 100%; background: none; border: none; cursor: pointer; text-align: left;">
+              <p style="flex: 1; font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px;">Competitive Benefits</p>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;"><path d="M12 5V19M5 12H19" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-answer" style="padding: 0 24px;">
+              <div><p style="font-size: 14px; color: #40434c; line-height: 20px; letter-spacing: -0.37px; padding-bottom: 24px;">Competitive compensation. Flexible, paid time off. Medical, dental, and vision insurance. Short-term, long-term, and basic life insurance. Supplemental coverage, including pet insurance. 401(k) with employer match. Oh, and unlimited tokens.</p></div>
+            </div>
+          </div>
+        </div>
+        <!-- Right: Team photo — centered and larger -->
+        <div style="flex: 1; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 32px rgba(41,41,42,0.15); aspect-ratio: 4/3;">
+          <img src="https://www.figma.com/api/mcp/asset/c717971d-3f00-4031-b8cf-b1cdf6866654" alt="ApartmentIQ team" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 7 · OPEN POSITIONS
+  ═══════════════════════════════════════════════════ -->
+  <section id="jobs" style="background: #111113;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px 104px; box-sizing: border-box;">
+      <!-- Header -->
+      <div style="margin-bottom: 64px;">
+        <p style="font-size: 12px; font-weight: 700; color: #bab1ff; letter-spacing: 0.6px; text-transform: uppercase; line-height: 16px; margin-bottom: 16px;">OPEN POSITIONS</p>
+        <h2 class="font-display font-medium" style="font-size: 48px; line-height: 60px; letter-spacing: -0.37px; color: #fff; margin-bottom: 12px;">We're hiring!</h2>
+        <p style="font-size: 18px; font-weight: 400; color: rgba(255,255,255,0.45); line-height: 28px; letter-spacing: -0.54px;">All roles are fully remote. 21 open positions across 6 teams.</p>
+      </div>
+
+      <!-- ── CUSTOMER SUCCESS ── -->
+      <div style="margin-bottom: 56px;">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px;">Customer Success</p>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7336528" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Pricing Advisor</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7381167" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Customer Success Manager</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7685474" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">SVP, Customer Experience</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+      </div>
+
+      <!-- ── ENGINEERING ── -->
+      <div style="margin-bottom: 56px;">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px;">Engineering</p>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7567977" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Senior Software Engineer - Data Infrastructure</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7630174" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Lead Product Engineer - MavenAI</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+      </div>
+
+      <!-- ── FINANCE + ACCOUNTING ── -->
+      <div style="margin-bottom: 56px;">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px;">Finance + Accounting</p>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7508151" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">FP&amp;A Analyst</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7673360" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Manager, Accounts Receivable</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7713242" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Billing Support Specialist</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+      </div>
+
+      <!-- ── MARKETING ── -->
+      <div style="margin-bottom: 56px;">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px;">Marketing</p>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7600055" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Marketing Operations Manager</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7616343" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Director of Demand Generation</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7724069" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Events &amp; Growth Marketing Specialist</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+      </div>
+
+      <!-- ── PRODUCT ── -->
+      <div style="margin-bottom: 56px;">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px;">Product</p>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7312513" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Senior Product Manager - AI &amp; Data</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7528290" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Staff Product Manager - Market Research</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7705155" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Product Manager - Agentic AI</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7705215" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Product Builder</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+      </div>
+
+      <!-- ── SALES ── -->
+      <div>
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px;">Sales</p>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7248334" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Account Executive</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7484622" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Sales Engineer</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7584171" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Sales Development Representative</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7648590" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Account Executive</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7711529" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Account Executive, MavenAI</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+        <a href="https://job-boards.greenhouse.io/abodo/jobs/7739895" target="_blank" rel="noopener" class="job-row">
+          <span class="job-title">Director of Sales Development</span>
+          <span class="job-location">Remote</span>
+        </a>
+        <div class="job-divider"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════ -->
+  <footer style="background: #fff; padding: 48px 0 0;">
+    <div class="container" style="max-width: 1148px;">
+      <div class="footer-main" style="display: flex; align-items: flex-end; justify-content: space-between; padding-bottom: 24px;">
+        <div class="footer-left" style="display: flex; flex-direction: column; gap: 24px;">
+          <a href="#">
+            <img src="IQ_logo.png" alt="ApartmentIQ" style="height: 32px; width: auto;" />
+          </a>
+          <div class="footer-product-links" style="display: flex; flex-wrap: wrap; gap: 24px;">
+            <a href="#" style="font-size: 14px; font-weight: 500; color: #40434c; text-decoration: none; letter-spacing: -0.37px;">Market Surveys</a>
+            <a href="#" style="font-size: 14px; font-weight: 500; color: #40434c; text-decoration: none; letter-spacing: -0.37px;">Market Research</a>
+            <a href="#" style="font-size: 14px; font-weight: 500; color: #40434c; text-decoration: none; letter-spacing: -0.37px;">Daylight</a>
+            <a href="#" style="font-size: 14px; font-weight: 500; color: #40434c; text-decoration: none; letter-spacing: -0.37px;">MavenAI</a>
+          </div>
+        </div>
+        <div class="footer-right" style="display: flex; gap: 20px; align-items: center;">
+          <a href="#" style="font-size: 14px; font-weight: 500; color: #40434c; text-decoration: none; letter-spacing: -0.37px;">Resources</a>
+          <a href="#" style="font-size: 14px; font-weight: 500; color: #40434c; text-decoration: none; letter-spacing: -0.37px;">Careers</a>
+          <a href="#" style="font-size: 14px; font-weight: 500; color: #40434c; text-decoration: none; letter-spacing: -0.37px;">Sign In</a>
+          <a href="#" style="font-size: 14px; font-weight: 500; color: #40434c; text-decoration: none; letter-spacing: -0.37px;">Request Demo</a>
+        </div>
+      </div>
+      <div class="footer-bottom" style="border-top: 1px solid #dfe0e5; display: flex; align-items: center; justify-content: space-between; padding: 24px 0 32px;">
+        <p style="font-size: 14px; font-weight: 400; color: #40434c; letter-spacing: -0.37px; line-height: 20px;">
+          Copyright &copy; 2026 ApartmentIQ and Rentable. All rights reserved.
+          <a href="#" style="text-decoration: underline; color: #40434c;">Terms &amp; Conditions</a>
+        </p>
+        <div class="footer-social">
+          <img src="https://www.figma.com/api/mcp/asset/c5fa24fa-6dac-4260-a291-628c8d18f9b7" alt="LinkedIn" style="width: 20px; height: 20px;" />
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Hero: staggered blur-in ──
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        var headline = document.querySelector('.hero-headline');
+        var subtitle = document.querySelector('.hero-subtitle');
+        var ctas = document.querySelector('.hero-ctas-wrap');
+        if (headline) setTimeout(function() { headline.classList.add('is-visible'); }, 80);
+        if (subtitle) setTimeout(function() { subtitle.classList.add('is-visible'); }, 260);
+        if (ctas) setTimeout(function() { ctas.classList.add('is-visible'); }, 400);
+      });
+    });
+
+    // ── Section reveals (sparse, once) ──
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+    // Stat count-up — deliberate, premium pacing
+    function countUp(el, target, suffix, duration) {
+      duration = duration || 1600;
+      var startVal = Math.round(target * 0.75);
+      var range = target - startVal;
+      // Quint ease-out: slow deceleration, confident landing
+      var ease = function(t) { return 1 - Math.pow(1 - t, 4); };
+      el.textContent = startVal + suffix;
+      var t0 = performance.now();
+      (function tick(now) {
+        var p = Math.min((now - t0) / duration, 1);
+        el.textContent = Math.round(startVal + ease(p) * range) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+    }
+    var statsObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.stat-number').forEach(function(el, i) {
+          setTimeout(function() {
+            el.closest('.stat-col').classList.add('is-in');
+            countUp(el, +el.dataset.target, el.dataset.suffix);
+          }, i * 280);
+        });
+        statsObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+    var statsSection = document.querySelector('.stats-metrics');
+    if (statsSection) statsObserver.observe(statsSection);
+
+    // Stats card outline reveal
+    var outlinedCards = document.querySelectorAll('.stats-card--outlined');
+    var outlineObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-revealed');
+        outlineObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+    outlinedCards.forEach(function(card) { outlineObserver.observe(card); });
+
+    // FAQ toggle
+    function toggleFaq(btn) {
+      var item = btn.closest('.faq-item');
+      var wasOpen = item.classList.contains('is-open');
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(function(el) { el.classList.remove('is-open'); });
+      // Toggle clicked
+      if (!wasOpen) item.classList.add('is-open');
+    }
+
+    // Mobile menu
+    (function() {
+      var btn = document.getElementById('hamburger-btn');
+      var menu = document.getElementById('mobile-menu');
+      var closeBtn = document.getElementById('mmenu-close-btn');
+      if (!btn || !menu) return;
+      function open() {
+        menu.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        menu.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        menu.classList.contains('is-open') ? close() : open();
+      });
+      if (closeBtn) closeBtn.addEventListener('click', close);
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close(); });
+    })();
+  </script>
+
+</body>
+</html>
