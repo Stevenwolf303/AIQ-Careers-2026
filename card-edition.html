@@ -583,6 +583,7 @@
     @media (max-width: 480px) {
       .hero-heading { font-size: 38px !important; }
       .hero-ctas { flex-direction: column !important; gap: 12px !important; }
+      .stats-metrics { grid-template-columns: 1fr !important; gap: 10px !important; }
     }
   </style>
 </head>
@@ -699,7 +700,7 @@
       <!-- Data & Intelligence — lightweight product blocks -->
       <div style="margin-bottom: 32px;">
         <p style="font-size: 17px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 28px; letter-spacing: -0.2px; margin-bottom: 20px;">
-          <span style="font-weight: 500; color: #fff;">ApartmentIQ</span> is our data and decisioning platform:
+          <span style="font-weight: 500; color: #fff;">ApartmentIQ</span> is our data and recommendations platform:
         </p>
         <div style="display: flex; flex-direction: column; gap: 8px;">
           <div style="background: rgba(255,255,255,0.04); border-radius: 12px; padding: 20px 24px;">
@@ -783,22 +784,22 @@
 
           <!-- Stats — V2 card style, left-aligned internally -->
           <div class="stats-metrics" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
-            <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
+            <div class="stat-col stats-card--outlined" style="background: linear-gradient(90deg, rgba(255,255,255,0.095) 0%, rgba(255,255,255,0.065) 35%, rgba(255,255,255,0.035) 70%, rgba(255,255,255,0.02) 100%), radial-gradient(ellipse at 6% 12%, rgba(255,255,255,0.055) 0%, transparent 55%); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 32px;">
               <p class="gradient-metric font-semibold stat-number" data-target="8" data-suffix="M+" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; margin-bottom: 16px;">8M+</p>
               <div class="stat-divider" style="margin-bottom: 16px;"></div>
               <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px;">Units on platform</p>
             </div>
-            <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
+            <div class="stat-col stats-card--outlined" style="background: linear-gradient(90deg, rgba(255,255,255,0.095) 0%, rgba(255,255,255,0.065) 35%, rgba(255,255,255,0.035) 70%, rgba(255,255,255,0.02) 100%), radial-gradient(ellipse at 6% 12%, rgba(255,255,255,0.055) 0%, transparent 55%); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 32px;">
               <p class="gradient-metric font-semibold stat-number" data-target="1500" data-suffix="+" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; margin-bottom: 16px;">1500+</p>
               <div class="stat-divider" style="margin-bottom: 16px;"></div>
               <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px;">Customers</p>
             </div>
-            <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
+            <div class="stat-col stats-card--outlined" style="background: linear-gradient(90deg, rgba(255,255,255,0.095) 0%, rgba(255,255,255,0.065) 35%, rgba(255,255,255,0.035) 70%, rgba(255,255,255,0.02) 100%), radial-gradient(ellipse at 6% 12%, rgba(255,255,255,0.055) 0%, transparent 55%); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 32px;">
               <p class="gradient-metric font-semibold stat-number" data-target="70" data-suffix="%" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; margin-bottom: 16px;">70%</p>
               <div class="stat-divider" style="margin-bottom: 16px;"></div>
               <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px;">NMHC Top 50</p>
             </div>
-            <div class="stat-col stats-card--outlined" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 32px;">
+            <div class="stat-col stats-card--outlined" style="background: linear-gradient(90deg, rgba(255,255,255,0.095) 0%, rgba(255,255,255,0.065) 35%, rgba(255,255,255,0.035) 70%, rgba(255,255,255,0.02) 100%), radial-gradient(ellipse at 6% 12%, rgba(255,255,255,0.055) 0%, transparent 55%); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 32px;">
               <p class="gradient-metric font-semibold stat-number" data-target="96" data-suffix="%+" style="font-size: 48px; line-height: 60px; letter-spacing: -0.96px; margin-bottom: 16px;">96%+</p>
               <div class="stat-divider" style="margin-bottom: 16px;"></div>
               <p style="font-size: 18px; font-weight: 400; color: #fff; line-height: 28px; letter-spacing: -0.54px;">Renewal rate</p>
@@ -875,7 +876,7 @@
         <!-- Left: FAQ accordion -->
         <div style="flex: 1;">
           <!-- FAQ Item 1 -->
-          <div class="faq-item" data-faq>
+          <div class="faq-item is-open" data-faq>
             <button onclick="toggleFaq(this)" style="display: flex; align-items: flex-start; gap: 16px; padding: 24px; width: 100%; background: none; border: none; cursor: pointer; text-align: left;">
               <p style="flex: 1; font-size: 16px; font-weight: 500; color: #191a1d; line-height: 24px; letter-spacing: -0.37px;">No Assholes</p>
               <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0;"><path d="M5 7.5L10 12.5L15 7.5" stroke="#191a1d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
