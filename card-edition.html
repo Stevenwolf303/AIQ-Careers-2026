@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
     body { font-family: 'Inter', sans-serif; color: #191a1d; }
     .font-display { font-family: 'Inter Tight', sans-serif; }
 
@@ -547,10 +548,11 @@
       /* Stats */
       .stats-metrics { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
       .stats-metrics .stat-col { padding: 24px !important; }
-      .stats-metrics .stat-col p:first-child { font-size: 36px !important; line-height: 44px !important; }
+      .stats-metrics .stat-col p:first-child { font-size: 42px !important; line-height: 52px !important; }
 
-      /* Who We Are cards — stack to 1 column */
+      /* Who We Are cards — stack to 1 column, slightly darken */
       .who-cards-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+      .who-cards-grid > div { background: linear-gradient(135deg, #EDEDEC 0%, #E6E5E4 100%) !important; background-image: linear-gradient(135deg, #EDEDEC 0%, #E6E5E4 100%) !important; }
 
       /* Company Health — stack */
       .health-grid { flex-direction: column !important; gap: 32px !important; }
@@ -584,6 +586,7 @@
       .hero-heading { font-size: 38px !important; }
       .hero-ctas { flex-direction: column !important; gap: 12px !important; }
       .stats-metrics { grid-template-columns: 1fr !important; gap: 10px !important; }
+      .stats-metrics .stat-col p:first-child { font-size: 48px !important; line-height: 60px !important; }
     }
   </style>
 </head>
